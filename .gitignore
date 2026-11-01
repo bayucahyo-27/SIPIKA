@@ -1,0 +1,30 @@
+# Environment and sensitive files
+.env
+.env.*
+!.env.example
+
+# PHP dependencies
+/vendor/
+
+# Python cache and virtual environment
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Machine Learning generated files
+ml-service/models/*.pkl
+ml-service/models/*.joblib
+
+# Uploaded datasets
+storage/datasets/*
+!storage/datasets/.gitkeep
+
+# IDE and editor
+.vscode/
+.idea/
+
+# Operating system
+.DS_Store
+Thumbs.db
+desktop.ini
