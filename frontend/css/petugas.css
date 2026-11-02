@@ -1,1 +1,337 @@
+/* Styling Dashboard Petugas SIPIKA */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
+body {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* SIDEBAR STYLING */
+.sidebar {
+  width: 260px;
+  background: linear-gradient(rgba(11, 25, 44, 0.85), rgba(11, 25, 44, 0.85)), url('../../assets/images/sidebar.jpg') no-repeat center center/cover;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-logo {
+  font-size: 28px;
+}
+
+.sidebar-brand h2 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 20px 15px;
+  flex: 1;
+}
+
+.sidebar-menu li {
+  margin-bottom: 8px;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: #9ca3af;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+  background-color: #2563eb;
+  color: white;
+}
+
+.sidebar-footer {
+  padding: 15px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ef4444;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  color: #f87171;
+}
+
+/* MAIN CONTENT STYLING */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.top-navbar {
+  height: 70px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 30px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.user-profile-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f8fafc;
+  padding: 6px 14px;
+  border-radius: 30px;
+  border: 1px solid #e2e8f0;
+}
+
+.profile-avatar {
+  width: 35px;
+  height: 35px;
+  background-color: #2563eb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.profile-role {
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* CONTENT BODY */
+.content-body {
+  padding: 30px;
+  flex: 1;
+}
+
+/* Welcome Banner */
+.welcome-banner {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../../assets/images/banner.jpg') no-repeat center center/cover;
+  border-radius: 16px;
+  padding: 40px;
+  color: white;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.banner-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.welcome-banner h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.welcome-banner p {
+  font-size: 14px;
+  opacity: 0.9;
+  max-width: 650px;
+  line-height: 1.5;
+}
+
+/* Info Card */
+.info-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px 30px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  border: 1px solid #e5e7eb;
+}
+
+.info-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.card-icon {
+  color: #2563eb;
+  font-size: 18px;
+}
+
+.info-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.info-card p {
+  font-size: 13px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* Decision Tree Flow Layout */
+.dt-flow-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 20px;
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.dt-box {
+  background: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 15px;
+  flex: 1;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.dt-box-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.dt-item {
+  font-size: 12px;
+  color: #475569;
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dt-item i {
+  color: #2563eb;
+}
+
+.process-box p, .result-desc {
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.dt-box-icon {
+  font-size: 20px;
+  color: #2563eb;
+  margin-bottom: 5px;
+}
+
+.dt-arrow {
+  color: #94a3b8;
+  font-size: 16px;
+}
+
+/* Badges Hasil Klasifikasi */
+.badge-group {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.badge-rendah {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.badge-sedang {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.badge-tinggi {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+/* Footer Copyright */
+.footer-copyright {
+  text-align: center;
+  font-size: 12px;
+  color: #9ca3af;
+  padding: 20px 0;
+  border-top: 1px solid #e5e7eb;
+  background: white;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .dt-flow-container {
+    flex-direction: column;
+  }
+  .dt-arrow {
+    transform: rotate(90deg);
+  }
+}
