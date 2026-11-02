@@ -16,10 +16,9 @@
     
     <!-- SIDEBAR KIRI -->
     <aside class="sidebar">
-      <div class="sidebar-brand">
-        <div class="sidebar-logo">🐟</div>
-        <h2>SIPIKA</h2>
-      </div>
+  <div class="sidebar-brand">
+    <img src="../../assets/images/logo.png" alt="Logo SIPIKA" class="logo-img">
+  </div>
 
       <ul class="sidebar-menu">
         <li><a href="dashboard.html" class="active"><i class="fa-solid fa-house"></i> Dashboard</a></li>
@@ -54,16 +53,17 @@
         <!-- Banner Sambutan -->
         <div class="welcome-banner">
           <div class="banner-text">
-            <span class="banner-tag">DASHBOARD PETUGAS</span>
             <h1>Selamat Datang, Bayu Cahyo!</h1>
-            <p>SIPIKA membantu mengklasifikasikan tingkat produksi ikan tangkapan berdasarkan data yang tersedia menggunakan algoritma Decision Tree[cite: 1, 6].</p>
+            <p>SIPIKA membantu mengklasifikasikan tingkat produksi ikan tangkapan berdasarkan data yang tersedia menggunakan algoritma Decision Tree</p>
           </div>
         </div>
 
         <!-- Card Pengenalan Sistem SIPIKA -->
         <div class="info-card">
           <div class="info-card-header">
-            <i class="fa-solid fa-circle-info card-icon"></i>
+            <div class="card-icon-box">
+              <img src="../../assets/images/icon-system.png" alt="Icon Sistem" class="custom-card-icon">
+            </div>
             <h3>Pengenalan Sistem SIPIKA</h3>
           </div>
           <p>SIPIKA adalah sistem informasi yang digunakan untuk mengklasifikasikan tingkat produksi ikan tangkapan guna membantu nelayan dan petugas dalam memperoleh informasi produksi ikan dengan lebih cepat dan mudah.</p>
@@ -72,10 +72,12 @@
         <!-- Card Pengenalan Algoritma Decision Tree -->
         <div class="info-card">
           <div class="info-card-header">
-            <i class="fa-solid fa-brain card-icon"></i>
-            <h3>Pengenalan Algoritma Decision Tree</h3>
-          </div>
-          <p>SIPIKA menggunakan algoritma Decision Tree[cite: 1, 6] untuk mengklasifikasikan tingkat produksi ikan tangkapan berdasarkan empat atribut utama, yaitu jenis ikan, alat tangkap, wilayah, dan musim.</p>
+            <div class="card-icon-box">
+              <img src="../../assets/images/icon-tree.png" alt="Icon Decision Tree" class="custom-card-icon">
+            </div>
+          <h3>Pengenalan Algoritma Decision Tree</h3>
+        </div>
+          <p>SIPIKA menggunakan algoritma Decision Tree untuk mengklasifikasikan tingkat produksi ikan tangkapan berdasarkan empat atribut utama, yaitu jenis ikan, alat tangkap, wilayah, dan musim.</p>
 
           <!-- Alur Visual Decision Tree (Input -> Proses -> Hasil) -->
           <div class="dt-flow-container">
@@ -93,8 +95,12 @@
 
             <!-- Step 2: Proses Decision Tree -->
             <div class="dt-box process-box">
-              <div class="dt-box-icon"><i class="fa-solid fa-network-wired"></i></div>
-              <span class="dt-box-title">Proses Decision Tree</span>
+              <div class="dt-box-header">
+                <div class="dt-icon-box process-icon">
+                  <img src="../../assets/images/icon-tree.png" alt="Proses Decision Tree Icon" class="dt-custom-icon">
+                </div>
+                <span class="dt-box-title">Proses Decision Tree</span>
+              </div>
               <p>Model mempelajari pola dari data untuk menentukan kategori tingkat produksi ikan tangkapan.</p>
             </div>
 
@@ -102,8 +108,12 @@
 
             <!-- Step 3: Hasil Klasifikasi -->
             <div class="dt-box result-box">
-              <div class="dt-box-icon ai-icon"><i class="fa-solid fa-robot"></i></div>
-              <span class="dt-box-title">Hasil Klasifikasi</span>
+              <div class="dt-box-header">
+                <div class="dt-icon-box result-icon">
+                  <img src="../../assets/images/icon-result.png" alt="Hasil Klasifikasi Icon" class="dt-custom-icon">
+                </div>
+                <span class="dt-box-title">Hasil Klasifikasi</span>
+              </div>
               <p class="result-desc">Tingkat produksi ikan tangkapan diklasifikasikan menjadi tiga kategori.</p>
               <div class="badge-group">
                 <span class="badge badge-rendah">Rendah</span>
