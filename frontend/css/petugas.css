@@ -57,11 +57,11 @@ body {
 .logo-img,
 .sidebar-brand img,
 .sidebar-logo img {
-  width: 90px !important;
+  width: 150px !important;
   height: auto !important;
   object-fit: contain !important;
   display: block !important;
-  margin: 0 auto !important;
+  margin: 0 auto !imSportant;
 }
 
 .sidebar-brand h2 {
@@ -519,6 +519,7 @@ button.btn-add,
 
 /* REVISI 3: Pagination / Navigasi Halaman (< 1 2 3 >) di Sebelah Kanan & Efek Aktif Biru */
 .pagination,
+.pagination-container,
 .table-card .pagination,
 .data-pagination {
   display: flex !important;
@@ -526,46 +527,71 @@ button.btn-add,
   align-items: center !important;
   gap: 6px !important;
   margin-top: 16px !important;
-  padding-top: 12px !important;
-  border-top: 1px solid #f1f5f9 !important;
+  padding: 0 !important;
+  border-top: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
-/* Styling Angka/Tombol Pagination */
+/* Styling Tombol/Angka Pagination (Diperkecil ukurannya) */
 .pagination a,
 .pagination button,
-.table-card .pagination a,
-.data-pagination a {
+.pagination-container a,
+.pagination-container button,
+.page-btn {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  min-width: 32px !important;
-  height: 32px !important;
-  padding: 0 8px !important;
+  min-width: 30px !important;
+  height: 30px !important;
+  padding: 0 4px !important;
   font-size: 13px !important;
-  font-weight: 500 !important;
-  color: #475569 !important;
-  background-color: #f8fafc !important;
+  font-weight: 600 !important;
+  color: #64748b !important;
+  background-color: #ffffff !important;
   border: 1px solid #e2e8f0 !important;
   border-radius: 6px !important;
   text-decoration: none !important;
+  cursor: pointer !important;
   transition: all 0.2s ease !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) !important;
 }
 
+/* Efek Hover */
 .pagination a:hover,
-.pagination button:hover {
-  background-color: #e2e8f0 !important;
+.pagination button:hover,
+.pagination-container a:hover,
+.pagination-container button:hover,
+.page-btn:hover {
+  background-color: #f1f5f9 !important;
   color: #1e293b !important;
+  border-color: #cbd5e1 !important;
 }
 
-/* Efek Aktif (Halaman yang Dipilih Menjadi Warna Biru) */
+/* Efek Aktif (Halaman yang Dipilih / Warna Biru) */
 .pagination a.active,
-.pagination .active,
-.pagination a:active {
+.pagination button.active,
+.pagination-container a.active,
+.pagination-container button.active,
+.page-btn.active {
   background-color: #2563eb !important;
   color: #ffffff !important;
   border-color: #2563eb !important;
-  font-weight: 600 !important;
-  box-shadow: 0 2px 4px rgba(37, 99_235, 0.2) !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2) !important;
+}
+
+/* Efek Aktif (Halaman yang Dipilih / Warna Biru Figma) */
+.pagination a.active,
+.pagination button.active,
+.pagination-container a.active,
+.pagination-container button.active,
+.page-btn.active {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #2563eb !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3) !important;
 }
 
 /* Perbaikan Ukuran Kotak Ikon Decision Tree di Dashboard */
