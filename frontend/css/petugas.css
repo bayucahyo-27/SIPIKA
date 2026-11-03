@@ -61,7 +61,7 @@ body {
   height: auto !important;
   object-fit: contain !important;
   display: block !important;
-  margin: 0 auto !imSportant;
+  margin: 0 auto !important;
 }
 
 .sidebar-brand h2 {
@@ -627,4 +627,756 @@ button.btn-add,
   .dt-arrow {
     transform: rotate(90deg) !important;
   }
+}
+
+
+/* ===================================================== */
+/* REVISI HALAMAN EVALUASI MODEL (PRESISI FIGMA)        */
+/* ===================================================== */
+
+.evaluation-grid {
+  display: grid !important;
+  grid-template-columns: 1.8fr 1.2fr !important;
+  gap: 20px !important;
+  margin-bottom: 20px !important;
+}
+
+.eval-card, .matrix-card {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 24px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
+}
+
+.eval-card-header, .matrix-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-bottom: 20px !important;
+}
+
+.eval-icon-box, .matrix-icon-box {
+  width: 42px !important;
+  height: 42px !important;
+  background: #eff6ff !important;
+  color: #2563eb !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 18px !important;
+}
+
+.eval-card-header h3, .matrix-header h3 {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  margin: 0 !important;
+}
+
+.eval-card-header p, .matrix-header p {
+  font-size: 12px !important;
+  color: #64748b !important;
+  margin: 2px 0 0 0 !important;
+}
+
+/* Background Header Tabel Biru Muda Figma */
+.eval-card .data-table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+.eval-card .data-table th {
+  background: #eff6ff !important;
+  color: #1e293b !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  padding: 14px 16px !important;
+  border: none !important;
+}
+
+.eval-card .data-table th:first-child {
+  border-top-left-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+}
+
+.eval-card .data-table th:last-child {
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+
+.eval-card .data-table td {
+  padding: 16px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  font-size: 13px !important;
+  color: #334155 !important;
+}
+
+/* Styling Layout Akurasi Model (Ikon di Kiri Teks) */
+.accuracy-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important; /* Membuat posisi konten berada di tengah secara horizontal */
+  gap: 24px !important;
+  height: 100% !important;
+  min-height: 160px !important; /* Menyesuaikan tinggi agar pas di tengah vertikal */
+  padding: 10px !important;
+}
+
+.accuracy-icon-lg {
+  width: 64px !important;
+  height: 64px !important;
+  min-width: 64px !important;
+  background: #eff6ff !important;
+  color: #2563eb !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 28px !important;
+}
+
+.accuracy-content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
+.accuracy-title {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  margin-bottom: 4px !important;
+}
+
+.accuracy-value {
+  font-size: 42px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  line-height: 1.1 !important;
+  margin-bottom: 8px !important;
+}
+
+.accuracy-desc {
+  font-size: 12px !important;
+  color: #64748b !important;
+  line-height: 1.4 !important;
+}
+
+/* Confusion Matrix Table Layout */
+.matrix-table-wrapper {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 24px !important;
+  margin-top: 20px !important;
+}
+
+.matrix-table {
+  border-collapse: separate !important;
+  border-spacing: 4px !important;
+  text-align: center !important;
+  font-size: 13px !important;
+}
+
+.matrix-table th {
+  padding: 10px 20px !important;
+  color: #475569 !important;
+  font-weight: 600 !important;
+  background: transparent !important;
+}
+
+.matrix-table td {
+  width: 90px !important;
+  height: 54px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+}
+
+.matrix-cell-darkblue {
+  background-color: #1d4ed8 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.matrix-cell-blue {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.matrix-cell-light {
+  background-color: #f0f7ff !important;
+  color: #334155 !important;
+  font-weight: 500 !important;
+}
+
+.axis-label-y {
+  writing-mode: vertical-lr !important;
+  transform: rotate(180deg) !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  font-size: 13px !important;
+}
+
+.legend-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.legend-bar {
+  width: 16px !important;
+  height: 150px !important;
+  background: linear-gradient(to bottom, #1d4ed8, #3b82f6, #93c5fd, #eff6ff) !important;
+  border-radius: 4px !important;
+}
+
+.legend-values {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  height: 150px !important;
+  font-size: 11px !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
+}
+
+/* ===================================================== */
+/* STYLING KHUSUS HALAMAN RIWAYAT PREDIKSI               */
+/* ===================================================== */
+
+.filter-dropdown-wrapper {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.filter-dropdown-wrapper .filter-icon {
+  position: absolute !important;
+  left: 14px !important;
+  color: #64748b !important;
+  font-size: 14px !important;
+  pointer-events: none !important;
+}
+
+.filter-select {
+  padding: 10px 36px 10px 38px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  background-color: #ffffff !important;
+  color: #334155 !important;
+  font-size: 13px !important;
+  font-family: inherit !important;
+  outline: none !important;
+  cursor: pointer !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  background-size: 14px !important;
+}
+
+/* Tombol Detail Biru Khas Figma */
+.btn-detail {
+  display: inline-block !important;
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  padding: 6px 16px !important;
+  border-radius: 6px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2) !important;
+}
+
+.btn-detail:hover {
+  background-color: #1d4ed8 !important;
+  color: #ffffff !important;
+}
+
+/* Kontainer Utama Melengkung Halus */
+.main-card {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 24px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
+}
+
+/* Filter Bar Sejajar (Search Kiri, Tanggal Kanan) */
+.table-filter-bar {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 16px !important;
+  margin-bottom: 20px !important;
+  flex-wrap: wrap !important;
+}
+
+.search-input-wrapper {
+  flex: 1 !important;
+  min-width: 280px !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.search-input {
+  width: 100% !important;
+  padding: 10px 16px 10px 40px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  font-size: 13px !important;
+  outline: none !important;
+  background: #ffffff !important;
+  color: #334155 !important;
+}
+
+.search-icon {
+  position: absolute !important;
+  left: 14px !important;
+  color: #64748b !important;
+  font-size: 14px !important;
+}
+
+.filter-dropdown-wrapper {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.filter-dropdown-wrapper .filter-icon {
+  position: absolute !important;
+  left: 14px !important;
+  color: #64748b !important;
+  font-size: 14px !important;
+  pointer-events: none !important;
+}
+
+.filter-select {
+  padding: 10px 36px 10px 38px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  background-color: #ffffff !important;
+  color: #334155 !important;
+  font-size: 13px !important;
+  font-family: inherit !important;
+  outline: none !important;
+  cursor: pointer !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  background-size: 14px !important;
+}
+
+/* Header Tabel Biru Muda Melengkung */
+.data-table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+.data-table th {
+  background: #eff6ff !important;
+  color: #1e293b !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  padding: 14px 16px !important;
+  border: none !important;
+}
+
+.data-table th:first-child {
+  border-top-left-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+}
+
+.data-table th:last-child {
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+
+.data-table td {
+  padding: 16px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  font-size: 13px !important;
+  color: #334155 !important;
+}
+
+/* Tombol Detail Biru Khas Figma */
+.btn-detail {
+  display: inline-block !important;
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  padding: 6px 16px !important;
+  border-radius: 6px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2) !important;
+}
+
+.btn-detail:hover {
+  background-color: #1d4ed8 !important;
+  color: #ffffff !important;
+}
+
+/* ===================================================== */
+/* STYLING HALAMAN DETAIL PREDIKSI (PRESISI FIGMA)       */
+/* ===================================================== */
+
+.detail-banner {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.banner-fish-img img {
+  max-height: 90px !important;
+  object-fit: contain !important;
+}
+
+.detail-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 24px !important;
+  align-items: start !important;
+}
+
+.detail-left-col, .detail-right-col {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+.content-card {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 24px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
+}
+
+.fish-photo-card {
+  padding: 12px !important;
+  overflow: hidden !important;
+}
+
+.fish-preview-img {
+  width: 100% !important;
+  height: 180px !important;
+  object-fit: cover !important;
+  border-radius: 12px !important;
+}
+
+.card-section-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  margin-bottom: 16px !important;
+}
+
+.card-section-title i {
+  color: #2563eb !important;
+  font-size: 16px !important;
+}
+
+.warning-title i {
+  color: #d97706 !important;
+}
+
+.info-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 20px 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.info-list li {
+  display: flex !important;
+  align-items: center !important;
+  font-size: 13px !important;
+}
+
+.info-label {
+  width: 130px !important;
+  color: #64748b !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.info-colon {
+  width: 15px !important;
+  color: #64748b !important;
+  font-weight: 600 !important;
+}
+
+.info-value {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+}
+
+.back-btn-wrapper {
+  margin-top: 10px !important;
+}
+
+.btn-back-outline {
+  display: inline-block !important;
+  border: 1px solid #2563eb !important;
+  color: #2563eb !important;
+  background: transparent !important;
+  padding: 8px 24px !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-back-outline:hover {
+  background: #eff6ff !important;
+}
+
+.result-card {
+  text-align: center !important;
+}
+
+.result-badge-container {
+  margin: 16px 0 !important;
+}
+
+.badge-result-lg {
+  display: inline-block !important;
+  padding: 8px 36px !important;
+  border-radius: 20px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+
+.result-desc {
+  font-size: 13px !important;
+  color: #64748b !important;
+  margin: 0 !important;
+}
+
+.conclusion-card {
+  background: #ffffff !important;
+}
+
+.suggestion-card {
+  background: #fffbeb !important;
+  border-color: #fde68a !important;
+}
+
+.card-text-body {
+  font-size: 13px !important;
+  color: #334155 !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+
+.fish-photo-card {
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 16px !important;
+}
+
+.fish-preview-img {
+  width: 100% !important;
+  height: 220px !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: 16px !important;
+}
+
+/* Ukuran & Tata Letak Teks Informasi Prediksi */
+.info-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 24px 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+}
+
+.info-list li {
+  display: flex !important;
+  align-items: center !important;
+  font-size: 14px !important; /* Diperbesar agar pas dengan UI */
+}
+
+.info-label {
+  width: 150px !important; /* Diperlebar agar titik dua sejajar rapi */
+  color: #64748b !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-weight: 500 !important;
+}
+
+.info-label i {
+  width: 18px !important;
+  color: #64748b !important;
+}
+
+.info-colon {
+  width: 20px !important;
+  color: #64748b !important;
+  font-weight: 600 !important;
+}
+
+.info-value {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+}
+
+/* Kartu Hasil Klasifikasi (Hijau Muda) */
+.result-card {
+  background-color: #f0fdf4 !important;
+  border: 1px solid #dcfce7 !important;
+  text-align: center !important;
+}
+
+.green-title i {
+  color: #16a34a !important;
+}
+
+.badge-result-lg.badge-tinggi {
+  background-color: #dcfce7 !important;
+  color: #15803d !important;
+  border: 1px solid #bbf7d0 !important;
+  padding: 8px 42px !important;
+  border-radius: 20px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+
+/* Kartu Kesimpulan (Biru Muda) */
+.conclusion-card {
+  background-color: #f0f9ff !important;
+  border: 1px solid #e0f2fe !important;
+}
+
+.blue-title i {
+  color: #0284c7 !important;
+}
+
+/* Kartu Saran Nelayan (Kuning Muda) */
+.suggestion-card {
+  background-color: #fffbeb !important;
+  border: 1px solid #fde68a !important;
+}
+
+.warning-title i {
+  color: #d97706 !important;
+}
+
+/* Kita buat aturannya sangat spesifik agar tidak ada yang bisa menimpa */
+.app-container .main-content .content-body .banner-card.detail-banner {
+  /* Gambar banner ikan terbaru */
+  background-image: url('../assets/images/banner-ikan.jpg') !important;
+  
+  /* Pengaturan agar gambar pas dan bagus */
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* ===================================================== */
+/* REVISI AKHIR: MENYESUAIKAN PROPORSI KOLOM KIRI        */
+/* ===================================================== */
+
+/* Memperkecil tinggi foto ikan di kolom kiri agar lebih ringkas */
+.detail-left-col .fish-preview-img {
+  height: 140px !important; /* Dikecilkan dari 220px supaya lebih proporsional */
+}
+
+/* Merapatkan jarak antar baris pada informasi prediksi di sebelah kiri */
+.detail-left-col .info-list {
+  gap: 8px !important; /* Dirapatkan agar tidak terlalu panjang ke bawah */
+  margin-bottom: 16px !important;
+}
+
+/* Sedikit menyesuaikan padding kartu informasi agar lebih padat */
+.detail-left-col .content-card.info-prediksi-card {
+  padding: 18px 20px !important;
+}
+
+/* ===================================================== */
+/* REVISI PROPORSI GAMBAR IKAN AGAR PAS DAN TIDAK MELAR   */
+/* ===================================================== */
+
+.detail-left-col .fish-photo-card {
+  padding: 12px !important; /* Berikan sedikit padding rapi di sekeliling gambar */
+  background: #ffffff !important;
+  border-radius: 16px !important;
+}
+
+.detail-left-col .fish-preview-img {
+  width: 100% !important;
+  height: 160px !important; /* Tinggi ideal agar proporsional */
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 12px !important;
+}
+
+/* ===================================================== */
+/* REVISI GLOBAL: WARNA TEKS BANNER MENJADI BIRU TUA PEKAT */
+/* ===================================================== */
+
+.banner-card h2,
+.banner-card p {
+  color: #0f172a !important; /* Warna biru sangat gelap / hampir hitam */
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important; /* Tambahan bayangan tipis agar semakin kontras di atas background terang */
+}
+
+/* ===================================================== */
+/* REVISI KHUSUS TEKS BANNER DASHBOARD                    */
+/* ===================================================== */
+
+.app-container .main-content .content-body .banner-card h2,
+.app-container .main-content .content-body .banner-card p {
+  color: #0f172a !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* ===================================================== */
+/* PENTIMPA MUTLAK WARNA TEKS BANNER (MENGALAHKAN !IMPORTANT) */
+/* ===================================================== */
+
+.banner-text h2,
+.welcome-banner h1,
+.welcome-banner h2,
+.banner-card h2 {
+  color: #0f172a !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+}
+
+.banner-text p,
+.welcome-banner p,
+.banner-card p {
+  color: #1e293b !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* ===================================================== */
+/* REVISI AKHIR: PAKSA SEMUA IKON INFORMASI JADI BIRU      */
+/* ===================================================== */
+
+.info-prediksi-card .info-list li .info-label i,
+.info-prediksi-card .card-section-title i {
+  color: #2563eb !important;
 }

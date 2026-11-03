@@ -17,10 +17,9 @@
     
     <!-- SIDEBAR (Sama persis seperti Dashboard) -->
     <aside class="sidebar">
-    <div class="sidebar-brand">
-    <!-- Ganti path src sesuai dengan letak file logo gambar kalian -->
+      <div class="sidebar-brand">
         <img src="../../assets/images/logo.png" alt="Logo SIPIKA" class="brand-logo-img">
-     </div>
+      </div>
 
       <ul class="sidebar-menu">
         <li>
@@ -36,13 +35,13 @@
           </a>
         </li>
         <li>
-          <a href="evaluasi.html">
+          <a href="evaluasi-model.html">
             <i class="fa-solid fa-chart-line"></i>
             <span>Evaluasi Model</span>
           </a>
         </li>
         <li>
-          <a href="riwayat.html">
+          <a href="riwayat-prediksi.html">
             <i class="fa-solid fa-clock-rotate-left"></i>
             <span>Riwayat Prediksi</span>
           </a>
@@ -66,7 +65,7 @@
     <!-- MAIN CONTENT -->
     <div class="main-content">
       
-      <!-- TOPBAR & PROFIL (Dipindah ke Pojok Kanan Atas di atas Banner) -->
+      <!-- TOPBAR & PROFIL -->
       <header class="topbar">
         <div class="topbar-profile">
           <div class="profile-avatar">
@@ -82,7 +81,7 @@
       <!-- CONTENT BODY -->
       <div class="content-body">
         
-        <!-- BANNER (Memanggil background gambar laut/kapal yang sama dengan Dashboard) -->
+        <!-- BANNER -->
         <div class="banner-card">
           <div class="banner-text">
             <h2>Pengelolaan Data Dataset</h2>
@@ -152,7 +151,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <!-- HALAMAN 1 (Data 1 - 5) -->
+              <tr data-page="1">
                 <td>1</td>
                 <td>Cakalang</td>
                 <td>Pancing</td>
@@ -165,7 +165,7 @@
                   <button class="action-btn btn-delete" onclick="deleteRow(this)" title="Hapus"><i class="fa-solid fa-trash"></i></button>
                 </td>
               </tr>
-              <tr>
+              <tr data-page="1">
                 <td>2</td>
                 <td>Tuna</td>
                 <td>Jaring</td>
@@ -178,7 +178,7 @@
                   <button class="action-btn btn-delete" onclick="deleteRow(this)" title="Hapus"><i class="fa-solid fa-trash"></i></button>
                 </td>
               </tr>
-              <tr>
+              <tr data-page="1">
                 <td>3</td>
                 <td>Tongkol</td>
                 <td>Bagan</td>
@@ -191,7 +191,7 @@
                   <button class="action-btn btn-delete" onclick="deleteRow(this)" title="Hapus"><i class="fa-solid fa-trash"></i></button>
                 </td>
               </tr>
-              <tr>
+              <tr data-page="1">
                 <td>4</td>
                 <td>Cakalang</td>
                 <td>Jaring</td>
@@ -204,7 +204,7 @@
                   <button class="action-btn btn-delete" onclick="deleteRow(this)" title="Hapus"><i class="fa-solid fa-trash"></i></button>
                 </td>
               </tr>
-              <tr>
+              <tr data-page="1">
                 <td>5</td>
                 <td>Tuna</td>
                 <td>Pancing</td>
@@ -217,22 +217,156 @@
                   <button class="action-btn btn-delete" onclick="deleteRow(this)" title="Hapus"><i class="fa-solid fa-trash"></i></button>
                 </td>
               </tr>
+
+              <!-- HALAMAN 2 (Data 6 - 10) -->
+              <tr data-page="2" style="display: none;">
+                <td>6</td>
+                <td>Kembung</td>
+                <td>Bagan</td>
+                <td>Ternate</td>
+                <td>Pancaroba</td>
+                <td>200</td>
+                <td><span class="badge badge-rendah">Rendah</span></td>
+                <td>
+                  <button class="action-btn btn-edit" onclick="openModal('edit', this)" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn btn-delete" onclick="deleteRow(this)" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr data-page="2" style="display: none;">
+                <td>7</td>
+                <td>Tongkol</td>
+                <td>Pancing</td>
+                <td>Tidore</td>
+                <td>Hujan</td>
+                <td>720</td>
+                <td><span class="badge badge-sedang">Sedang</span></td>
+                <td>
+                  <button class="action-btn btn-edit" onclick="openModal('edit', this)" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn btn-delete" onclick="deleteRow(this)" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr data-page="2" style="display: none;">
+                <td>8</td>
+                <td>Cakalang</td>
+                <td>Bagan</td>
+                <td>Halmahera Utara</td>
+                <td>Kemarau</td>
+                <td>1100</td>
+                <td><span class="badge badge-tinggi">Tinggi</span></td>
+                <td>
+                  <button class="action-btn btn-edit" onclick="openModal('edit', this)" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn btn-delete" onclick="deleteRow(this)" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr data-page="2" style="display: none;">
+                <td>9</td>
+                <td>Tuna</td>
+                <td>Jaring</td>
+                <td>Kepulauan Sula</td>
+                <td>Pancaroba</td>
+                <td>430</td>
+                <td><span class="badge badge-sedang">Sedang</span></td>
+                <td>
+                  <button class="action-btn btn-edit" onclick="openModal('edit', this)" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn btn-delete" onclick="deleteRow(this)" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr data-page="2" style="display: none;">
+                <td>10</td>
+                <td>Kembung</td>
+                <td>Pancing</td>
+                <td>Ternate</td>
+                <td>Hujan</td>
+                <td>180</td>
+                <td><span class="badge badge-rendah">Rendah</span></td>
+                <td>
+                  <button class="action-btn btn-edit" onclick="openModal('edit', this)" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn btn-delete" onclick="deleteRow(this)" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+                </td>
+              </tr>
+
+              <!-- HALAMAN 3 (Data 11 - 15) -->
+              <tr data-page="3" style="display: none;">
+                <td>11</td>
+                <td>Cakalang</td>
+                <td>Pancing</td>
+                <td>Tidore</td>
+                <td>Kemarau</td>
+                <td>1350</td>
+                <td><span class="badge badge-tinggi">Tinggi</span></td>
+                <td>
+                  <button class="action-btn btn-edit" onclick="openModal('edit', this)" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn btn-delete" onclick="deleteRow(this)" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr data-page="3" style="display: none;">
+                <td>12</td>
+                <td>Tongkol</td>
+                <td>Jaring</td>
+                <td>Halmahera Timur</td>
+                <td>Hujan</td>
+                <td>520</td>
+                <td><span class="badge badge-sedang">Sedang</span></td>
+                <td>
+                  <button class="action-btn btn-edit" onclick="openModal('edit', this)" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn btn-delete" onclick="deleteRow(this)" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr data-page="3" style="display: none;">
+                <td>13</td>
+                <td>Tuna</td>
+                <td>Bagan</td>
+                <td>Ternate</td>
+                <td>Pancaroba</td>
+                <td>290</td>
+                <td><span class="badge badge-rendah">Rendah</span></td>
+                <td>
+                  <button class="action-btn btn-edit" onclick="openModal('edit', this)" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn btn-delete" onclick="deleteRow(this)" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr data-page="3" style="display: none;">
+                <td>14</td>
+                <td>Kembung</td>
+                <td>Jaring</td>
+                <td>Halmahera Selatan</td>
+                <td>Kemarau</td>
+                <td>950</td>
+                <td><span class="badge badge-sedang">Sedang</span></td>
+                <td>
+                  <button class="action-btn btn-edit" onclick="openModal('edit', this)" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn btn-delete" onclick="deleteRow(this)" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr data-page="3" style="display: none;">
+                <td>15</td>
+                <td>Cakalang</td>
+                <td>Pancing</td>
+                <td>Kepulauan Sula</td>
+                <td>Hujan</td>
+                <td>1600</td>
+                <td><span class="badge badge-tinggi">Tinggi</span></td>
+                <td>
+                  <button class="action-btn btn-edit" onclick="openModal('edit', this)" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn btn-delete" onclick="deleteRow(this)" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+                </td>
+              </tr>
             </tbody>
           </table>
+        </div>
 
-          <!-- PAGINATION -->
-          <div class="pagination-container">
-            <button class="page-btn"><i class="fa-solid fa-chevron-left"></i></button>
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn">3</button>
-            <button class="page-btn"><i class="fa-solid fa-chevron-right"></i></button>
-          </div>
+        <!-- PAGINATION -->
+        <div class="pagination-container">
+          <button class="page-btn" onclick="changePage('prev')"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="page-btn active" onclick="switchPage(1)">1</button>
+          <button class="page-btn" onclick="switchPage(2)">2</button>
+          <button class="page-btn" onclick="switchPage(3)">3</button>
+          <button class="page-btn" onclick="changePage('next')"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
 
       </div> <!-- Akhir dari .content-body -->
 
-      <!-- FOOTER (Dipindah ke luar .content-body agar menempel rapat di dasar bawah layar) -->
+      <!-- FOOTER -->
       <footer class="footer-copyright">
         <p>&copy; 2026 SIPIKA - Kelompok 13 Web</p>
       </footer>
@@ -240,7 +374,7 @@
     </div>
   </div>
 
-  <!-- MODAL FORM (TAMBAH / EDIT DATA) -->
+  <!-- MODAL FORM -->
   <div id="dataModal" class="modal-overlay" style="display: none;">
     <div class="modal-card">
       <div class="modal-header">
@@ -278,9 +412,43 @@
     </div>
   </div>
 
-  <!-- SCRIPT INTERAKTIF -->
+  <!-- SCRIPT INTERAKTIF & PAGINATION -->
   <script>
     let currentEditRow = null;
+    let currentPage = 1;
+    const totalPages = 3;
+
+    function switchPage(page) {
+      currentPage = page;
+      const rows = document.querySelectorAll('#datasetTable tbody tr');
+      rows.forEach(row => {
+        if (row.getAttribute('data-page') == currentPage) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      // Update active button state
+      const buttons = document.querySelectorAll('.pagination-container .page-btn');
+      buttons.forEach((btn, index) => {
+        if (index >= 1 && index <= 3) {
+          if (index === currentPage) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        }
+      });
+    }
+
+    function changePage(direction) {
+      if (direction === 'prev' && currentPage > 1) {
+        switchPage(currentPage - 1);
+      } else if (direction === 'next' && currentPage < totalPages) {
+        switchPage(currentPage + 1);
+      }
+    }
 
     function openModal(mode, btn = null) {
       const modal = document.getElementById('dataModal');
@@ -325,8 +493,6 @@
         kategoriBadge = '<span class="badge badge-rendah">Rendah</span>';
       }
 
-      const table = document.getElementById('datasetTable').getElementsByTagName('tbody')[0];
-
       if (currentEditRow) {
         currentEditRow.cells[1].innerText = jenis;
         currentEditRow.cells[2].innerText = alat;
@@ -335,10 +501,12 @@
         currentEditRow.cells[5].innerText = produksi;
         currentEditRow.cells[6].innerHTML = kategoriBadge;
       } else {
-        const newRow = table.insertRow();
-        const rowCount = table.rows.length;
+        const tableBody = document.getElementById('datasetTable').getElementsByTagName('tbody')[0];
+        const newRow = tableBody.insertRow();
+        newRow.setAttribute('data-page', currentPage);
+        const totalRows = tableBody.rows.length;
         newRow.innerHTML = `
-          <td>${rowCount}</td>
+          <td>${totalRows}</td>
           <td>${jenis}</td>
           <td>${alat}</td>
           <td>${wilayah}</td>
@@ -350,6 +518,9 @@
             <button class="action-btn btn-delete" onclick="deleteRow(this)" title="Hapus"><i class="fa-solid fa-trash"></i></button>
           </td>
         `;
+        if (newRow.getAttribute('data-page') != currentPage) {
+          newRow.style.display = 'none';
+        }
       }
       closeModal();
     }
@@ -391,7 +562,9 @@
         const matchMusim = !musimVal || musim.includes(musimVal);
 
         if (matchSearch && matchJenis && matchAlat && matchWilayah && matchMusim) {
-          row.style.display = '';
+          if (row.getAttribute('data-page') == currentPage) {
+            row.style.display = '';
+          }
         } else {
           row.style.display = 'none';
         }
