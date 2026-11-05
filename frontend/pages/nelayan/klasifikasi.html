@@ -1,1 +1,387 @@
 
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <!-- Pengaturan karakter dan tampilan responsif -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Judul halaman pada tab browser -->
+    <title>Klasifikasi Nelayan | SIPIKA</title>
+
+    <!-- Menghubungkan Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Menghubungkan file CSS global dan CSS khusus nelayan -->
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/nelayan.css">
+</head>
+
+<body>
+
+    <!-- CONTAINER UTAMA DASHBOARD -->
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR: Logo, navigasi, dan logout -->
+        <aside class="sidebar">
+
+            <!-- Logo SIPIKA -->
+            <div class="sidebar-logo">
+                <img src="../../assets/images/logo_sipika.png" alt="Logo SIPIKA">
+            </div>
+
+            <!-- Menu navigasi halaman nelayan -->
+            <nav class="sidebar-menu">
+
+                <!-- Menu Dashboard -->
+                <a href="dashboard.html" class="menu-item">
+                    <img src="../../assets/icons/dashboard.svg" alt="">
+                    <span>Dashboard</span>
+                </a>
+
+                <!-- Menu Klasifikasi (halaman aktif) -->
+                <a href="klasifikasi.html" class="menu-item active">
+                    <img src="../../assets/icons/klasifikasi.svg" alt="">
+                    <span>Klasifikasi</span>
+                </a>
+
+                <!-- Menu Riwayat -->
+                <a href="riwayat.html" class="menu-item">
+                    <img src="../../assets/icons/riwayat.svg" alt="">
+                    <span>Riwayat</span>
+                </a>
+
+                <!-- Menu Profil -->
+                <a href="profil.html" class="menu-item">
+                    <img src="../../assets/icons/profil.svg" alt="">
+                    <span>Profil</span>
+                </a>
+
+            </nav>
+
+            <!-- Bagian bawah sidebar: Logout -->
+            <div class="sidebar-bottom">
+                <a href="../../pages/auth/login.html" class="menu-item logout-item">
+                    <img src="../../assets/icons/logout.svg" alt="">
+                    <span>Logout</span>
+                </a>
+            </div>
+
+        </aside>
+
+
+        <!-- KONTEN UTAMA HALAMAN -->
+        <main class="main-content">
+
+            <!-- HEADER: Informasi akun pengguna -->
+            <header class="top-header">
+
+                <div class="account-info">
+
+                    <!-- Ikon pengguna -->
+                    <img src="../../assets/icons/circle_user_round.svg"
+                         alt="Ikon pengguna"
+                         class="account-icon">
+
+                    <!-- Nama dan status akun -->
+                    <div class="account-detail">
+                        <span class="account-name">Nelayan: Salmin</span>
+
+                        <span class="account-status">
+                            <span class="status-indicator"></span>
+                            Online
+                        </span>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- BANNER: Judul dan deskripsi halaman klasifikasi -->
+            <section class="classification-banner">
+
+                <div class="classification-banner-text">
+
+                    <!-- Label halaman -->
+                    <div class="banner-label">
+                        <span>KLASIFIKASI</span>
+                        <span class="banner-line"></span>
+                    </div>
+
+                    <!-- Judul dan deskripsi banner -->
+                    <h1>Prediksi Tingkat Produksi Ikan Tangkapan</h1>
+
+                    <p>
+                        Masukkan data tangkapan ikan Anda untuk mendapatkan
+                        hasil klasifikasi tingkat produksi.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- AREA KLASIFIKASI: Form input dan hasil klasifikasi -->
+            <section class="classification-content">
+
+                <!-- KARTU FORM DATA TANGKAPAN -->
+                <div class="data-card">
+
+                    <!-- Judul kartu form -->
+                    <div class="card-heading">
+
+                        <div class="heading-indicator"></div>
+
+                        <div>
+                            <h2>Data Tangkapan</h2>
+                            <p>Lengkapi informasi berikut untuk melakukan klasifikasi.</p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- FORM INPUT DATA TANGKAPAN -->
+                    <form id="classificationForm">
+
+                        <!-- INPUT 1: JENIS IKAN -->
+                        <div class="classification-form-group">
+
+                            <div class="form-icon">
+                                <i data-lucide="fish"></i>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="jenisIkan">Jenis Ikan</label>
+
+                                <select id="jenisIkan" name="jenisIkan" required>
+                                    <option value="" selected disabled hidden>-- Pilih Jenis Ikan --</option>
+                                    <option value="Cakalang">Cakalang</option>
+                                    <option value="Layang">Layang</option>
+                                    <option value="Tuna">Tuna</option>
+                                    <option value="Selar">Selar</option>
+                                    <option value="Tongkol">Tongkol</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+
+                        <!-- INPUT 2: ALAT TANGKAP -->
+                        <div class="classification-form-group">
+
+                            <div class="form-icon">
+                                <i data-lucide="ship"></i>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="alatTangkap">Alat Tangkap</label>
+
+                                <select id="alatTangkap" name="alatTangkap" required>
+                                    <option value="" selected disabled hidden>-- Pilih Alat Tangkap --</option>
+                                    <option value="Bagan">Bagan</option>
+                                    <option value="Jaring">Jaring</option>
+                                    <option value="Pancing">Pancing</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+
+                        <!-- INPUT 3: WILAYAH PENANGKAPAN -->
+                        <div class="classification-form-group">
+
+                            <div class="form-icon">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="wilayah">Wilayah Penangkapan</label>
+
+                                <select id="wilayah" name="wilayah" required>
+                                    <option value="" selected disabled hidden>-- Pilih Wilayah --</option>
+                                    <option value="Kota Ternate">Kota Ternate</option>
+                                    <option value="Halmahera Utara">Halmahera Utara</option>
+                                    <option value="Halmahera Selatan">Halmahera Selatan</option>
+                                    <option value="Pulau Morotai">Pulau Morotai</option>
+                                    <option value="Kepulauan Sula">Kepulauan Sula</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+
+                        <!-- INPUT 4: MUSIM PENANGKAPAN -->
+                        <div class="classification-form-group">
+
+                            <div class="form-icon">
+                                <i data-lucide="cloud-sun"></i>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="musim">Musim Penangkapan</label>
+
+                                <select id="musim" name="musim" required>
+                                    <option value="" selected disabled hidden>-- Pilih Musim --</option>
+                                    <option value="Kemarau">Kemarau</option>
+                                    <option value="Hujan">Hujan</option>
+                                    <option value="Pancaroba">Pancaroba</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+
+                        <!-- TOMBOL AKSI FORM: Reset dan Klasifikasikan -->
+                        <div class="classification-actions">
+
+                            <!-- Tombol untuk mengosongkan form -->
+                            <button type="reset" class="reset-button">
+                                <i data-lucide="refresh-ccw"></i>
+                                <span>Reset</span>
+                            </button>
+
+                            <!-- Tombol untuk mengirim data klasifikasi -->
+                            <button type="submit" class="classify-button">
+                                <i data-lucide="chart-no-axes-column-increasing"></i>
+                                <span>Klasifikasikan</span>
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- KARTU HASIL KLASIFIKASI -->
+                <div class="result-card">
+
+                    <!-- Judul kartu hasil -->
+                    <div class="card-heading">
+
+                        <div class="heading-indicator"></div>
+
+                        <div>
+                            <h2>Hasil Klasifikasi</h2>
+                            <p>Berikut adalah hasil prediksi berdasarkan data yang Anda masukkan.</p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- TAMPILAN AWAL: Ditampilkan sebelum klasifikasi dilakukan -->
+                    <div id="resultPlaceholder" class="result-placeholder">
+
+                        <!-- Ikon placeholder -->
+                        <div class="placeholder-icon">
+                            <i data-lucide="clipboard-list"></i>
+                        </div>
+
+                        <h3>Belum Ada Hasil Klasifikasi</h3>
+
+                        <p>
+                            Hasil prediksi tingkat produksi ikan tangkapan
+                            akan ditampilkan setelah Anda melakukan klasifikasi.
+                        </p>
+
+                        <!-- Langkah-langkah melakukan klasifikasi -->
+                        <div class="placeholder-steps">
+
+                            <div class="placeholder-step">
+                                <span>1</span>
+                                <p>Lengkapi data tangkapan ikan.</p>
+                            </div>
+
+                            <div class="placeholder-step">
+                                <span>2</span>
+                                <p>Tekan tombol Klasifikasikan.</p>
+                            </div>
+
+                            <div class="placeholder-step">
+                                <span>3</span>
+                                <p>Lihat hasil prediksi produksi ikan.</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- KONTEN HASIL: Ditampilkan setelah klasifikasi dilakukan -->
+                    <div id="resultContent" hidden>
+
+                        <!-- TINGKAT PRODUKSI -->
+                        <div class="production-result">
+                            <span>Tingkat Produksi</span>
+                            <h3 id="productionLevel">Tinggi</h3>
+                        </div>
+
+                        <!-- KESIMPULAN HASIL KLASIFIKASI -->
+                        <div class="result-information conclusion-box">
+
+                            <div class="information-icon">
+                                <i data-lucide="file-text"></i>
+                            </div>
+
+                            <div class="information-content">
+                                <h3>Kesimpulan</h3>
+                                <p id="conclusionText">
+                                    Hasil klasifikasi akan ditampilkan di sini.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <!-- SARAN UNTUK NELAYAN -->
+                        <div class="result-information suggestion-box">
+
+                            <div class="information-icon">
+                                <i data-lucide="lightbulb"></i>
+                            </div>
+
+                            <div class="information-content">
+                                <h3>Saran untuk Nelayan</h3>
+                                <p id="suggestionText">
+                                    Saran untuk nelayan akan ditampilkan di sini.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- PENUTUP KARTU HASIL KLASIFIKASI -->
+
+            </section>
+            <!-- PENUTUP AREA KLASIFIKASI -->
+
+
+            <!-- FOOTER: Identitas kelompok -->
+            <footer class="dashboard-footer">
+                © 2026 SIPIKA — Kelompok 13 Web
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT: Memuat library ikon Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Mengaktifkan ikon Lucide pada halaman -->
+    <script>
+        lucide.createIcons();
+    </script>
+
+    <!-- Menghubungkan JavaScript global dan khusus nelayan -->
+    <script src="../../js/global.js"></script>
+    <script src="../../js/nelayan.js"></script>
+
+</body>
+</html>

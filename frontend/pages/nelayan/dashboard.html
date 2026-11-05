@@ -1,1 +1,279 @@
 
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <!-- Pengaturan karakter dan tampilan responsif -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Judul halaman pada tab browser -->
+    <title>Dashboard Nelayan | SIPIKA</title>
+
+    <!-- Menghubungkan Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Menghubungkan file CSS global dan CSS khusus nelayan -->
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/nelayan.css">
+</head>
+
+<body>
+
+    <!-- CONTAINER UTAMA DASHBOARD -->
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR: Logo, menu navigasi, dan logout -->
+        <aside class="sidebar">
+
+            <!-- Logo SIPIKA -->
+            <div class="sidebar-logo">
+                <img src="../../assets/images/logo_sipika.png" alt="Logo SIPIKA">
+            </div>
+
+            <!-- Menu navigasi halaman nelayan -->
+            <nav class="sidebar-menu" aria-label="Navigasi utama">
+
+                <!-- Menu Dashboard (halaman aktif) -->
+                <a href="dashboard.html" class="menu-item active">
+                    <img src="../../assets/icons/dashboard.svg" alt="">
+                    <span>Dashboard</span>
+                </a>
+
+                <!-- Menu Klasifikasi -->
+                <a href="klasifikasi.html" class="menu-item">
+                    <img src="../../assets/icons/klasifikasi.svg" alt="">
+                    <span>Klasifikasi</span>
+                </a>
+
+                <!-- Menu Riwayat -->
+                <a href="riwayat.html" class="menu-item">
+                    <img src="../../assets/icons/riwayat.svg" alt="">
+                    <span>Riwayat</span>
+                </a>
+
+                <!-- Menu Profil -->
+                <a href="profil.html" class="menu-item">
+                    <img src="../../assets/icons/profil.svg" alt="">
+                    <span>Profil</span>
+                </a>
+
+            </nav>
+
+            <!-- Bagian bawah sidebar: Logout -->
+            <div class="sidebar-bottom">
+                <a href="../../pages/auth/login.html" class="menu-item logout-item">
+                    <img src="../../assets/icons/logout.svg" alt="">
+                    <span>Logout</span>
+                </a>
+            </div>
+
+        </aside>
+
+
+        <!-- KONTEN UTAMA DASHBOARD -->
+        <main class="main-content">
+
+            <!-- HEADER: Menampilkan informasi akun pengguna -->
+            <header class="top-header">
+
+                <div class="account-info">
+
+                    <!-- Ikon pengguna -->
+                    <img src="../../assets/icons/circle_user_round.svg"
+                         alt="Ikon pengguna"
+                         class="account-icon">
+
+                    <!-- Nama dan status akun -->
+                    <div class="account-detail">
+                        <span class="account-name">Nelayan: Salmin</span>
+
+                        <span class="account-status">
+                            <span class="status-indicator" aria-hidden="true"></span>
+                            Online
+                        </span>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- BANNER: Sapaan selamat datang kepada pengguna -->
+            <section class="welcome-banner">
+
+                <div class="welcome-text">
+                    <p>Selamat Datang,</p>
+                    <h1>Salmin!</h1>
+                    <span>Mau klasifikasikan apa hari ini?</span>
+                </div>
+
+            </section>
+
+
+            <!-- TENTANG SIPIKA: Penjelasan singkat mengenai sistem -->
+            <section class="content-card about-section">
+
+                <div class="about-text">
+                    <h2>Tentang SIPIKA</h2>
+
+                    <!-- Dekorasi visual di bawah judul -->
+                    <div class="section-decoration" aria-hidden="true"></div>
+
+                    <!-- Deskripsi sistem SIPIKA -->
+                    <p>
+                        SIPIKA adalah sistem berbasis web yang digunakan untuk
+                        mengklasifikasikan tingkat produksi ikan tangkapan di
+                        Maluku Utara berdasarkan jenis ikan, alat tangkap,
+                        wilayah, dan musim.
+                    </p>
+                </div>
+
+                <!-- Ilustrasi ikan -->
+                <div class="about-image">
+                    <img src="../../assets/images/ilustrasi_ikan.png"
+                         alt="Ilustrasi ikan">
+                </div>
+
+            </section>
+
+
+            <!-- FAKTOR YANG DIGUNAKAN: Empat variabel klasifikasi -->
+            <section class="content-card factor-section">
+
+                <!-- Judul bagian faktor -->
+                <div class="section-heading">
+                    <h2>Faktor yang Digunakan</h2>
+                    <div class="section-decoration" aria-hidden="true"></div>
+                </div>
+
+                <!-- Grid berisi empat faktor klasifikasi -->
+                <div class="factor-grid">
+
+                    <!-- Faktor 1: Jenis Ikan -->
+                    <div class="factor-item factor-fish">
+                        <img src="../../assets/images/faktor_ikan.png" alt="Jenis Ikan">
+                        <h3>Jenis Ikan</h3>
+                        <p>Data jenis ikan<br>yang ditangkap</p>
+                    </div>
+
+                    <!-- Faktor 2: Alat Tangkap -->
+                    <div class="factor-item factor-tool">
+                        <img src="../../assets/images/faktor_alat_tangkap.png" alt="Alat Tangkap">
+                        <h3>Alat Tangkap</h3>
+                        <p>Data alat tangkap<br>yang digunakan</p>
+                    </div>
+
+                    <!-- Faktor 3: Wilayah -->
+                    <div class="factor-item factor-region">
+                        <img src="../../assets/images/faktor_wilayah.png" alt="Wilayah">
+                        <h3>Wilayah</h3>
+                        <p>Lokasi penangkapan<br>ikan</p>
+                    </div>
+
+                    <!-- Faktor 4: Musim -->
+                    <div class="factor-item factor-season">
+                        <img src="../../assets/images/faktor_musim.png" alt="Musim">
+                        <h3>Musim</h3>
+                        <p>Musim penangkapan<br>ikan</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- HASIL KLASIFIKASI: Menampilkan tiga kategori produksi -->
+            <section class="content-card classification-section">
+
+                <!-- Deskripsi kategori hasil klasifikasi -->
+                <div class="classification-description">
+                    <h2>Hasil Klasifikasi</h2>
+
+                    <div class="section-decoration" aria-hidden="true"></div>
+
+                    <p>
+                        Kategori output tingkat produksi ikan tangkapan
+                    </p>
+                </div>
+
+                <!-- Grid yang menampilkan tiga kategori klasifikasi -->
+                <div class="classification-grid">
+
+                    <!-- Kategori 1: Rendah -->
+                    <div class="classification-item classification-low">
+
+                        <div class="classification-icon">
+                            <svg viewBox="0 0 56 56" aria-hidden="true">
+                                <rect x="5" y="34" width="11" height="17" rx="4" />
+                                <rect x="22" y="20" width="11" height="31" rx="4" />
+                                <rect x="39" y="6" width="11" height="45" rx="4" />
+                            </svg>
+                        </div>
+
+                        <div class="classification-info">
+                            <h3>Rendah</h3>
+                            <p>Tingkat produksi rendah</p>
+                        </div>
+
+                    </div>
+
+                    <!-- Kategori 2: Sedang -->
+                    <div class="classification-item classification-medium">
+
+                        <div class="classification-icon">
+                            <svg viewBox="0 0 56 56" aria-hidden="true">
+                                <rect x="5" y="34" width="11" height="17" rx="4" />
+                                <rect x="22" y="20" width="11" height="31" rx="4" />
+                                <rect x="39" y="6" width="11" height="45" rx="4" />
+                            </svg>
+                        </div>
+
+                        <div class="classification-info">
+                            <h3>Sedang</h3>
+                            <p>Tingkat produksi sedang</p>
+                        </div>
+
+                    </div>
+
+                    <!-- Kategori 3: Tinggi -->
+                    <div class="classification-item classification-high">
+
+                        <div class="classification-icon">
+                            <svg viewBox="0 0 56 56" aria-hidden="true">
+                                <rect x="5" y="34" width="11" height="17" rx="4" />
+                                <rect x="22" y="20" width="11" height="31" rx="4" />
+                                <rect x="39" y="6" width="11" height="45" rx="4" />
+                            </svg>
+                        </div>
+
+                        <div class="classification-info">
+                            <h3>Tinggi</h3>
+                            <p>Tingkat produksi tinggi</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER: Informasi hak cipta dan identitas kelompok -->
+            <footer class="dashboard-footer">
+                © 2026 SIPIKA — Kelompok 13 Web
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT: Menghubungkan fungsi global dan fungsi khusus nelayan -->
+    <script src="../../js/global.js"></script>
+    <script src="../../js/nelayan.js"></script>
+
+</body>
+</html>

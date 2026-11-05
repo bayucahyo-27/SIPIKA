@@ -1,1 +1,933 @@
+/* =========================================
+   1. GLOBAL STYLE DAN CSS VARIABLES
+========================================= */
 
+/* Variabel warna, font, dan tampilan dasar yang digunakan halaman AUTH */
+:root {
+    --primary-color: #0866d9;
+    --primary-hover: #0755b5;
+    --text-color: #172f4b;
+    --muted-color: #71849b;
+    --border-color: #e1e9f2;
+    --input-background: #ffffff;
+    --soft-background: #f4f7fa;
+    --white: #ffffff;
+
+    --font-main: 'Poppins', sans-serif;
+}
+
+/* Reset CSS untuk menghilangkan margin dan padding bawaan browser */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Pengaturan dasar font, warna teks, dan tinggi halaman */
+body {
+    font-family: var(--font-main);
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   2. LAYOUT UTAMA HALAMAN LOGIN
+========================================= */
+
+/* Layout utama halaman Login dan background */
+.login-page {
+    min-height: 100vh;
+    width: 100%;
+    padding: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-image:
+        linear-gradient(
+            rgba(8, 30, 55, 0.12),
+            rgba(8, 30, 55, 0.12)
+        ),
+        url("../assets/images/background_login.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* =========================================
+   3. BAGIAN IDENTITAS SIPIKA
+========================================= */
+
+/* Area identitas SIPIKA: logo, deskripsi, dan dekorasi */
+.brand-section {
+    flex: 1;
+    min-height: calc(100vh - 48px);
+
+    display: flex;
+    align-items: center;
+
+    padding-left: 6.5%;
+    padding-right: 30px;
+}
+
+/* Pengaturan kontainer identitas SIPIKA */
+.brand-content {
+    width: 100%;
+    max-width: 500px;
+    transform: translateY(-120px);
+}
+
+/* Pengaturan ukuran dan posisi logo SIPIKA */
+.brand-logo {
+    display: block;
+    width: 400px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: -100px;
+    margin-left: -55px;
+}
+
+/* Pengaturan deskripsi identitas SIPIKA */
+.brand-description {
+    color: var(--white);
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 1.35;
+
+    margin: 0;
+}
+
+/* Garis dekorasi di bawah deskripsi SIPIKA */
+.brand-decoration {
+    width: 70px;
+    height: 4px;
+    background-color: #19b7f1;
+    border-radius: 10px;
+    margin-top: 18px;
+}
+
+
+/* =========================================
+   4. BAGIAN FORM LOGIN
+========================================= */
+
+/* Area form Login dan kartu putih */
+.login-section {
+    width: 50%;
+    min-height: calc(100vh - 48px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Kartu utama yang membungkus form Login */
+.login-card {
+    width: 100%;
+    max-width: 480px;
+
+    background-color: var(--white);
+    border-radius: 24px;
+
+    padding: 36px 40px 40px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================
+   5. HEADER LOGIN
+========================================= */
+
+/* Judul dan deskripsi pada bagian atas form Login */
+.login-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* Pengaturan judul Login */
+.login-header h2 {
+    color: var(--text-color);
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* Pengaturan deskripsi Login */
+.login-header p {
+    color: var(--muted-color);
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 3px;
+}
+
+
+/* =========================================
+   6. FORM DAN INPUT
+========================================= */
+
+/* Susunan form, label, dan input */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Pengaturan kelompok label dan input */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+/* Pengaturan label pada form */
+.form-group label {
+    color: var(--text-color);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Pembungkus input dan ikon */
+.input-wrapper {
+    width: 100%;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 0 14px;
+
+    background-color: var(--input-background);
+    border: 1px solid var(--border-color);
+    border-radius: 11px;
+
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+/* Efek ketika input sedang dipilih atau digunakan */
+.input-wrapper:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(8, 102, 217, 0.08);
+}
+
+/* Pengaturan ikon pada input */
+.input-icon {
+    display: flex;
+    align-items: center;
+    color: #91a4bc;
+    font-size: 15px;
+    line-height: 1;
+}
+
+/* Pengaturan umum kolom input dan dropdown */
+.input-wrapper input,
+.input-wrapper select {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: var(--text-color);
+    font-family: var(--font-main);
+    font-size: 14px;
+}
+
+/* Warna teks petunjuk pada kolom input */
+.input-wrapper input::placeholder {
+    color: #a1b0c3;
+}
+
+/* Pengaturan dropdown pilihan pengguna */
+.input-wrapper select {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    border: none;
+    outline: none;
+
+    color: var(--text-color);
+    font-family: var(--font-main);
+    font-size: 14px;
+
+    background-color: transparent;
+    background-image: url("../assets/icons/chevron_down.svg");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 14px;
+
+    padding-right: 24px;
+}
+
+/* Pengaturan tombol untuk menampilkan kata sandi */
+.password-toggle {
+    border: none;
+    background: transparent;
+    color: #91a4bc;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+
+/* =========================================
+   7. LUPA KATA SANDI
+========================================= */
+
+/* Tautan untuk menuju halaman Lupa Kata Sandi */
+.forgot-password {
+    text-align: right;
+    margin-top: -3px;
+}
+
+/* Pengaturan tampilan tautan Lupa Kata Sandi */
+.forgot-password a {
+    color: #0785e8;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+/* Efek ketika tautan Lupa Kata Sandi diarahkan kursor */
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   8. TOMBOL MASUK
+========================================= */
+
+/* Tombol Masuk dan efek hover */
+.login-button {
+    width: 100%;
+    height: 44px;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: var(--primary-color);
+    color: var(--white);
+
+    font-family: var(--font-main);
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+}
+
+/* Perubahan warna tombol ketika diarahkan kursor */
+.login-button:hover {
+    background-color: var(--primary-hover);
+}
+
+
+/* =========================================
+   9. PEMISAH DAN REGISTRASI
+========================================= */
+
+/* Garis pemisah dan teks di antara form Login dan registrasi */
+.form-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 18px 0;
+}
+
+/* Pengaturan garis pemisah */
+.form-divider span {
+    flex: 1;
+    height: 1px;
+    background-color: var(--border-color);
+}
+
+/* Pengaturan teks pemisah */
+.form-divider p {
+    color: #9aa9ba;
+    font-size: 13px;
+}
+
+/* Kotak tautan menuju halaman Register */
+.register-link {
+    width: 100%;
+    padding: 13px 8px;
+
+    text-align: center;
+
+    background-color: var(--soft-background);
+    border-radius: 10px;
+}
+
+/* Pengaturan teks pada bagian registrasi */
+.register-link p {
+    color: var(--text-color);
+    font-size: 13px;
+}
+
+/* Pengaturan tautan Daftar Sekarang */
+.register-link a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: underline;
+    margin-left: 3px;
+}
+
+
+/* =========================================
+   10. RESPONSIVE DESIGN LOGIN
+========================================= */
+
+/* Penyesuaian tampilan Login pada layar tablet */
+@media (max-width: 900px) {
+    .login-page {
+        padding: 24px;
+    }
+
+    .brand-section {
+        padding-left: 3%;
+        padding-right: 20px;
+    }
+
+    .brand-logo {
+        width: 160px;
+    }
+
+    .brand-description {
+        font-size: 19px;
+    }
+
+    .login-card {
+        max-width: 370px;
+        padding: 28px;
+    }
+}
+
+
+/* Penyesuaian tampilan Login pada layar mobile */
+@media (max-width: 768px) {
+    .login-page {
+        flex-direction: column;
+        justify-content: center;
+        gap: 28px;
+        padding: 32px 18px;
+
+        background-position: center;
+    }
+
+    .brand-section {
+        flex: none;
+        min-height: auto;
+        width: 100%;
+
+        justify-content: center;
+        text-align: center;
+
+        padding: 0;
+    }
+
+    .brand-content {
+        max-width: 100%;
+    }
+
+    .brand-logo {
+        width: 130px;
+        margin: 0 auto 8px;
+    }
+
+    .brand-description {
+        font-size: 17px;
+    }
+
+    .brand-decoration {
+        margin: 14px auto 0;
+    }
+
+    .login-section {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .login-card {
+        max-width: 400px;
+    }
+}
+
+
+/* Penyesuaian tampilan Login pada layar sangat kecil */
+@media (max-width: 380px) {
+    .login-page {
+        padding: 24px 12px;
+    }
+
+    .login-card {
+        padding: 24px 20px;
+    }
+
+    .brand-logo {
+        width: 110px;
+    }
+
+    .brand-description {
+        font-size: 14px;
+    }
+}
+
+
+/* =========================================
+   11. HALAMAN REGISTER
+========================================= */
+
+/* Pengaturan halaman Register dan area identitas */
+.register-page {
+    overflow: hidden;
+}
+
+/* Pengaturan posisi identitas SIPIKA pada halaman Register */
+.register-page .brand-content {
+    transform: translateY(-120px);
+}
+
+/* Area dan kartu form Register */
+.register-section {
+    width: 50%;
+}
+
+/* Kartu utama yang membungkus form Register */
+.register-card {
+    width: 100%;
+    max-width: 480px;
+    height: 500px;
+    padding: 40px;
+
+    border-radius: 24px;
+    background-color: var(--white);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Judul halaman Register */
+.register-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* Pengaturan teks judul Daftar Akun */
+.register-header h2 {
+    color: var(--text-color);
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* Susunan field dan input pada form Register */
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Pengaturan kelompok label dan input Register */
+.register-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+/* Pengaturan label pada form Register */
+.register-form .form-group label {
+    color: var(--text-color);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Kotak input pada halaman Register */
+.register-form .input-wrapper {
+    width: 100%;
+    height: 40px;
+    padding: 0 14px;
+
+    background-color: #f7f9fc;
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+}
+
+/* Pengaturan kolom input Register */
+.register-form .input-wrapper input {
+    width: 100%;
+    height: 100%;
+    font-family: var(--font-main);
+    font-size: 12px;
+}
+
+/* Warna teks petunjuk pada kolom input Register */
+.register-form .input-wrapper input::placeholder {
+    color: #a1b0c3;
+}
+
+/* Tombol Daftar Akun */
+.register-button {
+    width: 100%;
+    height: 42px;
+    margin-top: 2px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: var(--primary-color);
+    color: var(--white);
+
+    font-family: var(--font-main);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Tautan untuk kembali ke halaman Login */
+.register-footer {
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+
+    padding-top: 16px;
+    margin-top: 10px;
+}
+
+/* Pengaturan teks pada bagian footer Register */
+.register-footer p {
+    color: var(--muted-color);
+    font-size: 11px;
+}
+
+/* Pengaturan tautan Masuk Kembali */
+.register-footer a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 3px;
+}
+
+/* Efek hover pada tautan Masuk Kembali */
+.register-footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   12. HALAMAN LUPA KATA SANDI
+========================================= */
+
+/* Layout dan background halaman Lupa Kata Sandi */
+.forgot-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-image:
+        linear-gradient(
+            rgba(8, 30, 55, 0.12),
+            rgba(8, 30, 55, 0.12)
+        ),
+        url("../assets/images/background_login.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Kartu utama halaman Lupa Kata Sandi */
+.forgot-card {
+    width: 100%;
+    max-width: 440px;
+
+    background-color: var(--white);
+    border-radius: 20px;
+
+    padding: 32px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Judul dan deskripsi halaman Lupa Kata Sandi */
+.forgot-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* Pengaturan judul Lupa Kata Sandi */
+.forgot-header h2 {
+    color: var(--text-color);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* Pengaturan deskripsi Lupa Kata Sandi */
+.forgot-header p {
+    color: var(--muted-color);
+    font-size: 13px;
+    line-height: 1.6;
+    margin-top: 8px;
+}
+
+/* Form email untuk permintaan reset kata sandi */
+.forgot-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Pengaturan kelompok input pada form Lupa Kata Sandi */
+.forgot-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+/* Pengaturan label email terdaftar */
+.forgot-form .form-group label {
+    color: var(--text-color);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* Kotak input email pada halaman Lupa Kata Sandi */
+.forgot-form .input-wrapper {
+    height: 46px;
+    padding: 0 12px;
+    border-radius: 9px;
+}
+
+/* Pengaturan kolom email */
+.forgot-form .input-wrapper input {
+    width: 100%;
+    height: 100%;
+    font-size: 13px;
+}
+
+/* Tombol kirim permintaan reset kata sandi */
+.forgot-button {
+    width: 100%;
+    height: 48px;
+
+    border: none;
+    border-radius: 9px;
+
+    background-color: var(--primary-color);
+    color: var(--white);
+
+    font-family: var(--font-main);
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Efek hover pada tombol pemulihan kata sandi */
+.forgot-button:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Tautan kembali dari halaman Lupa Kata Sandi */
+.forgot-back {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 18px;
+
+    border-top: 1px solid var(--border-color);
+}
+
+/* Pengaturan tautan Kembali ke Login */
+.forgot-back a {
+    color: var(--primary-color);
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+
+/* Responsive halaman Lupa Kata Sandi */
+
+/* Penyesuaian halaman Lupa Kata Sandi pada layar mobile */
+@media (max-width: 600px) {
+    .forgot-page {
+        padding: 18px;
+    }
+
+    .forgot-card {
+        padding: 28px 22px;
+    }
+}
+
+
+/* =========================================
+   13. HALAMAN RESET PASSWORD
+========================================= */
+
+/* Layout dan background halaman Reset Password */
+.reset-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-image:
+        linear-gradient(
+            rgba(8, 30, 55, 0.12),
+            rgba(8, 30, 55, 0.12)
+        ),
+        url("../assets/images/background_login.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Kartu utama halaman Reset Password */
+.reset-card {
+    width: 100%;
+    max-width: 440px;
+
+    background-color: var(--white);
+    border-radius: 20px;
+
+    padding: 32px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Judul halaman Reset Password */
+.reset-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* Pengaturan teks judul Reset Password */
+.reset-header h2 {
+    color: var(--text-color);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* Form untuk memasukkan kata sandi baru */
+.reset-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Pengaturan kelompok input Reset Password */
+.reset-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+/* Pengaturan label pada form Reset Password */
+.reset-form .form-group label {
+    color: var(--text-color);
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: none;
+}
+
+/* Kotak input pada halaman Reset Password */
+.reset-form .input-wrapper {
+    height: 46px;
+    border-radius: 9px;
+    padding: 0 12px;
+}
+
+/* Pengaturan kolom input Reset Password */
+.reset-form .input-wrapper input {
+    width: 100%;
+    height: 100%;
+    font-size: 13px;
+}
+
+/* Warna teks petunjuk pada kolom input Reset Password */
+.reset-form .input-wrapper input::placeholder {
+    color: #a1b0c3;
+}
+
+/* Tombol menyimpan kata sandi baru */
+.reset-button {
+    width: 100%;
+    height: 48px;
+
+    margin-top: 2px;
+
+    border: none;
+    border-radius: 9px;
+
+    background-color: var(--primary-color);
+    color: var(--white);
+
+    font-family: var(--font-main);
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Efek hover pada tombol Reset Password */
+.reset-button:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Tautan kembali dari halaman Reset Password */
+.reset-back {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Pengaturan tautan Kembali ke Login */
+.reset-back a {
+    color: var(--primary-color);
+    font-size: 11px;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+
+/* Responsive halaman Reset Password */
+
+/* Penyesuaian halaman Reset Password pada layar mobile */
+@media (max-width: 480px) {
+    .reset-page {
+        padding: 18px;
+    }
+
+    .reset-card {
+        padding: 28px 22px;
+    }
+}
