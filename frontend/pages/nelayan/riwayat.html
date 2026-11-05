@@ -1,1 +1,332 @@
 
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <!-- Pengaturan karakter dan tampilan responsif -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Judul halaman pada tab browser -->
+    <title>Riwayat Nelayan | SIPIKA</title>
+
+    <!-- Menghubungkan Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Menghubungkan file CSS global dan CSS khusus nelayan -->
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/nelayan.css">
+</head>
+
+<body>
+
+    <!-- CONTAINER UTAMA DASHBOARD -->
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR: Logo, menu navigasi, dan logout -->
+        <aside class="sidebar">
+
+            <!-- Logo SIPIKA -->
+            <div class="sidebar-logo">
+                <img src="../../assets/images/logo_sipika.png" alt="Logo SIPIKA">
+            </div>
+
+            <!-- Menu navigasi halaman nelayan -->
+            <nav class="sidebar-menu">
+
+                <!-- Menu Dashboard -->
+                <a href="dashboard.html" class="menu-item">
+                    <img src="../../assets/icons/dashboard.svg" alt="">
+                    <span>Dashboard</span>
+                </a>
+
+                <!-- Menu Klasifikasi -->
+                <a href="klasifikasi.html" class="menu-item">
+                    <img src="../../assets/icons/klasifikasi.svg" alt="">
+                    <span>Klasifikasi</span>
+                </a>
+
+                <!-- Menu Riwayat (halaman aktif) -->
+                <a href="riwayat.html" class="menu-item active">
+                    <img src="../../assets/icons/riwayat.svg" alt="">
+                    <span>Riwayat</span>
+                </a>
+
+                <!-- Menu Profil -->
+                <a href="profil.html" class="menu-item">
+                    <img src="../../assets/icons/profil.svg" alt="">
+                    <span>Profil</span>
+                </a>
+
+            </nav>
+
+            <!-- Bagian bawah sidebar: Logout -->
+            <div class="sidebar-bottom">
+                <a href="../../pages/auth/login.html" class="menu-item logout-item">
+                    <img src="../../assets/icons/logout.svg" alt="">
+                    <span>Logout</span>
+                </a>
+            </div>
+
+        </aside>
+
+
+        <!-- KONTEN UTAMA HALAMAN RIWAYAT -->
+        <main class="main-content">
+
+            <!-- HEADER: Informasi akun pengguna -->
+            <header class="top-header">
+
+                <div class="account-info">
+
+                    <!-- Ikon pengguna -->
+                    <img src="../../assets/icons/circle_user_round.svg" alt="Ikon pengguna" class="account-icon">
+
+                    <!-- Nama dan status akun -->
+                    <div class="account-detail">
+                        <span class="account-name">Nelayan: Salmin</span>
+
+                        <span class="account-status">
+                            <span class="status-indicator"></span>
+                            Online
+                        </span>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- BANNER: Judul dan deskripsi halaman riwayat -->
+            <section class="history-banner">
+
+                <div class="history-banner-text">
+
+                    <!-- Label halaman riwayat klasifikasi -->
+                    <div class="history-label">
+                        <span>RIWAYAT KLASIFIKASI</span>
+                        <span class="history-label-line"></span>
+                    </div>
+
+                    <!-- Judul dan deskripsi banner -->
+                    <h1>Riwayat</h1>
+
+                    <p>
+                        Berikut adalah daftar hasil klasifikasi yang pernah Anda
+                        lakukan.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- TOOLBAR: Pencarian dan filter tanggal -->
+            <section class="history-toolbar">
+
+                <!-- FITUR PENCARIAN RIWAYAT -->
+                <div class="history-search">
+
+                    <!-- Ikon pencarian -->
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="m16 16 4 4"></path>
+                    </svg>
+
+                    <!-- Input untuk mencari data riwayat -->
+                    <input type="search" id="historySearch"
+                        placeholder="Cari jenis ikan, alat tangkap, wilayah, atau musim...">
+
+                </div>
+
+                <!-- FITUR FILTER BERDASARKAN TANGGAL -->
+                <div class="history-filter">
+
+                    <!-- Ikon kalender -->
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+                        <path d="M16 3v4M8 3v4M3 10h18"></path>
+                    </svg>
+
+                    <!-- Pilihan bulan untuk menyaring riwayat -->
+                    <select id="dateFilter">
+                        <option value="all">Semua Tanggal</option>
+                        <option value="2025-05">Mei 2025</option>
+                        <option value="2025-04">April 2025</option>
+                    </select>
+
+                </div>
+
+            </section>
+
+
+            <!-- TABEL: Menampilkan daftar riwayat klasifikasi -->
+            <section class="history-table-card">
+
+                <!-- Wrapper untuk mengatur tampilan tabel -->
+                <div class="history-table-wrapper">
+
+                    <table class="history-table">
+
+                        <!-- HEADER TABEL: Nama setiap kolom -->
+                        <thead>
+                            <tr>
+                                <th>NO.</th>
+                                <th>TANGGAL</th>
+                                <th>JENIS IKAN</th>
+                                <th>ALAT TANGKAP</th>
+                                <th>WILAYAH</th>
+                                <th>MUSIM</th>
+                                <th>HASIL KLASIFIKASI</th>
+                                <th>AKSI</th>
+                            </tr>
+                        </thead>
+
+                        <!-- BODY TABEL: Data riwayat klasifikasi -->
+                        <tbody id="historyTableBody">
+
+                            <!-- DATA RIWAYAT 1 -->
+                            <tr>
+                                <td>1</td>
+                                <td>12 Mei 2025,<br>10:23</td>
+                                <td>Cakalang</td>
+                                <td>Jaring</td>
+                                <td>Kota<br>Ternate</td>
+                                <td>Kemarau</td>
+                                <td><span class="history-badge high">Tinggi</span></td>
+                                <td>
+                                    <a href="detail-prediksi.html" class="history-detail-button">Detail</a>
+                                </td>
+                            </tr>
+
+                            <!-- DATA RIWAYAT 2 -->
+                            <tr>
+                                <td>2</td>
+                                <td>10 Mei 2025,<br>14:17</td>
+                                <td>Layang</td>
+                                <td>Bagan</td>
+                                <td>Halmahera<br>Selatan</td>
+                                <td>Pancaroba</td>
+                                <td><span class="history-badge medium">Sedang</span></td>
+                                <td>
+                                    <a href="detail-prediksi.html" class="history-detail-button">Detail</a>
+                                </td>
+                            </tr>
+
+                            <!-- DATA RIWAYAT 3 -->
+                            <tr>
+                                <td>3</td>
+                                <td>8 Mei 2025,<br>09:05</td>
+                                <td>Tuna</td>
+                                <td>Pancing</td>
+                                <td>Kepulauan<br>Sula</td>
+                                <td>Hujan</td>
+                                <td><span class="history-badge low">Rendah</span></td>
+                                <td>
+                                    <a href="detail-prediksi.html" class="history-detail-button">Detail</a>
+                                </td>
+                            </tr>
+
+                            <!-- DATA RIWAYAT 4 -->
+                            <tr>
+                                <td>4</td>
+                                <td>5 Mei 2025,<br>16:42</td>
+                                <td>Tongkol</td>
+                                <td>Jaring</td>
+                                <td>Pulau<br>Morotai</td>
+                                <td>Kemarau</td>
+                                <td><span class="history-badge high">Tinggi</span></td>
+                                <td>
+                                    <a href="detail-prediksi.html" class="history-detail-button">Detail</a>
+                                </td>
+                            </tr>
+
+                            <!-- DATA RIWAYAT 5 -->
+                            <tr>
+                                <td>5</td>
+                                <td>3 Mei 2025,<br>11:30</td>
+                                <td>Selar</td>
+                                <td>Bagan</td>
+                                <td>Halmahera<br>Utara</td>
+                                <td>Pancaroba</td>
+                                <td><span class="history-badge medium">Sedang</span></td>
+                                <td>
+                                    <a href="detail-prediksi.html" class="history-detail-button">Detail</a>
+                                </td>
+                            </tr>
+
+                            <!-- DATA RIWAYAT 6 -->
+                            <tr>
+                                <td>6</td>
+                                <td>1 Mei 2025,<br>13:12</td>
+                                <td>Cakalang</td>
+                                <td>Pancing</td>
+                                <td>Kota<br>Ternate</td>
+                                <td>Hujan</td>
+                                <td><span class="history-badge low">Rendah</span></td>
+                                <td>
+                                    <a href="detail-prediksi.html" class="history-detail-button">Detail</a>
+                                </td>
+                            </tr>
+
+                            <!-- DATA RIWAYAT 7 -->
+                            <tr>
+                                <td>7</td>
+                                <td>28 Apr 2025,<br>08:50</td>
+                                <td>Layang</td>
+                                <td>Jaring</td>
+                                <td>Halmahera<br>Selatan</td>
+                                <td>Kemarau</td>
+                                <td><span class="history-badge high">Tinggi</span></td>
+                                <td>
+                                    <a href="detail-prediksi.html" class="history-detail-button">Detail</a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- PAGINATION: Navigasi antarhalaman tabel -->
+                <div class="history-pagination" id="historyPagination">
+
+                    <!-- Tombol menuju halaman sebelumnya -->
+                    <button type="button" class="page-button" id="prevPage" aria-label="Halaman sebelumnya">
+                        &lsaquo;
+                    </button>
+
+                    <!-- Tempat nomor halaman dibuat oleh JavaScript -->
+                    <div id="pageNumbers"></div>
+
+                    <!-- Tombol menuju halaman berikutnya -->
+                    <button type="button" class="page-button" id="nextPage" aria-label="Halaman berikutnya">
+                        &rsaquo;
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER: Identitas kelompok -->
+            <footer class="dashboard-footer">
+                © 2026 SIPIKA — Kelompok 13 Web
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT: Menghubungkan fungsi global dan khusus nelayan -->
+    <script src="../../js/global.js"></script>
+    <script src="../../js/nelayan.js"></script>
+
+</body>
+
+</html>
