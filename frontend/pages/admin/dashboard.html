@@ -1,1 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Admin - SIPIKA</title>
+  
+  <!-- Font & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS Utama Admin -->
+  <link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
 
+  <div class="app-container">
+    <!-- SIDEBAR ADMIN -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="../../assets/images/logo.png" alt="SIPIKA Logo" class="sidebar-logo-img">
+      </div>
+      
+      <div class="sidebar-menu">
+        <a href="dashboard.html" class="menu-item active">
+          <i class="fa-solid fa-house"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="kelola-pengguna.html" class="menu-item">
+          <i class="fa-solid fa-users-gear"></i>
+          <span>Kelola Pengguna</span>
+        </a>
+        <a href="data-master.html" class="menu-item">
+          <i class="fa-solid fa-database"></i>
+          <span>Data Master</span>
+        </a>
+        <a href="profil.html" class="menu-item">
+          <i class="fa-solid fa-user"></i>
+          <span>Profil</span>
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <a href="../../index.html" class="logout-btn">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      
+      <!-- TOPBAR INFO PROFIL ADMIN -->
+      <header class="topbar">
+        <div class="topbar-user">
+          <div class="user-avatar-small">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="user-info-text">
+            <span class="user-name">Anindya</span>
+            <span class="user-status"><span class="status-dot"></span> Admin</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENT BODY -->
+      <div class="content-body">
+
+        <!-- WELCOME BANNER ADMIN -->
+        <div class="banner-card welcome-banner" style="background-image: url('../../assets/images/banner.jpeg');">
+          <div class="banner-text">
+            <h2>Selamat Datang, Admin!</h2>
+            <p>Anda dapat mengelola pengguna dan data master sistem SIPIKA dengan mudah melalui menu yang tersedia.</p>
+          </div>
+        </div>
+
+        <!-- RINGKASAN STATISTIK (3 KOTAK) -->
+        <div class="stats-grid-3">
+          
+          <!-- Total Pengguna -->
+          <div class="stat-card">
+            <div class="stat-icon-wrapper icon-blue-bg">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-title">Total Pengguna</span>
+              <h3 class="stat-value">152</h3>
+              <span class="stat-desc">akun terdaftar</span>
+            </div>
+            <a href="kelola-pengguna.html" class="stat-arrow-btn">
+              <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </div>
+
+          <!-- Total Petugas -->
+          <div class="stat-card">
+            <div class="stat-icon-wrapper icon-green-bg">
+              <i class="fa-solid fa-user-check"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-title">Total Petugas</span>
+              <h3 class="stat-value">12</h3>
+              <span class="stat-desc">akun petugas</span>
+            </div>
+            <a href="kelola-pengguna.html" class="stat-arrow-btn">
+              <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </div>
+
+          <!-- Total Nelayan -->
+          <div class="stat-card">
+            <div class="stat-icon-wrapper icon-orange-bg">
+              <i class="fa-solid fa-user-tag"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-title">Total Nelayan</span>
+              <h3 class="stat-value">140</h3>
+              <span class="stat-desc">akun nelayan</span>
+            </div>
+            <a href="kelola-pengguna.html" class="stat-arrow-btn">
+              <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- AKSES CEPAT SECTION -->
+        <div class="quick-access-section">
+          <h3 class="section-title-text">Akses Cepat</h3>
+          
+          <div class="quick-access-grid">
+            <!-- Card Kelola Pengguna -->
+            <div class="quick-card">
+              <div class="quick-card-content">
+                <h4>Kelola Pengguna</h4>
+                <p>Tambah, ubah, atau nonaktifkan akun Petugas dan Nelayan.</p>
+              </div>
+              <a href="kelola-pengguna.html" class="quick-arrow-btn">
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            </div>
+
+            <!-- Card Data Master -->
+            <div class="quick-card">
+              <div class="quick-card-content">
+                <h4>Data Master</h4>
+                <p>Kelola data referensi seperti jenis ikan, alat tangkap, wilayah, dan musim.</p>
+              </div>
+              <a href="data-master.html" class="quick-arrow-btn">
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD TENTANG SIPIKA (DENGAN BACKGROUND BANNER BAWAH) -->
+        <div class="about-sipika-card" style="background-image: url('../../assets/images/banner-bawah.jpg');">
+          <div class="about-text-content">
+            <div class="about-header-title">
+              <div class="icon-circle-badge">
+                <i class="fa-solid fa-circle-info icon-blue"></i>
+              </div>
+              <h3>Tentang SIPIKA</h3>
+            </div>
+            <p class="about-p">
+              SIPIKA (Sistem Informasi Klasifikasi Produksi Ikan Tangkapan) adalah sistem berbasis web yang digunakan untuk mengklasifikasikan tingkat produksi hasil tangkapan ikan berdasarkan jenis ikan, alat tangkap, wilayah, dan musim menggunakan algoritma Decision Tree.
+            </p>
+            <p class="about-p">
+              Sebagai Admin, Anda bertanggung jawab dalam pengelolaan pengguna dan data master yang mendukung operasional sistem ini.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="main-footer">
+        <p>&copy; 2026 SIPIKA &mdash; Kelompok 13 Web</p>
+      </footer>
+    </main>
+  </div>
+
+</body>
+</html>
