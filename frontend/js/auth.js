@@ -87,8 +87,23 @@ if (loginForm) {
 
         }
 
-        // Mengarahkan pengguna ke halaman Dashboard Nelayan
-        window.location.href = "../nelayan/dashboard.html";
+        // Mengarahkan pengguna berdasarkan role yang dipilih
+        if (role === "nelayan") {
+
+            // Mengarahkan pengguna ke Dashboard Nelayan
+            window.location.href = "../nelayan/dashboard.html";
+
+        } else if (role === "petugas") {
+
+            // Mengarahkan pengguna ke Dashboard Petugas
+            window.location.href = "../petugas/dashboard.html";
+
+        } else if (role === "admin") {
+
+            // Memberikan informasi bahwa halaman Admin belum tersedia
+            alert("Halaman Admin belum tersedia.");
+
+        }
 
     });
 
@@ -192,7 +207,7 @@ const resetForm = document.getElementById("resetForm");
 if (resetForm) {
 
     // Menambahkan event submit pada form Reset Password
-    resetForm.addEventListener("submit", function(event) {
+    resetForm.addEventListener("submit", function (event) {
 
         // Mencegah form melakukan pengiriman secara otomatis
         event.preventDefault();
