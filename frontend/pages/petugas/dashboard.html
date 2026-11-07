@@ -1,1 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Petugas - SIPIKA</title>
+  <!-- Link CSS Global dan Petugas -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/petugas.css">
+  <!-- FontAwesome untuk Ikon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
 
+  <div class="dashboard-container">
+    
+    <!-- SIDEBAR KIRI -->
+    <aside class="sidebar">
+  <div class="sidebar-brand">
+    <img src="../../assets/images/logo.png" alt="Logo SIPIKA" class="logo-img">
+  </div>
+
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html" class="active"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+        <li><a href="dataset.html"><i class="fa-solid fa-database"></i> Data Dataset</a></li>
+        <li><a href="evaluasi-model.html"><i class="fa-solid fa-chart-line"></i> Evaluasi Model</a></li>
+        <li><a href="riwayat-prediksi.html"><i class="fa-solid fa-clock-rotate-left"></i> Riwayat Prediksi</a></li>
+        <li><a href="profil.html"><i class="fa-solid fa-user"></i> Profil</a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="../auth/login.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      </div>
+    </aside>
+
+    <!-- KONTEN UTAMA -->
+    <main class="main-content">
+      
+      <!-- Top Navbar / Header Profil -->
+      <header class="top-navbar">
+        <div class="user-profile-badge">
+          <div class="profile-avatar"><i class="fa-solid fa-user"></i></div>
+          <div class="profile-info">
+            <span class="profile-name">Bayu Cahyo</span>
+            <span class="profile-role">Petugas</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Body Content -->
+      <div class="content-body">
+        
+        <!-- Banner Sambutan -->
+        <div class="welcome-banner">
+          <div class="banner-text">
+            <h1>Selamat Datang, Bayu Cahyo!</h1>
+            <p>SIPIKA membantu mengklasifikasikan tingkat produksi ikan tangkapan berdasarkan data yang tersedia menggunakan algoritma Decision Tree</p>
+          </div>
+        </div>
+
+        <!-- Card Pengenalan Sistem SIPIKA -->
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="card-icon-box">
+              <img src="../../assets/images/icon-system.png" alt="Icon Sistem" class="custom-card-icon">
+            </div>
+            <h3>Pengenalan Sistem SIPIKA</h3>
+          </div>
+          <p>SIPIKA adalah sistem informasi yang digunakan untuk mengklasifikasikan tingkat produksi ikan tangkapan guna membantu nelayan dan petugas dalam memperoleh informasi produksi ikan dengan lebih cepat dan mudah.</p>
+        </div>
+
+        <!-- Card Pengenalan Algoritma Decision Tree -->
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="card-icon-box">
+              <img src="../../assets/images/icon-tree.png" alt="Icon Decision Tree" class="custom-card-icon">
+            </div>
+          <h3>Pengenalan Algoritma Decision Tree</h3>
+        </div>
+          <p>SIPIKA menggunakan algoritma Decision Tree untuk mengklasifikasikan tingkat produksi ikan tangkapan berdasarkan empat atribut utama, yaitu jenis ikan, alat tangkap, wilayah, dan musim.</p>
+
+          <!-- Alur Visual Decision Tree (Input -> Proses -> Hasil) -->
+          <div class="dt-flow-container">
+            
+            <!-- Step 1: Input Data -->
+            <div class="dt-box">
+              <span class="dt-box-title">Input Data</span>
+              <div class="dt-item"><i class="fa-solid fa-fish"></i> Jenis Ikan</div>
+              <div class="dt-item"><i class="fa-solid fa-anchor"></i> Alat Tangkap</div>
+              <div class="dt-item"><i class="fa-solid fa-location-dot"></i> Wilayah</div>
+              <div class="dt-item"><i class="fa-solid fa-calendar"></i> Musim</div>
+            </div>
+
+            <div class="dt-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+            <!-- Step 2: Proses Decision Tree -->
+            <div class="dt-box process-box">
+              <div class="dt-box-header">
+                <div class="dt-icon-box process-icon">
+                  <img src="../../assets/images/icon-tree.png" alt="Proses Decision Tree Icon" class="dt-custom-icon">
+                </div>
+                <span class="dt-box-title">Proses Decision Tree</span>
+              </div>
+              <p>Model mempelajari pola dari data untuk menentukan kategori tingkat produksi ikan tangkapan.</p>
+            </div>
+
+            <div class="dt-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+            <!-- Step 3: Hasil Klasifikasi -->
+            <div class="dt-box result-box">
+              <div class="dt-box-header">
+                <div class="dt-icon-box result-icon">
+                  <img src="../../assets/images/icon-result.png" alt="Hasil Klasifikasi Icon" class="dt-custom-icon">
+                </div>
+                <span class="dt-box-title">Hasil Klasifikasi</span>
+              </div>
+              <p class="result-desc">Tingkat produksi ikan tangkapan diklasifikasikan menjadi tiga kategori.</p>
+              <div class="badge-group">
+                <span class="badge badge-rendah">Rendah</span>
+                <span class="badge badge-sedang">Sedang</span>
+                <span class="badge badge-tinggi">Tinggi</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Hak Cipta -->
+      <footer class="footer-copyright">
+        &copy; 2026 SIPIKA - Kelompok 13 Web
+      </footer>
+    </main>
+
+  </div>
+
+  <!-- Script JS -->
+  <script src="../../js/global.js"></script>
+  <script src="../../js/petugas.js"></script>
+</body>
+</html>

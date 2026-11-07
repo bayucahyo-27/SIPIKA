@@ -1,1 +1,2568 @@
+/* =========================================
+   NELAYAN CSS - DASHBOARD SIPIKA
+========================================= */
 
+/* 1. LAYOUT UTAMA */
+.dashboard-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    min-height: 0;
+    overflow: hidden;
+    background-color: #eaf3fb;
+}
+
+/* =========================================
+   2. SIDEBAR
+========================================= */
+
+.sidebar {
+    width: 238px;
+    min-width: 238px;
+    height: 100vh;
+    min-height: 0;
+    flex-shrink: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 16px 20px;
+    background-image:
+        linear-gradient(rgba(5, 31, 65, 0.88),
+            rgba(5, 31, 65, 0.88)),
+        url("../assets/images/sidebar_nelayan.png");
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+}
+
+.sidebar-logo {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.sidebar-logo img {
+    width: 125px;
+    height: auto;
+    object-fit: contain;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu-item {
+    width: 100%;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 14px;
+    border-radius: 9px;
+    color: #e7effa;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.menu-item img {
+    width: 17px;
+    height: 17px;
+    object-fit: contain;
+}
+
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.menu-item.active {
+    background-color: #0876c9;
+    color: var(--white);
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logout-item {
+    font-size: 12px;
+}
+
+/* =========================================
+   3. KONTEN UTAMA
+========================================= */
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+    height: 100vh;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior-y: contain;
+
+    padding: 18px 32px 12px;
+    background-color: #eaf3fb;
+}
+
+/* =========================================
+   4. HEADER AKUN
+========================================= */
+
+.top-header {
+    width: 100%;
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+.account-info {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 12px 5px 8px;
+    background-color: var(--white);
+    border: 1px solid #e3ebf4;
+    border-radius: 11px;
+    box-shadow: 0 2px 7px rgba(22, 54, 88, 0.05);
+}
+
+.account-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.account-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.account-name {
+    color: var(--text-color);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.account-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #159b68;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.status-indicator {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #12bd83;
+}
+
+/* =========================================
+   5. BANNER SELAMAT DATANG
+========================================= */
+
+
+
+.welcome-banner {
+    width: 100%;
+    min-height: 138px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 24px 38px;
+    margin-bottom: 14px;
+    overflow: hidden;
+
+    background-image:
+        linear-gradient(90deg,
+            rgba(255, 255, 255, 0.96) 0%,
+            rgba(255, 255, 255, 0.78) 45%,
+            rgba(255, 255, 255, 0.05) 100%),
+        url("../assets/images/banner_nelayan.png");
+
+    background-size: cover;
+    background-position: center 70%;
+    background-repeat: no-repeat;
+
+    border: 1px solid #d6e8f8;
+    border-radius: 14px;
+}
+
+
+.welcome-text {
+    position: relative;
+    z-index: 1;
+}
+
+.welcome-text p {
+    color: #0875bc;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 1px;
+}
+
+.welcome-text h1 {
+    color: #0c1d37;
+    font-size: 36px;
+    line-height: 1.15;
+    font-weight: 700;
+}
+
+.welcome-text span {
+    color: #253b55;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* =========================================
+   6. KARTU KONTEN
+========================================= */
+
+.content-card {
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 13px;
+    box-shadow: 0 2px 8px rgba(25, 54, 85, 0.04);
+}
+
+/* =========================================
+   7. TENTANG SIPIKA
+========================================= */
+
+.about-section {
+    min-height: 111px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 15px 20px;
+    margin-bottom: 14px;
+}
+
+
+.about-text {
+    position: relative;
+    z-index: 1;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.about-text h2,
+.section-heading h2 {
+    color: #102542;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.classification-description h2 {
+    color: #102542;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.section-decoration {
+    width: 21px;
+    height: 3px;
+    margin: 4px 0 6px;
+    border-radius: 5px;
+    background-color: #0785d1;
+}
+
+.about-text p {
+    max-width: 580px;
+    color: #506681;
+    font-size: 10px;
+    line-height: 1.65;
+}
+
+.about-image {
+    width: 240px;
+    height: 100px;
+    flex: 0 0 240px;
+    overflow: hidden;
+    margin-left: auto;
+}
+
+.about-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* =========================================
+   8. FAKTOR YANG DIGUNAKAN
+========================================= */
+
+.factor-section {
+    padding: 16px 18px 18px;
+    margin-bottom: 14px;
+}
+
+.section-heading {
+    margin-bottom: 10px;
+}
+
+.factor-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.factor-item {
+    width: 100%;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 8px;
+    overflow: hidden;
+    border-radius: 14px;
+    text-align: center;
+}
+
+/* WARNA KARTU */
+.factor-fish {
+    background-color: #e6f2ff;
+}
+
+.factor-tool {
+    background-color: #fff0e6;
+}
+
+.factor-region {
+    background-color: #e2f6f3;
+}
+
+.factor-season {
+    background-color: #eeebff;
+}
+
+/* IKON FAKTOR */
+.factor-item img {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 3px;
+    object-fit: contain;
+    transform: translateY(-18px);
+}
+
+/* JUDUL FAKTOR */
+.factor-item h3 {
+    color: #102542;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    transform: translateY(-25px);
+}
+
+/* DESKRIPSI FAKTOR */
+.factor-item p {
+    color: #506681;
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 400;
+    transform: translateY(-25px);
+}
+
+/* RESPONSIVE TABLET */
+@media (max-width: 1000px) {
+    .factor-grid {
+        gap: 12px;
+    }
+
+    .factor-item {
+        min-height: 110px;
+    }
+
+    .factor-item img {
+        width: 110px;
+        height: 110px;
+    }
+}
+
+/* RESPONSIVE MOBILE */
+@media (max-width: 700px) {
+    .factor-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .factor-item {
+        min-height: 130px;
+        padding: 10px;
+    }
+
+    .factor-item img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .factor-item h3 {
+        font-size: 13px;
+    }
+
+    .factor-item p {
+        font-size: 10px;
+    }
+}
+
+
+
+/* =========================================
+   9. HASIL KLASIFIKASI
+========================================= */
+
+.classification-section {
+    display: grid;
+    grid-template-columns: 1fr 2.15fr;
+    align-items: center;
+    gap: 15px;
+    padding: 16px 18px;
+}
+
+.classification-description p {
+    max-width: 220px;
+    color: #71849b;
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+/* GRID KARTU KLASIFIKASI */
+.classification-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* KARTU */
+.classification-item {
+    width: 100%;
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+/* IKON GRAFIK */
+.classification-icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.classification-icon svg {
+    width: 42px;
+    height: 42px;
+    fill: currentColor;
+}
+
+.classification-icon svg {
+    width: 48px;
+    height: 48px;
+    fill: currentColor;
+}
+
+/* TEKS KARTU */
+.classification-info h3 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 5px;
+}
+
+.classification-info p {
+    font-size: 12px;
+    line-height: 1.4;
+    font-weight: 400;
+}
+
+/* KATEGORI RENDAH */
+.classification-low {
+    color: #d94353;
+    background-color: #fde8ed;
+}
+
+/* KATEGORI SEDANG */
+.classification-medium {
+    color: #d99a0b;
+    background-color: #fff5dc;
+}
+
+/* KATEGORI TINGGI */
+.classification-high {
+    color: #079b75;
+    background-color: #e0f5f0;
+}
+
+
+/* =========================================
+   10. FOOTER
+========================================= */
+
+.dashboard-footer {
+    margin-top: auto;
+    padding-top: 12px;
+    color: #71849b;
+    text-align: center;
+    font-size: 8px;
+}
+
+/* =========================================
+   11. RESPONSIVE TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .sidebar {
+        width: 200px;
+        min-width: 200px;
+    }
+
+    .main-content {
+        padding: 18px 20px 12px;
+    }
+
+    .welcome-text h1 {
+        font-size: 36px;
+    }
+
+    .about-image {
+        width: 175px;
+    }
+
+    .classification-section {
+        grid-template-columns: 1fr;
+    }
+
+    .classification-grid {
+        gap: 12px;
+    }
+
+}
+
+/* =========================================
+   12. RESPONSIVE MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-width: 0;
+        min-height: auto;
+        padding: 12px;
+        background-position: center 60%;
+    }
+
+    .sidebar-logo {
+        height: 55px;
+        margin-bottom: 10px;
+    }
+
+    .sidebar-logo img {
+        width: 85px;
+    }
+
+    .sidebar-menu {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .menu-item {
+        width: auto;
+        min-height: 36px;
+        padding: 0 9px;
+        font-size: 10px;
+        gap: 6px;
+    }
+
+    .menu-item img {
+        width: 14px;
+        height: 14px;
+    }
+
+    .sidebar-bottom {
+        margin-top: 10px;
+        padding-top: 8px;
+    }
+
+    .main-content {
+        padding: 14px;
+    }
+
+    .welcome-banner {
+        min-height: 120px;
+        padding: 18px;
+    }
+
+    .welcome-text h1 {
+        font-size: 30px;
+    }
+
+    .welcome-text p {
+        font-size: 12px;
+    }
+
+    .welcome-text span {
+        font-size: 10px;
+    }
+
+    .about-section {
+        gap: 10px;
+        padding: 14px;
+    }
+
+    .about-image {
+        width: 115px;
+        height: 65px;
+    }
+
+    .about-text h2,
+    .section-heading h2,
+    .classification-description h2 {
+        font-size: 14px;
+    }
+
+    .classification-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* =========================================
+   13. RESPONSIVE HP KECIL
+========================================= */
+
+@media (max-width: 380px) {
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .welcome-text h1 {
+        font-size: 26px;
+    }
+
+    .about-image {
+        width: 95px;
+    }
+
+    .menu-item {
+        padding: 0 6px;
+        font-size: 9px;
+    }
+
+}
+
+
+/* =========================================
+   14. HALAMAN KLASIFIKASI - BANNER
+========================================= */
+
+
+.classification-banner {
+    width: 100%;
+    min-height: 138px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 24px 38px;
+    margin-bottom: 16px;
+    overflow: hidden;
+
+    background-image:
+        linear-gradient(90deg,
+            rgba(255, 255, 255, 0.96) 0%,
+            rgba(255, 255, 255, 0.78) 45%,
+            rgba(255, 255, 255, 0.05) 100%),
+        url("../assets/images/banner_nelayan.png");
+
+    background-size: cover;
+    background-position: center 70%;
+    background-repeat: no-repeat;
+
+    border: 1px solid #d6e8f8;
+    border-radius: 14px;
+}
+
+
+.classification-banner-text {
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+}
+
+.banner-label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 5px;
+}
+
+.banner-label span:first-child {
+    color: #0876c9;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.banner-line {
+    width: 22px;
+    height: 2px;
+    background-color: #0876c9;
+    border-radius: 5px;
+}
+
+.classification-banner-text h1 {
+    color: #102542;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 5px;
+}
+
+.classification-banner-text p {
+    max-width: 430px;
+    color: #506681;
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   15. AREA KONTEN KLASIFIKASI
+========================================= */
+
+.classification-content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    align-items: stretch;
+    gap: 16px;
+}
+
+
+/* =========================================
+   16. KARTU DATA TANGKAPAN
+========================================= */
+
+.data-card,
+.result-card {
+    min-width: 0;
+    min-height: 380px;
+    background-color: var(--white);
+    border-radius: 15px;
+    padding: 22px;
+    box-shadow: 0 2px 8px rgba(25, 54, 85, 0.04);
+}
+
+
+.card-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin-bottom: 18px;
+}
+
+.heading-indicator {
+    width: 4px;
+    height: 17px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    border-radius: 5px;
+    background-color: #0876d9;
+}
+
+.card-heading h2 {
+    color: #102542;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.card-heading p {
+    color: #71849b;
+    font-size: 9px;
+    line-height: 1.5;
+    margin-top: 2px;
+}
+
+
+/* =========================================
+   17. FORM INPUT KLASIFIKASI
+========================================= */
+
+#classificationForm {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.classification-form-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-icon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #0876d9;
+    background-color: #e7f3ff;
+    border-radius: 50%;
+}
+
+.form-icon svg {
+    width: 15px;
+    height: 15px;
+    stroke-width: 2;
+}
+
+.form-field {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form-field label {
+    color: #173454;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.form-field select {
+    width: 100%;
+    height: 30px;
+    padding: 0 11px;
+
+    color: #425873;
+    background-color: #ffffff;
+    border: 1px solid #e1e9f2;
+    border-radius: 8px;
+    outline: none;
+
+    font-size: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.form-field select:focus {
+    border-color: #0876d9;
+}
+
+
+/* =========================================
+   18. TOMBOL RESET DAN KLASIFIKASIKAN
+========================================= */
+
+.classification-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 7px;
+}
+
+.classification-actions button {
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.classification-actions button svg {
+    width: 13px;
+    height: 13px;
+}
+
+.reset-button {
+    width: 26%;
+    color: #0876d9;
+    background-color: #ffffff;
+    border: 1px solid #0876d9;
+}
+
+.reset-button:hover {
+    background-color: #edf6ff;
+}
+
+.classify-button {
+    flex: 1;
+    color: #ffffff;
+    background-color: #0876d9;
+    border: 1px solid #0876d9;
+}
+
+.classify-button:hover {
+    background-color: #0755b5;
+}
+
+
+/* =========================================
+   19. KARTU HASIL KLASIFIKASI
+========================================= */
+
+.result-card .card-heading {
+    margin-bottom: 12px;
+}
+
+
+/* TINGKAT PRODUKSI */
+
+.production-result {
+    width: 100%;
+    min-height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+
+    background-color: #e5f7ed;
+    border: 1px solid #c5efd5;
+    border-radius: 11px;
+    margin-bottom: 9px;
+    padding: 10px;
+}
+
+.production-result span {
+    color: #087c4d;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.production-result h3 {
+    color: #075b37;
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+
+/* =========================================
+   20. KESIMPULAN DAN SARAN
+========================================= */
+
+.result-information {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+}
+
+.conclusion-box {
+    background-color: #edf5ff;
+    border: 1px solid #d8eaff;
+}
+
+.suggestion-box {
+    background-color: #fff8e8;
+    border: 1px solid #ffedbd;
+    margin-bottom: 0;
+}
+
+.information-icon {
+    width: 23px;
+    height: 23px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+    background-color: #0876d9;
+    border-radius: 7px;
+}
+
+.suggestion-box .information-icon {
+    background-color: #f3a900;
+}
+
+.information-icon svg {
+    width: 13px;
+    height: 13px;
+    stroke-width: 2;
+}
+
+.information-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.information-content h3 {
+    color: #173454;
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.information-content p {
+    color: #60758e;
+    font-size: 9px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   21. RESPONSIVE KLASIFIKASI
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .classification-content {
+        grid-template-columns: 1fr 0.9fr;
+        gap: 12px;
+    }
+
+    .data-card,
+    .result-card {
+        padding: 14px;
+    }
+
+}
+
+.classification-content {
+    align-items: start;
+}
+
+.data-card {
+    height: fit-content;
+    align-self: start;
+}
+
+@media (max-width: 700px) {
+
+    .classification-banner {
+        min-height: 120px;
+        padding: 16px;
+        background-position: center;
+    }
+
+    .classification-banner-text h1 {
+        font-size: 17px;
+    }
+
+    .classification-content {
+        grid-template-columns: 1fr;
+    }
+
+    .data-card,
+    .result-card {
+        padding: 16px;
+    }
+
+}
+
+@media (max-width: 380px) {
+
+    .classification-banner-text h1 {
+        font-size: 15px;
+    }
+
+    .classification-actions button {
+        font-size: 9px;
+    }
+
+}
+
+
+/* =========================================
+   22. PENYESUAIAN UKURAN KARTU KLASIFIKASI
+========================================= */
+
+/* Kontainer putih bagian luar */
+.data-card,
+.result-card {
+    min-height: 440px;
+    padding: 26px;
+    border-radius: 16px;
+}
+
+/* Judul kontainer */
+.card-heading {
+    gap: 11px;
+    margin-bottom: 22px;
+}
+
+.card-heading h2 {
+    font-size: 22px;
+}
+
+.card-heading p {
+    font-size: 10px;
+}
+
+/* Form data tangkapan */
+#classificationForm {
+    gap: 15px;
+}
+
+.classification-form-group {
+    gap: 12px;
+}
+
+.form-icon {
+    width: 34px;
+    height: 34px;
+}
+
+.form-icon svg {
+    width: 17px;
+    height: 17px;
+}
+
+.form-field label {
+    font-size: 10px;
+}
+
+.form-field select {
+    height: 36px;
+    font-size: 11px;
+}
+
+/* Tombol */
+.classification-actions {
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.classification-actions button {
+    height: 40px;
+    font-size: 11px;
+}
+
+/* Hasil produksi */
+.production-result {
+    min-height: 82px;
+    margin-bottom: 12px;
+}
+
+.production-result span {
+    font-size: 10px;
+}
+
+.production-result h3 {
+    font-size: 26px;
+}
+
+/* Kesimpulan dan saran */
+.result-information {
+    gap: 11px;
+    padding: 13px;
+    margin-bottom: 11px;
+}
+
+.information-icon {
+    width: 27px;
+    height: 27px;
+}
+
+.information-content h3 {
+    font-size: 11px;
+}
+
+.information-content p {
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+
+/* =====================================
+   TAMPILAN AWAL HASIL KLASIFIKASI
+===================================== */
+
+.result-placeholder {
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 35px;
+    gap: 14px;
+}
+
+.result-placeholder[hidden],
+#resultContent[hidden] {
+    display: none !important;
+}
+
+.placeholder-icon {
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e5f2ff;
+    color: #0875d1;
+    border-radius: 50%;
+    font-size: 34px;
+}
+
+.placeholder-icon svg {
+    width: 34px;
+    height: 34px;
+}
+
+.result-placeholder h3 {
+    color: #172f4b;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.result-placeholder>p {
+    max-width: 420px;
+    color: #71849b;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.placeholder-steps {
+    width: 100%;
+    max-width: 430px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+    text-align: left;
+}
+
+.placeholder-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    background: #f4f8fd;
+    border: 1px solid #e1eaf5;
+    border-radius: 10px;
+}
+
+.placeholder-step span {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #0875d1;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.placeholder-step p {
+    color: #526b86;
+    font-size: 12px;
+}
+
+/* Perbaikan tinggi kartu klasifikasi */
+.classification-content {
+    align-items: start;
+}
+
+.result-card {
+    height: auto !important;
+    min-height: 0 !important;
+    align-self: start;
+}
+
+/* Tinggi tampilan sebelum klasifikasi */
+.result-placeholder {
+    height: auto !important;
+    min-height: 0 !important;
+    padding-top: 20px;
+    padding-bottom: 16px;
+}
+
+
+
+/* =========================================
+   14. HALAMAN RIWAYAT NELAYAN
+========================================= */
+
+/* BANNER RIWAYAT */
+.history-banner {
+    width: 100%;
+    min-height: 138px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 24px 38px;
+    margin-bottom: 16px;
+    overflow: hidden;
+
+    background-image: url("../assets/images/banner_riwayat.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    border: 1px solid #d6e8f8;
+    border-radius: 14px;
+}
+
+.history-banner-text {
+    max-width: 420px;
+}
+
+.history-banner-text h1 {
+    color: #102542;
+    font-size: 29px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 2px;
+}
+
+.history-banner-text p {
+    color: #506681;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* LABEL RIWAYAT KLASIFIKASI */
+.history-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.history-label span:first-child {
+    color: #0866d9;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.history-label-line {
+    display: block;
+    width: 40px;
+    height: 3px;
+    background-color: #0866d9;
+    border-radius: 10px;
+}
+
+
+/* PENCARIAN DAN FILTER */
+.history-toolbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.history-search {
+    flex: 1;
+    height: 29px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 11px;
+
+    background-color: var(--white);
+    border: 1px solid #e3ebf4;
+    border-radius: 9px;
+}
+
+.history-search svg,
+.history-filter svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    fill: none;
+    stroke: #91a4bc;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.history-search input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+
+    color: var(--text-color);
+    font-family: var(--font-main);
+    font-size: 10px;
+}
+
+.history-search input::placeholder {
+    color: #a1b0c3;
+}
+
+.history-filter {
+    width: 145px;
+    height: 29px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 10px;
+
+    background-color: var(--white);
+    border: 1px solid #e3ebf4;
+    border-radius: 9px;
+}
+
+.history-filter select {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+
+    color: #344b66;
+    font-family: var(--font-main);
+    font-size: 10px;
+    cursor: pointer;
+}
+
+
+/* KARTU TABEL RIWAYAT */
+.history-table-card {
+    width: 100%;
+    padding: 0;
+    background-color: var(--white);
+    border: 1px solid #e5edf5;
+    border-radius: 12px;
+    overflow: hidden;
+
+    box-shadow: 0 2px 8px rgba(25, 54, 85, 0.04);
+}
+
+.history-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    color: #344b66;
+    font-size: 9px;
+}
+
+.history-table thead {
+    background-color: #eaf3fb;
+}
+
+.history-table th {
+    height: 39px;
+    padding: 8px 5px;
+
+    color: #183451;
+    font-size: 9px;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.history-table td {
+    height: 45px;
+    padding: 7px 5px;
+
+    border-bottom: 1px solid #edf1f6;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.4;
+}
+
+.history-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.history-table tbody tr:hover {
+    background-color: #f8fbff;
+}
+
+/* Lebar setiap kolom */
+.history-table th:nth-child(1),
+.history-table td:nth-child(1) {
+    width: 7%;
+}
+
+.history-table th:nth-child(2),
+.history-table td:nth-child(2) {
+    width: 12%;
+}
+
+.history-table th:nth-child(3),
+.history-table td:nth-child(3) {
+    width: 10%;
+}
+
+.history-table th:nth-child(4),
+.history-table td:nth-child(4) {
+    width: 12%;
+}
+
+.history-table th:nth-child(5),
+.history-table td:nth-child(5) {
+    width: 12%;
+}
+
+.history-table th:nth-child(6),
+.history-table td:nth-child(6) {
+    width: 11%;
+}
+
+.history-table th:nth-child(7),
+.history-table td:nth-child(7) {
+    width: 16%;
+}
+
+.history-table th:nth-child(8),
+.history-table td:nth-child(8) {
+    width: 10%;
+}
+
+
+/* BADGE HASIL KLASIFIKASI */
+.history-badge {
+    display: inline-block;
+    min-width: 48px;
+    padding: 4px 8px;
+    border-radius: 6px;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.history-badge.high {
+    color: #159b68;
+    background-color: #d1f4e2;
+}
+
+.history-badge.medium {
+    color: #b77900;
+    background-color: #fff0bd;
+}
+
+.history-badge.low {
+    color: #dc4242;
+    background-color: #ffe0e0;
+}
+
+
+/* TOMBOL DETAIL */
+.history-detail-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 48px;
+    height: 23px;
+    padding: 0 9px;
+
+    background-color: #0785e8;
+    border-radius: 6px;
+
+    color: white;
+    font-family: var(--font-main);
+    font-size: 9px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: background-color 0.2s ease;
+}
+
+.history-detail-button:hover {
+    background-color: #066fc2;
+}
+
+
+/* PAGINATION */
+.history-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    padding: 10px 12px;
+}
+
+.page-button {
+    width: 23px;
+    height: 23px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: white;
+    border: 1px solid #e1e9f2;
+    border-radius: 5px;
+
+    color: #344b66;
+    font-family: var(--font-main);
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.page-button.active {
+    color: white;
+    background-color: #0876e1;
+    border-color: #0876e1;
+}
+
+.page-button:disabled {
+    color: #aab7c5;
+    cursor: not-allowed;
+}
+
+
+/* RESPONSIVE RIWAYAT */
+@media (max-width: 1000px) {
+    .history-table {
+        min-width: 750px;
+    }
+}
+
+@media (max-width: 700px) {
+    .history-banner {
+        min-height: 110px;
+        padding: 15px;
+    }
+
+    .history-banner-text h1 {
+        font-size: 23px;
+    }
+
+    .history-toolbar {
+        flex-wrap: wrap;
+    }
+
+    .history-search {
+        flex-basis: 100%;
+    }
+
+    .history-filter {
+        width: 150px;
+    }
+
+    .history-table {
+        min-width: 750px;
+    }
+}
+
+
+/* PERBAIKAN PAGINATION RIWAYAT */
+.history-table-card {
+    overflow: visible;
+}
+
+.history-pagination {
+    width: 100%;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    padding: 10px 16px;
+    overflow: visible;
+}
+
+#pageNumbers {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.history-pagination .page-button {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e1e9f2;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #183451;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.history-pagination .page-button.active {
+    background: #0876e8;
+    color: #ffffff;
+    border-color: #0876e8;
+}
+
+.history-pagination .page-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   15. HALAMAN DETAIL PREDIKSI NELAYAN
+========================================= */
+
+
+/* =========================================
+   BANNER DETAIL PREDIKSI
+========================================= */
+
+.detail-banner {
+    width: 100%;
+    min-height: 102px;
+    display: flex;
+    align-items: center;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+
+    background-image:
+        linear-gradient(90deg,
+            rgba(231, 244, 255, 0.97) 0%,
+            rgba(231, 244, 255, 0.85) 35%,
+            rgba(231, 244, 255, 0) 65%,
+            rgba(231, 244, 255, 0) 100%),
+        url("../assets/images/banner_riwayat.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border: 1px solid #d6e8f8;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Teks pada banner */
+.detail-banner-text {
+    position: relative;
+    z-index: 1;
+    max-width: 440px;
+}
+
+/* Label DETAIL */
+.detail-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 3px;
+}
+
+.detail-eyebrow span {
+    color: #0876c9;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.detail-eyebrow div {
+    width: 22px;
+    height: 2px;
+    background-color: #0876c9;
+    border-radius: 5px;
+}
+
+/* Judul banner */
+.detail-banner-text h1 {
+    color: #102542;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* Deskripsi banner */
+.detail-banner-text p {
+    color: #506681;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   SUSUNAN KONTEN DETAIL
+========================================= */
+
+/* Membagi konten menjadi dua kolom */
+.detail-content-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.35fr;
+    align-items: start;
+    gap: 12px;
+}
+
+/* Kolom kiri: kartu informasi dan tombol kembali */
+.detail-left-column {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+
+/* =========================================
+   KARTU INFORMASI PREDIKSI
+========================================= */
+
+.detail-information-card {
+    width: 100%;
+    min-width: 0;
+    padding: 14px;
+    background-color: var(--white);
+    border: 1px solid #e5edf5;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(25, 54, 85, 0.04);
+}
+
+/* Foto ikan pada bagian informasi prediksi */
+.detail-fish-image {
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    margin-bottom: 10px;
+    overflow: hidden;
+    border-radius: 9px;
+    background-color: #eaf3fb;
+}
+
+/* Mengatur foto agar memenuhi area gambar */
+.detail-fish-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Judul informasi prediksi */
+.detail-information-heading {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 10px;
+}
+
+/* IKON JUDUL INFORMASI PREDIKSI */
+.detail-heading-icon {
+    width: 16px;
+    height: 16px;
+    display: block;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.detail-information-heading h2 {
+    color: #153653;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   DAFTAR INFORMASI PREDIKSI
+========================================= */
+
+.detail-data-list {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Baris informasi */
+.detail-data-row {
+    min-height: 35px;
+    display: grid;
+    grid-template-columns: 16px minmax(100px, 1fr) 8px minmax(85px, 1fr);
+    align-items: center;
+    gap: 5px;
+    padding: 5px 0;
+
+    border-bottom: 1px solid #edf1f6;
+}
+
+
+/* Menghilangkan garis pada baris terakhir */
+.detail-data-row:last-child {
+    border-bottom: none;
+}
+
+/* IKON PADA DAFTAR INFORMASI */
+.detail-data-icon {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.detail-data-icon img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+/* Label informasi */
+.detail-data-label {
+    color: #506681;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+/* Tanda pemisah */
+.detail-data-separator {
+    color: #71849b;
+    font-size: 15px;
+    text-align: center;
+}
+
+/* Nilai informasi */
+.detail-data-row strong {
+    color: #183451;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   TOMBOL KEMBALI
+========================================= */
+
+.detail-back-button {
+    width: 80px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: white;
+    border: 1px solid #0785e8;
+    border-radius: 7px;
+
+    color: #0785e8;
+    font-family: var(--font-main);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+/* Efek ketika tombol diarahkan kursor */
+.detail-back-button:hover {
+    color: white;
+    background-color: #0785e8;
+}
+
+
+/* =========================================
+   KOLOM KANAN: HASIL DAN KESIMPULAN
+========================================= */
+
+.detail-result-column {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Tampilan dasar seluruh kartu hasil */
+.detail-result-card {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid transparent;
+    border-radius: 11px;
+}
+
+/* Judul setiap kartu hasil */
+.detail-result-heading {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 10px;
+}
+
+.detail-result-heading h2 {
+    color: #153653;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* IKON JUDUL KARTU HASIL, KESIMPULAN, DAN SARAN */
+.detail-result-symbol {
+    width: 16px;
+    height: 16px;
+    display: block;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+
+/* =========================================
+   KARTU HASIL KLASIFIKASI
+========================================= */
+
+.detail-classification-card {
+    min-height: 114px;
+    background-color: #e5f7ed;
+    border-color: #c6eed7;
+    text-align: center;
+}
+
+/* Posisi judul kartu */
+.detail-classification-card .detail-result-heading {
+    text-align: left;
+}
+
+
+/* Label kategori hasil */
+.detail-result-badge {
+    width: 100px;
+    min-height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 7px;
+
+    background-color: #b9efd2;
+    border-radius: 20px;
+
+    color: #087b4b;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* Deskripsi hasil klasifikasi */
+.detail-classification-card p {
+    color: #315c4b;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   KARTU KESIMPULAN
+========================================= */
+
+.detail-conclusion-card {
+    min-height: 116px;
+    background-color: #edf5ff;
+    border-color: #d4e7ff;
+}
+
+/* =========================================
+   KARTU SARAN UNTUK NELAYAN
+========================================= */
+
+.detail-advice-card {
+    min-height: 105px;
+    background-color: #fff8e8;
+    border-color: #ffebbd;
+}
+
+/* Teks pada kartu kesimpulan dan saran */
+.detail-conclusion-card p,
+.detail-advice-card p {
+    color: #405b77;
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+
+/* =========================================
+   RESPONSIVE TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+    /* Menyesuaikan proporsi kolom */
+    .detail-content-grid {
+        grid-template-columns: 1fr 1.2fr;
+    }
+
+    /* Menyesuaikan lebar kolom informasi */
+    .detail-data-row {
+        grid-template-columns: 14px minmax(70px, 1fr) 8px minmax(65px, 1fr);
+    }
+
+}
+
+
+/* =========================================
+   RESPONSIVE MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    /* Menyesuaikan banner */
+    .detail-banner {
+        min-height: 110px;
+        padding: 15px;
+    }
+
+    .detail-banner-text h1 {
+        font-size: 21px;
+    }
+
+    /* Mengubah dua kolom menjadi satu kolom */
+    .detail-content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Menyesuaikan foto ikan */
+    .detail-fish-image {
+        aspect-ratio: 5 / 3;
+    }
+
+    /* Menyesuaikan padding kartu */
+    .detail-information-card {
+        padding: 16px;
+    }
+
+    .detail-result-card {
+        padding: 16px;
+    }
+
+}
+
+
+
+/* =========================================
+   16. HALAMAN PROFIL NELAYAN
+========================================= */
+
+/* BANNER PROFIL */
+.profile-banner {
+    width: 100%;
+    min-height: 138px;
+    display: flex;
+    align-items: center;
+    padding: 20px 24px;
+    margin-bottom: 14px;
+
+    background-image: url("../assets/images/banner_riwayat.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border: 1px solid #d6e8f8;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.profile-banner-text {
+    position: relative;
+    z-index: 1;
+}
+
+.profile-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.profile-eyebrow span {
+    color: #0876c9;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.profile-eyebrow div {
+    width: 40px;
+    height: 2px;
+    background-color: #0876c9;
+    border-radius: 5px;
+}
+
+.profile-banner-text h1 {
+    color: #102542;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.profile-banner-text p {
+    color: #506681;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+
+/* SUSUNAN KARTU PROFIL */
+.profile-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    gap: 16px;
+}
+
+.profile-information-card,
+.profile-edit-card {
+    min-width: 0;
+    min-height: 378px;
+    padding: 20px;
+    background-color: var(--white);
+    border: 1px solid #e5edf5;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(25, 54, 85, 0.04);
+}
+
+
+/* JUDUL KARTU */
+.profile-card-title {
+    color: #153653;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+/* AVATAR DAN IDENTITAS */
+.profile-avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 0 20px;
+    border-bottom: 1px solid #edf1f6;
+}
+
+.profile-avatar {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e4f2ff;
+    border-radius: 50%;
+}
+
+.profile-avatar img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+}
+
+/* TOMBOL KAMERA AVATAR */
+.profile-camera-button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #0876e8;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+/* IKON KAMERA */
+.profile-camera-button img {
+    display: block;
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+
+.profile-avatar-section h3 {
+    margin-top: 8px;
+    color: #153653;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.profile-role-badge {
+    margin-top: 5px;
+    padding: 4px 14px;
+    background-color: #e1f1ff;
+    border-radius: 20px;
+    color: #0785e8;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+
+/* DETAIL INFORMASI PROFIL */
+.profile-detail-list {
+    display: flex;
+    flex-direction: column;
+    padding-top: 12px;
+}
+
+.profile-detail-row {
+    min-height: 40px;
+    display: grid;
+    grid-template-columns: 26px minmax(75px, 1fr) 8px minmax(70px, 1fr);
+    align-items: center;
+    gap: 7px;
+}
+
+.profile-detail-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e5f3ff;
+    border-radius: 50%;
+    color: #0785e8;
+    font-size: 12px;
+}
+
+.profile-detail-label,
+.profile-detail-separator {
+    color: #506681;
+    font-size: 11px;
+}
+
+.profile-detail-row strong {
+    color: #183451;
+    font-size: 11px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+
+/* KARTU EDIT PROFIL */
+.profile-edit-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-edit-heading {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 20px;
+}
+
+.profile-edit-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e5f3ff;
+    border-radius: 50%;
+    color: #0785e8;
+    font-size: 20px;
+}
+
+.profile-edit-heading h2 {
+    color: #153653;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.profile-edit-heading p {
+    color: #71849b;
+    font-size: 10px;
+    margin-top: 3px;
+}
+
+
+/* FORM EDIT PROFIL */
+.profile-edit-form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.profile-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 16px;
+}
+
+.profile-form-group label {
+    color: #183451;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.profile-form-group input {
+    width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    background-color: white;
+    border: 1px solid #e1e9f2;
+    border-radius: 8px;
+    outline: none;
+    color: #344b66;
+    font-family: var(--font-main);
+    font-size: 11px;
+}
+
+.profile-form-group input:focus {
+    border-color: #0785e8;
+    box-shadow: 0 0 0 2px rgba(7, 133, 232, 0.08);
+}
+
+.profile-form-group input[readonly] {
+    background-color: #f0f3f7;
+    color: #71849b;
+    cursor: not-allowed;
+}
+
+
+/* TOMBOL FORM */
+.profile-form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 9px;
+    margin-top: auto;
+    padding-top: 16px;
+}
+
+.profile-cancel-button {
+    min-width: 90px;
+    min-height: 34px;
+    padding: 0 14px;
+
+    color: #0785e8;
+    background-color: #ffffff;
+    border: 1px solid #0785e8;
+    border-radius: 8px;
+
+    font-family: var(--font-main);
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.profile-cancel-button:hover {
+    background-color: #f0f7ff;
+}
+
+.profile-save-button {
+    min-width: 150px;
+    min-height: 34px;
+    padding: 0 14px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 6px;
+
+    color: white;
+    background-color: #0876d9;
+    border: 1px solid #0876d9;
+    border-radius: 8px;
+
+    font-family: var(--font-main);
+    font-size: 10px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.profile-save-button:hover {
+    background-color: #075eb5;
+}
+
+.profile-save-button img {
+    display: block;
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    object-fit: contain;
+    margin: 0;
+}
+
+
+/* RESPONSIVE TABLET */
+@media (max-width: 1000px) {
+    .profile-content-grid {
+        gap: 12px;
+    }
+
+    .profile-information-card,
+    .profile-edit-card {
+        padding: 16px;
+    }
+}
+
+
+/* RESPONSIVE MOBILE */
+@media (max-width: 700px) {
+    .profile-banner {
+        min-height: 120px;
+        padding: 16px;
+    }
+
+    .profile-banner-text h1 {
+        font-size: 22px;
+    }
+
+    .profile-content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-information-card,
+    .profile-edit-card {
+        min-height: 330px;
+    }
+}

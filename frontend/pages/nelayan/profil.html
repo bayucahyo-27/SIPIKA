@@ -1,1 +1,289 @@
 
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <!-- Pengaturan karakter dan tampilan responsif -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Judul halaman pada tab browser -->
+    <title>Profil Nelayan | SIPIKA</title>
+
+    <!-- Menghubungkan Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Menghubungkan file CSS global dan CSS khusus nelayan -->
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/nelayan.css">
+</head>
+
+<body>
+
+    <!-- CONTAINER UTAMA DASHBOARD -->
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR: Logo, navigasi, dan logout -->
+        <aside class="sidebar">
+
+            <!-- Logo SIPIKA -->
+            <div class="sidebar-logo">
+                <img src="../../assets/images/logo_sipika.png" alt="Logo SIPIKA">
+            </div>
+
+            <!-- Menu navigasi halaman nelayan -->
+            <nav class="sidebar-menu">
+
+                <!-- Menu Dashboard -->
+                <a href="dashboard.html" class="menu-item">
+                    <img src="../../assets/icons/dashboard.svg" alt="">
+                    <span>Dashboard</span>
+                </a>
+
+                <!-- Menu Klasifikasi -->
+                <a href="klasifikasi.html" class="menu-item">
+                    <img src="../../assets/icons/klasifikasi.svg" alt="">
+                    <span>Klasifikasi</span>
+                </a>
+
+                <!-- Menu Riwayat -->
+                <a href="riwayat.html" class="menu-item">
+                    <img src="../../assets/icons/riwayat.svg" alt="">
+                    <span>Riwayat</span>
+                </a>
+
+                <!-- Menu Profil (halaman aktif) -->
+                <a href="profil.html" class="menu-item active">
+                    <img src="../../assets/icons/profil.svg" alt="">
+                    <span>Profil</span>
+                </a>
+
+            </nav>
+
+            <!-- Bagian bawah sidebar: Logout -->
+            <div class="sidebar-bottom">
+                <a href="../../pages/auth/login.html" class="menu-item logout-item">
+                    <img src="../../assets/icons/logout.svg" alt="">
+                    <span>Logout</span>
+                </a>
+            </div>
+
+        </aside>
+
+
+        <!-- KONTEN UTAMA HALAMAN PROFIL -->
+        <main class="main-content profile-main-content">
+
+            <!-- HEADER: Informasi akun pengguna -->
+            <header class="top-header">
+
+                <div class="account-info">
+
+                    <!-- Ikon pengguna -->
+                    <img src="../../assets/icons/circle_user_round.svg" alt="Ikon pengguna" class="account-icon">
+
+                    <!-- Nama dan status akun -->
+                    <div class="account-detail">
+                        <span class="account-name">Nelayan: Salmin</span>
+
+                        <span class="account-status">
+                            <span class="status-indicator"></span>
+                            Online
+                        </span>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- BANNER: Judul halaman profil -->
+            <section class="profile-banner">
+
+                <div class="profile-banner-text">
+
+                    <!-- Label halaman profil -->
+                    <div class="profile-eyebrow">
+                        <span>PROFIL</span>
+                        <div></div>
+                    </div>
+
+                    <!-- Judul dan deskripsi banner -->
+                    <h1>Profil Pengguna</h1>
+                    <p>Kelola informasi akun Anda.</p>
+
+                </div>
+
+            </section>
+
+
+            <!-- KONTEN PROFIL: Informasi akun dan form edit -->
+            <section class="profile-content-grid">
+
+                <!-- KARTU INFORMASI PROFIL -->
+                <div class="profile-information-card">
+
+                    <h2 class="profile-card-title">Informasi Profil</h2>
+
+                    <!-- AVATAR DAN IDENTITAS PENGGUNA -->
+                    <div class="profile-avatar-section">
+
+                        <div class="profile-avatar">
+
+                            <!-- Foto profil pengguna -->
+                            <img src="../../assets/icons/profile_avatar.svg" alt="Foto profil Salmin">
+
+                            <!-- Tombol untuk mengubah foto profil -->
+                            <button type="button" class="profile-camera-button" aria-label="Ubah foto profil">
+                                <img src="../../assets/icons/profile_camera.svg" alt="">
+                            </button>
+
+                        </div>
+
+                        <!-- Nama dan role pengguna -->
+                        <h3 id="profileDisplayName">Salmin</h3>
+                        <span class="profile-role-badge">Nelayan</span>
+
+                    </div>
+
+
+                    <!-- DETAIL INFORMASI PENGGUNA -->
+                    <div class="profile-detail-list">
+
+                        <!-- INFORMASI EMAIL -->
+                        <div class="profile-detail-row">
+
+                            <span class="profile-detail-icon">
+                                <img src="../../assets/icons/profile_email.svg" alt="">
+                            </span>
+
+                            <span class="profile-detail-label">Email</span>
+                            <span class="profile-detail-separator">:</span>
+
+                            <strong id="profileDisplayEmail">
+                                salmin@gmail.com
+                            </strong>
+
+                        </div>
+
+
+                        <!-- INFORMASI NAMA LENGKAP -->
+                        <div class="profile-detail-row">
+
+                            <span class="profile-detail-icon">
+                                <img src="../../assets/icons/profile_user.svg" alt="">
+                            </span>
+
+                            <span class="profile-detail-label">Nama Lengkap</span>
+                            <span class="profile-detail-separator">:</span>
+
+                            <strong id="profileDisplayFullName">
+                                Salmin
+                            </strong>
+
+                        </div>
+
+
+                        <!-- INFORMASI ROLE PENGGUNA -->
+                        <div class="profile-detail-row">
+
+                            <span class="profile-detail-icon">
+                                <img src="../../assets/icons/profile_role.svg" alt="">
+                            </span>
+
+                            <span class="profile-detail-label">Role</span>
+                            <span class="profile-detail-separator">:</span>
+
+                            <strong>Nelayan</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- KARTU EDIT PROFIL -->
+                <div class="profile-edit-card">
+
+                    <!-- JUDUL DAN IKON BAGIAN EDIT PROFIL -->
+                    <div class="profile-edit-heading">
+
+                        <div class="profile-edit-icon">
+                            <img src="../../assets/icons/profile_edit.svg" alt="">
+                        </div>
+
+                        <div>
+                            <h2>Edit Profil</h2>
+                            <p>Perbarui informasi profil Anda sesuai data terbaru.</p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- FORM UNTUK MENGUBAH INFORMASI PROFIL -->
+                    <form id="profileForm" class="profile-edit-form">
+
+                        <!-- INPUT NAMA LENGKAP -->
+                        <div class="profile-form-group">
+
+                            <label for="fullName">Nama Lengkap</label>
+
+                            <input type="text" id="fullName" name="fullName" value="Salmin"
+                                placeholder="Masukkan nama lengkap" required>
+
+                        </div>
+
+
+                        <!-- INPUT EMAIL (HANYA DAPAT DIBACA) -->
+                        <div class="profile-form-group">
+
+                            <label for="profileEmail">Email</label>
+
+                            <input type="email" id="profileEmail" name="email" value="salmin@gmail.com" readonly>
+
+                        </div>
+
+
+                        <!-- TOMBOL AKSI FORM: Batal dan Simpan Perubahan -->
+                        <div class="profile-form-actions">
+
+                            <!-- Tombol untuk membatalkan perubahan -->
+                            <button type="button" class="profile-cancel-button" id="cancelProfileButton">
+                                Batal
+                            </button>
+
+                            <!-- Tombol untuk menyimpan perubahan profil -->
+                            <button type="submit" class="profile-save-button">
+                                <img src="../../assets/icons/profile_save.svg" alt="">
+                                Simpan Perubahan
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER: Identitas kelompok -->
+            <footer class="dashboard-footer">
+                © 2026 SIPIKA — Kelompok 13 Web
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT: Menghubungkan fungsi global dan khusus nelayan -->
+    <script src="../../js/global.js"></script>
+    <script src="../../js/nelayan.js"></script>
+
+</body>
+
+</html>
