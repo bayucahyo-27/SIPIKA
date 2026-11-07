@@ -208,18 +208,23 @@ body {
 }
 
 /* Welcome Banner / Banner Card */
-.welcome-banner,
-.banner-card {
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../assets/images/banner.jpeg') !important;
+.welcome-banner, .banner-card {
+  background: linear-gradient(90deg, rgba(248, 250, 252, 0.95) 0%, rgba(248, 250, 252, 0.85) 45%, rgba(248, 250, 252, 0.2) 75%, transparent 100%), 
+              url('../assets/images/banner.jpg') !important;
   background-size: cover !important;
-  background-position: center !important;
+  background-position: right center !important;
+  background-repeat: no-repeat !important;
   border-radius: 16px !important;
   padding: 32px !important;
   margin: 0 0 24px 0 !important;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
   position: relative !important;
   overflow: hidden !important;
   flex-shrink: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
 }
 
 .banner-tag {
@@ -1286,13 +1291,18 @@ button.btn-add,
 
 /* Kita buat aturannya sangat spesifik agar tidak ada yang bisa menimpa */
 .app-container .main-content .content-body .banner-card.detail-banner {
-  /* Gambar banner ikan terbaru */
-  background-image: url('../assets/images/banner-ikan.jpg') !important;
-  
-  /* Pengaturan agar gambar pas dan bagus */
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
+    /* --- Kode yang SUDAH ADA (biarkan) --- */
+    background-image: url('../assets/images/banner-ikan.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+
+    /* --- TAMBAHKAN/GANTI DUA BARIS INI --- */
+    display: flex !important;              /* Pastikan display flex */
+    flex-direction: column !important;     /* Teks bertumpuk vertikal */
+    justify-content: center !important;    /* Teks tetap di tengah secara vertikal */
+    align-items: flex-start !important;    /* --- INI YANG BUAT RATA KIRI --- */
+    /* ------------------------------------- */
 }
 
 /* ===================================================== */
@@ -1314,6 +1324,8 @@ button.btn-add,
 .detail-left-col .content-card.info-prediksi-card {
   padding: 18px 20px !important;
 }
+
+
 
 /* ===================================================== */
 /* REVISI PROPORSI GAMBAR IKAN AGAR PAS DAN TIDAK MELAR   */
@@ -1380,6 +1392,8 @@ button.btn-add,
 .info-prediksi-card .card-section-title i {
   color: #2563eb !important;
 }
+
+
 
 
 /* ===================================================== */
