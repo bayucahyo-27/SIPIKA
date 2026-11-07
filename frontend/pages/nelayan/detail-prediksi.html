@@ -1,1 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
 
+<head>
+    <!-- Pengaturan karakter dan tampilan responsif -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Judul halaman -->
+    <title>Detail Prediksi | SIPIKA</title>
+
+    <!-- Menghubungkan Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Menghubungkan file CSS -->
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/nelayan.css">
+</head>
+
+<body>
+
+    <!-- CONTAINER UTAMA DASHBOARD -->
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR: Logo, navigasi, dan logout -->
+        <aside class="sidebar">
+
+            <!-- Logo SIPIKA -->
+            <div class="sidebar-logo">
+                <img src="../../assets/images/logo_sipika.png" alt="Logo SIPIKA">
+            </div>
+
+            <!-- Menu navigasi nelayan -->
+            <nav class="sidebar-menu">
+
+                <a href="dashboard.html" class="menu-item">
+                    <img src="../../assets/icons/dashboard.svg" alt="">
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="klasifikasi.html" class="menu-item">
+                    <img src="../../assets/icons/klasifikasi.svg" alt="">
+                    <span>Klasifikasi</span>
+                </a>
+
+                <!-- Riwayat menjadi menu aktif karena detail dibuka dari riwayat -->
+                <a href="riwayat.html" class="menu-item active">
+                    <img src="../../assets/icons/riwayat.svg" alt="">
+                    <span>Riwayat</span>
+                </a>
+
+                <a href="profil.html" class="menu-item">
+                    <img src="../../assets/icons/profil.svg" alt="">
+                    <span>Profil</span>
+                </a>
+
+            </nav>
+
+            <!-- Tombol logout -->
+            <div class="sidebar-bottom">
+                <a href="../../pages/auth/login.html" class="menu-item logout-item">
+                    <img src="../../assets/icons/logout.svg" alt="">
+                    <span>Logout</span>
+                </a>
+            </div>
+
+        </aside>
+
+
+        <!-- KONTEN UTAMA HALAMAN DETAIL -->
+        <main class="main-content detail-main-content">
+
+            <!-- HEADER: Informasi akun pengguna -->
+            <header class="top-header">
+
+                <div class="account-info">
+
+                    <img src="../../assets/icons/circle_user_round.svg" alt="Ikon pengguna" class="account-icon">
+
+                    <div class="account-detail">
+                        <span class="account-name">Nelayan: Salmin</span>
+
+                        <span class="account-status">
+                            <span class="status-indicator"></span>
+                            Online
+                        </span>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- BANNER: Judul dan deskripsi detail prediksi -->
+            <section class="detail-banner">
+
+                <div class="detail-banner-text">
+
+                    <!-- Label halaman -->
+                    <div class="detail-eyebrow">
+                        <span>DETAIL</span>
+                        <div></div>
+                    </div>
+
+                    <h1>Detail Prediksi</h1>
+
+                    <p>
+                        Informasi lengkap dari hasil klasifikasi
+                        yang pernah Anda lakukan.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- KONTEN DETAIL: Informasi prediksi dan hasil klasifikasi -->
+            <section class="detail-content-grid">
+
+                <!-- KOLOM KIRI: Informasi prediksi dan tombol kembali -->
+                <div class="detail-left-column">
+
+                    <!-- KARTU INFORMASI PREDIKSI -->
+                    <div class="detail-information-card">
+
+                        <!-- FOTO IKAN HASIL TANGKAPAN -->
+                        <div class="detail-fish-image">
+                            <img src="../../assets/images/detail_ikan.png" alt="Foto ikan hasil tangkapan">
+                        </div>
+
+                        <!-- JUDUL INFORMASI PREDIKSI -->
+                        <div class="detail-information-heading">
+                            <img src="../../assets/icons/detail_informasi.svg" alt="" class="detail-heading-icon">
+                            <h2>Informasi Prediksi</h2>
+                        </div>
+
+                        <!-- DAFTAR DATA PREDIKSI -->
+                        <div class="detail-data-list">
+
+                            <!-- BARIS 1: JENIS IKAN -->
+                            <div class="detail-data-row">
+                                <span class="detail-data-icon">
+                                    <img src="../../assets/icons/detail_jenis_ikan.svg" alt="">
+                                </span>
+
+                                <span class="detail-data-label">Jenis Ikan</span>
+                                <span class="detail-data-separator">:</span>
+                                <strong>Cakalang</strong>
+                            </div>
+
+                            <!-- BARIS 2: TANGGAL PREDIKSI -->
+                            <div class="detail-data-row">
+                                <span class="detail-data-icon">
+                                    <img src="../../assets/icons/detail_tanggal.svg" alt="">
+                                </span>
+
+                                <span class="detail-data-label">Tanggal Prediksi</span>
+                                <span class="detail-data-separator">:</span>
+                                <strong>12 Mei 2025,<br>10:23</strong>
+                            </div>
+
+                            <!-- BARIS 3: WILAYAH -->
+                            <div class="detail-data-row">
+                                <span class="detail-data-icon">
+                                    <img src="../../assets/icons/detail_wilayah.svg" alt="">
+                                </span>
+
+                                <span class="detail-data-label">Wilayah</span>
+                                <span class="detail-data-separator">:</span>
+                                <strong>Kota Ternate</strong>
+                            </div>
+
+                            <!-- BARIS 4: ALAT TANGKAP -->
+                            <div class="detail-data-row">
+                                <span class="detail-data-icon">
+                                    <img src="../../assets/icons/detail_alat_tangkap.svg" alt="">
+                                </span>
+
+                                <span class="detail-data-label">Alat Tangkap</span>
+                                <span class="detail-data-separator">:</span>
+                                <strong>Jaring</strong>
+                            </div>
+
+                            <!-- BARIS 5: MUSIM -->
+                            <div class="detail-data-row">
+                                <span class="detail-data-icon">
+                                    <img src="../../assets/icons/detail_musim.svg" alt="">
+                                </span>
+
+                                <span class="detail-data-label">Musim</span>
+                                <span class="detail-data-separator">:</span>
+                                <strong>Kemarau</strong>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- TOMBOL KEMBALI: Berada di luar kartu informasi -->
+                    <a href="riwayat.html" class="detail-back-button">
+                        Kembali
+                    </a>
+
+                </div>
+
+
+                <!-- KOLOM KANAN: Hasil klasifikasi, kesimpulan, dan saran -->
+                <div class="detail-result-column">
+
+                    <!-- KARTU HASIL KLASIFIKASI -->
+                    <div class="detail-result-card detail-classification-card">
+
+                        <div class="detail-result-heading">
+                            <img src="../../assets/icons/detail_hasil.svg" alt="" class="detail-result-symbol">
+                            <h2>Hasil Klasifikasi</h2>
+                        </div>
+
+                        <div class="detail-result-badge">
+                            Tinggi
+                        </div>
+
+                        <p>
+                            Tingkat produksi ikan tangkapan diprediksi
+                            dalam kategori tinggi.
+                        </p>
+
+                    </div>
+
+
+                    <!-- KARTU KESIMPULAN -->
+                    <div class="detail-result-card detail-conclusion-card">
+
+                        <div class="detail-result-heading">
+                            <img src="../../assets/icons/detail_kesimpulan.svg" alt="" class="detail-result-symbol">
+                            <h2>Kesimpulan</h2>
+                        </div>
+
+                        <p>
+                            Berdasarkan data yang dimasukkan, hasil klasifikasi
+                            menunjukkan bahwa tingkat produksi ikan cakalang
+                            di wilayah Kota Ternate pada musim kemarau berada
+                            dalam kategori tinggi.
+                        </p>
+
+                    </div>
+
+
+                    <!-- KARTU SARAN UNTUK NELAYAN -->
+                    <div class="detail-result-card detail-advice-card">
+
+                        <div class="detail-result-heading">
+                            <img src="../../assets/icons/detail_saran.svg" alt="" class="detail-result-symbol">
+                            <h2>Saran untuk Nelayan</h2>
+                        </div>
+
+                        <p>
+                            Pada kondisi ini, disarankan untuk tetap melanjutkan
+                            aktivitas penangkapan dengan mempertahankan kondisi
+                            cuaca dan keselamatan di laut agar hasil tetap optimal.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER: Identitas kelompok -->
+            <footer class="dashboard-footer">
+                © 2026 SIPIKA — Kelompok 13 Web
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT: Fungsi global dan khusus nelayan -->
+    <script src="../../js/global.js"></script>
+    <script src="../../js/nelayan.js"></script>
+
+</body>
+
+</html>

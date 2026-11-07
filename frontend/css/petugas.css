@@ -1,1 +1,2189 @@
+/* ===================================================== */
+/* CSS PUNYA DASHBOARD & DATASET PETUGAS SIPIKA           */
+/* ===================================================== */
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f3f4f6;
+  color: #1f2937;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* KONTEN UTAMA & LAYOUT BERDAMPINGAN */
+.dashboard-container,
+.app-container {
+  display: flex !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ===================================================== */
+/* SIDEBAR STYLING                                       */
+/* ===================================================== */
+.sidebar {
+  width: 260px !important;
+  background: linear-gradient(rgba(11, 25, 44, 0.85), rgba(11, 25, 44, 0.85)), url('../assets/images/sidebar.jpeg') no-repeat center center/cover !important;
+  color: white !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding: 20px 0 !important;
+  height: 100vh !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+}
+
+.sidebar-brand {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 10px 0 !important;
+  margin-bottom: 20px !important;
+}
+
+.logo-img,
+.sidebar-brand img,
+.sidebar-logo img {
+  width: 150px !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+.sidebar-brand h2 {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+}
+
+.sidebar-menu {
+  list-style: none !important;
+  padding: 0 16px !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+.sidebar-menu li {
+  margin-bottom: 0 !important;
+}
+
+.sidebar-menu a,
+.sidebar ul li a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 12px 16px !important;
+  color: #cbd5e1 !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
+}
+
+.sidebar-menu a:hover,
+.sidebar ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #ffffff !important;
+}
+
+/* Efek Tombol Aktif (Menu yang Sedang Diklik) */
+.sidebar-menu a.active,
+.sidebar-menu li.active a,
+.sidebar ul li a.active,
+.sidebar ul li.active a {
+  background: #2563eb !important;
+  color: white !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3) !important;
+}
+
+.sidebar-footer {
+  margin-top: auto !important;
+  padding: 15px 24px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.logout-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  color: #ef4444 !important;
+  text-decoration: none !important;
+}
+
+.logout-btn:hover {
+  color: #f87171 !important;
+}
+
+/* ===================================================== */
+/* MAIN CONTENT STYLING                                  */
+/* ===================================================== */
+.main-content {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+  background-color: #f3f4f6 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* TOPBAR & PROFIL */
+.topbar,
+.top-navbar {
+  height: 70px !important;
+  background-color: transparent !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  padding: 0 32px !important;
+  flex-shrink: 0 !important;
+  box-shadow: none !important;
+}
+
+.topbar-profile,
+.top-navbar > div:last-child {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  background: white !important;
+  padding: 6px 14px !important;
+  border-radius: 30px !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.profile-avatar {
+  width: 35px !important;
+  height: 35px !important;
+  background-color: #2563eb !important;
+  color: white !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  font-size: 14px !important;
+}
+
+.profile-info {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.profile-name {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+}
+
+.profile-role {
+  font-size: 11px !important;
+  color: #64748b !important;
+}
+
+/* CONTENT BODY */
+.content-body {
+  padding: 0 32px 32px 32px !important;
+  flex: 1 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Welcome Banner / Banner Card */
+.welcome-banner,
+.banner-card {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../assets/images/banner.jpeg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  border-radius: 16px !important;
+  padding: 32px !important;
+  margin: 0 0 24px 0 !important;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
+}
+
+.banner-tag {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  opacity: 0.8 !important;
+  display: block !important;
+  margin-bottom: 8px !important;
+}
+
+.banner-text h2,
+.welcome-banner h1, 
+.welcome-banner h2,
+.banner-card h2 {
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin-bottom: 8px !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+.banner-text p,
+.welcome-banner p,
+.banner-card p {
+  font-size: 13px !important;
+  color: #f1f5f9 !important;
+  max-width: 600px !important;
+  line-height: 1.5 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Info Card */
+.info-card {
+  background: white !important;
+  border-radius: 16px !important;
+  padding: 24px 30px !important;
+  margin-bottom: 24px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+.info-card-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-bottom: 12px !important;
+}
+
+.card-icon {
+  color: #2563eb !important;
+  font-size: 18px !important;
+}
+
+.custom-card-icon {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.info-card h3 {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+}
+
+.info-card p {
+  font-size: 13px !important;
+  color: #4b5563 !important;
+  line-height: 1.6 !important;
+}
+
+/* Decision Tree Flow Layout */
+.dt-flow-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 15px !important;
+  margin-top: 20px !important;
+  background: #f8fafc !important;
+  padding: 20px !important;
+  border-radius: 12px !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.dt-box {
+  background: white !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 10px !important;
+  padding: 15px !important;
+  flex: 1 !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+}
+
+.dt-box-title {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  display: block !important;
+  margin-bottom: 10px !important;
+}
+
+.dt-item {
+  font-size: 12px !important;
+  color: #475569 !important;
+  background: #f1f5f9 !important;
+  padding: 8px 10px !important;
+  border-radius: 6px !important;
+  margin-bottom: 6px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.dt-item i {
+  color: #2563eb !important;
+}
+
+.process-box p, .result-desc {
+  font-size: 11px !important;
+  color: #64748b !important;
+  line-height: 1.4 !important;
+}
+
+.dt-arrow {
+  color: #94a3b8 !important;
+  font-size: 16px !important;
+}
+
+/* Badges Hasil Klasifikasi */
+.badge-group {
+  display: flex !important;
+  gap: 6px !important;
+  margin-top: 12px !important;
+}
+
+.badge {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  padding: 4px 10px !important;
+  border-radius: 20px !important;
+}
+
+.badge-rendah {
+  background-color: #fee2e2 !important;
+  color: #991b1b !important;
+}
+
+.badge-sedang {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+}
+
+.badge-tinggi {
+  background-color: #d1fae5 !important;
+  color: #065f46 !important;
+}
+
+/* Footer Copyright (Terpisah di Paling Bawah) */
+.footer-copyright {
+  text-align: center !important;
+  font-size: 12px !important;
+  color: #9ca3af !important;
+  padding: 16px 0 !important;
+  background: white !important;
+  width: 100% !important;
+  margin-top: auto !important;
+  flex-shrink: 0 !important;
+  border-top: 1px solid #e5e7eb !important;
+}
+
+/* ===================================================== */
+/* HALAMAN DATASET (Filter, Action Bar, Tabel & Pagination) */
+/* ===================================================== */
+.filter-action-bar {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 20px !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+}
+
+.search-box {
+  position: relative !important;
+  flex: 1 !important;
+  min-width: 220px !important;
+}
+
+.search-box i {
+  position: absolute !important;
+  left: 14px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #94a3b8 !important;
+}
+
+.search-box input {
+  width: 100% !important;
+  padding: 10px 14px 10px 40px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  outline: none !important;
+  background: white !important;
+}
+
+.filter-group {
+  display: flex !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
+
+.filter-select {
+  padding: 10px 14px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  background: white !important;
+  color: #334155 !important;
+  outline: none !important;
+}
+
+/* REVISI 2: Tombol Tambah Data (Warna Biru Standar & Rounded Sesuai Teks) */
+.btn-add,
+a.btn-add,
+button.btn-add,
+.filter-action-bar .btn-primary,
+.filter-action-bar a:last-child {
+  background-color: #2563eb !important;
+  color: white !important;
+  padding: 10px 18px !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2) !important;
+  transition: background 0.2s ease !important;
+}
+
+.btn-add:hover {
+  background-color: #1d4ed8 !important;
+}
+
+.table-card {
+  background: white !important;
+  border-radius: 12px !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 20px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
+}
+
+.data-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  text-align: left !important;
+  font-size: 13px !important;
+}
+
+.data-table th {
+  background: #f8fafc !important;
+  color: #475569 !important;
+  font-weight: 600 !important;
+  padding: 12px 16px !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.data-table td {
+  padding: 12px 16px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  color: #334155 !important;
+}
+
+.data-table tr:hover {
+  background: #f8fafc !important;
+}
+
+.action-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 6px !important;
+  font-size: 14px !important;
+}
+
+.btn-edit {
+  color: #2563eb !important;
+}
+
+.btn-delete {
+  color: #dc2626 !important;
+}
+
+/* REVISI 3: Pagination / Navigasi Halaman (< 1 2 3 >) di Sebelah Kanan & Efek Aktif Biru */
+.pagination,
+.pagination-container,
+.table-card .pagination,
+.data-pagination {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin-top: 16px !important;
+  padding: 0 !important;
+  border-top: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Styling Tombol/Angka Pagination (Diperkecil ukurannya) */
+.pagination a,
+.pagination button,
+.pagination-container a,
+.pagination-container button,
+.page-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 30px !important;
+  height: 30px !important;
+  padding: 0 4px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #64748b !important;
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 6px !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+}
+
+/* Efek Hover */
+.pagination a:hover,
+.pagination button:hover,
+.pagination-container a:hover,
+.pagination-container button:hover,
+.page-btn:hover {
+  background-color: #f1f5f9 !important;
+  color: #1e293b !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Efek Aktif (Halaman yang Dipilih / Warna Biru) */
+.pagination a.active,
+.pagination button.active,
+.pagination-container a.active,
+.pagination-container button.active,
+.page-btn.active {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #2563eb !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2) !important;
+}
+
+/* Efek Aktif (Halaman yang Dipilih / Warna Biru Figma) */
+.pagination a.active,
+.pagination button.active,
+.pagination-container a.active,
+.pagination-container button.active,
+.page-btn.active {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #2563eb !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3) !important;
+}
+
+/* Perbaikan Ukuran Kotak Ikon Decision Tree di Dashboard */
+.dt-box-icon, 
+.process-icon, 
+.result-icon {
+  width: 60px !important;
+  height: 60px !important;
+  font-size: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 12px !important;
+  margin-bottom: 12px !important;
+}
+
+.dt-box-icon img,
+.process-icon img,
+.result-icon img,
+.dt-custom-icon {
+  width: 32px !important;
+  height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
+  object-fit: contain !important;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .dt-flow-container {
+    flex-direction: column !important;
+  }
+  .dt-arrow {
+    transform: rotate(90deg) !important;
+  }
+}
+
+
+/* ===================================================== */
+/* REVISI HALAMAN EVALUASI MODEL (PRESISI FIGMA)        */
+/* ===================================================== */
+
+.evaluation-grid {
+  display: grid !important;
+  grid-template-columns: 1.8fr 1.2fr !important;
+  gap: 20px !important;
+  margin-bottom: 20px !important;
+}
+
+.eval-card, .matrix-card {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 24px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
+}
+
+.eval-card-header, .matrix-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-bottom: 20px !important;
+}
+
+.eval-icon-box, .matrix-icon-box {
+  width: 42px !important;
+  height: 42px !important;
+  background: #eff6ff !important;
+  color: #2563eb !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 18px !important;
+}
+
+.eval-card-header h3, .matrix-header h3 {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  margin: 0 !important;
+}
+
+.eval-card-header p, .matrix-header p {
+  font-size: 12px !important;
+  color: #64748b !important;
+  margin: 2px 0 0 0 !important;
+}
+
+/* Background Header Tabel Biru Muda Figma */
+.eval-card .data-table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+.eval-card .data-table th {
+  background: #eff6ff !important;
+  color: #1e293b !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  padding: 14px 16px !important;
+  border: none !important;
+}
+
+.eval-card .data-table th:first-child {
+  border-top-left-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+}
+
+.eval-card .data-table th:last-child {
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+
+.eval-card .data-table td {
+  padding: 16px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  font-size: 13px !important;
+  color: #334155 !important;
+}
+
+/* Styling Layout Akurasi Model (Ikon di Kiri Teks) */
+.accuracy-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important; /* Membuat posisi konten berada di tengah secara horizontal */
+  gap: 24px !important;
+  height: 100% !important;
+  min-height: 160px !important; /* Menyesuaikan tinggi agar pas di tengah vertikal */
+  padding: 10px !important;
+}
+
+.accuracy-icon-lg {
+  width: 64px !important;
+  height: 64px !important;
+  min-width: 64px !important;
+  background: #eff6ff !important;
+  color: #2563eb !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 28px !important;
+}
+
+.accuracy-content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
+.accuracy-title {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  margin-bottom: 4px !important;
+}
+
+.accuracy-value {
+  font-size: 42px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  line-height: 1.1 !important;
+  margin-bottom: 8px !important;
+}
+
+.accuracy-desc {
+  font-size: 12px !important;
+  color: #64748b !important;
+  line-height: 1.4 !important;
+}
+
+/* Confusion Matrix Table Layout */
+.matrix-table-wrapper {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 24px !important;
+  margin-top: 20px !important;
+}
+
+.matrix-table {
+  border-collapse: separate !important;
+  border-spacing: 4px !important;
+  text-align: center !important;
+  font-size: 13px !important;
+}
+
+.matrix-table th {
+  padding: 10px 20px !important;
+  color: #475569 !important;
+  font-weight: 600 !important;
+  background: transparent !important;
+}
+
+.matrix-table td {
+  width: 90px !important;
+  height: 54px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+}
+
+.matrix-cell-darkblue {
+  background-color: #1d4ed8 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.matrix-cell-blue {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.matrix-cell-light {
+  background-color: #f0f7ff !important;
+  color: #334155 !important;
+  font-weight: 500 !important;
+}
+
+.axis-label-y {
+  writing-mode: vertical-lr !important;
+  transform: rotate(180deg) !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  font-size: 13px !important;
+}
+
+.legend-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.legend-bar {
+  width: 16px !important;
+  height: 150px !important;
+  background: linear-gradient(to bottom, #1d4ed8, #3b82f6, #93c5fd, #eff6ff) !important;
+  border-radius: 4px !important;
+}
+
+.legend-values {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  height: 150px !important;
+  font-size: 11px !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
+}
+
+/* ===================================================== */
+/* STYLING KHUSUS HALAMAN RIWAYAT PREDIKSI               */
+/* ===================================================== */
+
+.filter-dropdown-wrapper {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.filter-dropdown-wrapper .filter-icon {
+  position: absolute !important;
+  left: 14px !important;
+  color: #64748b !important;
+  font-size: 14px !important;
+  pointer-events: none !important;
+}
+
+.filter-select {
+  padding: 10px 36px 10px 38px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  background-color: #ffffff !important;
+  color: #334155 !important;
+  font-size: 13px !important;
+  font-family: inherit !important;
+  outline: none !important;
+  cursor: pointer !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  background-size: 14px !important;
+}
+
+/* Tombol Detail Biru Khas Figma */
+.btn-detail {
+  display: inline-block !important;
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  padding: 6px 16px !important;
+  border-radius: 6px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2) !important;
+}
+
+.btn-detail:hover {
+  background-color: #1d4ed8 !important;
+  color: #ffffff !important;
+}
+
+/* Kontainer Utama Melengkung Halus */
+.main-card {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 24px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
+}
+
+/* Filter Bar Sejajar (Search Kiri, Tanggal Kanan) */
+.table-filter-bar {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 16px !important;
+  margin-bottom: 20px !important;
+  flex-wrap: wrap !important;
+}
+
+.search-input-wrapper {
+  flex: 1 !important;
+  min-width: 280px !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.search-input {
+  width: 100% !important;
+  padding: 10px 16px 10px 40px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  font-size: 13px !important;
+  outline: none !important;
+  background: #ffffff !important;
+  color: #334155 !important;
+}
+
+.search-icon {
+  position: absolute !important;
+  left: 14px !important;
+  color: #64748b !important;
+  font-size: 14px !important;
+}
+
+.filter-dropdown-wrapper {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.filter-dropdown-wrapper .filter-icon {
+  position: absolute !important;
+  left: 14px !important;
+  color: #64748b !important;
+  font-size: 14px !important;
+  pointer-events: none !important;
+}
+
+.filter-select {
+  padding: 10px 36px 10px 38px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  background-color: #ffffff !important;
+  color: #334155 !important;
+  font-size: 13px !important;
+  font-family: inherit !important;
+  outline: none !important;
+  cursor: pointer !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  background-size: 14px !important;
+}
+
+/* Header Tabel Biru Muda Melengkung */
+.data-table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+.data-table th {
+  background: #eff6ff !important;
+  color: #1e293b !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  padding: 14px 16px !important;
+  border: none !important;
+}
+
+.data-table th:first-child {
+  border-top-left-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+}
+
+.data-table th:last-child {
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+
+.data-table td {
+  padding: 16px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  font-size: 13px !important;
+  color: #334155 !important;
+}
+
+/* Tombol Detail Biru Khas Figma */
+.btn-detail {
+  display: inline-block !important;
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  padding: 6px 16px !important;
+  border-radius: 6px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2) !important;
+}
+
+.btn-detail:hover {
+  background-color: #1d4ed8 !important;
+  color: #ffffff !important;
+}
+
+/* ===================================================== */
+/* STYLING HALAMAN DETAIL PREDIKSI (PRESISI FIGMA)       */
+/* ===================================================== */
+
+.detail-banner {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.banner-fish-img img {
+  max-height: 90px !important;
+  object-fit: contain !important;
+}
+
+.detail-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 24px !important;
+  align-items: start !important;
+}
+
+.detail-left-col, .detail-right-col {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+.content-card {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 24px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
+}
+
+.fish-photo-card {
+  padding: 12px !important;
+  overflow: hidden !important;
+}
+
+.fish-preview-img {
+  width: 100% !important;
+  height: 180px !important;
+  object-fit: cover !important;
+  border-radius: 12px !important;
+}
+
+.card-section-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  margin-bottom: 16px !important;
+}
+
+.card-section-title i {
+  color: #2563eb !important;
+  font-size: 16px !important;
+}
+
+.warning-title i {
+  color: #d97706 !important;
+}
+
+.info-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 20px 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.info-list li {
+  display: flex !important;
+  align-items: center !important;
+  font-size: 13px !important;
+}
+
+.info-label {
+  width: 130px !important;
+  color: #64748b !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.info-colon {
+  width: 15px !important;
+  color: #64748b !important;
+  font-weight: 600 !important;
+}
+
+.info-value {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+}
+
+.back-btn-wrapper {
+  margin-top: 10px !important;
+}
+
+.btn-back-outline {
+  display: inline-block !important;
+  border: 1px solid #2563eb !important;
+  color: #2563eb !important;
+  background: transparent !important;
+  padding: 8px 24px !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-back-outline:hover {
+  background: #eff6ff !important;
+}
+
+.result-card {
+  text-align: center !important;
+}
+
+.result-badge-container {
+  margin: 16px 0 !important;
+}
+
+.badge-result-lg {
+  display: inline-block !important;
+  padding: 8px 36px !important;
+  border-radius: 20px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+
+.result-desc {
+  font-size: 13px !important;
+  color: #64748b !important;
+  margin: 0 !important;
+}
+
+.conclusion-card {
+  background: #ffffff !important;
+}
+
+.suggestion-card {
+  background: #fffbeb !important;
+  border-color: #fde68a !important;
+}
+
+.card-text-body {
+  font-size: 13px !important;
+  color: #334155 !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+
+.fish-photo-card {
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 16px !important;
+}
+
+.fish-preview-img {
+  width: 100% !important;
+  height: 220px !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: 16px !important;
+}
+
+/* Ukuran & Tata Letak Teks Informasi Prediksi */
+.info-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 24px 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+}
+
+.info-list li {
+  display: flex !important;
+  align-items: center !important;
+  font-size: 14px !important; /* Diperbesar agar pas dengan UI */
+}
+
+.info-label {
+  width: 150px !important; /* Diperlebar agar titik dua sejajar rapi */
+  color: #64748b !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-weight: 500 !important;
+}
+
+.info-label i {
+  width: 18px !important;
+  color: #64748b !important;
+}
+
+.info-colon {
+  width: 20px !important;
+  color: #64748b !important;
+  font-weight: 600 !important;
+}
+
+.info-value {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+}
+
+/* Kartu Hasil Klasifikasi (Hijau Muda) */
+.result-card {
+  background-color: #f0fdf4 !important;
+  border: 1px solid #dcfce7 !important;
+  text-align: center !important;
+}
+
+.green-title i {
+  color: #16a34a !important;
+}
+
+.badge-result-lg.badge-tinggi {
+  background-color: #dcfce7 !important;
+  color: #15803d !important;
+  border: 1px solid #bbf7d0 !important;
+  padding: 8px 42px !important;
+  border-radius: 20px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+
+/* Kartu Kesimpulan (Biru Muda) */
+.conclusion-card {
+  background-color: #f0f9ff !important;
+  border: 1px solid #e0f2fe !important;
+}
+
+.blue-title i {
+  color: #0284c7 !important;
+}
+
+/* Kartu Saran Nelayan (Kuning Muda) */
+.suggestion-card {
+  background-color: #fffbeb !important;
+  border: 1px solid #fde68a !important;
+}
+
+.warning-title i {
+  color: #d97706 !important;
+}
+
+/* Kita buat aturannya sangat spesifik agar tidak ada yang bisa menimpa */
+.app-container .main-content .content-body .banner-card.detail-banner {
+  /* Gambar banner ikan terbaru */
+  background-image: url('../assets/images/banner-ikan.jpg') !important;
+  
+  /* Pengaturan agar gambar pas dan bagus */
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* ===================================================== */
+/* REVISI AKHIR: MENYESUAIKAN PROPORSI KOLOM KIRI        */
+/* ===================================================== */
+
+/* Memperkecil tinggi foto ikan di kolom kiri agar lebih ringkas */
+.detail-left-col .fish-preview-img {
+  height: 140px !important; /* Dikecilkan dari 220px supaya lebih proporsional */
+}
+
+/* Merapatkan jarak antar baris pada informasi prediksi di sebelah kiri */
+.detail-left-col .info-list {
+  gap: 8px !important; /* Dirapatkan agar tidak terlalu panjang ke bawah */
+  margin-bottom: 16px !important;
+}
+
+/* Sedikit menyesuaikan padding kartu informasi agar lebih padat */
+.detail-left-col .content-card.info-prediksi-card {
+  padding: 18px 20px !important;
+}
+
+/* ===================================================== */
+/* REVISI PROPORSI GAMBAR IKAN AGAR PAS DAN TIDAK MELAR   */
+/* ===================================================== */
+
+.detail-left-col .fish-photo-card {
+  padding: 12px !important; /* Berikan sedikit padding rapi di sekeliling gambar */
+  background: #ffffff !important;
+  border-radius: 16px !important;
+}
+
+.detail-left-col .fish-preview-img {
+  width: 100% !important;
+  height: 160px !important; /* Tinggi ideal agar proporsional */
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 12px !important;
+}
+
+/* ===================================================== */
+/* REVISI GLOBAL: WARNA TEKS BANNER MENJADI BIRU TUA PEKAT */
+/* ===================================================== */
+
+.banner-card h2,
+.banner-card p {
+  color: #0f172a !important; /* Warna biru sangat gelap / hampir hitam */
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important; /* Tambahan bayangan tipis agar semakin kontras di atas background terang */
+}
+
+/* ===================================================== */
+/* REVISI KHUSUS TEKS BANNER DASHBOARD                    */
+/* ===================================================== */
+
+.app-container .main-content .content-body .banner-card h2,
+.app-container .main-content .content-body .banner-card p {
+  color: #0f172a !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* ===================================================== */
+/* PENTIMPA MUTLAK WARNA TEKS BANNER (MENGALAHKAN !IMPORTANT) */
+/* ===================================================== */
+
+.banner-text h2,
+.welcome-banner h1,
+.welcome-banner h2,
+.banner-card h2 {
+  color: #0f172a !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+}
+
+.banner-text p,
+.welcome-banner p,
+.banner-card p {
+  color: #1e293b !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* ===================================================== */
+/* REVISI AKHIR: PAKSA SEMUA IKON INFORMASI JADI BIRU      */
+/* ===================================================== */
+
+.info-prediksi-card .info-list li .info-label i,
+.info-prediksi-card .card-section-title i {
+  color: #2563eb !important;
+}
+
+
+/* ===================================================== */
+/* STYLING HALAMAN PROFIL PENGGUNA (SESUAI FIGMA)        */
+/* ===================================================== */
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+/* Header Judul Card */
+.card-header-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.card-header-title h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.icon-blue {
+  color: #2563eb !important;
+  font-size: 18px;
+}
+
+/* Kolom Kiri: Informasi Profil */
+.profile-info-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.profile-avatar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.avatar-large {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.avatar-large img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.upload-badge {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 28px;
+  height: 28px;
+  background: #2563eb;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.upload-badge:hover {
+  background: #1d4ed8;
+}
+
+.profile-username {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+
+.badge-role {
+  background: #dbeafe;
+  color: #2563eb;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Detail List Profil */
+.profile-detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.profile-detail-item {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  align-items: center;
+  font-size: 14px;
+}
+
+.detail-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #475569;
+  font-weight: 500;
+}
+
+.detail-value {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.separator {
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* Kolom Kanan: Ubah Password */
+.profile-password-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.form-group-password {
+  margin-bottom: 20px;
+}
+
+.form-group-password label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+.input-password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-password-wrapper input {
+  width: 100%;
+  padding: 10px 40px 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-password-wrapper input:focus {
+  border-color: #2563eb;
+}
+
+.input-password-wrapper input::placeholder {
+  color: #94a3b8;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 14px;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.toggle-password:hover {
+  color: #64748b;
+}
+
+/* Action Buttons */
+.form-actions-profile {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.btn-batal {
+  padding: 10px 24px;
+  border: 1px solid #2563eb;
+  background: #ffffff;
+  color: #2563eb;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-batal:hover {
+  background: #eff6ff;
+}
+
+.btn-simpan {
+  padding: 10px 24px;
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-simpan:hover {
+  background: #1d4ed8;
+}
+
+/* Responsive Tablet */
+@media (max-width: 992px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 1. Pastikan Grid & Lebar Halaman Profil Konsisten */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+/* 2. Samakan Ukuran Banner dengan Halaman Lainnya */
+.content-body .welcome-banner {
+  height: 160px !important;
+  background-size: cover !important;
+  background-position: center !important;
+  border-radius: 16px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 32px !important;
+  margin-bottom: 24px !important;
+}
+
+.content-body .welcome-banner h2 {
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  margin-bottom: 4px !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+}
+
+.content-body .welcome-banner p {
+  font-size: 14px !important;
+  color: #1e293b !important;
+  margin: 0 !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* 3. Tata Letak Grid Profil (2 Kolom Seimbang & Rapi di Tengah) */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+/* 4. Perbaikan Card & Tombol Aksi Ubah Password agar Muncul Sempurna */
+.profile-info-card,
+.profile-password-card {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  padding: 28px !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Memastikan tombol aksi di form ubah password tampil rapi di kanan bawah */
+.form-actions-profile {
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 12px !important;
+  margin-top: 24px !important;
+}
+
+/* ===================================================== */
+/* REVISI MUTLAK HALAMAN PROFIL (MENANGKAN SEMUA KONFLIK) */
+/* ===================================================== */
+
+/* 1. Paksa Sidebar agar panjang penuh ke bawah */
+.app-container {
+  display: flex !important;
+  min-height: 100vh !important;
+  background-color: #f8fafc !important;
+}
+
+.sidebar {
+  width: 260px !important;
+  min-height: 100vh !important;
+  position: relative !important;
+  flex-shrink: 0 !important;
+}
+
+/* 2. Paksa Ukuran Banner agar sama persis dengan Dashboard */
+.main-content .content-body .welcome-banner,
+.main-content .content-body .banner-card {
+  height: 160px !important;
+  min-height: 160px !important;
+  background-size: cover !important;
+  background-position: center !important;
+  border-radius: 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding: 0 32px !important;
+  margin-bottom: 24px !important;
+}
+
+/* 3. Perbaikan Tata Letak Grid Profil & Posisi Agar Tidak Terlalu ke Atas */
+.content-body {
+  padding: 24px 32px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
+}
+
+.profile-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 24px !important;
+  margin-top: 12px !important;
+  margin-bottom: 32px !important;
+}
+
+/* 4. Perbaikan Card Informasi Profil & Ubah Password */
+.profile-info-card,
+.profile-password-card {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  padding: 28px !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+/* 5. Pastikan Tombol Ubah Password Tampil Sempurna di Kanan Bawah */
+.form-actions-profile {
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 12px !important;
+  margin-top: 24px !important;
+}
+
+/* 6. Memastikan Footer Muncul dan Rapi di Bawah */
+.main-footer {
+  margin-top: auto !important;
+  padding: 20px 0 !important;
+  text-align: center !important;
+  font-size: 13px !important;
+  color: #64748b !important;
+  border-top: 1px solid #e2e8f0 !important;
+}
+
+/* ===================================================== */
+/* REVISI TOPBAR INFO PROFIL (KAPSUL PUTIH MELENGKUNG)  */
+/* ===================================================== */
+
+.topbar {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  padding: 16px 32px 8px 32px !important;
+  background: transparent !important;
+}
+
+.topbar-user {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  background: #ffffff !important;
+  padding: 6px 16px 6px 6px !important;
+  border-radius: 50px !important; /* Membuat sudut melengkung sempurna berbentuk kapsul */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+}
+
+.user-avatar-small {
+  width: 38px !important;
+  height: 38px !important;
+  background-color: #2563eb !important; /* Warna lingkaran biru */
+  color: #ffffff !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 16px !important;
+  flex-shrink: 0 !important;
+}
+
+.user-info-text {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  line-height: 1.2 !important;
+}
+
+.user-name {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+}
+
+.user-status {
+  font-size: 11px !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.status-dot {
+  width: 6px !important;
+  height: 6px !important;
+  background-color: #22c55e !important; /* Titik hijau aktif */
+  border-radius: 50% !important;
+  display: inline-block !important;
+}
+
+/* ===================================================== */
+/* KOREKSI PRESISI SIDEBAR: UKURAN LOGO TETAP & POSISI MENU */
+/* ===================================================== */
+
+.sidebar {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding: 0 !important;
+}
+
+/* Kembalikan ukuran logo ke standar (160px atau ukuran asli sebelumnya) dan beri jarak atas */
+.sidebar-logo {
+  text-align: center !important;
+  padding-top: 36px !important; /* Menurunkan posisi logo dan menu di bawahnya secara bersamaan */
+  padding-bottom: 24px !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+.sidebar-logo img {
+  width: 160px !important; /* Ukuran pas sesuai standar awalmu */
+  max-width: none !important;
+  height: auto !important;
+}
+
+/* Jarak menu sidebar agar sejajar persis dengan dashboard */
+.sidebar-menu {
+  margin-top: 10px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  padding: 0 16px !important;
+}
+
+/* ===================================================== */
+/* REVISI FINAL UI PROFIL SESUAI GAMBAR ACUAN (UI KU)   */
+/* ===================================================== */
+
+/* 1 & 5. Lingkaran Background Biru Muda untuk Ikon Judul & Detail */
+.icon-circle-badge {
+  width: 36px;
+  height: 36px;
+  background-color: #dbeafe; /* Biru muda senada UI */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-circle-badge-small {
+  width: 30px;
+  height: 30px;
+  background-color: #dbeafe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* 2. Garis Luar (Ring) yang Samar Melingkari Avatar Profil */
+.avatar-large-container {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #93c5fd; /* Garis luar samar warna biru muda */
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+
+.avatar-large {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  overflow: hidden;
+}
+
+.avatar-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Posisi Badge Kamera */
+.upload-badge {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 28px;
+  height: 28px;
+  background: #2563eb;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 11px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  transition: background 0.2s;
+}
+
+.upload-badge:hover {
+  background: #1d4ed8;
+}
+
+/* 6. Ukuran Kotak Container Besar agar Proporsional dan Tidak Jauh dari Footer */
+.profile-info-card,
+.profile-password-card {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  padding: 32px 36px !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+  min-height: 480px !important; /* Membuat tinggi kotak pas dan konsisten */
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.profile-detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+/* ===================================================== */
+/* REVISI AVATAR & DROPDOWN MURNI CSS (TANPA JAVASCRIPT) */
+/* ===================================================== */
+
+.profile-avatar-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+/* Garis Luar (Ring) Presisi Melingkari Avatar */
+.avatar-outer-ring {
+  position: relative;
+  width: 112px;
+  height: 112px;
+  border: 2px solid #93c5fd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.avatar-outer-ring:hover {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* Lingkaran Biru Dalam / Foto */
+.avatar-large {
+  width: 98px;
+  height: 98px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  overflow: hidden;
+}
+
+.avatar-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Badge Kamera di Pojok */
+.upload-badge {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 30px;
+  height: 30px;
+  background: #2563eb;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+/* Dropdown Pilihan Menu (Tersembunyi Default) */
+.photo-options-dropdown {
+  display: none;
+  position: absolute;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  padding: 6px;
+  z-index: 100;
+  width: 150px;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid #e2e8f0;
+}
+
+/* Munculkan Dropdown saat Checkbox Dicentang (Tanpa JS) */
+#profileDropdownToggle:checked ~ .photo-options-dropdown {
+  display: block;
+}
+
+.photo-options-dropdown div {
+  padding: 10px 12px;
+  font-size: 13px;
+  color: #1e293b;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+
+.photo-options-dropdown div:hover {
+  background-color: #f1f5f9;
+  color: #2563eb;
+}
+
+.photo-options-dropdown div i {
+  color: #2563eb;
+  font-size: 14px;
+}
+
+/* ===================================================== */
+/* CSS BERSIH TANPA GARIS LUAR AVATAR                    */
+/* ===================================================== */
+
+.profile-avatar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.profile-avatar-container {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 10px;
+}
+
+/* Lingkaran Avatar Utama (Bersih tanpa border luar) */
+.avatar-large {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  overflow: hidden;
+}
+
+.avatar-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tombol Badge Kamera */
+.upload-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  background: #2563eb;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 11px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  z-index: 5;
+}
+
+.upload-badge:hover {
+  background: #1d4ed8;
+}
+
+/* Dropdown Menu Pilihan Foto */
+.photo-options-dropdown {
+  display: none;
+  position: absolute;
+  top: 105px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  padding: 6px;
+  z-index: 100;
+  width: 150px;
+  border: 1px solid #e2e8f0;
+}
+
+#profileDropdownToggle:checked ~ .photo-options-dropdown {
+  display: block;
+}
+
+.dropdown-option {
+  padding: 8px 10px;
+  font-size: 12px;
+  color: #1e293b;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.dropdown-option:hover {
+  background-color: #f1f5f9;
+  color: #2563eb;
+}
+
+.dropdown-option i {
+  color: #2563eb;
+  font-size: 13px;
+}
