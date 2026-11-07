@@ -100,8 +100,8 @@ if (loginForm) {
 
         } else if (role === "admin") {
 
-            // Memberikan informasi bahwa halaman Admin belum tersedia
-            alert("Halaman Admin belum tersedia.");
+            // Mengarahkan pengguna ke Dashboard Admin
+            window.location.href = "../admin/dashboard.html";
 
         }
 
