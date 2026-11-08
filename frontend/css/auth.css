@@ -65,7 +65,7 @@ body {
 /* Area identitas SIPIKA: logo, deskripsi, dan dekorasi */
 .brand-section {
     flex: 1;
-    min-height: calc(100vh - 48px);
+    min-height: calc(100vh - 64px);
 
     display: flex;
     align-items: center;
@@ -118,7 +118,7 @@ body {
 /* Area form Login dan kartu putih */
 .login-section {
     width: 50%;
-    min-height: calc(100vh - 48px);
+    min-height: calc(100vh - 64px);
 
     display: flex;
     align-items: center;
