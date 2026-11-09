@@ -88,11 +88,12 @@
 .sidebar-bottom {
     margin-top: auto;
     padding-top: 15px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 2px solid #ffffff;
 }
 
 .logout-item {
     font-size: 12px;
+    color: red;
 }
 
 /* =========================================
@@ -179,8 +180,6 @@
    5. BANNER SELAMAT DATANG
 ========================================= */
 
-
-
 .welcome-banner {
     width: 100%;
     min-height: 138px;
@@ -191,16 +190,24 @@
     margin-bottom: 14px;
     overflow: hidden;
 
+
+    /* Gambar kapal menyatu dengan gradasi putih */
     background-image:
         linear-gradient(90deg,
-            rgba(255, 255, 255, 0.96) 0%,
-            rgba(255, 255, 255, 0.78) 45%,
-            rgba(255, 255, 255, 0.05) 100%),
+            rgba(255, 255, 255, 0.98) 5%,
+            rgba(255, 255, 255, 0.90) 15%,
+            rgba(255, 255, 255, 0.55) 52%,
+            rgba(255, 255, 255, 0.10) 75%,
+            rgba(255, 255, 255, 0) 100%),
         url("../assets/images/banner_nelayan.png");
 
-    background-size: cover;
-    background-position: center 70%;
-    background-repeat: no-repeat;
+    /* Gradasi memenuhi banner, gambar menggunakan seluruh area */
+    background-size: 100% 100%, cover;
+
+    /* Mengarahkan komposisi gambar ke sisi kanan */
+    background-position: center, right 70%;
+
+    background-repeat: no-repeat, no-repeat;
 
     border: 1px solid #d6e8f8;
     border-radius: 14px;
@@ -214,20 +221,20 @@
 
 .welcome-text p {
     color: #0875bc;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     margin-bottom: 1px;
 }
 
 .welcome-text h1 {
     color: #0c1d37;
-    font-size: 36px;
+    font-size: 39px;
     line-height: 1.15;
     font-weight: 700;
 }
 
 .welcome-text span {
-    color: #253b55;
+    color: #506681;
     font-size: 13px;
     font-weight: 500;
 }
@@ -705,16 +712,23 @@
     margin-bottom: 16px;
     overflow: hidden;
 
+    /* Gambar kapal menyatu dengan gradasi putih */
     background-image:
         linear-gradient(90deg,
-            rgba(255, 255, 255, 0.96) 0%,
-            rgba(255, 255, 255, 0.78) 45%,
-            rgba(255, 255, 255, 0.05) 100%),
+            rgba(255, 255, 255, 0.98) 5%,
+            rgba(255, 255, 255, 0.90) 15%,
+            rgba(255, 255, 255, 0.55) 52%,
+            rgba(255, 255, 255, 0.10) 75%,
+            rgba(255, 255, 255, 0) 100%),
         url("../assets/images/banner_nelayan.png");
 
-    background-size: cover;
-    background-position: center 70%;
-    background-repeat: no-repeat;
+    /* Gradasi memenuhi banner, gambar menggunakan seluruh area */
+    background-size: 100% 100%, cover;
+
+    /* Mengarahkan komposisi gambar ke sisi kanan */
+    background-position: center, right 70%;
+
+    background-repeat: no-repeat, no-repeat;
 
     border: 1px solid #d6e8f8;
     border-radius: 14px;
@@ -736,7 +750,7 @@
 
 .banner-label span:first-child {
     color: #0876c9;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.5px;
 }
@@ -750,16 +764,17 @@
 
 .classification-banner-text h1 {
     color: #102542;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 700;
     line-height: 1.3;
     margin-bottom: 5px;
 }
 
 .classification-banner-text p {
+    white-space: nowrap;
     max-width: 430px;
     color: #506681;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.5;
 }
 
@@ -979,11 +994,21 @@
 
 .production-result h3 {
     color: #075b37;
-    font-size: 23px;
+    font-size: 28px;
     font-weight: 700;
     line-height: 1.2;
 }
 
+/* Mengatur ukuran tulisan hasil produksi */
+#productionLevel {
+    font-size: 36px;
+}
+
+/* Memperbesar tulisan Tingkat Produksi */
+#resultContent .production-result>span {
+    font-size: 14px !important;
+    font-weight: 700;
+}
 
 /* =========================================
    20. KESIMPULAN DAN SARAN
@@ -1340,10 +1365,22 @@
     margin-bottom: 16px;
     overflow: hidden;
 
-    background-image: url("../assets/images/banner_riwayat.png");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
+    background-image:
+        linear-gradient(90deg,
+            rgba(255, 255, 255, 0.98) 5%,
+            rgba(255, 255, 255, 0.90) 15%,
+            rgba(255, 255, 255, 0.55) 52%,
+            rgba(255, 255, 255, 0.10) 75%,
+            rgba(255, 255, 255, 0) 100%),
+        url("../assets/images/banner_riwayat.png");
+
+    /* Gradasi memenuhi banner, gambar menggunakan seluruh area */
+    background-size: 100% 100%, cover;
+
+    /* Mengarahkan komposisi gambar ke sisi kanan */
+    background-position: center, right 48%;
+
+    background-repeat: no-repeat, no-repeat;
 
     border: 1px solid #d6e8f8;
     border-radius: 14px;
@@ -1355,7 +1392,7 @@
 
 .history-banner-text h1 {
     color: #102542;
-    font-size: 29px;
+    font-size: 32px;
     font-weight: 700;
     line-height: 1.3;
     margin-bottom: 2px;
@@ -1363,7 +1400,7 @@
 
 .history-banner-text p {
     color: #506681;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.5;
 }
 
@@ -1377,7 +1414,7 @@
 
 .history-label span:first-child {
     color: #0866d9;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.5px;
 }
@@ -1486,14 +1523,17 @@
 
 .history-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
     table-layout: fixed;
     color: #344b66;
     font-size: 9px;
 }
 
 .history-table thead {
-    background-color: #eaf3fb;
+    background-color: #C8E4FC;
 }
 
 .history-table th {
@@ -1757,27 +1797,33 @@
 
 .detail-banner {
     width: 100%;
-    min-height: 102px;
+    min-height: 138px;
     display: flex;
     align-items: center;
-    padding: 18px 20px;
-    margin-bottom: 14px;
+    position: relative;
+    padding: 24px 38px;
+    margin-bottom: 16px;
+    overflow: hidden;
 
     background-image:
         linear-gradient(90deg,
-            rgba(231, 244, 255, 0.97) 0%,
-            rgba(231, 244, 255, 0.85) 35%,
-            rgba(231, 244, 255, 0) 65%,
-            rgba(231, 244, 255, 0) 100%),
+            rgba(255, 255, 255, 0.98) 5%,
+            rgba(255, 255, 255, 0.90) 15%,
+            rgba(255, 255, 255, 0.55) 52%,
+            rgba(255, 255, 255, 0.10) 75%,
+            rgba(255, 255, 255, 0) 100%),
         url("../assets/images/banner_riwayat.png");
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    /* Gradasi memenuhi banner, gambar menggunakan seluruh area */
+    background-size: 100% 100%, cover;
+
+    /* Mengarahkan komposisi gambar ke sisi kanan */
+    background-position: center, right 48%;
+
+    background-repeat: no-repeat, no-repeat;
 
     border: 1px solid #d6e8f8;
-    border-radius: 12px;
-    overflow: hidden;
+    border-radius: 14px;
 }
 
 /* Teks pada banner */
@@ -1933,8 +1979,8 @@
 
 /* IKON PADA DAFTAR INFORMASI */
 .detail-data-icon {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2037,20 +2083,20 @@
 
 /* IKON JUDUL KARTU HASIL, KESIMPULAN, DAN SARAN */
 .detail-result-symbol {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     display: block;
     object-fit: contain;
     flex-shrink: 0;
 }
-
 
 /* =========================================
    KARTU HASIL KLASIFIKASI
 ========================================= */
 
 .detail-classification-card {
-    min-height: 114px;
+    min-height: 175px;
+    padding: 22px;
     background-color: #e5f7ed;
     border-color: #c6eed7;
     text-align: center;
@@ -2064,18 +2110,18 @@
 
 /* Label kategori hasil */
 .detail-result-badge {
-    width: 100px;
-    min-height: 25px;
+    width: 190px;
+    min-height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 7px;
+    margin: 20px auto 7px;
 
     background-color: #b9efd2;
     border-radius: 20px;
 
     color: #087b4b;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 700;
 }
 
@@ -2187,10 +2233,22 @@
     padding: 20px 24px;
     margin-bottom: 14px;
 
-    background-image: url("../assets/images/banner_riwayat.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image:
+        linear-gradient(90deg,
+            rgba(255, 255, 255, 0.98) 5%,
+            rgba(255, 255, 255, 0.90) 15%,
+            rgba(255, 255, 255, 0.55) 52%,
+            rgba(255, 255, 255, 0.10) 75%,
+            rgba(255, 255, 255, 0) 100%),
+        url("../assets/images/banner_riwayat.png");
+
+    /* Gradasi memenuhi banner, gambar menggunakan seluruh area */
+    background-size: 100% 100%, cover;
+
+    /* Mengarahkan komposisi gambar ke sisi kanan */
+    background-position: center, right 48%;
+
+    background-repeat: no-repeat, no-repeat;
 
     border: 1px solid #d6e8f8;
     border-radius: 12px;
@@ -2214,6 +2272,7 @@
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.5px;
+    padding-left: 22px;
 }
 
 .profile-eyebrow div {
@@ -2225,15 +2284,17 @@
 
 .profile-banner-text h1 {
     color: #102542;
-    font-size: 26px;
+    font-size: 29px;
     font-weight: 700;
     line-height: 1.3;
+    padding-left: 21px;
 }
 
 .profile-banner-text p {
     color: #506681;
     font-size: 12px;
     margin-top: 4px;
+    padding-left: 21px;
 }
 
 
@@ -2348,14 +2409,14 @@
 .profile-detail-row {
     min-height: 40px;
     display: grid;
-    grid-template-columns: 26px minmax(75px, 1fr) 8px minmax(70px, 1fr);
+    grid-template-columns: 36px minmax(75px, 1fr) 8px minmax(70px, 1fr);
     align-items: center;
     gap: 7px;
 }
 
 .profile-detail-icon {
-    width: 24px;
-    height: 24px;
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2393,8 +2454,8 @@
 }
 
 .profile-edit-icon {
-    width: 36px;
-    height: 36px;
+    width: 42px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
