@@ -92,7 +92,7 @@ if (loginForm) {
 
         // Mengambil nilai username, password, dan pilihan pengguna
         const username = document.getElementById("username").value.trim();
-        const password = passwordInput.value;
+        const password = document.getElementById("password").value;
         const role = document.getElementById("role").value;
 
         // Memeriksa apakah seluruh kolom login sudah diisi
