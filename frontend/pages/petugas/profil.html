@@ -1,265 +1,593 @@
+
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profil Pengguna - SIPIKA</title>
-  
-  <!-- Font & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- CSS Utama -->
-  <link rel="stylesheet" href="../../css/petugas.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profil Pengguna - SIPIKA</title>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="../../css/global.css">
+
+    <!-- CSS Utama Petugas -->
+    <link rel="stylesheet" href="../../css/petugas.css">
 </head>
-<body>
 
-  <div class="app-container">
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <div class="sidebar-brand">
-        <img src="../../assets/images/logo.png" alt="SIPIKA Logo" class="sidebar-logo-img">
-      </div>
-      
-      <div class="sidebar-menu">
-        <a href="dashboard.html" class="menu-item">
-          <i class="fa-solid fa-house"></i>
-          <span>Dashboard</span>
-        </a>
-        <a href="dataset.html" class="menu-item">
-          <i class="fa-solid fa-database"></i>
-          <span>Data Dataset</span>
-        </a>
-        <a href="evaluasi-model.html" class="menu-item">
-          <i class="fa-solid fa-chart-column"></i>
-          <span>Evaluasi Model</span>
-        </a>
-        <a href="riwayat-prediksi.html" class="menu-item">
-          <i class="fa-solid fa-clock-rotate-left"></i>
-          <span>Riwayat Prediksi</span>
-        </a>
-        <a href="profil.html" class="menu-item active">
-          <i class="fa-solid fa-user"></i>
-          <span>Profil</span>
-        </a>
-      </div>
+<body class="profile-page">
 
-      <div class="sidebar-footer">
-        <a href="../../index.html" class="logout-btn">
-          <i class="fa-solid fa-right-from-bracket"></i>
-          <span>Logout</span>
-        </a>
-      </div>
-    </aside>
+    <div class="app-container">
 
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
-      
-      <!-- TOPBAR INFO PROFIL -->
-      <header class="topbar">
-        <div class="topbar-user">
-          <div class="user-avatar-small">
-            <i class="fa-solid fa-user"></i>
-          </div>
-          <div class="user-info-text">
-            <span class="user-name">Bayu Cahyo</span>
-            <span class="user-status"><span class="status-dot"></span> Petugas</span>
-          </div>
-        </div>
-      </header>
+        <!-- =================================
+             SIDEBAR
+        ================================== -->
 
-      <!-- CONTENT BODY -->
-      <div class="content-body">
+        <aside class="sidebar">
 
-        <!-- WELCOME BANNER -->
-        <div class="banner-card welcome-banner" style="background-image: url('../../assets/images/banner.jpeg');">
-          <div class="banner-text">
-            <h2>Profil Pengguna</h2>
-            <p>Kelola informasi akun Anda.</p>
-          </div>
-        </div>
-
-        <!-- GRID KONTAINER PROFIL (2 KOLOM) -->
-        <div class="profile-grid">
-
-          <!-- KOLOM KIRI: INFORMASI PROFIL -->
-          <div class="content-card profile-info-card">
-            <div class="card-header-title">
-              <div class="icon-circle-badge">
-                <i class="fa-solid fa-user icon-blue"></i>
-              </div>
-              <h3>Informasi Profil</h3>
+            <div class="sidebar-brand">
+                <img
+                    src="../../assets/images/logo.png"
+                    alt="Logo SIPIKA"
+                    class="logo-img"
+                >
             </div>
 
-            <!-- AVATAR & UPLOAD FOTO (FUNGSI GANTI FOTO NORMAL) -->
-            <div class="profile-avatar-wrapper">
-              <div class="profile-avatar-container">
-                <div class="avatar-large">
-                  <i class="fa-solid fa-user" id="defaultAvatarIcon"></i>
-                  <img src="" id="uploadedAvatarImg" alt="Foto Profil" style="display: none;">
-                </div>
+            <ul class="sidebar-menu">
 
-                <!-- Tombol Kamera (Langsung Membuka File Explorer untuk Ganti Foto) -->
-                <label for="uploadFotoInput" class="upload-badge" title="Ganti Foto Profil">
-                  <i class="fa-solid fa-camera"></i>
-                </label>
-              </div>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
 
-              <!-- Input File Tersembunyi -->
-              <input type="file" id="uploadFotoInput" accept="image/*" style="display: none;" onchange="previewImage(this)">
+                <li>
+                    <a href="dataset.html">
+                        <i class="fa-solid fa-database"></i>
+                        <span>Data Dataset</span>
+                    </a>
+                </li>
 
-              <h4 class="profile-username">bayu</h4>
-              <span class="badge-role">Petugas</span>
+                <li>
+                    <a href="evaluasi-model.html">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Evaluasi Model</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="riwayat-prediksi.html">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>Riwayat Prediksi</span>
+                    </a>
+                </li>
+
+                <li class="active">
+                    <a href="profil.html">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Profil</span>
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="sidebar-footer">
+                <a href="../../index.html" class="logout-btn">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
             </div>
 
-            <!-- DETAIL INFORMASI (DENGAN ICON BERBACKGROUND BIRU MUDA) -->
-            <div class="profile-detail-list">
-              <div class="profile-detail-item">
-                <div class="detail-label">
-                  <div class="icon-circle-badge-small">
-                    <i class="fa-solid fa-user icon-blue"></i>
-                  </div>
-                  <span>Nama Lengkap</span>
-                </div>
-                <div class="detail-value">
-                  <span class="separator">:</span>
-                  <span>Bayu Cahyo</span>
-                </div>
-              </div>
+        </aside>
 
-              <div class="profile-detail-item">
-                <div class="detail-label">
-                  <div class="icon-circle-badge-small">
-                    <i class="fa-solid fa-phone icon-blue"></i>
-                  </div>
-                  <span>Nomor Telepon</span>
-                </div>
-                <div class="detail-value">
-                  <span class="separator">:</span>
-                  <span>0812 8886 1234</span>
-                </div>
-              </div>
 
-              <div class="profile-detail-item">
-                <div class="detail-label">
-                  <div class="icon-circle-badge-small">
-                    <i class="fa-solid fa-users icon-blue"></i>
-                  </div>
-                  <span>Role</span>
+        <!-- =================================
+             MAIN CONTENT
+        ================================== -->
+
+        <main class="main-content">
+
+            <!-- TOPBAR MENGIKUTI DASHBOARD -->
+            <header class="top-navbar">
+
+                <div class="user-profile-badge">
+
+                    <div class="profile-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div class="profile-info">
+                        <span class="profile-name">Bayu Cahyo</span>
+                        <span class="profile-role">Petugas</span>
+                    </div>
+
                 </div>
-                <div class="detail-value">
-                  <span class="separator">:</span>
-                  <span>Petugas</span>
+
+            </header>
+
+
+            <!-- =================================
+                 CONTENT BODY
+            ================================== -->
+
+            <div class="content-body profile-content-body">
+
+                <!-- BANNER PROFIL -->
+                <div class="welcome-banner profile-welcome-banner"
+                     style="background-image:
+                     linear-gradient(
+                         90deg,
+                         rgba(248,250,252,0.97) 0%,
+                         rgba(248,250,252,0.92) 30%,
+                         rgba(248,250,252,0.65) 43%,
+                         rgba(248,250,252,0.20) 52%,
+                         rgba(248,250,252,0) 62%
+                     ),
+                     url('../../assets/images/banner.jpg');">
+
+                    <div class="banner-text">
+
+                        <div class="profile-banner-label">
+                            <span class="banner-tag">PROFIL</span>
+                            <span class="profile-banner-line"></span>
+                        </div>
+
+                        <h1>Profil Pengguna</h1>
+
+                        <p>Kelola informasi akun Anda.</p>
+
+                    </div>
+
                 </div>
-              </div>
+
+
+                <!-- =================================
+                     GRID PROFIL (DUA KOLOM)
+                ================================== -->
+
+                <div class="profile-grid">
+
+
+                    <!-- =================================
+                         KOLOM KIRI: INFORMASI PROFIL
+                    ================================== -->
+
+                    <section class="content-card profile-info-card">
+
+                        <!-- JUDUL KARTU -->
+                        <div class="card-header-title">
+
+                            <div class="icon-circle-badge">
+                                <i class="fa-solid fa-user icon-blue"></i>
+                            </div>
+
+                            <h3>Informasi Profil</h3>
+
+                        </div>
+
+
+                        <!-- AVATAR DAN UPLOAD FOTO -->
+                        <div class="profile-avatar-wrapper">
+
+                            <div class="profile-avatar-container">
+
+                                <div class="avatar-large">
+
+                                    <i class="fa-solid fa-user"
+                                       id="defaultAvatarIcon"></i>
+
+                                    <img
+                                        src=""
+                                        id="uploadedAvatarImg"
+                                        alt="Foto Profil"
+                                        style="display: none;"
+                                    >
+
+                                </div>
+
+                                <!-- TOMBOL GANTI FOTO -->
+                                <label
+                                    for="uploadFotoInput"
+                                    class="upload-badge"
+                                    title="Ganti Foto Profil">
+
+                                    <i class="fa-solid fa-camera"></i>
+
+                                </label>
+
+                            </div>
+
+                            <!-- INPUT FILE -->
+                            <input
+                                type="file"
+                                id="uploadFotoInput"
+                                accept="image/*"
+                                hidden
+                            >
+
+                            <h4 class="profile-username">bayu</h4>
+
+                            <span class="badge-role">Petugas</span>
+
+                        </div>
+
+
+                        <!-- DETAIL INFORMASI PROFIL -->
+                        <div class="profile-detail-list">
+
+                            <!-- NAMA LENGKAP -->
+                            <div class="profile-detail-item">
+
+                                <div class="detail-label">
+
+                                    <div class="icon-circle-badge-small">
+                                        <i class="fa-solid fa-user icon-blue"></i>
+                                    </div>
+
+                                    <span>Nama Lengkap</span>
+
+                                </div>
+
+                                <div class="detail-value">
+                                    <span class="separator">:</span>
+                                    <span>Bayu Cahyo</span>
+                                </div>
+
+                            </div>
+
+
+                            <!-- NOMOR TELEPON -->
+                            <div class="profile-detail-item">
+
+                                <div class="detail-label">
+
+                                    <div class="icon-circle-badge-small">
+                                        <i class="fa-solid fa-phone icon-blue"></i>
+                                    </div>
+
+                                    <span>Nomor Telepon</span>
+
+                                </div>
+
+                                <div class="detail-value">
+                                    <span class="separator">:</span>
+                                    <span>0812 8886 1234</span>
+                                </div>
+
+                            </div>
+
+
+                            <!-- ROLE -->
+                            <div class="profile-detail-item">
+
+                                <div class="detail-label">
+
+                                    <div class="icon-circle-badge-small">
+                                        <i class="fa-solid fa-users icon-blue"></i>
+                                    </div>
+
+                                    <span>Role</span>
+
+                                </div>
+
+                                <div class="detail-value">
+                                    <span class="separator">:</span>
+                                    <span>Petugas</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =================================
+                         KOLOM KANAN: UBAH PASSWORD
+                    ================================== -->
+
+                    <section class="content-card profile-password-card">
+
+                        <!-- JUDUL KARTU -->
+                        <div class="card-header-title">
+
+                            <div class="icon-circle-badge">
+                                <svg class="profile-lock-icon"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true">
+
+                                    <!-- Lengkungan gembok -->
+                                    <path
+                                        d="M8 10V7a4 4 0 1 1 8 0v3"
+                                        fill="none"
+                                        stroke="#0875f5"
+                                        stroke-width="2.3"
+                                        stroke-linecap="round"
+                                    />
+
+                                    <!-- Badan gembok -->
+                                    <rect
+                                        x="5"
+                                        y="10"
+                                        width="14"
+                                        height="12"
+                                        rx="2.5"
+                                        fill="#0875f5"
+                                    />
+
+                                    <!-- Lubang kunci -->
+                                    <circle cx="12" cy="15" r="1.3" fill="#ffffff"/>
+
+                                    <path
+                                        d="M11.3 16h1.4l0.7 3h-2.8z"
+                                        fill="#ffffff"
+                                    />
+
+                                </svg>
+                            </div>
+
+                            <h3>Ubah Password</h3>
+
+                        </div>
+
+
+                        <!-- FORM UBAH PASSWORD -->
+                        <form id="formUbahPassword"
+                              class="profile-password-form"
+                              onsubmit="event.preventDefault();">
+
+                            <!-- PASSWORD SAAT INI -->
+                            <div class="form-group-password">
+
+                                <label for="inputCurrentPassword">
+                                    Password Saat Ini
+                                </label>
+
+                                <div class="input-password-wrapper">
+
+                                    <input
+                                        type="password"
+                                        id="inputCurrentPassword"
+                                        placeholder="Masukkan password saat ini"
+                                    >
+
+                                    <i
+                                        class="fa-regular fa-eye-slash toggle-password"
+                                        onclick="togglePasswordVisibility(
+                                            'inputCurrentPassword', this
+                                        )">
+                                    </i>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- PASSWORD BARU -->
+                            <div class="form-group-password">
+
+                                <label for="inputNewPassword">
+                                    Password Baru
+                                </label>
+
+                                <div class="input-password-wrapper">
+
+                                    <input
+                                        type="password"
+                                        id="inputNewPassword"
+                                        placeholder="Masukkan password baru"
+                                    >
+
+                                    <i
+                                        class="fa-regular fa-eye-slash toggle-password"
+                                        onclick="togglePasswordVisibility(
+                                            'inputNewPassword', this
+                                        )">
+                                    </i>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- KONFIRMASI PASSWORD -->
+                            <div class="form-group-password">
+
+                                <label for="inputConfirmPassword">
+                                    Konfirmasi Password Baru
+                                </label>
+
+                                <div class="input-password-wrapper">
+
+                                    <input
+                                        type="password"
+                                        id="inputConfirmPassword"
+                                        placeholder="Masukkan kembali password baru"
+                                    >
+
+                                    <i
+                                        class="fa-regular fa-eye-slash toggle-password"
+                                        onclick="togglePasswordVisibility(
+                                            'inputConfirmPassword', this
+                                        )">
+                                    </i>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- TOMBOL FORM -->
+                            <div class="form-actions-profile">
+
+                                <button
+                                    type="button"
+                                    class="btn-batal"
+                                    onclick="resetFormPassword()">
+                                    Batal
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="btn-simpan"
+                                    onclick="simpanPassword()">
+                                    Ubah Password
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </section>
+
+                </div>
+
             </div>
 
-          </div>
 
-          <!-- KOLOM KANAN: UBAH PASSWORD -->
-          <div class="content-card profile-password-card">
-            <div class="card-header-title">
-              <div class="icon-circle-badge">
-                <i class="fa-solid fa-lock icon-blue"></i>
-              </div>
-              <h3>Ubah Password</h3>
-            </div>
+            <!-- FOOTER MENGIKUTI DASHBOARD -->
+            <footer class="footer-copyright">
+                <p>&copy; 2026 SIPIKA - Kelompok 13 Web</p>
+            </footer>
 
-            <form id="formUbahPassword" onsubmit="event.preventDefault();">
-              <div class="form-group-password">
-                <label>Password Saat Ini</label>
-                <div class="input-password-wrapper">
-                  <input type="password" id="inputCurrentPassword" placeholder="Masukkan password saat ini">
-                  <i class="fa-regular fa-eye-slash toggle-password" onclick="togglePasswordVisibility('inputCurrentPassword', this)"></i>
-                </div>
-              </div>
+        </main>
 
-              <div class="form-group-password">
-                <label>Password Baru</label>
-                <div class="input-password-wrapper">
-                  <input type="password" id="inputNewPassword" placeholder="Masukkan password baru">
-                  <i class="fa-regular fa-eye-slash toggle-password" onclick="togglePasswordVisibility('inputNewPassword', this)"></i>
-                </div>
-              </div>
+    </div>
 
-              <div class="form-group-password">
-                <label>Konfirmasi Password Baru</label>
-                <div class="input-password-wrapper">
-                  <input type="password" id="inputConfirmPassword" placeholder="Masukkan kembali password baru">
-                  <i class="fa-regular fa-eye-slash toggle-password" onclick="togglePasswordVisibility('inputConfirmPassword', this)"></i>
-                </div>
-              </div>
 
-              <div class="form-actions-profile">
-                <button type="button" class="btn-batal" onclick="resetFormPassword()">Batal</button>
-                <button type="button" class="btn-simpan" onclick="simpanPassword()">Ubah Password</button>
-              </div>
-            </form>
-          </div>
+    <!-- =================================
+         JAVASCRIPT PROFIL
+    ================================== -->
 
-        </div>
+    <script>
 
-      </div>
+        // PREVIEW FOTO PROFIL
+        function previewImage(input) {
 
-      <!-- FOOTER -->
-      <footer class="main-footer">
-        <p>&copy; 2026 SIPIKA &mdash; Kelompok 13 Web</p>
-      </footer>
-    </main>
-  </div>
+            const file = input.files[0];
 
-  <script>
-    const uploadInput = document.getElementById('uploadFotoInput');
-    const uploadedImg = document.getElementById('uploadedAvatarImg');
-    const defaultIcon = document.getElementById('defaultAvatarIcon');
+            if (!file) return;
 
-    uploadInput.addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          uploadedImg.src = evt.target.result;
-          uploadedImg.style.display = 'block';
-          defaultIcon.style.display = 'none';
+            if (!file.type.startsWith('image/')) {
+                alert('Silakan pilih file gambar.');
+                input.value = '';
+                return;
+            }
+
+            const uploadedImg = document.getElementById('uploadedAvatarImg');
+            const defaultIcon = document.getElementById('defaultAvatarIcon');
+
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+
+                uploadedImg.src = event.target.result;
+                uploadedImg.style.display = 'block';
+
+                defaultIcon.style.display = 'none';
+
+            };
+
+            reader.readAsDataURL(file);
+
         }
-        reader.readAsDataURL(file);
-      }
-    });
 
-    function togglePasswordVisibility(inputId, iconElem) {
-      const input = document.getElementById(inputId);
-      if (input.type === 'password') {
-        input.type = 'text';
-        iconElem.classList.remove('fa-eye-slash');
-        iconElem.classList.add('fa-eye');
-      } else {
-        input.type = 'password';
-        iconElem.classList.remove('fa-eye');
-        iconElem.classList.add('fa-eye-slash');
-      }
-    }
+        document.getElementById('uploadFotoInput')
+            .addEventListener('change', function() {
 
-    function resetFormPassword() {
-      document.getElementById('formUbahPassword').reset();
-    }
+                previewImage(this);
 
-    function simpanPassword() {
-      const curr = document.getElementById('inputCurrentPassword').value;
-      const newP = document.getElementById('inputNewPassword').value;
-      const conf = document.getElementById('inputConfirmPassword').value;
+            });
 
-      if (!curr || !newP || !conf) {
-        alert('Harap isi semua kolom password!');
-        return;
-      }
-      if (newP !== conf) {
-        alert('Konfirmasi password tidak cocok dengan password baru!');
-        return;
-      }
 
-      alert('Password berhasil diperbarui!');
-      resetFormPassword();
-    }
-  </script>
+        // SHOW / HIDE PASSWORD
+        function togglePasswordVisibility(inputId, iconElement) {
+
+            const input = document.getElementById(inputId);
+
+            if (input.type === 'password') {
+
+                input.type = 'text';
+
+                iconElement.classList.remove('fa-eye-slash');
+                iconElement.classList.add('fa-eye');
+
+            } else {
+
+                input.type = 'password';
+
+                iconElement.classList.remove('fa-eye');
+                iconElement.classList.add('fa-eye-slash');
+
+            }
+
+        }
+
+
+        // RESET FORM PASSWORD
+        function resetFormPassword() {
+
+            document.getElementById('formUbahPassword').reset();
+
+            document.querySelectorAll('.toggle-password').forEach(icon => {
+
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+
+            });
+
+            document.querySelectorAll('.input-password-wrapper input')
+                .forEach(input => {
+
+                    input.type = 'password';
+
+                });
+
+        }
+
+
+        // VALIDASI FORM UBAH PASSWORD
+        function simpanPassword() {
+
+            const currentPassword =
+                document.getElementById('inputCurrentPassword').value;
+
+            const newPassword =
+                document.getElementById('inputNewPassword').value;
+
+            const confirmPassword =
+                document.getElementById('inputConfirmPassword').value;
+
+
+            if (!currentPassword || !newPassword || !confirmPassword) {
+
+                alert('Harap isi semua kolom password!');
+                return;
+
+            }
+
+
+            if (newPassword !== confirmPassword) {
+
+                alert('Konfirmasi password tidak cocok dengan password baru!');
+                return;
+
+            }
+
+
+            alert('Password berhasil diperbarui!');
+
+            resetFormPassword();
+
+        }
+
+    </script>
+
 </body>
 </html>

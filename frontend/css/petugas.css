@@ -1,2203 +1,5864 @@
-/* ===================================================== */
-/* CSS PUNYA DASHBOARD & DATASET PETUGAS SIPIKA           */
-/* ===================================================== */
+/* =================================
+   1. GLOBAL & RESET
+================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #eff6ff;
+
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --border: #e2e8f0;
+
+    --sidebar-width: 225px;
+}
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-  background-color: #f3f4f6;
-  color: #1f2937;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: var(--background);
+    color: var(--text-primary);
+    min-height: 100vh;
 }
 
-/* KONTEN UTAMA & LAYOUT BERDAMPINGAN */
+
+
+/* =================================
+   2. LAYOUT UTAMA PETUGAS
+================================= */
+
 .dashboard-container,
 .app-container {
-  display: flex !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  overflow: hidden !important;
-  margin: 0 !important;
-  padding: 0 !important;
+    display: flex;
+    align-items: stretch;
+
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+
+    overflow: hidden;
 }
 
-/* ===================================================== */
-/* SIDEBAR STYLING                                       */
-/* ===================================================== */
-.sidebar {
-  width: 260px !important;
-  background: linear-gradient(rgba(11, 25, 44, 0.85), rgba(11, 25, 44, 0.85)), url('../assets/images/sidebar.jpeg') no-repeat center center/cover !important;
-  color: white !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
-  padding: 20px 0 !important;
-  height: 100vh !important;
-  box-sizing: border-box !important;
-  flex-shrink: 0 !important;
-  margin: 0 !important;
+/* Konten utama */
+.main-content {
+    flex: 1;
+    min-width: 0;
+
+    width: calc(100% - var(--sidebar-width));
+    height: 100vh;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--background);
+
+    overflow-x: hidden;
+    overflow-y: auto;
 }
+
+/* Area isi halaman */
+.content-body {
+    width: 100%;
+    min-width: 0;
+
+    padding: 0 32px 32px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* =================================
+   3. SIDEBAR & NAVIGASI
+================================= */
+
+.sidebar {
+    flex: 0 0 225px !important;
+
+    width: 225px !important;
+    min-width: 225px !important;
+    max-width: 225px !important;
+
+    height: 100vh !important;
+    min-height: 100vh !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+
+    padding: 12px 0 10px !important;
+
+    background:
+        linear-gradient(
+            rgba(11, 25, 44, 0.85),
+            rgba(11, 25, 44, 0.85)
+        ),
+        url('../assets/images/sidebar.jpeg') !important;
+
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+}
+
+
+/* =====================================================
+   2. LOGO SIPIKA
+===================================================== */
+
+.sidebar .sidebar-brand {
+    width: 100% !important;
+    height: 144px !important;
+    min-height: 144px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 0 !important;
+    margin: 0 0 20px !important;
+
+    flex-shrink: 0 !important;
+}
+
+.sidebar .sidebar-brand img {
+    width: 144px !important;
+    height: 144px !important;
+
+    max-width: 144px !important;
+    max-height: 144px !important;
+
+    display: block !important;
+
+    object-fit: contain !important;
+    object-position: center !important;
+
+    margin: 0 auto !important;
+}
+
+
+/* =====================================================
+   3. MENU NAVIGASI
+===================================================== */
+
+.sidebar .sidebar-menu {
+    width: 100% !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+
+    gap: 5px !important;
+
+    padding: 0 9.5px !important;
+    margin: 0 !important;
+
+    list-style: none !important;
+
+    flex-shrink: 0 !important;
+}
+
+.sidebar .sidebar-menu li {
+    width: 100% !important;
+    height: 46.5px !important;
+    min-height: 46.5px !important;
+
+    display: block !important;
+
+    list-style: none !important;
+}
+
+/* Ukuran setiap menu: 221 × 46.5px */
+.sidebar .sidebar-menu li a {
+    width: 100% !important;
+    height: 46.5px !important;
+    min-height: 46.5px !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    gap: 13px !important;
+
+    padding: 0 14px !important;
+
+    color: #cbd5e1 !important;
+
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+
+    line-height: 1.4 !important;
+    text-decoration: none !important;
+
+    border-radius: 9px !important;
+
+    box-sizing: border-box !important;
+
+    transition: background 0.2s ease;
+}
+
+/* Ikon menu */
+.sidebar .sidebar-menu li a i {
+    width: 21px !important;
+    min-width: 21px !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    font-size: 18px !important;
+
+    text-align: center !important;
+}
+
+/* Hover menu */
+.sidebar .sidebar-menu li a:hover {
+    background: rgba(255, 255, 255, 0.10) !important;
+    color: #ffffff !important;
+}
+
+/* Menu aktif */
+.sidebar .sidebar-menu li.active a,
+.sidebar .sidebar-menu li a.active {
+    background: #0866f5 !important;
+    color: #ffffff !important;
+
+    font-weight: 600 !important;
+
+    box-shadow: 0 3px 8px rgba(8, 102, 245, 0.22);
+}
+
+/* =====================================================
+   4. LOGOUT
+===================================================== */
+
+.sidebar .sidebar-footer {
+    position: relative !important;
+
+    width: 100% !important;
+
+    display: block !important;
+
+    margin-top: auto !important;
+
+    padding: 18px 16px 4px !important;
+
+    border: none !important;
+
+    flex-shrink: 0 !important;
+}
+
+/* Garis Logout hanya selebar area navigasi */
+.sidebar .sidebar-footer::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 16px;
+    right: 16px;
+
+    height: 1px;
+
+    background: rgba(255, 255, 255, 0.65);
+}
+
+/* Tombol Logout */
+.sidebar .sidebar-footer .logout-btn {
+    width: 100% !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    gap: 12px !important;
+
+    padding: 0 9px !important;
+
+    color: #ef4444 !important;
+
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+
+    text-decoration: none !important;
+}
+
+/* Ikon Logout */
+.sidebar .sidebar-footer .logout-btn i {
+    width: 20px !important;
+    min-width: 20px !important;
+
+    font-size: 16px !important;
+    text-align: center !important;
+}
+
+.sidebar .sidebar-footer .logout-btn:hover {
+    color: #fca5a5 !important;
+}
+
+/* =====================================================
+   5. RESPONSIVE MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        flex: 0 0 auto !important;
+
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+
+        height: auto !important;
+        min-height: auto !important;
+
+        padding: 14px 12px !important;
+    }
+
+    .sidebar .sidebar-brand {
+        height: auto !important;
+        min-height: 0 !important;
+
+        margin-bottom: 14px !important;
+    }
+
+    .sidebar .sidebar-brand img {
+        width: 85px !important;
+        height: auto !important;
+    }
+
+    .sidebar .sidebar-menu {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+
+        padding: 0 !important;
+    }
+
+    .sidebar .sidebar-menu li {
+        width: auto !important;
+        height: auto !important;
+    }
+
+    .sidebar .sidebar-menu li a {
+        width: auto !important;
+        height: 40px !important;
+        min-height: 40px !important;
+    }
+
+    .sidebar .sidebar-footer {
+        margin-top: 14px !important;
+    }
+
+}
+
+/* =================================
+   4. TOPBAR
+================================= */
+
+.top-navbar {
+    width: 100%;
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    padding: 0 32px;
+    flex-shrink: 0;
+}
+
+/* Badge profil pengguna */
+.user-profile-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 5px 12px;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 30px;
+
+    box-shadow: 0 2px 5px rgba(15, 23, 42, 0.05);
+}
+
+/* Avatar */
+.user-profile-badge .profile-avatar {
+    position: relative;
+
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #0866c6;
+    color: #ffffff;
+
+    border-radius: 50%;
+    font-size: 13px;
+}
+
+/* Informasi pengguna */
+.user-profile-badge .profile-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+}
+
+/* Nama pengguna */
+.user-profile-badge .profile-name {
+    margin: 0;
+
+    color: #0f172a;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* Status / Role */
+.user-profile-badge .profile-role {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    margin: 0;
+
+    color: #64748b;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+/* Indikator aktif hijau */
+.user-profile-badge .profile-role::before {
+    content: "";
+
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    min-width: 6px;
+
+    background: #22c55e;
+    border-radius: 50%;
+}
+
+/* =================================
+   5. DASHBOARD PETUGAS
+================================= */
+
+/* ---------- Welcome Banner ---------- */
+
+.welcome-banner {
+    width: 100%;
+    height: 160px;
+    min-height: 160px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding: 24px 32px;
+    margin: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(248, 250, 252, 0.97) 0%,
+            rgba(248, 250, 252, 0.92) 30%,
+            rgba(248, 250, 252, 0.65) 43%,
+            rgba(248, 250, 252, 0.20) 52%,
+            rgba(248, 250, 252, 0) 62%
+        ),
+        url('../assets/images/banner.jpg');
+
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05);
+    overflow: hidden;
+}
+
+/* Pembungkus teks banner */
+.welcome-banner .banner-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 100%;
+    max-width: 620px;
+    gap: 4px;
+}
+
+/* Label sambutan */
+.welcome-banner .banner-tag {
+    display: block;
+
+    margin: 0;
+
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    line-height: 1.5;
+}
+
+/* Nama petugas */
+.welcome-banner .banner-text h1 {
+    margin: 0;
+
+    color: #0f172a;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* Deskripsi banner */
+.welcome-banner .banner-text p {
+    max-width: 600px;
+    margin: 2px 0 0;
+
+    color: #0f172a;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+
+/* ---------- Information Card ---------- */
+
+
+/* ---------- PENGENALAN SISTEM SIPIKA ---------- */
+
+.info-card {
+    width: 100%;
+    min-height: 104px;
+
+    padding: 14px 22px;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+}
+
+/* Susunan ikon dan teks */
+.info-card-header {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin: 0;
+}
+/* Kotak ikon Pengenalan Sistem */
+.custom-card-icon {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e0f2fe;
+    border-radius: 14px;
+
+    color: #1683e8;
+}
+
+/* Gambar SVG di dalam kotak */
+.custom-card-icon svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+/* Pembungkus judul dan deskripsi */
+.info-card-content {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Judul kartu */
+.info-card-content h3 {
+    margin: 0;
+
+    color: #0f2f57;
+    font-family: 'Poppins', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* Deskripsi kartu */
+.info-card-content p {
+    margin: 0;
+
+    color: #475569;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14.5px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* ---------- CONTAINER UTAMA ALGORITMA ---------- */
+
+.algorithm-card {
+    width: 100%;
+    padding: 20px 18px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+}
+
+/* ---------- PENGENALAN ALGORITMA DECISION TREE ---------- */
+
+.algorithm-intro {
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 12px;
+
+    margin: 0;
+}
+
+/* Ikon Decision Tree */
+.algorithm-intro-icon {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.algorithm-intro-icon .custom-card-icon {
+    width: 46px;
+    height: 46px;
+
+    display: block;
+    object-fit: contain;
+}
+
+/* Pembungkus judul dan deskripsi */
+.algorithm-intro-content {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+/* Judul */
+.algorithm-intro-content h3 {
+    margin: 0;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #0f2f57;
+}
+
+/* Deskripsi */
+.algorithm-intro-content p {
+    margin: 0;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14.5px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #475569;
+}
+
+
+/* ---------- Decision Tree Flow ---------- */
+
+/* Pembungkus tiga container dan dua panah */
+.dt-flow-container {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+    border: none;
+    border-radius: 0;
+}
+
+/* Ketiga kotak memiliki lebar yang sama */
+.dt-flow-container > .dt-box {
+    flex: 1 1 0;
+    width: 0;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* =================================
+   PROSES DECISION TREE
+================================= */
+
+/* Container Proses Decision Tree */
+.dt-flow-container > .process-box {
+    min-height: 131px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 14px;
+
+    background: #f0edff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+/* Susunan ikon dan konten */
+.process-box .dt-box-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Kolom judul dan deskripsi */
+.process-box .dt-box-content {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+/* Lingkaran pembungkus ikon Decision Tree */
+.process-box .dt-icon-box.process-icon {
+    width: 75px !important;
+    height: 75px !important;
+    min-width: 75px !important;
+    max-width: 75px !important;
+
+    flex: 0 0 75px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    background: #e4e0ff !important;
+    border-radius: 50% !important;
+}
+
+/* Gambar ikon Decision Tree */
+.process-box .dt-icon-box.process-icon img.dt-custom-icon {
+    width: 42px !important;
+    height: 42px !important;
+    max-width: 42px !important;
+    max-height: 42px !important;
+
+    object-fit: contain !important;
+    display: block !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Judul Proses Decision Tree */
+.process-box .dt-box-title {
+    display: block;
+    margin: 0;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #0f2f57;
+}
+
+/* Deskripsi Proses Decision Tree */
+.process-box .dt-box-description {
+    margin: 0;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    color: #475569;
+}
+
+/* =================================
+   INPUT DATA
+================================= */
+
+/* Container Input Data */
+.dt-flow-container > .dt-box:first-child {
+    min-height: 178px;
+
+    padding: 12px 14px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #e8f3ff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+/* Judul Input Data */
+.dt-flow-container > .dt-box:first-child .dt-box-title {
+    display: block;
+    text-align: center;
+    margin-bottom: 9px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f2f57;
+}
+
+/* Item atribut Input Data */
+.dt-flow-container > .dt-box:first-child .dt-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 5px 8px;
+    margin-bottom: 5px;
+
+    background: #ffffff;
+    border-radius: 7px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #172b4d;
+}
+
+/* Ikon atribut Input Data */
+.dt-flow-container > .dt-box:first-child .dt-item i {
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    font-size: 15px;
+    color: #1877e8;
+}
+
+/* Ikon SVG atribut Input Data */
+.dt-flow-container > .dt-box:first-child .dt-item .input-attribute-icon {
+    width: 20px;
+    height: 20px;
+
+    flex-shrink: 0;
+    color: #1877e8;
+}
+
+/* Menghilangkan margin item terakhir */
+.dt-flow-container > .dt-box:first-child .dt-item:last-child {
+    margin-bottom: 0;
+}
+
+/* =================================
+   HASIL KLASIFIKASI
+================================= */
+
+/* Container Hasil Klasifikasi */
+.dt-flow-container > .result-box {
+    min-height: 166px;
+
+    padding: 14px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+
+    background: #e9f7f3;
+    border: none;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+/* Susunan ikon dan konten */
+.result-box .dt-box-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Lingkaran hijau luar */
+.result-box .result-icon {
+    width: 54px;
+    height: 54px;
+    min-width: 54px;
+    flex: 0 0 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #d2f2e7;
+    border-radius: 50%;
+}
+
+/* Ikon hijau bagian dalam */
+.result-box .result-icon .dt-custom-icon {
+    width: 42px;
+    height: 42px;
+
+    display: block;
+    object-fit: contain;
+
+    border-radius: 50%;
+    background: #c4ecdf;
+    padding: 0;
+}
+
+/* Kolom judul dan deskripsi */
+.result-box .dt-box-content {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+
+    padding-top: 2px;
+}
+
+/* Judul Hasil Klasifikasi */
+.result-box .dt-box-title {
+    display: block;
+    margin: 0;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #0f2f57;
+}
+
+/* Deskripsi */
+.result-box .result-desc {
+    margin: 0;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #475569;
+}
+
+/* Pembungkus tiga badge */
+.result-box .badge-group {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Bentuk dasar badge */
+.result-box .badge {
+    width: 64px;
+    height: 30px;
+    flex: 0 0 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Badge Rendah */
+.result-box .badge-rendah {
+    background: #ffe1e1;
+    color: #c62828;
+}
+
+/* Badge Sedang */
+.result-box .badge-sedang {
+    background: #fff0d1;
+    color: #ad6500;
+}
+
+/* Badge Tinggi */
+.result-box .badge-tinggi {
+    background: #b8f7df;
+    color: #07865b;
+}
+
+/* =================================
+   RESPONSIVE DECISION TREE
+================================= */
+
+@media (max-width: 768px) {
+    .dt-flow-container {
+        max-width: 100%;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .dt-flow-container > .dt-box:first-child,
+    .dt-flow-container > .process-box,
+    .dt-flow-container > .result-box {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .dt-arrow {
+        transform: rotate(90deg);
+        justify-self: center;
+    }
+}
+
+/* =================================
+   6. DATASET PETUGAS
+================================= */
+
+/* =========================================
+   1. GLOBAL PAGE LAYOUT
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: 'Poppins', sans-serif;
+    background: #edf3fa;
+    color: #0f172a;
+}
+
+.app-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+
+/* =========================================
+   2. SIDEBAR
+========================================= */
+
+.sidebar {
+    width: 190px;
+    min-width: 190px;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 22px 10px 18px;
+
+    background:
+        linear-gradient(
+            rgba(0, 25, 54, 0.90),
+            rgba(0, 15, 35, 0.96)
+        ),
+        url('../assets/images/sidebar.jpeg');
+
+    background-size: cover;
+    background-position: center;
+
+    color: #ffffff;
+}
+
+/* Logo SIPIKA */
 
 .sidebar-brand {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  padding: 10px 0 !important;
-  margin-bottom: 20px !important;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 52px;
 }
 
-.logo-img,
-.sidebar-brand img,
-.sidebar-logo img {
-  width: 150px !important;
-  height: auto !important;
-  object-fit: contain !important;
-  display: block !important;
-  margin: 0 auto !important;
+.brand-logo-img {
+    width: 105px;
+    height: auto;
+    object-fit: contain;
 }
 
-.sidebar-brand h2 {
-  font-size: 20px !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.5px !important;
-}
+/* Navigasi sidebar */
 
 .sidebar-menu {
-  list-style: none !important;
-  padding: 0 16px !important;
-  margin: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 8px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .sidebar-menu li {
-  margin-bottom: 0 !important;
+    list-style: none;
 }
 
-.sidebar-menu a,
-.sidebar ul li a {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  padding: 12px 16px !important;
-  color: #cbd5e1 !important;
-  text-decoration: none !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  border-radius: 8px !important;
-  transition: all 0.2s ease !important;
+/* Link navigasi */
+
+.sidebar-menu li a {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    padding: 9px 12px;
+
+    color: #cbd5e1;
+    text-decoration: none;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+
+    border-radius: 7px;
+    transition: background 0.2s ease;
 }
 
-.sidebar-menu a:hover,
-.sidebar ul li a:hover {
-  background-color: rgba(255, 255, 255, 0.05) !important;
-  color: #ffffff !important;
+/* Ikon navigasi */
+
+.sidebar-menu li a i {
+    width: 15px;
+    min-width: 15px;
+
+    font-size: 14px;
+    text-align: center;
 }
 
-/* Efek Tombol Aktif (Menu yang Sedang Diklik) */
-.sidebar-menu a.active,
-.sidebar-menu li.active a,
-.sidebar ul li a.active,
-.sidebar ul li.active a {
-  background: #2563eb !important;
-  color: white !important;
-  font-weight: 600 !important;
-  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3) !important;
+/* Hover navigasi */
+
+.sidebar-menu li a:hover {
+    background: rgba(255, 255, 255, 0.10);
+    color: #ffffff;
 }
+
+/* Menu aktif */
+
+.sidebar-menu li.active a {
+    background: #0866f5;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Footer sidebar */
 
 .sidebar-footer {
-  margin-top: auto !important;
-  padding: 15px 24px !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    margin-top: auto;
+
+    padding: 20px 10px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.75);
 }
 
+/* Tombol logout */
+
 .logout-btn {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  color: #ef4444 !important;
-  text-decoration: none !important;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: #ef4444;
+    text-decoration: none;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.logout-btn i {
+    font-size: 14px;
 }
 
 .logout-btn:hover {
-  color: #f87171 !important;
+    color: #fca5a5;
 }
 
-/* ===================================================== */
-/* MAIN CONTENT STYLING                                  */
-/* ===================================================== */
+
+/* =========================================
+   3. MAIN CONTENT
+========================================= */
+
 .main-content {
-  flex: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  height: 100vh !important;
-  overflow-y: auto !important;
-  background-color: #f3f4f6 !important;
-  margin: 0 !important;
-  padding: 0 !important;
+    flex: 1;
+    min-width: 0;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #edf3fa;
 }
 
-/* TOPBAR & PROFIL */
-.topbar,
-.top-navbar {
-  height: 70px !important;
-  background-color: transparent !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-end !important;
-  padding: 0 32px !important;
-  flex-shrink: 0 !important;
-  box-shadow: none !important;
+/* =========================================
+   4. TOPBAR & PROFIL
+========================================= */
+
+.topbar {
+    width: 100%;
+    height: 56px;
+    min-height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    padding: 0 20px;
 }
 
-.topbar-profile,
-.top-navbar > div:last-child {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  background: white !important;
-  padding: 6px 14px !important;
-  border-radius: 30px !important;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
-  border: 1px solid #e2e8f0 !important;
+/* Container profil */
+
+.topbar-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 5px 10px;
+
+    background: #ffffff;
+    border-radius: 9px;
 }
 
-.profile-avatar {
-  width: 35px !important;
-  height: 35px !important;
-  background-color: #2563eb !important;
-  color: white !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  border-radius: 50% !important;
-  font-size: 14px !important;
+/* Avatar */
+
+.topbar-profile .profile-avatar {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #0866f5;
+    color: #ffffff;
+
+    border-radius: 50%;
+    font-size: 12px;
 }
 
-.profile-info {
-  display: flex !important;
-  flex-direction: column !important;
+/* Informasi profil */
+
+.topbar-profile .profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
 }
 
-.profile-name {
-  font-size: 13px !important;
-  font-weight: 700 !important;
-  color: #1e293b !important;
+/* Nama pengguna */
+
+.topbar-profile .profile-name {
+    color: #0f172a;
+
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.4;
 }
 
-.profile-role {
-  font-size: 11px !important;
-  color: #64748b !important;
+/* Role pengguna */
+
+.topbar-profile .profile-role {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    color: #64748b;
+
+    font-size: 9px;
+    font-weight: 400;
+    line-height: 1.4;
 }
 
-/* CONTENT BODY */
+/* Status aktif */
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+
+    display: inline-block;
+
+    background: #22c55e;
+    border-radius: 50%;
+}
+
+
+/* =========================================
+   5. CONTENT BODY
+========================================= */
+
 .content-body {
-  padding: 0 32px 32px 32px !important;
-  flex: 1 0 auto !important;
-  display: flex !important;
-  flex-direction: column !important;
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    padding: 0 20px 16px;
 }
 
-/* Welcome Banner / Banner Card */
-.welcome-banner, .banner-card {
-  background: linear-gradient(90deg, rgba(248, 250, 252, 0.95) 0%, rgba(248, 250, 252, 0.85) 45%, rgba(248, 250, 252, 0.2) 75%, transparent 100%), 
-              url('../assets/images/banner.jpg') !important;
-  background-size: cover !important;
-  background-position: right center !important;
-  background-repeat: no-repeat !important;
-  border-radius: 16px !important;
-  padding: 32px !important;
-  margin: 0 0 24px 0 !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
-  position: relative !important;
-  overflow: hidden !important;
-  flex-shrink: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: flex-start !important;
+
+/* =========================================
+   6. BANNER DATASET
+========================================= */
+
+.banner-card {
+    width: 100%;
+    height: 160px;
+    min-height: 160px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 18px 24px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.98) 0%,
+            rgba(255, 255, 255, 0.94) 34%,
+            rgba(255, 255, 255, 0.55) 57%,
+            rgba(255, 255, 255, 0.02) 100%
+        ),
+        url('../assets/images/banner.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border: 1px solid #d8e5f3;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
-.banner-tag {
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  letter-spacing: 1px !important;
-  opacity: 0.8 !important;
-  display: block !important;
-  margin-bottom: 8px !important;
+/* Pembungkus teks banner */
+
+.banner-text {
+    width: 100%;
+    max-width: 540px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-.banner-text h2,
-.welcome-banner h1, 
-.welcome-banner h2,
-.banner-card h2 {
-  font-size: 22px !important;
-  font-weight: 700 !important;
-  color: #ffffff !important;
-  margin-bottom: 8px !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+/* Label PENGELOLAAN */
+
+.banner-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 0;
 }
 
-.banner-text p,
-.welcome-banner p,
-.banner-card p {
-  font-size: 13px !important;
-  color: #f1f5f9 !important;
-  max-width: 600px !important;
-  line-height: 1.5 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+.banner-eyebrow span:first-child {
+    color: #0875f5;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.5;
 }
 
-/* Info Card */
-.info-card {
-  background: white !important;
-  border-radius: 16px !important;
-  padding: 24px 30px !important;
-  margin-bottom: 24px !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
-  border: 1px solid #e5e7eb !important;
+/* Garis dekoratif */
+
+.banner-line {
+    width: 28px;
+    height: 2px;
+
+    display: inline-block;
+
+    background: #0875f5;
+    border-radius: 2px;
 }
 
-.info-card-header {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  margin-bottom: 12px !important;
+/* Judul Data Dataset */
+
+.banner-text h1 {
+    margin: 0;
+
+    color: #080808;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
 }
 
-.card-icon {
-  color: #2563eb !important;
-  font-size: 18px !important;
+/* Deskripsi banner */
+
+.banner-text p {
+    max-width: 520px;
+
+    margin: 5px 0 0;
+
+    color: #111827;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.45;
 }
 
-.custom-card-icon {
-  width: 24px !important;
-  height: 24px !important;
-}
 
-.info-card h3 {
-  font-size: 16px !important;
-  font-weight: 700 !important;
-  color: #111827 !important;
-}
+/* =========================================
+   7. FILTER & ACTION BAR
+========================================= */
 
-.info-card p {
-  font-size: 13px !important;
-  color: #4b5563 !important;
-  line-height: 1.6 !important;
-}
-
-/* Decision Tree Flow Layout */
-.dt-flow-container {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 15px !important;
-  margin-top: 20px !important;
-  background: #f8fafc !important;
-  padding: 20px !important;
-  border-radius: 12px !important;
-  border: 1px solid #e2e8f0 !important;
-}
-
-.dt-box {
-  background: white !important;
-  border: 1px solid #cbd5e1 !important;
-  border-radius: 10px !important;
-  padding: 15px !important;
-  flex: 1 !important;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
-}
-
-.dt-box-title {
-  font-size: 13px !important;
-  font-weight: 700 !important;
-  color: #1e293b !important;
-  display: block !important;
-  margin-bottom: 10px !important;
-}
-
-.dt-item {
-  font-size: 12px !important;
-  color: #475569 !important;
-  background: #f1f5f9 !important;
-  padding: 8px 10px !important;
-  border-radius: 6px !important;
-  margin-bottom: 6px !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-}
-
-.dt-item i {
-  color: #2563eb !important;
-}
-
-.process-box p, .result-desc {
-  font-size: 11px !important;
-  color: #64748b !important;
-  line-height: 1.4 !important;
-}
-
-.dt-arrow {
-  color: #94a3b8 !important;
-  font-size: 16px !important;
-}
-
-/* Badges Hasil Klasifikasi */
-.badge-group {
-  display: flex !important;
-  gap: 6px !important;
-  margin-top: 12px !important;
-}
-
-.badge {
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  padding: 4px 10px !important;
-  border-radius: 20px !important;
-}
-
-.badge-rendah {
-  background-color: #fee2e2 !important;
-  color: #991b1b !important;
-}
-
-.badge-sedang {
-  background-color: #fef3c7 !important;
-  color: #92400e !important;
-}
-
-.badge-tinggi {
-  background-color: #d1fae5 !important;
-  color: #065f46 !important;
-}
-
-/* Footer Copyright (Terpisah di Paling Bawah) */
-.footer-copyright {
-  text-align: center !important;
-  font-size: 12px !important;
-  color: #9ca3af !important;
-  padding: 16px 0 !important;
-  background: white !important;
-  width: 100% !important;
-  margin-top: auto !important;
-  flex-shrink: 0 !important;
-  border-top: 1px solid #e5e7eb !important;
-}
-
-/* ===================================================== */
-/* HALAMAN DATASET (Filter, Action Bar, Tabel & Pagination) */
-/* ===================================================== */
 .filter-action-bar {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  margin-bottom: 20px !important;
-  gap: 12px !important;
-  flex-wrap: wrap !important;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
+
+/* Kotak pencarian */
 
 .search-box {
-  position: relative !important;
-  flex: 1 !important;
-  min-width: 220px !important;
+    height: 30px;
+    flex: 1;
+    min-width: 130px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 0 11px;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 7px;
 }
 
 .search-box i {
-  position: absolute !important;
-  left: 14px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  color: #94a3b8 !important;
+    color: #64748b;
+    font-size: 11px;
 }
 
 .search-box input {
-  width: 100% !important;
-  padding: 10px 14px 10px 40px !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 8px !important;
-  font-size: 13px !important;
-  outline: none !important;
-  background: white !important;
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+
+    background: transparent;
+    border: none;
+    outline: none;
+
+    color: #334155;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
 }
+
+.search-box input::placeholder {
+    color: #94a3b8;
+}
+
+/* Kelompok filter */
 
 .filter-group {
-  display: flex !important;
-  gap: 10px !important;
-  flex-wrap: wrap !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
 }
+
+/* Dropdown filter */
 
 .filter-select {
-  padding: 10px 14px !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 8px !important;
-  font-size: 13px !important;
-  background: white !important;
-  color: #334155 !important;
-  outline: none !important;
+    height: 30px;
+    min-width: 0;
+
+    padding: 0 8px;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 7px;
+
+    color: #334155;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+
+    outline: none;
+    cursor: pointer;
 }
 
-/* REVISI 2: Tombol Tambah Data (Warna Biru Standar & Rounded Sesuai Teks) */
-.btn-add,
-a.btn-add,
-button.btn-add,
-.filter-action-bar .btn-primary,
-.filter-action-bar a:last-child {
-  background-color: #2563eb !important;
-  color: white !important;
-  padding: 10px 18px !important;
-  border-radius: 8px !important;
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  text-decoration: none !important;
-  border: none !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  white-space: nowrap !important;
-  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2) !important;
-  transition: background 0.2s ease !important;
+/* Tombol Tambah Data */
+
+.btn-primary {
+    height: 30px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    padding: 0 13px;
+
+    background: #0866f5;
+    border: none;
+    border-radius: 7px;
+
+    color: #ffffff;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    cursor: pointer;
+
+    transition: background 0.2s ease;
 }
 
-.btn-add:hover {
-  background-color: #1d4ed8 !important;
+.btn-primary:hover {
+    background: #0052cc;
 }
+
+.btn-primary i {
+    font-size: 11px;
+}
+
+
+/* =========================================
+   8. TABLE CARD
+========================================= */
 
 .table-card {
-  background: white !important;
-  border-radius: 12px !important;
-  border: 1px solid #e2e8f0 !important;
-  padding: 20px !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
+    width: 100%;
+    min-width: 0;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 11px;
+
+    overflow-x: auto;
 }
+
+/* Tabel dataset */
 
 .data-table {
-  width: 100% !important;
-  border-collapse: collapse !important;
-  text-align: left !important;
-  font-size: 13px !important;
+    width: 100%;
+    border-collapse: collapse;
+
+    color: #1e293b;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+
+    text-align: left;
 }
 
-.data-table th {
-  background: #f8fafc !important;
-  color: #475569 !important;
-  font-weight: 600 !important;
-  padding: 12px 16px !important;
-  border-bottom: 1px solid #e2e8f0 !important;
+/* Header tabel */
+
+.data-table thead {
+    background: #d6eaff;
 }
 
-.data-table td {
-  padding: 12px 16px !important;
-  border-bottom: 1px solid #f1f5f9 !important;
-  color: #334155 !important;
+.data-table thead th {
+    height: 29px;
+
+    padding: 0 9px;
+
+    color: #172b45;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    white-space: nowrap;
 }
 
-.data-table tr:hover {
-  background: #f8fafc !important;
+/* Baris tabel */
+
+.data-table tbody tr {
+    height: 27px;
+    border-bottom: 1px solid #edf2f7;
 }
+
+.data-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* Sel tabel */
+
+.data-table tbody td {
+    padding: 4px 9px;
+
+    color: #26364e;
+
+    font-size: 10px;
+    font-weight: 400;
+
+    white-space: nowrap;
+}
+
+/* Hover baris */
+
+.data-table tbody tr:hover {
+    background: #f8fbff;
+}
+
+/* Perataan kolom nomor */
+
+.data-table th:first-child,
+.data-table td:first-child {
+    width: 36px;
+    text-align: center;
+}
+
+/* Perataan kolom produksi */
+
+.data-table th:nth-child(6),
+.data-table td:nth-child(6) {
+    text-align: center;
+}
+
+/* Perataan kolom kategori */
+
+.data-table th:nth-child(7),
+.data-table td:nth-child(7) {
+    text-align: center;
+}
+
+/* Perataan kolom aksi */
+
+.data-table th:last-child,
+.data-table td:last-child {
+    width: 75px;
+    text-align: center;
+}
+
+
+/* =========================================
+   9. BADGE KATEGORI
+========================================= */
+
+.badge {
+    min-width: 58px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2px 9px;
+
+    border-radius: 20px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+
+    line-height: 1.3;
+}
+
+.badge-tinggi {
+    background: #d4f4e2;
+    color: #07834e;
+}
+
+.badge-sedang {
+    background: #ffedcc;
+    color: #b96b00;
+}
+
+.badge-rendah {
+    background: #ffe1e1;
+    color: #d32323;
+}
+
+
+/* =========================================
+   10. ACTION BUTTON
+========================================= */
 
 .action-btn {
-  background: none !important;
-  border: none !important;
-  cursor: pointer !important;
-  padding: 6px !important;
-  font-size: 14px !important;
+    width: 19px;
+    height: 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+}
+
+.action-btn i {
+    font-size: 12px;
 }
 
 .btn-edit {
-  color: #2563eb !important;
+    color: #0866f5;
 }
 
 .btn-delete {
-  color: #dc2626 !important;
+    color: #dc2626;
 }
 
-/* REVISI 3: Pagination / Navigasi Halaman (< 1 2 3 >) di Sebelah Kanan & Efek Aktif Biru */
-.pagination,
-.pagination-container,
-.table-card .pagination,
-.data-pagination {
-  display: flex !important;
-  justify-content: flex-end !important;
-  align-items: center !important;
-  gap: 6px !important;
-  margin-top: 16px !important;
-  padding: 0 !important;
-  border-top: none !important;
-  background: transparent !important;
-  box-shadow: none !important;
+.btn-edit:hover {
+    color: #004bb8;
 }
 
-/* Styling Tombol/Angka Pagination (Diperkecil ukurannya) */
-.pagination a,
-.pagination button,
-.pagination-container a,
-.pagination-container button,
+.btn-delete:hover {
+    color: #991b1b;
+}
+
+
+/* =========================================
+   11. PAGINATION
+========================================= */
+
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+
+    padding: 10px 12px 12px;
+}
+
+/* Tombol halaman */
+
 .page-btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  min-width: 30px !important;
-  height: 30px !important;
-  padding: 0 4px !important;
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  color: #64748b !important;
-  background-color: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 6px !important;
-  text-decoration: none !important;
-  cursor: pointer !important;
-  transition: all 0.2s ease !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+    width: 21px;
+    height: 21px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+
+    color: #334155;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+
+    cursor: pointer;
 }
 
-/* Efek Hover */
-.pagination a:hover,
-.pagination button:hover,
-.pagination-container a:hover,
-.pagination-container button:hover,
-.page-btn:hover {
-  background-color: #f1f5f9 !important;
-  color: #1e293b !important;
-  border-color: #cbd5e1 !important;
+.page-btn i {
+    font-size: 9px;
 }
 
-/* Efek Aktif (Halaman yang Dipilih / Warna Biru) */
-.pagination a.active,
-.pagination button.active,
-.pagination-container a.active,
-.pagination-container button.active,
+/* Halaman aktif */
+
 .page-btn.active {
-  background-color: #2563eb !important;
-  color: #ffffff !important;
-  border-color: #2563eb !important;
-  font-weight: 700 !important;
-  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2) !important;
+    background: #0866f5;
+    border-color: #0866f5;
+    color: #ffffff;
 }
 
-/* Efek Aktif (Halaman yang Dipilih / Warna Biru Figma) */
-.pagination a.active,
-.pagination button.active,
-.pagination-container a.active,
-.pagination-container button.active,
-.page-btn.active {
-  background-color: #2563eb !important;
-  color: #ffffff !important;
-  border-color: #2563eb !important;
-  font-weight: 700 !important;
-  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3) !important;
+.page-btn:hover:not(.active) {
+    background: #eff6ff;
 }
 
-/* Perbaikan Ukuran Kotak Ikon Decision Tree di Dashboard */
-.dt-box-icon, 
-.process-icon, 
-.result-icon {
-  width: 60px !important;
-  height: 60px !important;
-  font-size: 24px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  border-radius: 12px !important;
-  margin-bottom: 12px !important;
-}
 
-.dt-box-icon img,
-.process-icon img,
-.result-icon img,
-.dt-custom-icon {
-  width: 32px !important;
-  height: 32px !important;
-  max-width: 32px !important;
-  max-height: 32px !important;
-  object-fit: contain !important;
-}
+/* =========================================
+   12. FOOTER COPYRIGHT
+========================================= */
 
-/* Responsive */
-@media (max-width: 900px) {
-  .dt-flow-container {
-    flex-direction: column !important;
-  }
-  .dt-arrow {
-    transform: rotate(90deg) !important;
-  }
-}
+.footer-copyright {
+    width: 100%;
 
+    padding: 12px 20px 15px;
+    margin-top: auto;
 
-/* ===================================================== */
-/* REVISI HALAMAN EVALUASI MODEL (PRESISI FIGMA)        */
-/* ===================================================== */
+    flex-shrink: 0;
 
-.evaluation-grid {
-  display: grid !important;
-  grid-template-columns: 1.8fr 1.2fr !important;
-  gap: 20px !important;
-  margin-bottom: 20px !important;
-}
+    text-align: center;
+    color: #94a3b8;
 
-.eval-card, .matrix-card {
-  background: #ffffff !important;
-  border-radius: 16px !important;
-  border: 1px solid #e2e8f0 !important;
-  padding: 24px !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
 }
 
-.eval-card-header, .matrix-header {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  margin-bottom: 20px !important;
+.footer-copyright p {
+    margin: 0;
 }
 
-.eval-icon-box, .matrix-icon-box {
-  width: 42px !important;
-  height: 42px !important;
-  background: #eff6ff !important;
-  color: #2563eb !important;
-  border-radius: 12px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-size: 18px !important;
-}
 
-.eval-card-header h3, .matrix-header h3 {
-  font-size: 16px !important;
-  font-weight: 700 !important;
-  color: #1e293b !important;
-  margin: 0 !important;
-}
+/* =========================================
+   13. MODAL FORM
+========================================= */
 
-.eval-card-header p, .matrix-header p {
-  font-size: 12px !important;
-  color: #64748b !important;
-  margin: 2px 0 0 0 !important;
-}
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
 
-/* Background Header Tabel Biru Muda Figma */
-.eval-card .data-table {
-  width: 100% !important;
-  border-collapse: separate !important;
-  border-spacing: 0 !important;
-}
+    display: none;
+    align-items: center;
+    justify-content: center;
 
-.eval-card .data-table th {
-  background: #eff6ff !important;
-  color: #1e293b !important;
-  font-weight: 700 !important;
-  font-size: 13px !important;
-  padding: 14px 16px !important;
-  border: none !important;
-}
+    padding: 20px;
 
-.eval-card .data-table th:first-child {
-  border-top-left-radius: 10px !important;
-  border-bottom-left-radius: 10px !important;
+    background: rgba(15, 23, 42, 0.48);
+    backdrop-filter: blur(3px);
 }
 
-.eval-card .data-table th:last-child {
-  border-top-right-radius: 10px !important;
-  border-bottom-right-radius: 10px !important;
-}
+/* Kotak modal */
 
-.eval-card .data-table td {
-  padding: 16px !important;
-  border-bottom: 1px solid #f1f5f9 !important;
-  font-size: 13px !important;
-  color: #334155 !important;
-}
+.modal-card {
+    width: 100%;
+    max-width: 420px;
+    max-height: 90vh;
 
-/* Styling Layout Akurasi Model (Ikon di Kiri Teks) */
-.accuracy-container {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important; /* Membuat posisi konten berada di tengah secara horizontal */
-  gap: 24px !important;
-  height: 100% !important;
-  min-height: 160px !important; /* Menyesuaikan tinggi agar pas di tengah vertikal */
-  padding: 10px !important;
-}
+    overflow-y: auto;
 
-.accuracy-icon-lg {
-  width: 64px !important;
-  height: 64px !important;
-  min-width: 64px !important;
-  background: #eff6ff !important;
-  color: #2563eb !important;
-  border-radius: 50% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-size: 28px !important;
-}
+    background: #ffffff;
+    border-radius: 13px;
 
-.accuracy-content {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
+    box-shadow: 0 15px 45px rgba(15, 23, 42, 0.18);
 }
 
-.accuracy-title {
-  font-size: 14px !important;
-  font-weight: 700 !important;
-  color: #1e293b !important;
-  margin-bottom: 4px !important;
-}
+/* Header modal */
 
-.accuracy-value {
-  font-size: 42px !important;
-  font-weight: 800 !important;
-  color: #0f172a !important;
-  line-height: 1.1 !important;
-  margin-bottom: 8px !important;
-}
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-.accuracy-desc {
-  font-size: 12px !important;
-  color: #64748b !important;
-  line-height: 1.4 !important;
-}
+    padding: 17px 20px;
 
-/* Confusion Matrix Table Layout */
-.matrix-table-wrapper {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 24px !important;
-  margin-top: 20px !important;
+    border-bottom: 1px solid #e2e8f0;
 }
 
-.matrix-table {
-  border-collapse: separate !important;
-  border-spacing: 4px !important;
-  text-align: center !important;
-  font-size: 13px !important;
-}
+.modal-header h3 {
+    margin: 0;
 
-.matrix-table th {
-  padding: 10px 20px !important;
-  color: #475569 !important;
-  font-weight: 600 !important;
-  background: transparent !important;
-}
+    color: #0f172a;
 
-.matrix-table td {
-  width: 90px !important;
-  height: 54px !important;
-  border-radius: 6px !important;
-  font-size: 14px !important;
+    font-size: 16px;
+    font-weight: 700;
 }
 
-.matrix-cell-darkblue {
-  background-color: #1d4ed8 !important;
-  color: #ffffff !important;
-  font-weight: 700 !important;
-}
+/* Tombol tutup */
 
-.matrix-cell-blue {
-  background-color: #3b82f6 !important;
-  color: #ffffff !important;
-  font-weight: 700 !important;
-}
+.modal-close {
+    width: 28px;
+    height: 28px;
 
-.matrix-cell-light {
-  background-color: #f0f7ff !important;
-  color: #334155 !important;
-  font-weight: 500 !important;
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-.axis-label-y {
-  writing-mode: vertical-lr !important;
-  transform: rotate(180deg) !important;
-  font-weight: 700 !important;
-  color: #1e293b !important;
-  font-size: 13px !important;
-}
+    background: #f1f5f9;
+    border: none;
+    border-radius: 7px;
 
-.legend-container {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
+    color: #64748b;
+    cursor: pointer;
 }
 
-.legend-bar {
-  width: 16px !important;
-  height: 150px !important;
-  background: linear-gradient(to bottom, #1d4ed8, #3b82f6, #93c5fd, #eff6ff) !important;
-  border-radius: 4px !important;
+.modal-close:hover {
+    background: #e2e8f0;
 }
 
-.legend-values {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
-  height: 150px !important;
-  font-size: 11px !important;
-  color: #64748b !important;
-  font-weight: 500 !important;
-}
+/* Isi modal */
 
-/* ===================================================== */
-/* STYLING KHUSUS HALAMAN RIWAYAT PREDIKSI               */
-/* ===================================================== */
-
-.filter-dropdown-wrapper {
-  position: relative !important;
-  display: flex !important;
-  align-items: center !important;
+.modal-body {
+    padding: 20px;
 }
 
-.filter-dropdown-wrapper .filter-icon {
-  position: absolute !important;
-  left: 14px !important;
-  color: #64748b !important;
-  font-size: 14px !important;
-  pointer-events: none !important;
-}
+/* Kelompok form */
 
-.filter-select {
-  padding: 10px 36px 10px 38px !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 8px !important;
-  background-color: #ffffff !important;
-  color: #334155 !important;
-  font-size: 13px !important;
-  font-family: inherit !important;
-  outline: none !important;
-  cursor: pointer !important;
-  appearance: none !important;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
-  background-repeat: no-repeat !important;
-  background-position: right 12px center !important;
-  background-size: 14px !important;
-}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 
-/* Tombol Detail Biru Khas Figma */
-.btn-detail {
-  display: inline-block !important;
-  background-color: #2563eb !important;
-  color: #ffffff !important;
-  padding: 6px 16px !important;
-  border-radius: 6px !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  text-decoration: none !important;
-  transition: all 0.2s ease !important;
-  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2) !important;
+    margin-bottom: 14px;
 }
 
-.btn-detail:hover {
-  background-color: #1d4ed8 !important;
-  color: #ffffff !important;
-}
+/* Label form */
 
-/* Kontainer Utama Melengkung Halus */
-.main-card {
-  background: #ffffff !important;
-  border-radius: 16px !important;
-  border: 1px solid #e2e8f0 !important;
-  padding: 24px !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
-}
+.form-group label {
+    color: #334155;
 
-/* Filter Bar Sejajar (Search Kiri, Tanggal Kanan) */
-.table-filter-bar {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  gap: 16px !important;
-  margin-bottom: 20px !important;
-  flex-wrap: wrap !important;
+    font-size: 11px;
+    font-weight: 600;
 }
 
-.search-input-wrapper {
-  flex: 1 !important;
-  min-width: 280px !important;
-  position: relative !important;
-  display: flex !important;
-  align-items: center !important;
-}
+/* Input form */
 
-.search-input {
-  width: 100% !important;
-  padding: 10px 16px 10px 40px !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 10px !important;
-  font-size: 13px !important;
-  outline: none !important;
-  background: #ffffff !important;
-  color: #334155 !important;
-}
+.form-group input {
+    width: 100%;
+    height: 36px;
 
-.search-icon {
-  position: absolute !important;
-  left: 14px !important;
-  color: #64748b !important;
-  font-size: 14px !important;
-}
+    padding: 0 11px;
 
-.filter-dropdown-wrapper {
-  position: relative !important;
-  display: flex !important;
-  align-items: center !important;
-}
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
 
-.filter-dropdown-wrapper .filter-icon {
-  position: absolute !important;
-  left: 14px !important;
-  color: #64748b !important;
-  font-size: 14px !important;
-  pointer-events: none !important;
-}
+    color: #1e293b;
 
-.filter-select {
-  padding: 10px 36px 10px 38px !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 10px !important;
-  background-color: #ffffff !important;
-  color: #334155 !important;
-  font-size: 13px !important;
-  font-family: inherit !important;
-  outline: none !important;
-  cursor: pointer !important;
-  appearance: none !important;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
-  background-repeat: no-repeat !important;
-  background-position: right 12px center !important;
-  background-size: 14px !important;
-}
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
 
-/* Header Tabel Biru Muda Melengkung */
-.data-table {
-  width: 100% !important;
-  border-collapse: separate !important;
-  border-spacing: 0 !important;
+    outline: none;
 }
 
-.data-table th {
-  background: #eff6ff !important;
-  color: #1e293b !important;
-  font-weight: 700 !important;
-  font-size: 13px !important;
-  padding: 14px 16px !important;
-  border: none !important;
+.form-group input:focus {
+    border-color: #0866f5;
+    box-shadow: 0 0 0 2px rgba(8, 102, 245, 0.10);
 }
 
-.data-table th:first-child {
-  border-top-left-radius: 10px !important;
-  border-bottom-left-radius: 10px !important;
+.form-group input::placeholder {
+    color: #94a3b8;
 }
 
-.data-table th:last-child {
-  border-top-right-radius: 10px !important;
-  border-bottom-right-radius: 10px !important;
-}
+/* Tombol modal */
 
-.data-table td {
-  padding: 16px !important;
-  border-bottom: 1px solid #f1f5f9 !important;
-  font-size: 13px !important;
-  color: #334155 !important;
-}
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
 
-/* Tombol Detail Biru Khas Figma */
-.btn-detail {
-  display: inline-block !important;
-  background-color: #2563eb !important;
-  color: #ffffff !important;
-  padding: 6px 16px !important;
-  border-radius: 6px !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  text-decoration: none !important;
-  transition: all 0.2s ease !important;
-  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2) !important;
+    margin-top: 20px;
 }
 
-.btn-detail:hover {
-  background-color: #1d4ed8 !important;
-  color: #ffffff !important;
-}
+/* Tombol batal */
 
-/* ===================================================== */
-/* STYLING HALAMAN DETAIL PREDIKSI (PRESISI FIGMA)       */
-/* ===================================================== */
-
-.detail-banner {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  position: relative !important;
-  overflow: hidden !important;
-}
+.btn-secondary {
+    height: 34px;
 
-.banner-fish-img img {
-  max-height: 90px !important;
-  object-fit: contain !important;
-}
+    padding: 0 14px;
 
-.detail-grid {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 24px !important;
-  align-items: start !important;
-}
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 7px;
 
-.detail-left-col, .detail-right-col {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 20px !important;
-}
+    color: #475569;
 
-.content-card {
-  background: #ffffff !important;
-  border-radius: 16px !important;
-  border: 1px solid #e2e8f0 !important;
-  padding: 24px !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
-}
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
 
-.fish-photo-card {
-  padding: 12px !important;
-  overflow: hidden !important;
+    cursor: pointer;
 }
 
-.fish-preview-img {
-  width: 100% !important;
-  height: 180px !important;
-  object-fit: cover !important;
-  border-radius: 12px !important;
+.btn-secondary:hover {
+    background: #e2e8f0;
 }
 
-.card-section-title {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  font-size: 15px !important;
-  font-weight: 700 !important;
-  color: #1e293b !important;
-  margin-bottom: 16px !important;
-}
+/* Tombol simpan */
 
-.card-section-title i {
-  color: #2563eb !important;
-  font-size: 16px !important;
+.modal-actions .btn-primary {
+    height: 34px;
 }
 
-.warning-title i {
-  color: #d97706 !important;
-}
 
-.info-list {
-  list-style: none !important;
-  padding: 0 !important;
-  margin: 0 0 20px 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 12px !important;
-}
+/* =========================================
+   14. RESPONSIVE TABLET
+========================================= */
 
-.info-list li {
-  display: flex !important;
-  align-items: center !important;
-  font-size: 13px !important;
-}
+@media (max-width: 1024px) {
 
-.info-label {
-  width: 130px !important;
-  color: #64748b !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-}
+    .sidebar {
+        width: 175px;
+        min-width: 175px;
+    }
 
-.info-colon {
-  width: 15px !important;
-  color: #64748b !important;
-  font-weight: 600 !important;
-}
+    .content-body {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
 
-.info-value {
-  color: #1e293b !important;
-  font-weight: 600 !important;
-}
+    .filter-action-bar {
+        flex-wrap: wrap;
+    }
 
-.back-btn-wrapper {
-  margin-top: 10px !important;
-}
+    .search-box {
+        flex-basis: 100%;
+    }
 
-.btn-back-outline {
-  display: inline-block !important;
-  border: 1px solid #2563eb !important;
-  color: #2563eb !important;
-  background: transparent !important;
-  padding: 8px 24px !important;
-  border-radius: 8px !important;
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  text-decoration: none !important;
-  transition: all 0.2s ease !important;
-}
+    .filter-group {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
 
-.btn-back-outline:hover {
-  background: #eff6ff !important;
-}
+    .filter-select {
+        flex: 1;
+    }
 
-.result-card {
-  text-align: center !important;
+    .data-table {
+        min-width: 750px;
+    }
 }
 
-.result-badge-container {
-  margin: 16px 0 !important;
-}
 
-.badge-result-lg {
-  display: inline-block !important;
-  padding: 8px 36px !important;
-  border-radius: 20px !important;
-  font-size: 16px !important;
-  font-weight: 700 !important;
-}
+/* =========================================
+   15. RESPONSIVE MOBILE
+========================================= */
 
-.result-desc {
-  font-size: 13px !important;
-  color: #64748b !important;
-  margin: 0 !important;
-}
+@media (max-width: 768px) {
 
-.conclusion-card {
-  background: #ffffff !important;
-}
+    .app-container {
+        flex-direction: column;
+        overflow: visible;
+    }
 
-.suggestion-card {
-  background: #fffbeb !important;
-  border-color: #fde68a !important;
-}
+    .sidebar {
+        width: 100%;
+        min-width: 0;
+        min-height: auto;
 
-.card-text-body {
-  font-size: 13px !important;
-  color: #334155 !important;
-  line-height: 1.5 !important;
-  margin: 0 !important;
-}
+        padding: 12px;
+    }
 
-.fish-photo-card {
-  padding: 0 !important;
-  overflow: hidden !important;
-  border-radius: 16px !important;
-}
+    .sidebar-brand {
+        margin-bottom: 14px;
+    }
 
-.fish-preview-img {
-  width: 100% !important;
-  height: 220px !important;
-  object-fit: cover !important;
-  display: block !important;
-  border-radius: 16px !important;
-}
+    .brand-logo-img {
+        width: 85px;
+    }
 
-/* Ukuran & Tata Letak Teks Informasi Prediksi */
-.info-list {
-  list-style: none !important;
-  padding: 0 !important;
-  margin: 0 0 24px 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 14px !important;
-}
+    .sidebar-menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
-.info-list li {
-  display: flex !important;
-  align-items: center !important;
-  font-size: 14px !important; /* Diperbesar agar pas dengan UI */
-}
+    .sidebar-menu li a {
+        padding: 9px 10px;
+    }
 
-.info-label {
-  width: 150px !important; /* Diperlebar agar titik dua sejajar rapi */
-  color: #64748b !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  font-weight: 500 !important;
-}
+    .sidebar-footer {
+        margin-top: 12px;
+    }
 
-.info-label i {
-  width: 18px !important;
-  color: #64748b !important;
-}
+    .main-content {
+        min-height: auto;
+    }
+
+    .topbar {
+        padding: 0 14px;
+    }
+
+    .content-body {
+        padding: 0 14px 14px;
+        gap: 12px;
+    }
+
+    .banner-card {
+        min-height: 135px;
+        padding: 16px;
+
+        background-position: center;
+    }
+
+    .banner-text h1 {
+        font-size: 25px;
+    }
+
+    .banner-eyebrow span:first-child {
+        font-size: 13px;
+    }
+
+    .banner-text p {
+        font-size: 12px;
+    }
+
+    .filter-group {
+        gap: 6px;
+    }
+
+    .filter-select {
+        flex: 1 1 45%;
+    }
+
+    .btn-primary {
+        flex: 1 1 100%;
+    }
+
+    .table-card {
+        overflow-x: auto;
+    }
+
+    .data-table {
+        min-width: 750px;
+    }
 
-.info-colon {
-  width: 20px !important;
-  color: #64748b !important;
-  font-weight: 600 !important;
+    .footer-copyright {
+        padding: 14px;
+    }
 }
 
-.info-value {
-  color: #1e293b !important;
-  font-weight: 600 !important;
+
+/* =========================================
+   16. RESPONSIVE SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .banner-card {
+        min-height: 125px;
+    }
+
+    .banner-text h1 {
+        font-size: 22px;
+    }
+
+    .banner-text p {
+        font-size: 11px;
+    }
+
+    .filter-select {
+        flex-basis: 100%;
+    }
+
+    .modal-card {
+        max-width: 100%;
+    }
 }
+
+
+
+
+/* =====================================================
+   SIPIKA - HALAMAN EVALUASI MODEL
+   CSS KHUSUS evaluasi-model.html
+===================================================== */
+
+
+/* =====================================================
+   1. FONT GLOBAL HALAMAN
+===================================================== */
 
-/* Kartu Hasil Klasifikasi (Hijau Muda) */
-.result-card {
-  background-color: #f0fdf4 !important;
-  border: 1px solid #dcfce7 !important;
-  text-align: center !important;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
 }
 
-.green-title i {
-  color: #16a34a !important;
+.main-content,
+.main-content * {
+    font-family: 'Poppins', sans-serif;
 }
 
-.badge-result-lg.badge-tinggi {
-  background-color: #dcfce7 !important;
-  color: #15803d !important;
-  border: 1px solid #bbf7d0 !important;
-  padding: 8px 42px !important;
-  border-radius: 20px !important;
-  font-size: 16px !important;
-  font-weight: 700 !important;
+.main-content i[class*="fa-"] {
+    font-family: "Font Awesome 6 Free" !important;
+    font-style: normal;
 }
 
-/* Kartu Kesimpulan (Biru Muda) */
-.conclusion-card {
-  background-color: #f0f9ff !important;
-  border: 1px solid #e0f2fe !important;
+.main-content i.fa-solid {
+    font-weight: 900 !important;
 }
+
+
+/* =====================================================
+   2. LAYOUT UTAMA
+===================================================== */
 
-.blue-title i {
-  color: #0284c7 !important;
+.app-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
 }
 
-/* Kartu Saran Nelayan (Kuning Muda) */
-.suggestion-card {
-  background-color: #fffbeb !important;
-  border: 1px solid #fde68a !important;
+.main-content {
+    flex: 1;
+    min-width: 0;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #edf3fa;
 }
+
+/* Konten utama harus tersusun vertikal */
+.content-body {
+    width: 100%;
+    flex: 1;
+    min-width: 0;
 
-.warning-title i {
-  color: #d97706 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 16px;
+
+    padding: 0 20px 12px;
+
+    background: #edf3fa;
 }
+
+
+/* =====================================================
+   3. SIDEBAR
+   Gambar latar dibuat samar.
+===================================================== */
+
+.sidebar {
+
+    background-image:
+        linear-gradient(
+            rgba(0, 22, 48, 0.92),
+            rgba(0, 14, 33, 0.95)
+        ),
+        url('../assets/images/sidebar.jpeg') !important;
 
-/* Kita buat aturannya sangat spesifik agar tidak ada yang bisa menimpa */
-.app-container .main-content .content-body .banner-card.detail-banner {
-    /* --- Kode yang SUDAH ADA (biarkan) --- */
-    background-image: url('../assets/images/banner-ikan.jpg') !important;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
 
-    /* --- TAMBAHKAN/GANTI DUA BARIS INI --- */
-    display: flex !important;              /* Pastikan display flex */
-    flex-direction: column !important;     /* Teks bertumpuk vertikal */
-    justify-content: center !important;    /* Teks tetap di tengah secara vertikal */
-    align-items: flex-start !important;    /* --- INI YANG BUAT RATA KIRI --- */
-    /* ------------------------------------- */
-}
-
-/* ===================================================== */
-/* REVISI AKHIR: MENYESUAIKAN PROPORSI KOLOM KIRI        */
-/* ===================================================== */
-
-/* Memperkecil tinggi foto ikan di kolom kiri agar lebih ringkas */
-.detail-left-col .fish-preview-img {
-  height: 140px !important; /* Dikecilkan dari 220px supaya lebih proporsional */
-}
-
-/* Merapatkan jarak antar baris pada informasi prediksi di sebelah kiri */
-.detail-left-col .info-list {
-  gap: 8px !important; /* Dirapatkan agar tidak terlalu panjang ke bawah */
-  margin-bottom: 16px !important;
-}
-
-/* Sedikit menyesuaikan padding kartu informasi agar lebih padat */
-.detail-left-col .content-card.info-prediksi-card {
-  padding: 18px 20px !important;
 }
 
 
-
-/* ===================================================== */
-/* REVISI PROPORSI GAMBAR IKAN AGAR PAS DAN TIDAK MELAR   */
-/* ===================================================== */
-
-.detail-left-col .fish-photo-card {
-  padding: 12px !important; /* Berikan sedikit padding rapi di sekeliling gambar */
-  background: #ffffff !important;
-  border-radius: 16px !important;
-}
-
-.detail-left-col .fish-preview-img {
-  width: 100% !important;
-  height: 160px !important; /* Tinggi ideal agar proporsional */
-  object-fit: cover !important;
-  object-position: center !important;
-  border-radius: 12px !important;
-}
-
-/* ===================================================== */
-/* REVISI GLOBAL: WARNA TEKS BANNER MENJADI BIRU TUA PEKAT */
-/* ===================================================== */
-
-.banner-card h2,
-.banner-card p {
-  color: #0f172a !important; /* Warna biru sangat gelap / hampir hitam */
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important; /* Tambahan bayangan tipis agar semakin kontras di atas background terang */
-}
-
-/* ===================================================== */
-/* REVISI KHUSUS TEKS BANNER DASHBOARD                    */
-/* ===================================================== */
-
-.app-container .main-content .content-body .banner-card h2,
-.app-container .main-content .content-body .banner-card p {
-  color: #0f172a !important;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
-}
-
-/* ===================================================== */
-/* PENTIMPA MUTLAK WARNA TEKS BANNER (MENGALAHKAN !IMPORTANT) */
-/* ===================================================== */
-
-.banner-text h2,
-.welcome-banner h1,
-.welcome-banner h2,
-.banner-card h2 {
-  color: #0f172a !important;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
-}
-
-.banner-text p,
-.welcome-banner p,
-.banner-card p {
-  color: #1e293b !important;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
-}
-
-/* ===================================================== */
-/* REVISI AKHIR: PAKSA SEMUA IKON INFORMASI JADI BIRU      */
-/* ===================================================== */
-
-.info-prediksi-card .info-list li .info-label i,
-.info-prediksi-card .card-section-title i {
-  color: #2563eb !important;
-}
-
-
-
-
-/* ===================================================== */
-/* STYLING HALAMAN PROFIL PENGGUNA (SESUAI FIGMA)        */
-/* ===================================================== */
-
-.profile-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-top: 24px;
-}
-
-/* Header Judul Card */
-.card-header-title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.card-header-title h3 {
-  font-size: 18px;
-  font-weight: 700;
-  color: #0f172a;
-  margin: 0;
-}
-
-.icon-blue {
-  color: #2563eb !important;
-  font-size: 18px;
-}
-
-/* Kolom Kiri: Informasi Profil */
-.profile-info-card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-}
-
-.profile-avatar-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 28px;
-}
-
-.avatar-large {
-  position: relative;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: #2563eb;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 48px;
-  margin-bottom: 12px;
-}
-
-.avatar-large img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.upload-badge {
-  position: absolute;
-  bottom: 2px;
-  right: 2px;
-  width: 28px;
-  height: 28px;
-  background: #2563eb;
-  border: 2px solid #ffffff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-size: 12px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.upload-badge:hover {
-  background: #1d4ed8;
-}
-
-.profile-username {
-  font-size: 20px;
-  font-weight: 700;
-  color: #0f172a;
-  margin: 0 0 6px 0;
-}
-
-.badge-role {
-  background: #dbeafe;
-  color: #2563eb;
-  padding: 4px 16px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-/* Detail List Profil */
-.profile-detail-list {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.profile-detail-item {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  align-items: center;
-  font-size: 14px;
-}
-
-.detail-label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #475569;
-  font-weight: 500;
-}
-
-.detail-value {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 600;
-  color: #0f172a;
-}
-
-.separator {
-  color: #64748b;
-  font-weight: 400;
-}
-
-/* Kolom Kanan: Ubah Password */
-.profile-password-card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-}
-
-.form-group-password {
-  margin-bottom: 20px;
-}
-
-.form-group-password label {
-  display: block;
-  font-size: 13px;
-  font-weight: 600;
-  color: #334155;
-  margin-bottom: 8px;
-}
-
-.input-password-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.input-password-wrapper input {
-  width: 100%;
-  padding: 10px 40px 10px 14px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 14px;
-  color: #0f172a;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.input-password-wrapper input:focus {
-  border-color: #2563eb;
-}
-
-.input-password-wrapper input::placeholder {
-  color: #94a3b8;
-}
-
-.toggle-password {
-  position: absolute;
-  right: 14px;
-  color: #94a3b8;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.toggle-password:hover {
-  color: #64748b;
-}
-
-/* Action Buttons */
-.form-actions-profile {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 32px;
-}
-
-.btn-batal {
-  padding: 10px 24px;
-  border: 1px solid #2563eb;
-  background: #ffffff;
-  color: #2563eb;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-batal:hover {
-  background: #eff6ff;
-}
-
-.btn-simpan {
-  padding: 10px 24px;
-  border: none;
-  background: #2563eb;
-  color: #ffffff;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.btn-simpan:hover {
-  background: #1d4ed8;
-}
-
-/* Responsive Tablet */
-@media (max-width: 992px) {
-  .profile-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* 1. Pastikan Grid & Lebar Halaman Profil Konsisten */
-.app-container {
-  display: flex;
-  min-height: 100vh;
-  background-color: #f8fafc;
-}
-
-/* 2. Samakan Ukuran Banner dengan Halaman Lainnya */
-.content-body .welcome-banner {
-  height: 160px !important;
-  background-size: cover !important;
-  background-position: center !important;
-  border-radius: 16px !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 32px !important;
-  margin-bottom: 24px !important;
-}
-
-.content-body .welcome-banner h2 {
-  font-size: 24px !important;
-  font-weight: 700 !important;
-  color: #0f172a !important;
-  margin-bottom: 4px !important;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
-}
-
-.content-body .welcome-banner p {
-  font-size: 14px !important;
-  color: #1e293b !important;
-  margin: 0 !important;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
-}
-
-/* 3. Tata Letak Grid Profil (2 Kolom Seimbang & Rapi di Tengah) */
-.profile-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 32px;
-}
-
-/* 4. Perbaikan Card & Tombol Aksi Ubah Password agar Muncul Sempurna */
-.profile-info-card,
-.profile-password-card {
-  background: #ffffff !important;
-  border-radius: 16px !important;
-  padding: 28px !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* Memastikan tombol aksi di form ubah password tampil rapi di kanan bawah */
-.form-actions-profile {
-  display: flex !important;
-  justify-content: flex-end !important;
-  gap: 12px !important;
-  margin-top: 24px !important;
-}
-
-/* ===================================================== */
-/* REVISI MUTLAK HALAMAN PROFIL (MENANGKAN SEMUA KONFLIK) */
-/* ===================================================== */
-
-/* 1. Paksa Sidebar agar panjang penuh ke bawah */
-.app-container {
-  display: flex !important;
-  min-height: 100vh !important;
-  background-color: #f8fafc !important;
-}
-
-.sidebar {
-  width: 260px !important;
-  min-height: 100vh !important;
-  position: relative !important;
-  flex-shrink: 0 !important;
-}
-
-/* 2. Paksa Ukuran Banner agar sama persis dengan Dashboard */
-.main-content .content-body .welcome-banner,
-.main-content .content-body .banner-card {
-  height: 160px !important;
-  min-height: 160px !important;
-  background-size: cover !important;
-  background-position: center !important;
-  border-radius: 16px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  padding: 0 32px !important;
-  margin-bottom: 24px !important;
-}
-
-/* 3. Perbaikan Tata Letak Grid Profil & Posisi Agar Tidak Terlalu ke Atas */
-.content-body {
-  padding: 24px 32px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  flex-grow: 1 !important;
-}
-
-.profile-grid {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 24px !important;
-  margin-top: 12px !important;
-  margin-bottom: 32px !important;
-}
-
-/* 4. Perbaikan Card Informasi Profil & Ubah Password */
-.profile-info-card,
-.profile-password-card {
-  background: #ffffff !important;
-  border-radius: 16px !important;
-  padding: 28px !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
-}
-
-/* 5. Pastikan Tombol Ubah Password Tampil Sempurna di Kanan Bawah */
-.form-actions-profile {
-  display: flex !important;
-  justify-content: flex-end !important;
-  gap: 12px !important;
-  margin-top: 24px !important;
-}
-
-/* 6. Memastikan Footer Muncul dan Rapi di Bawah */
-.main-footer {
-  margin-top: auto !important;
-  padding: 20px 0 !important;
-  text-align: center !important;
-  font-size: 13px !important;
-  color: #64748b !important;
-  border-top: 1px solid #e2e8f0 !important;
-}
-
-/* ===================================================== */
-/* REVISI TOPBAR INFO PROFIL (KAPSUL PUTIH MELENGKUNG)  */
-/* ===================================================== */
+/* =====================================================
+   4. TOPBAR
+   Mengikuti topbar halaman Dashboard dan Dataset.
+===================================================== */
 
 .topbar {
-  display: flex !important;
-  justify-content: flex-end !important;
-  align-items: center !important;
-  padding: 16px 32px 8px 32px !important;
-  background: transparent !important;
+    width: 100%;
+    min-height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    padding: 0 20px;
 }
 
-.topbar-user {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  background: #ffffff !important;
-  padding: 6px 16px 6px 6px !important;
-  border-radius: 50px !important; /* Membuat sudut melengkung sempurna berbentuk kapsul */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+.topbar-profile {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 6px 12px;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 30px;
+
+    box-shadow: 0 2px 5px rgba(15, 23, 42, 0.05);
 }
 
-.user-avatar-small {
-  width: 38px !important;
-  height: 38px !important;
-  background-color: #2563eb !important; /* Warna lingkaran biru */
-  color: #ffffff !important;
-  border-radius: 50% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-size: 16px !important;
-  flex-shrink: 0 !important;
+.profile-avatar {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #0866f5;
+    color: #ffffff;
+
+    border-radius: 50%;
 }
 
-.user-info-text {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  line-height: 1.2 !important;
+.profile-avatar i {
+    font-size: 14px;
 }
 
-.user-name {
-  font-size: 13px !important;
-  font-weight: 700 !important;
-  color: #0f172a !important;
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
 }
 
-.user-status {
-  font-size: 11px !important;
-  color: #64748b !important;
-  font-weight: 500 !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 4px !important;
+.profile-name {
+    color: #0f172a;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.profile-role {
+    color: #64748b;
+    font-size: 10px;
+    font-weight: 400;
 }
 
 .status-dot {
-  width: 6px !important;
-  height: 6px !important;
-  background-color: #22c55e !important; /* Titik hijau aktif */
-  border-radius: 50% !important;
-  display: inline-block !important;
+    display: inline-block;
+
+    width: 6px;
+    height: 6px;
+
+    margin-right: 3px;
+
+    background: #22c55e;
+    border-radius: 50%;
 }
 
-/* ===================================================== */
-/* KOREKSI PRESISI SIDEBAR: UKURAN LOGO TETAP & POSISI MENU */
-/* ===================================================== */
 
-.sidebar {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
-  padding: 0 !important;
+/* =====================================================
+   5. BANNER EVALUASI
+===================================================== */
+
+.banner-card {
+    position: relative;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 120px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 16px 24px;
+
+    background-image:
+        linear-gradient(
+            90deg,
+            #ffffff 0%,
+            rgba(255, 255, 255, 0.97) 32%,
+            rgba(255, 255, 255, 0.75) 45%,
+            rgba(255, 255, 255, 0) 68%
+        ),
+        url('../assets/images/banner.jpg') !important;
+
+    background-size: cover !important;
+    background-position: center right !important;
+    background-repeat: no-repeat !important;
+
+    border: 1px solid #dce6f1;
+    border-radius: 12px;
+
+    overflow: hidden;
 }
 
-/* Kembalikan ukuran logo ke standar (160px atau ukuran asli sebelumnya) dan beri jarak atas */
-.sidebar-logo {
-  text-align: center !important;
-  padding-top: 36px !important; /* Menurunkan posisi logo dan menu di bawahnya secara bersamaan */
-  padding-bottom: 24px !important;
-  padding-left: 24px !important;
-  padding-right: 24px !important;
+.banner-text {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: 550px;
 }
 
-.sidebar-logo img {
-  width: 160px !important; /* Ukuran pas sesuai standar awalmu */
-  max-width: none !important;
-  height: auto !important;
+.banner-text h1 {
+
+    margin: 0;
+
+    color: #000000;
+
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.25;
+
 }
 
-/* Jarak menu sidebar agar sejajar persis dengan dashboard */
-.sidebar-menu {
-  margin-top: 10px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 8px !important;
-  padding: 0 16px !important;
+.banner-text p {
+    max-width: 540px;
+
+    margin: 5px 0 0;
+
+    color: #173b65;
+
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
-/* ===================================================== */
-/* REVISI FINAL UI PROFIL SESUAI GAMBAR ACUAN (UI KU)   */
-/* ===================================================== */
 
-/* 1 & 5. Lingkaran Background Biru Muda untuk Ikon Judul & Detail */
-.icon-circle-badge {
-  width: 36px;
-  height: 36px;
-  background-color: #dbeafe; /* Biru muda senada UI */
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* =====================================================
+   6. GRID HASIL EVALUASI DAN AKURASI
+   Dua kolom sejajar di bawah banner.
+===================================================== */
+
+.evaluation-grid {
+    width: 100%;
+    min-width: 0;
+
+    display: grid !important;
+
+    grid-template-columns: minmax(0, 2fr) minmax(250px, 1fr) !important;
+
+    align-items: stretch;
+    gap: 16px;
+
+    margin: 0 !important;
+    padding: 0;
 }
 
-.icon-circle-badge-small {
-  width: 30px;
-  height: 30px;
-  background-color: #dbeafe;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+
+/* =====================================================
+   7. CARD HASIL EVALUASI DAN AKURASI
+===================================================== */
+
+.eval-card {
+    min-width: 0;
+    min-height: 200px;
+
+    padding: 14px 15px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
 }
 
-/* 2. Garis Luar (Ring) yang Samar Melingkari Avatar Profil */
-.avatar-large-container {
-  position: relative;
-  width: 110px;
-  height: 110px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #93c5fd; /* Garis luar samar warna biru muda */
-  border-radius: 50%;
-  margin-bottom: 12px;
+/* Header card hasil evaluasi */
+
+.eval-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 12px;
 }
 
-.avatar-large {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  background: #2563eb;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 42px;
-  overflow: hidden;
+/* Lingkaran ikon */
+
+.eval-icon-box,
+.matrix-icon-box {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #2563eb;
+    background: #e8f1ff;
+
+    border-radius: 50%;
 }
 
-.avatar-large img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.eval-icon-box i,
+.matrix-icon-box i {
+    font-size: 14px;
 }
 
-/* Posisi Badge Kamera */
-.upload-badge {
-  position: absolute;
-  bottom: 4px;
-  right: 4px;
-  width: 28px;
-  height: 28px;
-  background: #2563eb;
-  border: 2px solid #ffffff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-size: 11px;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-  transition: background 0.2s;
+/* Judul card */
+
+.eval-card-header h3,
+.matrix-header h3 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
 }
 
-.upload-badge:hover {
-  background: #1d4ed8;
+/* Deskripsi card */
+
+.eval-card-header p,
+.matrix-header p {
+    margin: 2px 0 0;
+
+    color: #64748b;
+
+    font-size: 9px;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
-/* 6. Ukuran Kotak Container Besar agar Proporsional dan Tidak Jauh dari Footer */
-.profile-info-card,
-.profile-password-card {
-  background: #ffffff !important;
-  border-radius: 16px !important;
-  padding: 32px 36px !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
-  min-height: 480px !important; /* Membuat tinggi kotak pas dan konsisten */
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
+
+/* =====================================================
+   8. TABEL HASIL EVALUASI
+===================================================== */
+
+.data-table {
+    width: 100%;
+
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    text-align: center;
 }
 
-.profile-detail-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin-top: 10px;
+/* Header tabel */
+
+.data-table thead th {
+    height: 29px;
+
+    padding: 6px 8px;
+
+    background: #cce5ff;
+    color: #173b65;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    white-space: nowrap;
 }
 
-/* ===================================================== */
-/* REVISI AVATAR & DROPDOWN MURNI CSS (TANPA JAVASCRIPT) */
-/* ===================================================== */
+/* Sudut tabel */
 
-.profile-avatar-wrapper {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 24px;
+.data-table thead th:first-child {
+    border-top-left-radius: 7px;
 }
 
-/* Garis Luar (Ring) Presisi Melingkari Avatar */
-.avatar-outer-ring {
-  position: relative;
-  width: 112px;
-  height: 112px;
-  border: 2px solid #93c5fd;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background-color: #f8fafc;
-  transition: all 0.2s ease;
+.data-table thead th:last-child {
+    border-top-right-radius: 7px;
 }
 
-.avatar-outer-ring:hover {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+/* Isi tabel */
+
+.data-table tbody td {
+    height: 32px;
+
+    padding: 5px 8px;
+
+    color: #263b59;
+
+    font-size: 10px;
+    font-weight: 400;
+
+    border-bottom: 1px solid #edf2f7;
 }
 
-/* Lingkaran Biru Dalam / Foto */
-.avatar-large {
-  width: 98px;
-  height: 98px;
-  border-radius: 50%;
-  background: #2563eb;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 42px;
-  overflow: hidden;
+.data-table tbody tr:last-child td {
+    border-bottom: none;
 }
 
-.avatar-large img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+
+/* =====================================================
+   9. BADGE KATEGORI
+===================================================== */
+
+.badge {
+    min-width: 58px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 3px 9px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+    font-weight: 600;
 }
 
-/* Badge Kamera di Pojok */
-.upload-badge {
-  position: absolute;
-  bottom: 2px;
-  right: 2px;
-  width: 30px;
-  height: 30px;
-  background: #2563eb;
-  border: 2px solid #ffffff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-size: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+.badge-rendah {
+    background: #ffe1e1;
+    color: #c62828;
 }
 
-/* Dropdown Pilihan Menu (Tersembunyi Default) */
-.photo-options-dropdown {
-  display: none;
-  position: absolute;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-  padding: 6px;
-  z-index: 100;
-  width: 150px;
-  top: 120px;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 1px solid #e2e8f0;
+.badge-sedang {
+    background: #fff0d1;
+    color: #ad6500;
 }
 
-/* Munculkan Dropdown saat Checkbox Dicentang (Tanpa JS) */
-#profileDropdownToggle:checked ~ .photo-options-dropdown {
-  display: block;
+.badge-tinggi {
+    background: #d1f5e3;
+    color: #07865b;
 }
 
-.photo-options-dropdown div {
-  padding: 10px 12px;
-  font-size: 13px;
-  color: #1e293b;
-  cursor: pointer;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 500;
+
+/* =====================================================
+   10. CARD AKURASI MODEL
+   Selector card kedua dalam evaluation-grid.
+===================================================== */
+
+.evaluation-grid > .eval-card:nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 16px;
 }
 
-.photo-options-dropdown div:hover {
-  background-color: #f1f5f9;
-  color: #2563eb;
+/* Ikon, angka, dan keterangan */
+
+.accuracy-display {
+    width: 100%;
+    max-width: 250px;
+    min-height: 140px;
+
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 12px;
+
+    padding: 8px;
+    text-align: left !important;
 }
 
-.photo-options-dropdown div i {
-  color: #2563eb;
-  font-size: 14px;
+/* Ikon akurasi */
+
+.accuracy-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0;
+
+    background: #dceaff;
+    color: #1674ff;
+
+    border-radius: 50%;
+    font-size: 21px;
 }
 
-/* ===================================================== */
-/* CSS BERSIH TANPA GARIS LUAR AVATAR                    */
-/* ===================================================== */
+/* Pembungkus informasi akurasi
+   HTML menggunakan elemen div langsung,
+   sehingga setiap elemen diatur melalui selector. */
 
-.profile-avatar-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-  position: relative;
+.accuracy-display > div:not(.accuracy-icon) {
+    text-align: left;
 }
 
-.profile-avatar-container {
-  position: relative;
-  width: 96px;
-  height: 96px;
-  margin-bottom: 10px;
+.accuracy-display > div[style] {
+    margin: 0 0 3px !important;
+
+    color: #0f172a !important;
+
+    font-size: 11px !important;
+    font-weight: 700 !important;
 }
 
-/* Lingkaran Avatar Utama (Bersih tanpa border luar) */
-.avatar-large {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  background: #2563eb;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  overflow: hidden;
+/* Angka akurasi */
+
+.accuracy-value {
+    margin: 0 0 5px;
+
+    color: #102d53;
+
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
 }
 
-.avatar-large img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* Deskripsi akurasi */
+
+.accuracy-desc {
+    width: 100%;
+    max-width: 180px;
+
+    color: #64748b;
+
+    font-size: 9px;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
-/* Tombol Badge Kamera */
-.upload-badge {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 28px;
-  height: 28px;
-  background: #2563eb;
-  border: 2px solid #ffffff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-size: 11px;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-  z-index: 5;
+
+/* =====================================================
+   11. CARD CONFUSION MATRIX
+   Selalu berada di bawah evaluation-grid.
+===================================================== */
+
+.matrix-card {
+    position: relative;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 218px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 14px 15px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
 }
 
-.upload-badge:hover {
-  background: #1d4ed8;
+/* Header confusion matrix */
+
+.matrix-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 8px;
 }
 
-/* Dropdown Menu Pilihan Foto */
-.photo-options-dropdown {
-  display: none;
-  position: absolute;
-  top: 105px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  padding: 6px;
-  z-index: 100;
-  width: 150px;
-  border: 1px solid #e2e8f0;
+/* Ikon matrix */
+
+.matrix-icon-box {
+    flex-shrink: 0;
 }
 
-#profileDropdownToggle:checked ~ .photo-options-dropdown {
-  display: block;
+
+/* =====================================================
+   12. SUSUNAN TABEL CONFUSION MATRIX
+===================================================== */
+
+.matrix-table-wrapper {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 14px;
+
+    margin: 5px auto 0;
 }
 
-.dropdown-option {
-  padding: 8px 10px;
-  font-size: 12px;
-  color: #1e293b;
-  cursor: pointer;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 500;
+/* Label aktual */
+
+.axis-label-y {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+
+    color: #334155;
+
+    font-size: 9px;
+    font-weight: 700;
 }
 
-.dropdown-option:hover {
-  background-color: #f1f5f9;
-  color: #2563eb;
+/* Pembungkus tabel dan judul */
+
+.matrix-table-wrapper > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.dropdown-option i {
-  color: #2563eb;
-  font-size: 13px;
+
+/* =====================================================
+   13. TABEL CONFUSION MATRIX
+===================================================== */
+
+.matrix-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    text-align: center;
+    font-size: 9px;
+}
+
+/* Ukuran sel */
+
+.matrix-table th,
+.matrix-table td {
+    min-width: 82px;
+    height: 34px;
+
+    padding: 6px 10px;
+
+    border: 1px solid #ffffff;
+}
+
+/* Header tabel */
+
+.matrix-table thead th {
+    background: #f1f6fd;
+
+    color: #334155;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+/* Sel kosong */
+
+.matrix-table thead tr:first-child th:first-child {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Header prediksi */
+
+.matrix-table thead tr:first-child th[colspan="3"] {
+    background: #ffffff;
+    border-bottom: 2px solid #e2e8f0 !important;
+}
+
+/* Label baris */
+
+.matrix-table tbody th {
+    background: #ffffff;
+
+    color: #475569;
+
+    font-size: 9px;
+    font-weight: 500;
+
+    text-align: right;
+}
+
+/* Sel angka */
+
+.matrix-table tbody td {
+    background: #eff6ff;
+
+    color: #1e293b;
+
+    font-size: 9px;
+    font-weight: 500;
+}
+
+/* Nilai 150 - biru sedang */
+
+.matrix-table tbody tr:nth-child(1) td:nth-child(2) {
+    background: #2874bd;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* Nilai 178 - biru tua */
+
+.matrix-table tbody tr:nth-child(2) td:nth-child(3) {
+    background: #124b8b;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* Nilai 115 - biru muda */
+
+.matrix-table tbody tr:nth-child(3) td:nth-child(4) {
+    background: #4b9be5;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* Judul Prediksi di bawah tabel */
+
+.matrix-table-wrapper > div:nth-child(2) > div[style] {
+    margin-top: 8px !important;
+
+    color: #334155 !important;
+
+    font-size: 9px !important;
+    font-weight: 700 !important;
+}
+
+
+/* =====================================================
+   14. LEGEND GRADASI WARNA
+===================================================== */
+
+.matrix-table-wrapper > div[style*="display: flex"] {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-left: 12px !important;
+}
+
+/* Bar gradasi */
+
+.legend-bar {
+    width: 10px;
+    height: 90px;
+
+    background: linear-gradient(
+        to bottom,
+        #124b8b 0%,
+        #2874bd 45%,
+        #4b9be5 70%,
+        #dbeafe 100%
+    );
+
+    border-radius: 2px;
+}
+
+/* Angka legend */
+
+.matrix-legend {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 9px;
+
+    margin-left: 0 !important;
+
+    color: #64748b;
+    font-size: 8px;
+}
+
+
+/* =====================================================
+   15. FOOTER
+   Tetap di bawah halaman.
+===================================================== */
+
+.footer-copyright {
+    width: 100%;
+    flex-shrink: 0;
+
+    margin-top: auto;
+    padding: 12px 20px 15px;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+    font-weight: 400;
+
+    text-align: center;
+}
+
+.footer-copyright p {
+    margin: 0;
+}
+
+
+/* =====================================================
+   16. RESPONSIVE TABLET
+===================================================== */
+
+@media (max-width: 1024px) {
+
+    .content-body {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .evaluation-grid {
+        grid-template-columns: minmax(0, 1.6fr) minmax(220px, 1fr) !important;
+    }
+
+    .data-table {
+        font-size: 9px;
+    }
+
+    .matrix-table th,
+    .matrix-table td {
+        min-width: 65px;
+    }
+
+}
+
+
+/* =====================================================
+   17. RESPONSIVE MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .content-body {
+        padding: 0 12px 12px;
+        gap: 12px;
+    }
+
+    .banner-card {
+        min-height: 125px;
+        padding: 15px;
+
+        background-position: center right !important;
+    }
+
+    .banner-text h2 {
+        font-size: 22px;
+    }
+
+    .banner-text p {
+        font-size: 11px;
+    }
+
+    .evaluation-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+    }
+
+    .eval-card {
+        min-height: auto;
+    }
+
+    .evaluation-grid > .eval-card:nth-child(2) {
+        min-height: 150px;
+    }
+
+    .matrix-card {
+        min-height: 200px;
+        overflow-x: auto;
+    }
+
+    .matrix-table-wrapper {
+        justify-content: flex-start;
+        overflow-x: auto;
+    }
+
+    .footer-copyright {
+        padding: 14px;
+    }
+
+}
+
+
+/* =====================================================
+   18. RESPONSIVE SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .banner-text h2 {
+        font-size: 19px;
+    }
+
+    .banner-text p {
+        font-size: 10px;
+    }
+
+    .matrix-table th,
+    .matrix-table td {
+        min-width: 55px;
+        padding: 5px;
+    }
+
+}
+
+
+
+/* =====================================================
+   HALAMAN RIWAYAT PREDIKSI SIPIKA
+===================================================== */
+
+/* ---------- KARTU UTAMA ---------- */
+
+.history-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 12px !important;
+    margin: 0 !important;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+}
+
+/* ---------- FILTER BAR ---------- */
+
+.history-card .table-filter-bar {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+    margin: 0 0 8px;
+    padding: 0;
+}
+
+/* Pencarian */
+
+.history-card .search-input-wrapper {
+    position: relative;
+
+    width: 520px;
+    max-width: 100%;
+    min-width: 220px;
+
+    display: flex;
+    align-items: center;
+}
+
+.history-card .search-icon {
+    position: absolute;
+    left: 12px;
+
+    color: #94a3b8;
+    font-size: 11px;
+
+    pointer-events: none;
+}
+
+.history-card .search-input {
+    width: 100%;
+    height: 29px;
+
+    padding: 0 12px 0 30px;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: #334155;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.history-card .search-input::placeholder {
+    color: #94a3b8;
+}
+
+.history-card .search-input:focus {
+    border-color: #60a5fa;
+}
+
+/* Filter tanggal */
+
+.history-card .filter-dropdown-wrapper {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    min-width: 132px;
+}
+
+.history-card .filter-icon {
+    position: absolute;
+    left: 11px;
+
+    color: #2563eb;
+    font-size: 11px;
+
+    pointer-events: none;
+}
+
+.history-card .filter-select {
+    width: 100%;
+    height: 29px;
+
+    padding: 0 25px 0 29px;
+
+    appearance: none;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+
+    background-color: #ffffff;
+    color: #334155;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+
+    outline: none;
+    cursor: pointer;
+}
+
+.history-card .filter-select:focus {
+    border-color: #60a5fa;
+}
+
+/* ---------- TABEL ---------- */
+
+.history-card .table-responsive {
+    width: 100%;
+    min-width: 0;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 9px;
+}
+
+.history-card .data-table {
+    width: 100%;
+    min-width: 760px;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+
+    color: #0f172a;
+}
+
+/* Header tabel */
+
+.history-card .data-table thead th {
+    height: 28px;
+
+    padding: 7px 10px;
+
+    background: #cfe6ff;
+    color: #0f2f57;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+
+    text-align: left;
+    white-space: nowrap;
+
+    border: none;
+}
+
+.history-card .data-table thead th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.history-card .data-table thead th:last-child {
+    border-top-right-radius: 8px;
+}
+
+/* Isi tabel */
+
+.history-card .data-table tbody td {
+    height: 30px;
+
+    padding: 6px 10px;
+
+    background: #ffffff;
+    color: #0f172a;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+
+    white-space: nowrap;
+
+    border: none;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.history-card .data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.history-card .data-table tbody tr:hover td {
+    background: #f8fbff;
+}
+
+/* Jenis ikan */
+
+.history-card .data-table tbody td:nth-child(3) {
+    font-weight: 600;
+}
+
+/* ---------- BADGE HASIL PREDIKSI ---------- */
+
+.history-card .badge {
+    min-width: 55px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 3px 9px;
+
+    border-radius: 20px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+
+    line-height: 1.4;
+}
+
+.history-card .badge-tinggi {
+    background: #d1fae5;
+    color: #059669;
+}
+
+.history-card .badge-sedang {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.history-card .badge-rendah {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+/* ---------- TOMBOL DETAIL ---------- */
+
+.history-card .btn-detail {
+    min-width: 44px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 3px 9px;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 6px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    transition: background 0.2s ease;
+}
+
+.history-card .btn-detail:hover {
+    background: #1d4ed8;
+}
+
+/* ---------- PAGINATION ---------- */
+
+.history-card .pagination-container {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 5px;
+
+    margin-top: 7px;
+    padding: 0;
+}
+
+.history-card .page-btn {
+    width: 21px;
+    height: 21px;
+    min-width: 21px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background: #ffffff;
+    color: #475569;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.history-card .page-btn:hover:not(:disabled) {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    color: #2563eb;
+}
+
+.history-card .page-btn.active {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+    font-weight: 600;
+}
+
+.history-card .page-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 900px) {
+    .history-card {
+        padding: 10px !important;
+    }
+
+    .history-card .table-filter-bar {
+        flex-wrap: wrap;
+    }
+
+    .history-card .search-input-wrapper {
+        flex: 1;
+        width: auto;
+    }
+
+    .history-card .filter-dropdown-wrapper {
+        min-width: 130px;
+    }
+}
+
+@media (max-width: 600px) {
+    .history-card .table-filter-bar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .history-card .search-input-wrapper,
+    .history-card .filter-dropdown-wrapper {
+        width: 100%;
+    }
+
+    .history-card .data-table {
+        min-width: 760px;
+    }
+}
+
+/* =====================================================
+   BANNER KHUSUS RIWAYAT PREDIKSI
+===================================================== */
+
+.history-banner {
+    position: relative !important;
+
+    width: 100% !important;
+    height: 160px !important;
+    min-height: 160px !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    padding: 12px 20px !important;
+
+    /* Gambar kapal lebih jelas */
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.96) 0%,
+            rgba(255, 255, 255, 0.85) 28%,
+            rgba(255, 255, 255, 0.30) 43%,
+            rgba(255, 255, 255, 0) 58%
+        ),
+        url('../assets/images/banner.jpg') !important;
+
+    background-size: cover !important;
+    background-position: center right !important;
+    background-repeat: no-repeat !important;
+
+    border: 1px solid #d8e5f3 !important;
+    border-radius: 12px !important;
+
+    overflow: hidden !important;
+}
+
+/* Area teks */
+
+.history-banner .banner-text {
+    position: relative !important;
+    z-index: 1 !important;
+
+    width: 100% !important;
+    max-width: 600px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+
+    gap: 0 !important;
+}
+
+/* Label RIWAYAT KLASIFIKASI */
+
+.history-banner .banner-eyebrow {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+
+    margin-bottom: 0 !important;
+}
+
+.history-banner .banner-eyebrow span:first-child {
+    color: #0875f5 !important;
+
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+
+    letter-spacing: 0 !important;
+    line-height: 1.4 !important;
+}
+
+.history-banner .banner-eyebrow span:last-child {
+    width: 28px !important;
+    height: 2px !important;
+
+    background: #0875f5 !important;
+    border-radius: 2px !important;
+}
+
+/* Judul Riwayat */
+
+.history-banner .banner-text h2 {
+    margin: 0 !important;
+
+    color: #0f172a !important;
+
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+
+    line-height: 1.25 !important;
+}
+
+/* Deskripsi */
+
+.history-banner .banner-text p {
+    max-width: 600px !important;
+
+    margin: 2px 0 0 !important;
+
+    color: #000000 !important;
+
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+
+    line-height: 1.5 !important;
+}
+
+
+/* =====================================================
+   HALAMAN DETAIL PREDIKSI - SIPIKA
+===================================================== */
+
+/* ---------- CONTENT BODY ---------- */
+
+.detail-prediction-page .detail-content-body {
+    width: 100%;
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 16px;
+    padding: 0 20px 12px;
+
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ---------- BANNER DETAIL ---------- */
+
+.detail-prediction-page .detail-banner {
+    position: relative !important;
+
+    width: 100% !important;
+    height: 180px !important;
+    min-height: 180px !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    padding: 14px 22px !important;
+
+    background-image: url('../assets/images/banner-ikan.jpg') !important;
+    background-size: cover !important;
+    background-position: center right !important;
+    background-repeat: no-repeat !important;
+
+    border: 1px solid #d8e5f3 !important;
+    border-radius: 12px !important;
+
+    overflow: hidden !important;
+}
+
+
+/* Lapisan gradasi untuk keterbacaan teks */
+.detail-prediction-page .detail-banner::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.97) 0%,
+        rgba(255, 255, 255, 0.90) 34%,
+        rgba(255, 255, 255, 0.45) 53%,
+        rgba(255, 255, 255, 0) 70%
+    );
+
+    pointer-events: none;
+}
+
+/* Area teks banner */
+.detail-prediction-page .detail-banner .banner-text {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: 560px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 0;
+}
+
+/* Label DETAIL */
+.detail-prediction-page .detail-banner .banner-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 0;
+}
+
+.detail-prediction-page .detail-banner .banner-eyebrow span:first-child {
+    color: #0875f5;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+.detail-prediction-page .detail-banner .banner-line {
+    display: block;
+
+    width: 28px;
+    height: 2px;
+
+    background: #0875f5;
+    border-radius: 2px;
+}
+
+/* Judul banner */
+.detail-prediction-page .detail-banner .banner-text h2 {
+    margin: 0;
+
+    color: #0f2f57;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+
+    line-height: 1.25;
+}
+
+/* Deskripsi banner */
+.detail-prediction-page .detail-banner .banner-text p {
+    max-width: 560px;
+
+    margin: 2px 0 0;
+
+    color: #475569;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+
+    line-height: 1.5;
+}
+
+/* ---------- GRID DETAIL ---------- */
+
+.detail-prediction-page .detail-grid {
+    width: 100%;
+    min-width: 0;
+
+    display: grid;
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr);
+
+    align-items: start;
+    gap: 16px;
+}
+
+/* ---------- KOLOM KIRI ---------- */
+
+.detail-prediction-page .detail-left-column {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 0;
+}
+
+/* Kartu gabungan foto dan informasi */
+.detail-prediction-page .detail-information-card {
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+
+    padding: 18px;
+
+    background: #ffffff;
+    border: 1px solid #edf1f6;
+    border-radius: 14px;
+
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.025);
+}
+
+/* Foto ikan */
+.detail-prediction-page .fish-photo-card {
+    width: 100%;
+    height: 210px;
+    overflow: hidden;
+    border-radius: 11px;
+}
+
+.detail-prediction-page .fish-preview-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 11px;
+}
+
+/* ---------- INFORMASI PREDIKSI ---------- */
+
+.detail-prediction-page .info-prediksi-card {
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 0;
+    margin: 0;
+
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* Judul setiap bagian kartu */
+.detail-prediction-page .card-section-title {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 0 0 12px;
+
+    color: #0f2f57;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+.detail-prediction-page .card-section-title i {
+    flex-shrink: 0;
+
+    font-size: 20px;
+    color: #1683f8;
+}
+
+/* Daftar informasi */
+.detail-prediction-page .info-list {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.detail-prediction-page .info-list li {
+    width: 100%;
+    min-height: 45px;
+
+    display: grid;
+    grid-template-columns: minmax(0, 170px) 12px minmax(0, 1fr);
+
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 0;
+
+    border-bottom: 1px solid #edf1f6;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
+.detail-prediction-page .info-list li:last-child {
+    border-bottom: none;
+}
+
+/* Label dan ikon informasi */
+.detail-prediction-page .info-label {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    color: #475569;
+
+    font-weight: 400;
+}
+
+.detail-prediction-page .info-label i {
+    width: 18px;
+    min-width: 18px;
+
+    color: #1683f8;
+    font-size: 17px;
+
+    text-align: center;
+}
+
+/* Tanda titik dua */
+.detail-prediction-page .info-colon {
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* Nilai informasi */
+.detail-prediction-page .info-value {
+    min-width: 0;
+
+    color: #0f2f57;
+
+    font-weight: 700;
+    line-height: 1.4;
+
+    overflow-wrap: break-word;
+}
+
+/* Tanggal dibuat menjadi dua baris seperti referensi */
+.detail-prediction-page .info-list li:nth-child(2) .info-value {
+    max-width: 135px;
+}
+
+/* ---------- TOMBOL KEMBALI ---------- */
+
+.detail-prediction-page .back-btn-wrapper {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+
+    margin-top: 16px;
+}
+
+.detail-prediction-page .btn-back-outline {
+    min-width: 133px;
+    height: 46px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 20px;
+
+    background: #ffffff;
+    color: #0875f5;
+
+    border: 2px solid #0875f5;
+    border-radius: 10px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.detail-prediction-page .btn-back-outline:hover {
+    background: #0875f5;
+    color: #ffffff;
+}
+
+/* ---------- KOLOM KANAN ---------- */
+
+.detail-prediction-page .detail-right-column {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+/* Pengaturan umum kartu kanan */
+.detail-prediction-page .detail-right-column .content-card {
+    width: 100%;
+    min-width: 0;
+
+    padding: 18px 22px;
+
+    border: 1px solid;
+    border-radius: 14px;
+
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.025);
+
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ---------- HASIL KLASIFIKASI ---------- */
+
+.detail-prediction-page .result-card {
+    min-height: 230px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    background: #e8f8f1;
+    border-color: #bcebd6 !important;
+}
+
+.detail-prediction-page .result-card .card-section-title {
+    margin-bottom: 20px;
+}
+
+.detail-prediction-page .result-card .green-title {
+    color: #0f2f57;
+}
+
+.detail-prediction-page .result-card .green-title i {
+    color: #08a66b;
+}
+
+/* Badge hasil */
+.detail-prediction-page .result-badge-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 8px 0 12px;
+}
+
+.detail-prediction-page .badge-result-lg {
+    min-width: 205px;
+    min-height: 58px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px 28px;
+
+    border-radius: 40px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+.detail-prediction-page .badge-result-lg.badge-tinggi {
+    background: #b8f1d4;
+    color: #216b46;
+}
+
+.detail-prediction-page .badge-result-lg.badge-sedang {
+    background: #fef0bd;
+    color: #a16207;
+}
+
+.detail-prediction-page .badge-result-lg.badge-rendah {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+/* Deskripsi hasil */
+.detail-prediction-page .result-desc {
+    margin: 0;
+
+    color: #153c52;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* ---------- KESIMPULAN ---------- */
+
+.detail-prediction-page .conclusion-card {
+    min-height: 138px;
+
+    background: #eaf3ff;
+    border-color: #c9e0ff !important;
+}
+
+.detail-prediction-page .conclusion-card .card-section-title {
+    margin-bottom: 2px;
+}
+
+.detail-prediction-page .conclusion-card .blue-title i {
+    color: #1683f8;
+}
+
+/* ---------- SARAN UNTUK NELAYAN ---------- */
+
+.detail-prediction-page .suggestion-card {
+    min-height: 150px;
+
+    background: #fff8e8;
+    border-color: #ffe1a0 !important;
+}
+
+.detail-prediction-page .suggestion-card .card-section-title {
+    margin-bottom: 5px;
+}
+
+.detail-prediction-page .suggestion-card .warning-title i {
+    color: #f59e0b;
+}
+
+/* Teks kesimpulan dan saran */
+.detail-prediction-page .card-text-body {
+    margin: 0;
+
+    color: #334155;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+
+    line-height: 1.45;
+}
+
+/* ---------- RESPONSIVE TABLET ---------- */
+
+@media (max-width: 992px) {
+
+    .detail-prediction-page .detail-grid {
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .detail-prediction-page .detail-information-card {
+        padding: 14px;
+    }
+
+    .detail-prediction-page .fish-photo-card {
+        height: 180px;
+    }
+
+    .detail-prediction-page .info-list li {
+        grid-template-columns: minmax(0, 140px) 10px minmax(0, 1fr);
+        font-size: 12px;
+        gap: 5px;
+    }
+
+    .detail-prediction-page .card-text-body {
+        font-size: 12px;
+    }
+
+}
+
+/* ---------- RESPONSIVE MOBILE ---------- */
+
+@media (max-width: 768px) {
+
+    .detail-prediction-page .detail-content-body {
+        padding: 0 16px 20px;
+        gap: 14px;
+    }
+
+    .detail-prediction-page .detail-banner {
+        height: auto;
+        min-height: 125px;
+        padding: 16px;
+    }
+
+    .detail-prediction-page .detail-banner .banner-text h2 {
+        font-size: 23px;
+    }
+
+    .detail-prediction-page .detail-banner .banner-text p {
+        font-size: 12px;
+    }
+
+    .detail-prediction-page .detail-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .detail-prediction-page .detail-information-card {
+        padding: 16px;
+    }
+
+    .detail-prediction-page .fish-photo-card {
+        height: 220px;
+    }
+
+    .detail-prediction-page .detail-right-column {
+        gap: 12px;
+    }
+
+    .detail-prediction-page .info-list li {
+        grid-template-columns: minmax(0, 160px) 10px minmax(0, 1fr);
+    }
+
+    .detail-prediction-page .detail-right-column .content-card {
+        min-height: auto;
+        padding: 18px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .detail-prediction-page .detail-banner .banner-eyebrow span:first-child {
+        font-size: 11px;
+    }
+
+    .detail-prediction-page .detail-banner .banner-text h2 {
+        font-size: 21px;
+    }
+
+    .detail-prediction-page .detail-banner .banner-text p {
+        font-size: 11px;
+    }
+
+    .detail-prediction-page .fish-photo-card {
+        height: 190px;
+    }
+
+    .detail-prediction-page .card-section-title {
+        font-size: 17px;
+    }
+
+    .detail-prediction-page .info-list li {
+        grid-template-columns: minmax(0, 125px) 10px minmax(0, 1fr);
+        font-size: 11px;
+    }
+
+    .detail-prediction-page .info-label {
+        gap: 6px;
+    }
+
+    .detail-prediction-page .info-label i {
+        font-size: 14px;
+        width: 16px;
+        min-width: 16px;
+    }
+
+    .detail-prediction-page .badge-result-lg {
+        min-width: 170px;
+        min-height: 50px;
+        font-size: 25px;
+    }
+
+}
+
+
+/* =====================================================
+   TYPOGRAPHY BANNER DETAIL PREDIKSI
+===================================================== */
+
+/* Label DETAIL */
+.detail-prediction-page .detail-banner .banner-eyebrow span:first-child {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: #0875f5 !important;
+    line-height: 1.4 !important;
+}
+
+/* Garis di samping DETAIL */
+.detail-prediction-page .detail-banner .banner-line {
+    width: 28px !important;
+    height: 2px !important;
+    background: #0875f5 !important;
+}
+
+/* Judul Detail Prediksi */
+.detail-prediction-page .detail-banner .banner-text h2 {
+    margin: 0 !important;
+
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+
+    color: #000000 !important;
+    line-height: 1.25 !important;
+}
+
+/* Penjelasan di bawah judul */
+.detail-prediction-page .detail-banner .banner-text p {
+    margin: 2px 0 0 !important;
+
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+
+    color: #000000 !important;
+    line-height: 1.5 !important;
+}
+
+
+/* =====================================================
+   REVISI INFORMASI PREDIKSI
+===================================================== */
+
+/* Seluruh teks menggunakan warna hitam dan Poppins */
+.detail-prediction-page .info-prediksi-card .info-list,
+.detail-prediction-page .info-prediksi-card .info-list li,
+.detail-prediction-page .info-prediksi-card .info-label,
+.detail-prediction-page .info-prediksi-card .info-colon,
+.detail-prediction-page .info-prediksi-card .info-value {
+    color: #000000 !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+/* Ikon informasi tetap berwarna biru */
+.detail-prediction-page .info-prediksi-card .info-label i {
+    color: #1683f8 !important;
+}
+
+/* Tanggal dan jam tersusun vertikal */
+.detail-prediction-page .info-prediksi-card .info-date-value {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+
+    line-height: 1.4;
+}
+
+/* Warna hitam seluruh teks Informasi Prediksi */
+.detail-prediction-page .info-prediksi-card .card-section-title,
+.detail-prediction-page .info-prediksi-card .card-section-title span,
+.detail-prediction-page .info-prediksi-card .info-list,
+.detail-prediction-page .info-prediksi-card .info-list li,
+.detail-prediction-page .info-prediksi-card .info-label,
+.detail-prediction-page .info-prediksi-card .info-colon,
+.detail-prediction-page .info-prediksi-card .info-value {
+    color: #000000 !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+/* Ikon tetap biru */
+.detail-prediction-page .info-prediksi-card .card-section-title i,
+.detail-prediction-page .info-prediksi-card .info-label i {
+    color: #1683f8 !important;
+}
+
+
+/* =====================================================
+   REVISI HASIL KLASIFIKASI, KESIMPULAN & SARAN
+===================================================== */
+
+/* ---------- JUDUL KETIGA KARTU ---------- */
+
+.detail-prediction-page .detail-right-column .card-section-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+
+    color: #000000 !important;
+}
+
+/* ---------- UKURAN IKON ---------- */
+
+.detail-prediction-page .detail-right-column .card-section-title i {
+    width: 30px;
+    flex-shrink: 0;
+
+    font-size: 26px !important;
+    text-align: center;
+}
+
+/* Ikon Hasil Klasifikasi */
+.detail-prediction-page .result-card .green-title i {
+    color: #08a66b !important;
+}
+
+/* Ikon Kesimpulan */
+.detail-prediction-page .conclusion-card .blue-title i {
+    color: #1683f8 !important;
+}
+
+/* Ikon Saran untuk Nelayan */
+.detail-prediction-page .suggestion-card .warning-title i {
+    color: #f59e0b !important;
+}
+
+/* ---------- PENJELASAN KETIGA KARTU ---------- */
+
+.detail-prediction-page .result-card .result-desc,
+.detail-prediction-page .conclusion-card .card-text-body,
+.detail-prediction-page .suggestion-card .card-text-body {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 400 !important;
+
+    color: #000000 !important;
+    line-height: 1.45 !important;
+}
+
+/* Ikon lampu Saran untuk Nelayan */
+.detail-prediction-page .suggestion-icon {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #f59e0b;
+
+    flex-shrink: 0;
+}
+
+.detail-prediction-page .suggestion-icon svg {
+    width: 30px;
+    height: 30px;
+
+    display: block;
+    overflow: visible;
+}
+
+
+/* =====================================================
+   PENYESUAIAN TINGGI KARTU INFORMASI PREDIKSI
+===================================================== */
+
+.detail-prediction-page .detail-information-card {
+    padding-bottom: 50px !important;
+}
+
+
+
+
+
+/* =====================================================
+   HALAMAN PROFIL PENGGUNA - SIPIKA
+===================================================== */
+
+
+/* =================================
+   1. CONTENT BODY PROFIL
+================================= */
+
+.profile-page .profile-content-body {
+    width: 100%;
+    flex: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+
+    padding: 0 20px 12px;
+
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* =================================
+   2. BANNER PROFIL
+================================= */
+
+.profile-page .profile-welcome-banner {
+    width: 100%;
+
+    height: 160px;
+    min-height: 160px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+
+    padding: 24px 32px;
+
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* Label PROFIL dan garis */
+
+.profile-page .profile-banner-label {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.profile-page .profile-banner-label .banner-tag {
+    margin: 0;
+
+    color: #2563eb;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+    line-height: 1.5;
+}
+
+.profile-page .profile-banner-line {
+    width: 80px;
+    height: 2px;
+
+    display: inline-block;
+
+    background: #2563eb;
+    border-radius: 2px;
+}
+
+
+/* =================================
+   3. GRID PROFIL
+================================= */
+
+.profile-page .profile-grid {
+    width: 100%;
+    min-width: 0;
+
+    flex: 1;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    align-items: stretch;
+
+    gap: 18px;
+
+    min-height: 390px;
+}
+
+
+/* =================================
+   4. KARTU PROFIL DAN PASSWORD
+================================= */
+
+.profile-page .profile-info-card,
+.profile-page .profile-password-card {
+    width: 100%;
+    min-width: 0;
+
+    min-height: 390px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 18px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+
+    box-shadow: 0 2px 7px rgba(15, 23, 42, 0.035);
+
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* =================================
+   5. JUDUL KARTU
+================================= */
+
+.profile-page .card-header-title {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 0;
+}
+
+.profile-page .card-header-title h3 {
+    margin: 0;
+
+    color: #0f2f57;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+/* Lingkaran ikon judul */
+
+.profile-page .icon-circle-badge {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e1edff;
+
+    border-radius: 50%;
+}
+
+.profile-page .icon-circle-badge .icon-blue {
+    color: #0875f5;
+    font-size: 15px;
+}
+
+
+/* =================================
+   6. AVATAR PROFIL
+================================= */
+
+.profile-page .profile-avatar-wrapper {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 10px 0 12px;
+}
+
+/* Pembungkus avatar dan tombol kamera */
+
+.profile-page .profile-avatar-container {
+    position: relative;
+
+    width: 120px;
+    height: 120px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Lingkaran avatar */
+
+.profile-page .avatar-large {
+    position: relative;
+
+    width: 116px;
+    height: 116px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #0866e9;
+    color: #ffffff;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+}
+
+/* Ikon default pengguna */
+
+.profile-page .avatar-large > i {
+    font-size: 64px;
+    color: #ffffff;
+}
+
+/* Gambar yang diunggah */
+
+.profile-page .avatar-large img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 50%;
+}
+
+/* Tombol kamera */
+
+.profile-page .upload-badge {
+    position: absolute;
+
+    right: 0;
+    bottom: 4px;
+
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #0875f5;
+    color: #ffffff;
+
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.profile-page .upload-badge:hover {
+    background: #1d4ed8;
+}
+
+/* Username */
+
+.profile-page .profile-username {
+    margin: 10px 0 3px;
+
+    color: #0f2f57;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+/* Badge role */
+
+.profile-page .badge-role {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 78px;
+
+    padding: 4px 12px;
+
+    background: #e0edff;
+    color: #0875f5;
+
+    border-radius: 20px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+
+/* =================================
+   7. DETAIL INFORMASI PROFIL
+================================= */
+
+.profile-page .profile-detail-list {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 12px;
+
+    border-top: 1px solid #edf1f6;
+}
+
+/* Setiap baris informasi */
+
+.profile-page .profile-detail-item {
+    width: 100%;
+    min-height: 67px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1.05fr);
+
+    align-items: center;
+
+    gap: 8px;
+
+    border-bottom: 1px solid #edf1f6;
+}
+
+.profile-page .profile-detail-item:last-child {
+    border-bottom: none;
+}
+
+/* Label informasi */
+
+.profile-page .detail-label {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    color: #334155;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+/* Lingkaran ikon kecil */
+
+.profile-page .icon-circle-badge-small {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e1edff;
+
+    border-radius: 50%;
+}
+
+.profile-page .icon-circle-badge-small .icon-blue {
+    color: #0875f5;
+    font-size: 14px;
+}
+
+/* Nilai informasi */
+
+.profile-page .detail-value {
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns: 18px minmax(0, 1fr);
+
+    align-items: center;
+
+    gap: 3px;
+
+    color: #0f2f57;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.profile-page .detail-value .separator {
+    color: #334155;
+    font-weight: 400;
+}
+
+
+/* =================================
+   8. FORM UBAH PASSWORD
+================================= */
+
+.profile-page .profile-password-form {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 18px;
+}
+
+/* Kelompok input */
+
+.profile-page .form-group-password {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-bottom: 16px;
+}
+
+/* Label input */
+
+.profile-page .form-group-password label {
+    color: #0f2f57;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Pembungkus input dan ikon mata */
+
+.profile-page .input-password-wrapper {
+    position: relative;
+
+    width: 100%;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+
+    border: 1px solid #cfe0fa;
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    transition: border-color 0.2s ease;
+}
+
+.profile-page .input-password-wrapper:focus-within {
+    border-color: #2563eb;
+}
+
+/* Input password */
+
+.profile-page .input-password-wrapper input {
+    width: 100%;
+    height: 100%;
+
+    padding: 0 42px 0 14px;
+
+    background: transparent;
+
+    border: none;
+    outline: none;
+
+    color: #0f2f57;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.profile-page .input-password-wrapper input::placeholder {
+    color: #94a3b8;
+    opacity: 1;
+}
+
+/* Ikon tampil/sembunyikan password */
+
+.profile-page .toggle-password {
+    position: absolute;
+
+    right: 13px;
+
+    color: #94a3b8;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: color 0.2s ease;
+}
+
+.profile-page .toggle-password:hover {
+    color: #2563eb;
+}
+
+
+/* =================================
+   9. TOMBOL FORM PASSWORD
+================================= */
+
+.profile-page .form-actions-profile {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: auto;
+    padding-top: 16px;
+}
+
+/* Tombol Batal */
+
+.profile-page .btn-batal {
+    min-width: 96px;
+    height: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 17px;
+
+    background: #ffffff;
+    color: #0875f5;
+
+    border: 1.5px solid #0875f5;
+    border-radius: 9px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.profile-page .btn-batal:hover {
+    background: #eff6ff;
+}
+
+/* Tombol Ubah Password */
+
+.profile-page .btn-simpan {
+    min-width: 155px;
+    height: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 17px;
+
+    background: #0866e9;
+    color: #ffffff;
+
+    border: 1px solid #0866e9;
+    border-radius: 9px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.profile-page .btn-simpan:hover {
+    background: #1d4ed8;
+}
+
+
+/* =================================
+   10. FOOTER PROFIL
+   Memakai footer bersama Dashboard
+================================= */
+
+.profile-page .main-content {
+    min-width: 0;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-page .footer-copyright {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: auto;
+
+    text-align: center;
+}
+
+
+/* =================================
+   11. RESPONSIVE TABLET
+================================= */
+
+@media (max-width: 900px) {
+
+    .profile-page .profile-content-body {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .profile-page .profile-grid {
+        gap: 12px;
+    }
+
+    .profile-page .profile-info-card,
+    .profile-page .profile-password-card {
+        padding: 14px;
+    }
+
+    .profile-page .profile-detail-item {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1fr);
+    }
+
+    .profile-page .detail-label {
+        gap: 7px;
+        font-size: 11px;
+    }
+
+    .profile-page .icon-circle-badge-small {
+        width: 34px;
+        height: 34px;
+        min-width: 34px;
+    }
+
+}
+
+
+/* =================================
+   12. RESPONSIVE MOBILE
+================================= */
+
+@media (max-width: 768px) {
+
+    .profile-page .profile-grid {
+        grid-template-columns: minmax(0, 1fr);
+        min-height: auto;
+    }
+
+    .profile-page .profile-info-card,
+    .profile-page .profile-password-card {
+        min-height: 390px;
+    }
+
+    .profile-page .profile-content-body {
+        gap: 14px;
+        padding: 0 16px 20px;
+    }
+
+    .profile-page .profile-welcome-banner {
+        min-height: 145px;
+        height: auto;
+        padding: 20px;
+    }
+
+    .profile-page .profile-detail-item {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1.1fr);
+    }
+
+    .profile-page .form-actions-profile {
+        margin-top: 20px;
+    }
+
+}
+
+
+/* =================================
+   13. SMALL MOBILE
+================================= */
+
+@media (max-width: 480px) {
+
+    .profile-page .profile-info-card,
+    .profile-page .profile-password-card {
+        padding: 14px;
+    }
+
+    .profile-page .profile-detail-item {
+        min-height: 60px;
+    }
+
+    .profile-page .detail-label {
+        font-size: 10px;
+    }
+
+    .profile-page .detail-value {
+        font-size: 10px;
+    }
+
+    .profile-page .btn-batal {
+        min-width: 80px;
+    }
+
+    .profile-page .btn-simpan {
+        min-width: 130px;
+    }
+
+}
+
+
+
+/* ---------- Footer ---------- */
+
+.footer-copyright {
+    padding: 18px 32px;
+    margin-top: auto;
+
+    color: var(--text-secondary);
+    font-size: 11px;
+    text-align: center;
+}
+
+
+
+/* =====================================================
+   REVISI UKURAN CONTAINER PROFIL
+===================================================== */
+
+/* Grid dua kolom */
+.profile-page .profile-grid {
+    width: 100%;
+    height: 420px;
+    min-height: 420px;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+    align-items: stretch;
+    gap: 18px;
+
+    flex: 0 0 420px;
+}
+
+/* Kedua container */
+.profile-page .profile-info-card,
+.profile-page .profile-password-card {
+    width: 100%;
+    height: 420px;
+    min-height: 420px;
+
+    padding: 16px;
+
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* ---------- PENYESUAIAN ISI INFORMASI PROFIL ---------- */
+
+/* Avatar diperkecil sedikit */
+.profile-page .profile-avatar-container {
+    width: 96px;
+    height: 96px;
+}
+
+.profile-page .avatar-large {
+    width: 90px;
+    height: 90px;
+}
+
+.profile-page .avatar-large > i {
+    font-size: 50px;
+}
+
+.profile-page .profile-avatar-wrapper {
+    padding: 5px 0 8px;
+}
+
+.profile-page .profile-detail-list {
+    margin-top: 8px;
+}
+
+/* Jarak baris informasi */
+.profile-page .profile-detail-item {
+    min-height: 56px;
+}
+
+/* Ikon informasi */
+.profile-page .icon-circle-badge-small {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+}
+
+/* ---------- PENYESUAIAN FORM PASSWORD ---------- */
+
+.profile-page .profile-password-form {
+    margin-top: 16px;
+}
+
+.profile-page .form-group-password {
+    margin-bottom: 14px;
+}
+
+.profile-page .input-password-wrapper {
+    height: 48px;
+}
+
+/* Tombol tetap di bagian kanan bawah */
+.profile-page .form-actions-profile {
+    margin-top: auto;
+    padding-top: 16px;
+    padding-bottom: 0;
+}
+
+/* ---------- FOOTER ---------- */
+
+.profile-page .footer-copyright {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: auto;
+    padding: 12px 20px 15px;
+
+    text-align: center;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 768px) {
+    .profile-page .profile-grid {
+        height: auto;
+        min-height: 0;
+        flex: none;
+
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .profile-page .profile-info-card,
+    .profile-page .profile-password-card {
+        height: auto;
+        min-height: 390px;
+    }
+}
+
+
+/* =====================================================
+   REVISI IKON UBAH PASSWORD
+===================================================== */
+
+/* Ukuran ikon gembok Ubah Password */
+.profile-page .profile-password-card .profile-lock-icon {
+    width: 24px !important;
+    height: 24px !important;
+
+    display: block !important;
+    flex-shrink: 0;
+
+    color: #0875f5 !important;
+}
+
+/* Lingkaran tetap */
+.profile-page .profile-password-card .icon-circle-badge {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #dbeafe !important;
+    border-radius: 50% !important;
+}
+
+
+
+/* =================================
+   9. RESPONSIVE
+================================= */
+
+/* Tablet */
+
+@media (max-width: 992px) {
+
+    :root {
+        --sidebar-width: 220px;
+    }
+
+    .content-body {
+        padding: 0 24px 24px;
+    }
+
+    .top-navbar {
+        padding: 0 24px;
+    }
+
+    .dt-flow-container {
+        flex-wrap: wrap;
+    }
+
+    .dt-box {
+        flex-basis: 40%;
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+.dashboard-container,
+    .app-container {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+    }
+
+    .sidebar {
+    background:
+        linear-gradient(
+            rgba(11, 25, 44, 0.85),
+            rgba(11, 25, 44, 0.85)
+        ),
+        url('../assets/images/sidebar.jpeg');
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    }
+
+    .sidebar-brand {
+        margin-bottom: 12px;
+    }
+
+    .sidebar-menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .sidebar-footer {
+        margin-top: 16px;
+    }
+
+    .main-content {
+        min-height: auto;
+        overflow: visible;
+    }
+
+    .top-navbar {
+        min-height: 64px;
+        padding: 0 16px;
+    }
+
+    .content-body {
+        padding: 0 16px 24px;
+        gap: 18px;
+    }
+
+    .welcome-banner {
+        min-height: 150px;
+        padding: 20px;
+        background-position: center;
+    }
+
+    .banner-text h1 {
+        font-size: 22px;
+    }
+
+    .banner-text p {
+        font-size: 12px;
+    }
+
+    .info-card {
+        padding: 20px;
+    }
+
+    .dt-flow-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .dt-box {
+        width: 100%;
+    }
+
+    .dt-arrow {
+        align-self: center;
+        transform: rotate(90deg);
+    }
+
+    .footer-copyright {
+        padding: 16px;
+    }
+}
+
+
+/* Small Mobile */
+
+@media (max-width: 480px) {
+
+    .banner-text h1 {
+        font-size: 19px;
+    }
+
+    .user-profile-badge {
+        gap: 8px;
+        padding: 6px 10px;
+    }
+
+    .user-profile-badge .profile-avatar {
+        width: 32px;
+        height: 32px;
+    }
+
+    .info-card {
+        padding: 16px;
+    }
+
+    .info-card h3 {
+        font-size: 14px;
+    }
+}
+
+
+/* =====================================================
+   REVISI CONFUSION MATRIX
+   Menyesuaikan susunan dengan desain referensi
+===================================================== */
+
+/* ---------- CARD ---------- */
+
+.matrix-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 245px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header kartu */
+.matrix-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+
+/* ---------- WRAPPER VISUALISASI ---------- */
+
+.matrix-table-wrapper {
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 170px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: nowrap;
+    gap: 10px;
+
+    margin: 0 auto;
+    padding: 12px 0 4px;
+
+    overflow: visible;
+}
+
+
+/* ---------- LABEL AKTUAL ---------- */
+
+.axis-label-y {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: #334155;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+/* ---------- AREA TABEL ---------- */
+
+.matrix-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+    gap: 5px;
+}
+
+/* Judul Prediksi */
+.matrix-prediction-title {
+    margin: 0 0 3px;
+
+    color: #0f172a;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+/* ---------- TABEL ---------- */
+
+.matrix-table {
+    width: max-content;
+
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    table-layout: fixed;
+    text-align: center;
+}
+
+/* Semua sel */
+.matrix-table th,
+.matrix-table td {
+    height: 38px;
+    padding: 7px 12px;
+
+    font-size: 10px;
+    border: 1px solid #ffffff;
+}
+
+/* Kolom kosong di kiri atas */
+.matrix-table .matrix-empty-cell {
+    width: 74px;
+    min-width: 74px;
+
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Kolom prediksi */
+.matrix-table thead th:not(.matrix-empty-cell),
+.matrix-table tbody td {
+    width: 84px;
+    min-width: 84px;
+}
+
+/* Label kelas aktual */
+.matrix-table tbody th {
+    width: 74px;
+    min-width: 74px;
+
+    text-align: right;
+    padding-right: 12px;
+
+    background: #ffffff;
+    color: #334155;
+
+    font-size: 10px;
+    font-weight: 500;
+}
+
+
+/* ---------- LEGEND / COLORBAR ---------- */
+
+.matrix-legend-wrapper {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+    gap: 8px;
+
+    margin: 0 0 0 8px !important;
+}
+
+/* Area gradasi */
+.matrix-legend-wrapper .legend-scale {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+    height: 130px;
+}
+
+/* Sembunyikan angka 200 dan 0 yang duplikat */
+.matrix-legend-wrapper .legend-scale > span {
+    display: none !important;
+}
+
+/* Batang gradasi */
+.matrix-legend-wrapper .legend-bar {
+    width: 11px;
+    height: 130px;
+
+    flex-shrink: 0;
+    border-radius: 2px;
+}
+
+/* Angka skala di sebelah gradasi */
+.matrix-legend-wrapper .matrix-legend {
+    height: 130px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 0;
+    margin: 0 !important;
+
+    color: #64748b;
+    font-size: 9px;
+    line-height: 1;
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 768px) {
+
+    .matrix-card {
+        overflow-x: auto;
+    }
+
+    .matrix-table-wrapper {
+        justify-content: center;
+        min-width: 480px;
+    }
+
+}
+
+/* =====================================================
+   FINAL REVISI LABEL CONFUSION MATRIX
+===================================================== */
+
+/* ---------- LABEL KOLOM DI LUAR AREA MATRIX ---------- */
+
+.matrix-table thead th:not(.matrix-empty-cell) {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    color: #334155 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 500 !important;
+}
+
+/* Hilangkan seluruh latar header tabel */
+.matrix-table thead tr {
+    background: transparent !important;
+}
+
+/* ---------- JUDUL PREDIKSI ---------- */
+
+.matrix-main {
+    width: max-content;
+    align-items: stretch;
+}
+
+.matrix-prediction-title {
+    width: calc(100% - 74px);
+    margin-left: 74px !important;
+    margin-bottom: 3px;
+
+    align-self: flex-start;
+    box-sizing: border-box;
+
+    color: #0f172a !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    line-height: 1.5;
+
+    text-align: center !important;
+}
+
+/* ---------- JUDUL AKTUAL ---------- */
+
+.axis-label-y {
+    position: relative;
+    top: 19px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+
+    color: #0f172a !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    line-height: 1.5;
+
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* =====================================================
+   PENYESUAIAN POSISI COLORBAR CONFUSION MATRIX
+===================================================== */
+
+/* Geser colorbar sejajar dengan area sel matriks */
+.matrix-legend-wrapper {
+    position: relative;
+    transform: translateY(32px);
+
+    margin-top: 0 !important;
+}
+
+/* Tinggi gradasi */
+.matrix-legend-wrapper .legend-scale {
+    height: 112px !important;
+    align-items: stretch;
+}
+
+/* Batang gradasi */
+.matrix-legend-wrapper .legend-bar {
+    height: 112px !important;
+    width: 11px;
+}
+
+/* Angka 200 sampai 0 */
+.matrix-legend-wrapper .matrix-legend {
+    height: 112px !important;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between !important;
+    align-items: flex-start;
+
+    gap: 0 !important;
+    margin: 0 !important;
+}
+
+/* =====================================================
+   REVISI TABEL HASIL EVALUASI
+===================================================== */
+
+/* Garis pembungkus tabel itu sendiri */
+.evaluation-table {
+    width: 100% !important;
+
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+
+    border: 1px solid #e7eef7 !important;
+    border-radius: 13px;
+
+    overflow: hidden;
+}
+
+/* Garis halus antar kolom pada header */
+.evaluation-table thead th {
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Garis halus antar kolom pada isi tabel */
+.evaluation-table tbody td {
+    border-right: 1px solid #edf2f7;
+    border-bottom: 1px solid #edf2f7;
+}
+
+/* Hilangkan garis kanan pada kolom terakhir */
+.evaluation-table thead th:last-child,
+.evaluation-table tbody td:last-child {
+    border-right: none;
+}
+
+/* Hilangkan garis bawah pada baris terakhir */
+.evaluation-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Sudut atas header */
+.evaluation-table thead th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.evaluation-table thead th:last-child {
+    border-top-right-radius: 12px;
 }

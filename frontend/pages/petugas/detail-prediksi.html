@@ -1,197 +1,366 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detail Prediksi - SIPIKA</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- CSS Utama -->
-  <link rel="stylesheet" href="../../css/petugas.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detail Prediksi - SIPIKA</title>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="../../css/global.css">
+
+    <!-- CSS Utama Petugas -->
+    <link rel="stylesheet" href="../../css/petugas.css">
 </head>
-<body>
 
-  <div class="app-container">
-    
-    <!-- SIDEBAR -->
-    <aside class="sidebar" style="background-image: url('../../assets/images/sidebar.jpeg'); background-size: cover; background-position: center;">
-      <div class="sidebar-brand">
-        <img src="../../assets/images/logo.png" alt="Logo SIPIKA" class="brand-logo-img" style="width: 150px; max-width: 100%;">
-      </div>
+<body class="detail-prediction-page">
 
-      <ul class="sidebar-menu">
-        <li>
-          <a href="dashboard.html">
-            <i class="fa-solid fa-house"></i>
-            <span>Dashboard</span>
-          </a>
-        </li>
-        <li>
-          <a href="dataset.html">
-            <i class="fa-solid fa-database"></i>
-            <span>Data Dataset</span>
-          </a>
-        </li>
-        <li>
-          <a href="evaluasi-model.html">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Evaluasi Model</span>
-          </a>
-        </li>
-        <li class="active">
-          <a href="riwayat-prediksi.html">
-            <i class="fa-solid fa-clock-rotate-left"></i>
-            <span>Riwayat Prediksi</span>
-          </a>
-        </li>
-        <li>
-          <a href="profil.html">
-            <i class="fa-solid fa-user"></i>
-            <span>Profil</span>
-          </a>
-        </li>
-      </ul>
+    <div class="app-container">
 
-      <div class="sidebar-footer">
-        <a href="../../index.html" class="logout-btn">
-          <i class="fa-solid fa-arrow-right-from-bracket"></i>
-          <span>Logout</span>
-        </a>
-      </div>
-    </aside>
+        <!-- SIDEBAR -->
+        <aside class="sidebar"
+              style="background-image: url('../../assets/images/sidebar.jpeg');
+                     background-size: cover;
+                     background-position: center;">
 
-    <!-- MAIN CONTENT -->
-    <div class="main-content">
-      
-      <!-- TOPBAR & PROFIL -->
-      <header class="topbar">
-        <div class="topbar-profile">
-          <div class="profile-avatar">
-            <i class="fa-solid fa-user"></i>
-          </div>
-          <div class="profile-info">
-            <span class="profile-name">Bayu Cahyo</span>
-            <span class="profile-role"><span class="status-dot"></span> Petugas</span>
-          </div>
+            <div class="sidebar-brand">
+                <img
+                    src="../../assets/images/logo.png"
+                    alt="Logo SIPIKA"
+                    class="brand-logo-img"
+                    style="width: 150px; max-width: 100%;"
+                >
+            </div>
+
+            <ul class="sidebar-menu">
+
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="dataset.html">
+                        <i class="fa-solid fa-database"></i>
+                        <span>Data Dataset</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="evaluasi-model.html">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Evaluasi Model</span>
+                    </a>
+                </li>
+
+                <li class="active">
+                    <a href="riwayat-prediksi.html">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>Riwayat</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="profil.html">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Profil</span>
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="sidebar-footer">
+                <a href="../../index.html" class="logout-btn">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- TOPBAR -->
+            <header class="top-navbar">
+                <div class="user-profile-badge">
+
+                    <div class="profile-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div class="profile-info">
+                        <span class="profile-name">Bayu Cahyo</span>
+                        <span class="profile-role">Petugas</span>
+                    </div>
+
+                </div>
+            </header>
+
+
+            <!-- CONTENT BODY -->
+            <div class="content-body detail-content-body">
+
+                <!-- BANNER DETAIL PREDIKSI -->
+                <div class="banner-card detail-banner"
+                     style="background-image: url('../assets/images/banner-ikan.jpg');
+                            background-size: cover;
+                            background-position: center right;">
+
+                    <div class="banner-text">
+
+                        <div class="banner-eyebrow">
+                            <span>DETAIL</span>
+                            <span class="banner-line"></span>
+                        </div>
+
+                        <h2>Detail Prediksi</h2>
+
+                        <p>
+                            Informasi lengkap dari hasil klasifikasi yang pernah Anda lakukan.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DETAIL GRID -->
+                <div class="detail-grid">
+
+                    <!-- KOLOM KIRI -->
+                    <div class="detail-left-column">
+
+                        <!-- FOTO DAN INFORMASI PREDIKSI -->
+                        <div class="detail-information-card">
+
+                            <!-- FOTO IKAN -->
+                            <div class="fish-photo-card">
+                                <img
+                                    src="../../assets/images/detail_ikan.png"
+                                    alt="Ikan Cakalang"
+                                    class="fish-preview-img"
+                                >
+                            </div>
+
+
+                            <!-- INFORMASI PREDIKSI -->
+                            <div class="info-prediksi-card">
+
+                                <div class="card-section-title">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    <span>Informasi Prediksi</span>
+                                </div>
+
+                                <ul class="info-list">
+
+                                    <li>
+                                        <span class="info-label">
+                                            <i class="fa-solid fa-fish"></i>
+                                            Jenis Ikan
+                                        </span>
+
+                                        <span class="info-colon">:</span>
+
+                                        <span class="info-value">
+                                            Cakalang
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <span class="info-label">
+                                            <i class="fa-regular fa-calendar-days"></i>
+                                            Tanggal Prediksi
+                                        </span>
+
+                                        <span class="info-colon">:</span>
+
+                                        <span class="info-value info-date-value">
+                                            <span>12 Mei 2025,</span>
+                                            <span>10:23</span>
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <span class="info-label">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            Wilayah
+                                        </span>
+
+                                        <span class="info-colon">:</span>
+
+                                        <span class="info-value">
+                                            Kota Ternate
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <span class="info-label">
+                                            <i class="fa-solid fa-gear"></i>
+                                            Alat Tangkap
+                                        </span>
+
+                                        <span class="info-colon">:</span>
+
+                                        <span class="info-value">
+                                            Jaring
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <span class="info-label">
+                                            <i class="fa-solid fa-sun"></i>
+                                            Musim
+                                        </span>
+
+                                        <span class="info-colon">:</span>
+
+                                        <span class="info-value">Kemarau</span>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- TOMBOL KEMBALI -->
+                        <div class="back-btn-wrapper">
+                            <a href="riwayat-prediksi.html" class="btn-back-outline">
+                                Kembali
+                            </a>
+                        </div>
+
+                    </div>
+
+
+                    <!-- KOLOM KANAN -->
+                    <div class="detail-right-column">
+
+                        <!-- HASIL KLASIFIKASI -->
+                        <div class="content-card result-card">
+
+                            <div class="card-section-title green-title">
+                                <i class="fa-solid fa-chart-simple"></i>
+                                <span>Hasil Klasifikasi</span>
+                            </div>
+
+                            <div class="result-badge-container">
+                                <span class="badge-result-lg badge-tinggi">
+                                    Tinggi
+                                </span>
+                            </div>
+
+                            <p class="result-desc">
+                                Tingkat produksi ikan tangkapan diprediksi dalam kategori tinggi.
+                            </p>
+
+                        </div>
+
+
+                        <!-- KESIMPULAN -->
+                        <div class="content-card conclusion-card">
+
+                            <div class="card-section-title blue-title">
+                                <i class="fa-solid fa-file-lines"></i>
+                                <span>Kesimpulan</span>
+                            </div>
+
+                            <p class="card-text-body">
+                                Berdasarkan data yang dimasukkan, hasil klasifikasi
+                                menunjukkan bahwa tingkat produksi ikan cakalang
+                                di wilayah Kota Ternate pada musim kemarau berada
+                                dalam kategori tinggi.
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- SARAN UNTUK NELAYAN -->
+                        <div class="content-card suggestion-card">
+
+                            <!-- JUDUL DAN IKON -->
+                            <div class="card-section-title warning-title">
+
+                                <span class="suggestion-icon">
+                                    <svg viewBox="0 0 32 32"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        aria-hidden="true">
+
+                                        <!-- Sinar lampu -->
+                                        <g fill="none"
+                                          stroke="currentColor"
+                                          stroke-width="2.5"
+                                          stroke-linecap="round">
+
+                                            <path d="M16 1.5v3"/>
+                                            <path d="M16 27.5v3"/>
+                                            <path d="M2.8 15.5h3"/>
+                                            <path d="M26.2 15.5h3"/>
+                                            <path d="M6.5 5.5l2.2 2.2"/>
+                                            <path d="M23.3 23.3l2.2 2.2"/>
+                                            <path d="M25.5 5.5l-2.2 2.2"/>
+                                            <path d="M8.7 23.3l-2.2 2.2"/>
+
+                                        </g>
+
+                                        <!-- Badan lampu -->
+                                        <path
+                                            fill="currentColor"
+                                            d="M16 5.7c-5.2 0-9.3 4.1-9.3 9.2
+                                            0 3.4 1.8 5.7 3.7 7.8
+                                            .8.9 1.2 1.6 1.3 2.4h8.6
+                                            c.1-.8.5-1.5 1.3-2.4
+                                            1.9-2.1 3.7-4.4 3.7-7.8
+                                            0-5.1-4.1-9.2-9.3-9.2z"/>
+
+                                        <!-- Dudukan lampu -->
+                                        <path
+                                            fill="currentColor"
+                                            d="M12 27h8v1.7a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2z"/>
+
+                                    </svg>
+                                </span>
+
+                                <span>Saran untuk Nelayan</span>
+
+                            </div>
+
+                            <!-- PENJELASAN -->
+                            <p class="card-text-body">
+                                Pada kondisi ini, disarankan untuk tetap melanjutkan
+                                aktivitas penangkapan dengan memperhatikan kondisi
+                                cuaca dan keselamatan di laut agar hasil tetap optimal.
+                            </p>
+
+                        </div>
+                        <!-- PENUTUP DETAIL-RIGHT-COLUMN -->
+
+                    </div>
+                    <!-- PENUTUP DETAIL-GRID -->
+
+                </div>
+                <!-- PENUTUP CONTENT-BODY -->
+
+
+                <!-- FOOTER -->
+                <footer class="footer-copyright">
+                    <p>&copy; 2026 SIPIKA - Kelompok 13 Web.</p>
+                </footer>
+
+            </main>
+
         </div>
-      </header>
-
-     <!-- CONTENT BODY -->
-      <div class="content-body">
-        
-        <!-- BANNER (MEMAKAI BANNER-IKAN.JPG) -->
-        <div class="banner-card detail-banner" style="background-image: url('../../assets/images/banner-ikan.jpg'); background-size: cover; background-position: center;">
-        <div class="banner-text">
-            <h2>Detail Prediksi</h2>
-            <p>Informasi lengkap dari hasil klasifikasi yang pernah Anda lakukan.</p>
-        </div>
-        </div>
-
-        <!-- DETAIL GRID LAYOUT -->
-        <div class="detail-grid">
-          
-          <!-- KOLOM KIRI: FOTO IKAN, INFORMASI PREDIKSI, & TOMBOL KEMBALI -->
-          <div class="detail-left-col">
-            
-            <!-- KARTU GAMBAR IKAN (MEMAKAI IKAN.PNG) -->
-            <div class="content-card fish-photo-card">
-              <img src="../../assets/images/ikan.png" alt="Ikan Cakalang" class="fish-preview-img">
-            </div>
-
-            <!-- KARTU INFORMASI PREDIKSI -->
-            <div class="content-card info-prediksi-card">
-              <div class="card-section-title">
-                <i class="fa-solid fa-circle-info"></i>
-                <span>Informasi Prediksi</span>
-              </div>
-              <ul class="info-list">
-                <li>
-                  <span class="info-label"><i class="fa-solid fa-fish"></i> Jenis Ikan</span>
-                  <span class="info-colon">:</span>
-                  <span class="info-value">Cakalang</span>
-                </li>
-                <li>
-                  <span class="info-label"><i class="fa-regular fa-calendar"></i> Tanggal Prediksi</span>
-                  <span class="info-colon">:</span>
-                  <span class="info-value">12 Mei 2025, 10:23</span>
-                </li>
-                <li>
-                  <span class="info-label"><i class="fa-solid fa-location-dot"></i> Wilayah</span>
-                  <span class="info-colon">:</span>
-                  <span class="info-value">Kota Ternate</span>
-                </li>
-                <li>
-                  <span class="info-label"><i class="fa-solid fa-gear"></i> Alat Tangkap</span>
-                  <span class="info-colon">:</span>
-                  <span class="info-value">Jaring</span>
-                </li>
-                <li>
-                  <span class="info-label"><i class="fa-solid fa-cloud-sun"></i> Musim</span>
-                  <span class="info-colon">:</span>
-                  <span class="info-value">Kemarau</span>
-                </li>
-              </ul>
-
-              <!-- TOMBOL KEMBALI -->
-              <div class="back-btn-wrapper">
-                <a href="riwayat-prediksi.html" class="btn-back-outline">Kembali</a>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- KOLOM KANAN: HASIL KLASIFIKASI, KESIMPULAN, & SARAN -->
-          <div class="detail-right-col">
-            
-            <!-- HASIL KLASIFIKASI (Ikon diperbarui ke chart-column agar mirip Figma) -->
-            <div class="content-card result-card">
-              <div class="card-section-title green-title">
-                <i class="fa-solid fa-chart-column"></i>
-                <span>Hasil Klasifikasi</span>
-              </div>
-              <div class="result-badge-container">
-                <span class="badge-result-lg badge-tinggi">Tinggi</span>
-              </div>
-              <p class="result-desc">Tingkat produksi ikan tangkapan diprediksi dalam kategori tinggi.</p>
-            </div>
-
-            <!-- KESIMPULAN (Ikon diperbarui ke file-lines agar mirip Figma) -->
-            <div class="content-card conclusion-card">
-              <div class="card-section-title blue-title">
-                <i class="fa-solid fa-file-lines"></i>
-                <span>Kesimpulan</span>
-              </div>
-              <p class="card-text-body">
-                Berdasarkan data yang dimasukkan, hasil klasifikasi menunjukkan bahwa tingkat produksi ikan cakalang di wilayah Kota Ternate pada musim kemarau berada dalam kategori tinggi.
-              </p>
-            </div>
-
-            <!-- SARAN UNTUK NELAYAN -->
-            <div class="content-card suggestion-card">
-              <div class="card-section-title warning-title">
-                <i class="fa-regular fa-lightbulb"></i>
-                <span>Saran untuk Nelayan</span>
-              </div>
-              <p class="card-text-body">
-                Pada kondisi ini, disarankan untuk tetap melanjutkan aktivitas penangkapan dengan memperhatikan kondisi cuaca dan keselamatan di laut agar hasil tetap optimal.
-              </p>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div> <!-- Akhir dari .content-body -->
-
-      <!-- FOOTER -->
-      <footer class="footer-copyright">
-        <p>&copy; 2026 SIPIKA - Kelompok 13 Web</p>
-      </footer>
-
-    </div>
-  </div>
 
 </body>
 </html>

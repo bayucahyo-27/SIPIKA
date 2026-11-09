@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Riwayat Prediksi - SIPIKA</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- CSS Utama -->
-  <link rel="stylesheet" href="../../css/petugas.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Prediksi - SIPIKA</title>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="../../css/global.css">
+
+    <!-- CSS Utama Petugas -->
+    <link rel="stylesheet" href="../../css/petugas.css">
 </head>
-<body>
+<body class="history-page">
 
   <div class="app-container">
     
@@ -66,31 +70,47 @@
     <div class="main-content">
       
       <!-- TOPBAR & PROFIL -->
-      <header class="topbar">
-        <div class="topbar-profile">
-          <div class="profile-avatar">
-            <i class="fa-solid fa-user"></i>
+      <header class="top-navbar">
+
+          <div class="user-profile-badge">
+
+              <div class="profile-avatar">
+                  <i class="fa-solid fa-user"></i>
+              </div>
+
+              <div class="profile-info">
+                  <span class="profile-name">Bayu Cahyo</span>
+                  <span class="profile-role">Petugas</span>
+              </div>
+
           </div>
-          <div class="profile-info">
-            <span class="profile-name">Bayu Cahyo</span>
-            <span class="profile-role"><span class="status-dot"></span> Petugas</span>
-          </div>
-        </div>
+
       </header>
 
       <!-- CONTENT BODY -->
       <div class="content-body">
         
         <!-- BANNER -->
-        <div class="banner-card" style="background-image: url('../../assets/images/banner.jpeg'); background-size: cover; background-position: center;">
-          <div class="banner-text">
-            <h2>Riwayat Prediksi</h2>
-            <p>Halaman ini menampilkan riwayat hasil klasifikasi tingkat produksi ikan tangkapan berdasarkan data yang pernah diproses menggunakan algoritma Decision Tree.</p>
-          </div>
+        <div class="banner-card history-banner">
+            <div class="banner-text">
+
+                <div class="banner-eyebrow">
+                    <span>RIWAYAT KLASIFIKASI</span>
+                    <span></span>
+                </div>
+
+                <h2>Riwayat</h2>
+
+                <p>
+                    Halaman ini menampilkan riwayat hasil klasifikasi tingkat produksi ikan tangkapan berdasarkan data
+                    yang pernah diproses menggunakan algoritma Decision Tree.
+                </p>
+
+            </div>
         </div>
 
         <!-- MAIN DATA CARD -->
-        <div class="main-card">
+        <div class="main-card history-card">
           
           <!-- FILTER BAR -->
           <div class="table-filter-bar">
