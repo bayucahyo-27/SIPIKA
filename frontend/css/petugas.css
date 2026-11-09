@@ -5862,3 +5862,838 @@ body {
 .evaluation-table thead th:last-child {
     border-top-right-radius: 12px;
 }
+
+
+/* =====================================================
+   SIPIKA PETUGAS - RESPONSIVE SYSTEM
+   Cakupan: enam halaman di pages/petugas/
+   Desain desktop lebar (> 1100px) tetap dipertahankan.
+===================================================== */
+
+/* -----------------------------------------------------
+   1. DESKTOP SEMPIT / SPLIT SCREEN / LAPTOP
+   Sidebar tetap di kiri sampai lebar viewport 560px.
+----------------------------------------------------- */
+@media screen and (min-width: 561px) and (max-width: 1100px) {
+
+    :root {
+        --sidebar-width: clamp(150px, 17.58vw, 225px);
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        min-width: 0;
+    }
+
+    body {
+        height: 100vh;
+        height: 100dvh;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    /* Shell halaman: sidebar + konten tetap berdampingan */
+    .dashboard-container,
+    .app-container {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: stretch;
+
+        width: 100%;
+        height: 100vh !important;
+        height: 100dvh !important;
+        min-height: 0 !important;
+
+        overflow: hidden !important;
+    }
+
+    /* Sidebar responsif */
+    .sidebar {
+        flex: 0 0 var(--sidebar-width) !important;
+
+        width: var(--sidebar-width) !important;
+        min-width: var(--sidebar-width) !important;
+        max-width: var(--sidebar-width) !important;
+
+        height: 100vh !important;
+        height: 100dvh !important;
+        min-height: 0 !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+
+        padding: 10px 0 !important;
+
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+    }
+
+    .sidebar .sidebar-brand {
+        width: 100% !important;
+        height: clamp(86px, 11.25vw, 144px) !important;
+        min-height: clamp(86px, 11.25vw, 144px) !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        padding: 0 6px !important;
+        margin: 0 0 clamp(10px, 1.55vw, 20px) !important;
+
+        flex-shrink: 0 !important;
+    }
+
+    .sidebar .sidebar-brand img,
+    .sidebar .brand-logo-img,
+    .sidebar .logo-img {
+        width: clamp(86px, 11.25vw, 144px) !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+    }
+
+    /* Menu vertikal; ukuran item mengikuti lebar sidebar */
+    .sidebar .sidebar-menu {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        flex-wrap: nowrap !important;
+        align-items: stretch !important;
+
+        gap: clamp(3px, 0.45vw, 5px) !important;
+        padding: 0 clamp(6px, 0.75vw, 9.5px) !important;
+        margin: 0 !important;
+    }
+
+    .sidebar .sidebar-menu li {
+        width: 100% !important;
+        height: auto !important;
+        min-height: clamp(36px, 3.63vw, 46.5px) !important;
+        flex: 0 0 auto !important;
+    }
+
+    .sidebar .sidebar-menu li a {
+        width: 100% !important;
+        height: auto !important;
+        min-height: clamp(36px, 3.63vw, 46.5px) !important;
+
+        display: flex !important;
+        align-items: center !important;
+        gap: clamp(7px, 1vw, 12px) !important;
+
+        padding: 6px clamp(7px, 1.1vw, 14px) !important;
+
+        font-size: clamp(10px, 1.27vw, 14px) !important;
+        line-height: 1.3 !important;
+        white-space: nowrap;
+    }
+
+    .sidebar .sidebar-menu li a i {
+        width: clamp(16px, 1.65vw, 21px) !important;
+        min-width: clamp(16px, 1.65vw, 21px) !important;
+        font-size: clamp(13px, 1.4vw, 18px) !important;
+        flex: 0 0 auto !important;
+    }
+
+    .sidebar .sidebar-footer {
+        width: 100% !important;
+        margin-top: auto !important;
+        padding: clamp(12px, 1.4vw, 18px) 12px 4px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .sidebar .sidebar-footer .logout-btn {
+        width: 100% !important;
+        gap: clamp(7px, 1vw, 12px) !important;
+        padding: 0 5px !important;
+        font-size: clamp(10px, 1.27vw, 14px) !important;
+        white-space: nowrap;
+    }
+
+    .sidebar .sidebar-footer .logout-btn i {
+        width: 18px !important;
+        min-width: 18px !important;
+        font-size: clamp(13px, 1.4vw, 16px) !important;
+    }
+
+    /* Konten utama mengambil sisa lebar dan menjadi area scroll */
+    .main-content,
+    .profile-page .main-content {
+        flex: 1 1 0 !important;
+
+        width: 0 !important;
+        max-width: none !important;
+        min-width: 0 !important;
+
+        height: 100vh !important;
+        height: 100dvh !important;
+        min-height: 0 !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+    }
+
+    .main-content > *,
+    .content-body > * {
+        min-width: 0;
+    }
+
+    /* Topbar bersama */
+    .top-navbar,
+    .topbar {
+        width: 100%;
+        min-width: 0;
+        min-height: clamp(50px, 5.5vw, 70px);
+        height: auto;
+        flex-shrink: 0;
+
+        padding-left: clamp(12px, 2.5vw, 28px) !important;
+        padding-right: clamp(12px, 2.5vw, 28px) !important;
+    }
+
+    .user-profile-badge {
+        max-width: 100%;
+        gap: clamp(6px, 0.8vw, 10px);
+        padding: 5px clamp(8px, 1vw, 12px);
+    }
+
+    /* Padding konten bersama */
+    .content-body,
+    .detail-content-body,
+    .profile-content-body {
+        width: 100% !important;
+        max-width: none !important;
+        min-width: 0 !important;
+
+        padding-left: clamp(12px, 1.8vw, 22px) !important;
+        padding-right: clamp(12px, 1.8vw, 22px) !important;
+        padding-bottom: clamp(16px, 2vw, 24px) !important;
+        gap: clamp(12px, 1.4vw, 18px) !important;
+    }
+
+    /* Banner menyesuaikan ruang, bukan memaksa lebar tetap */
+    .welcome-banner,
+    .banner-card,
+    .history-banner,
+    .detail-banner,
+    .profile-page .profile-welcome-banner {
+        width: 100% !important;
+        max-width: none !important;
+        min-width: 0 !important;
+
+        height: auto !important;
+        min-height: clamp(128px, 14.5vw, 160px) !important;
+
+        padding: clamp(14px, 1.8vw, 22px) !important;
+        flex-shrink: 0;
+    }
+
+    .welcome-banner .banner-text,
+    .banner-card .banner-text,
+    .history-banner .banner-text,
+    .detail-banner .banner-text {
+        width: 100%;
+        max-width: min(100%, 550px);
+        min-width: 0;
+    }
+
+    .welcome-banner .banner-text h1,
+    .banner-card .banner-text h1,
+    .history-banner .banner-text h1,
+    .detail-banner .banner-text h1 {
+        font-size: clamp(20px, 2.5vw, 28px);
+        overflow-wrap: anywhere;
+    }
+
+    .welcome-banner .banner-text p,
+    .banner-card .banner-text p,
+    .history-banner .banner-text p,
+    .detail-banner .banner-text p {
+        max-width: 100%;
+        font-size: clamp(11px, 1.2vw, 13px);
+        overflow-wrap: break-word;
+    }
+
+    /* Dashboard: alur Decision Tree menjadi satu kolom agar tidak sesak */
+    .dt-flow-container {
+        width: 100%;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        gap: 10px !important;
+    }
+
+    .dt-flow-container > .dt-box,
+    .dt-flow-container > .dt-box:first-child,
+    .dt-flow-container > .process-box,
+    .dt-flow-container > .result-box {
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: 0;
+        flex: 0 0 auto !important;
+    }
+
+    .dt-arrow {
+        align-self: center !important;
+        transform: rotate(90deg) !important;
+        margin: 2px 0 !important;
+    }
+
+    .info-card,
+    .algorithm-card,
+    .eval-card,
+    .matrix-card,
+    .history-card,
+    .content-card,
+    .detail-information-card,
+    .fish-photo-card,
+    .profile-info-card,
+    .profile-password-card {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .info-card-header,
+    .algorithm-intro,
+    .dt-box-header {
+        min-width: 0;
+    }
+
+    .info-card-content,
+    .algorithm-intro-content,
+    .dt-box-content {
+        min-width: 0;
+    }
+
+    .info-card-content h3,
+    .algorithm-intro-content h3,
+    .dt-box-title,
+    .card-section-title {
+        overflow-wrap: anywhere;
+    }
+
+    /* Dataset: filter boleh turun baris, tabel scroll di dalam kartunya */
+    .filter-action-bar {
+        width: 100%;
+        flex-wrap: wrap !important;
+        align-items: stretch;
+    }
+
+    .search-box {
+        flex: 1 1 100% !important;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .filter-group {
+        width: 100%;
+        justify-content: flex-start !important;
+        flex-wrap: wrap !important;
+    }
+
+    .filter-select {
+        flex: 1 1 130px;
+        max-width: 100%;
+    }
+
+    .table-card {
+        width: 100%;
+        min-width: 0;
+        overflow-x: auto !important;
+        overscroll-behavior-x: contain;
+    }
+
+    .table-card .data-table {
+        min-width: 750px;
+    }
+
+    /* Evaluasi: tabel dan akurasi disusun vertikal */
+    .evaluation-grid {
+        width: 100%;
+        min-width: 0;
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: clamp(12px, 1.4vw, 16px);
+    }
+
+    .evaluation-grid > .eval-card {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .eval-table-wrapper {
+        width: 100%;
+        min-width: 0;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+    }
+
+    .evaluation-table {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .accuracy-card {
+        min-height: 130px;
+    }
+
+    .accuracy-display {
+        max-width: 340px;
+    }
+
+    /* Confusion matrix tetap di dalam card; scroll lokal bila diperlukan */
+    .matrix-card {
+        min-width: 0;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+    }
+
+    .matrix-table-wrapper {
+        min-width: 480px;
+    }
+
+    /* Riwayat: filter bertumpuk, tabel punya scroll horizontal sendiri */
+    .history-card .table-filter-bar {
+        width: 100%;
+        flex-wrap: wrap !important;
+        align-items: stretch;
+    }
+
+    .history-card .search-input-wrapper {
+        flex: 1 1 100%;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .history-card .filter-dropdown-wrapper {
+        flex: 1 1 140px;
+        min-width: 0;
+    }
+
+    .history-card .table-responsive {
+        width: 100%;
+        min-width: 0;
+        overflow-x: auto !important;
+        overscroll-behavior-x: contain;
+    }
+
+    .history-card .data-table {
+        min-width: 760px;
+    }
+
+    .history-card .pagination-container {
+        flex-wrap: wrap;
+    }
+
+    /* Detail prediksi: kartu informasi tidak dipaksa berdampingan */
+    .detail-prediction-page .detail-grid {
+        width: 100%;
+        min-width: 0;
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 14px;
+    }
+
+    .detail-prediction-page .detail-left-column,
+    .detail-prediction-page .detail-right-column {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .detail-prediction-page .fish-photo-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .detail-prediction-page .info-list,
+    .detail-prediction-page .info-prediksi-card,
+    .detail-prediction-page .result-card,
+    .detail-prediction-page .conclusion-card,
+    .detail-prediction-page .suggestion-card {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    /* Profil: dua kartu menjadi satu kolom agar isi tetap lega */
+    .profile-page .profile-grid {
+        width: 100%;
+        height: auto !important;
+        min-height: 0 !important;
+        flex: 0 0 auto !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 14px;
+    }
+
+    .profile-page .profile-info-card,
+    .profile-page .profile-password-card {
+        width: 100%;
+        height: auto !important;
+        min-height: 390px;
+    }
+
+    .profile-page .profile-detail-item {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    }
+
+    .profile-page .detail-label,
+    .profile-page .detail-value {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .profile-page .form-actions-profile {
+        flex-wrap: wrap;
+    }
+
+    /* Dialog tetap berada dalam lebar viewport */
+    .modal-overlay {
+        padding: 14px;
+    }
+
+    .modal-card {
+        width: min(100%, 420px);
+        max-width: 100%;
+        max-height: 90dvh;
+    }
+}
+
+
+/* -----------------------------------------------------
+   2. HP / VIEWPORT SANGAT SEMPIT
+   Sidebar berpindah ke atas hanya ketika ruang memang
+   tidak cukup untuk sidebar + area konten berdampingan.
+----------------------------------------------------- */
+@media screen and (max-width: 560px) {
+
+    html,
+    body {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+    }
+
+    body {
+        min-height: 100vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .dashboard-container,
+    .app-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch;
+
+        width: 100%;
+        height: auto !important;
+        min-height: 100vh !important;
+
+        overflow: visible !important;
+    }
+
+    .sidebar {
+        flex: 0 0 auto !important;
+
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+
+        padding: 12px !important;
+
+        overflow: visible !important;
+    }
+
+    .sidebar .sidebar-brand {
+        width: 100% !important;
+        height: 82px !important;
+        min-height: 82px !important;
+        margin: 0 0 10px !important;
+    }
+
+    .sidebar .sidebar-brand img,
+    .sidebar .brand-logo-img,
+    .sidebar .logo-img {
+        width: 82px !important;
+        height: 82px !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+    }
+
+    .sidebar .sidebar-menu {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        padding: 0 !important;
+    }
+
+    .sidebar .sidebar-menu li {
+        width: auto !important;
+        height: auto !important;
+        min-height: 0 !important;
+        flex: 0 1 auto !important;
+    }
+
+    .sidebar .sidebar-menu li a {
+        width: auto !important;
+        height: auto !important;
+        min-height: 36px !important;
+        padding: 7px 9px !important;
+        gap: 6px !important;
+        font-size: 10px !important;
+        white-space: nowrap;
+    }
+
+    .sidebar .sidebar-menu li a i {
+        width: 15px !important;
+        min-width: 15px !important;
+        font-size: 13px !important;
+    }
+
+    .sidebar .sidebar-footer {
+        width: 100% !important;
+        margin-top: 10px !important;
+        padding: 10px 4px 0 !important;
+    }
+
+    .sidebar .sidebar-footer .logout-btn {
+        width: 100% !important;
+        min-height: 32px;
+        padding: 0 4px !important;
+        font-size: 11px !important;
+    }
+
+    .main-content,
+    .profile-page .main-content {
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        max-width: none !important;
+        min-width: 0 !important;
+
+        height: auto !important;
+        min-height: 0 !important;
+
+        overflow: visible !important;
+    }
+
+    .top-navbar,
+    .topbar {
+        width: 100%;
+        min-height: 58px;
+        padding: 0 14px !important;
+    }
+
+    .content-body,
+    .detail-content-body,
+    .profile-content-body {
+        width: 100% !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        padding: 0 12px 20px !important;
+        gap: 12px !important;
+    }
+
+    .welcome-banner,
+    .banner-card,
+    .history-banner,
+    .detail-banner,
+    .profile-page .profile-welcome-banner {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 130px !important;
+        padding: 16px !important;
+        background-position: center right !important;
+    }
+
+    .welcome-banner .banner-text h1,
+    .banner-card .banner-text h1,
+    .history-banner .banner-text h1,
+    .detail-banner .banner-text h1 {
+        font-size: clamp(19px, 5vw, 24px) !important;
+    }
+
+    .welcome-banner .banner-text p,
+    .banner-card .banner-text p,
+    .history-banner .banner-text p,
+    .detail-banner .banner-text p {
+        font-size: 11px !important;
+    }
+
+    .info-card {
+        padding: 14px !important;
+    }
+
+    .info-card-header,
+    .algorithm-intro {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .custom-card-icon,
+    .algorithm-intro-icon {
+        flex-shrink: 0;
+    }
+
+    .dt-flow-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
+    }
+
+    .dt-flow-container > .dt-box {
+        width: 100% !important;
+        min-width: 0 !important;
+        flex: 0 0 auto !important;
+    }
+
+    .dt-arrow {
+        align-self: center !important;
+        transform: rotate(90deg) !important;
+    }
+
+    .filter-action-bar,
+    .history-card .table-filter-bar {
+        display: flex;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 8px;
+    }
+
+    .search-box,
+    .search-input-wrapper,
+    .history-card .search-input-wrapper,
+    .filter-group,
+    .filter-dropdown-wrapper,
+    .history-card .filter-dropdown-wrapper {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100%;
+    }
+
+    .filter-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: stretch !important;
+    }
+
+    .filter-select {
+        flex: 1 1 100% !important;
+        width: 100%;
+    }
+
+    .table-card,
+    .history-card .table-responsive,
+    .eval-table-wrapper {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto !important;
+        overscroll-behavior-x: contain;
+    }
+
+    .table-card .data-table {
+        min-width: 750px;
+    }
+
+    .history-card .data-table {
+        min-width: 760px;
+    }
+
+    .evaluation-grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    .evaluation-grid > .eval-card {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .matrix-card {
+        max-width: 100%;
+        overflow-x: auto !important;
+    }
+
+    .matrix-table-wrapper {
+        min-width: 480px;
+    }
+
+    .detail-prediction-page .detail-grid,
+    .profile-page .profile-grid {
+        width: 100%;
+        height: auto !important;
+        min-height: 0 !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 12px;
+    }
+
+    .profile-page .profile-info-card,
+    .profile-page .profile-password-card {
+        width: 100%;
+        height: auto !important;
+        min-height: 370px;
+    }
+
+    .profile-page .profile-detail-item {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 6px;
+    }
+
+    .profile-page .detail-label {
+        gap: 6px;
+        font-size: 10px;
+    }
+
+    .profile-page .detail-value {
+        font-size: 10px;
+        overflow-wrap: anywhere;
+    }
+
+    .profile-page .form-actions-profile {
+        justify-content: stretch;
+        flex-wrap: wrap;
+    }
+
+    .profile-page .btn-batal,
+    .profile-page .btn-simpan {
+        flex: 1 1 120px;
+        min-width: 0;
+    }
+
+    .footer-copyright {
+        width: 100%;
+        padding: 14px 10px !important;
+        text-align: center;
+    }
+
+    .modal-overlay {
+        padding: 10px;
+    }
+
+    .modal-card {
+        width: 100%;
+        max-width: 100%;
+        max-height: 92dvh;
+    }
+
+    .modal-body {
+        padding: 14px;
+    }
+
+    .modal-actions {
+        flex-wrap: wrap;
+    }
+}
