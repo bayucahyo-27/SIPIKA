@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <!-- Mengatur karakter agar mendukung berbagai jenis teks -->
     <meta charset="UTF-8">
@@ -30,11 +31,7 @@
             <div class="brand-content">
 
                 <!-- Logo SIPIKA -->
-                <img
-                    src="../../assets/images/logo_sipika.png"
-                    alt="Logo SIPIKA"
-                    class="brand-logo"
-                >
+                <img src="../../assets/images/logo_sipika.png" alt="Logo SIPIKA" class="brand-logo">
 
                 <!-- Deskripsi singkat sistem -->
                 <p class="brand-description">
@@ -72,13 +69,7 @@
                         <div class="input-wrapper">
 
                             <!-- Kolom untuk memasukkan alamat email -->
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="Masukkan email"
-                                required
-                            >
+                            <input type="email" id="email" name="email" placeholder="Masukkan email" required>
 
                         </div>
                     </div>
@@ -91,15 +82,23 @@
                         <div class="input-wrapper">
 
                             <!-- Kolom untuk membuat kata sandi -->
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                placeholder="Masukkan kata sandi"
-                                required
-                            >
+                            <input type="password" id="password" name="password" placeholder="Masukkan kata sandi"
+                                required>
+
+                            <!-- Tombol untuk menampilkan atau menyembunyikan kata sandi -->
+                            <button type="button" id="togglePassword" class="password-toggle"
+                                aria-label="Tampilkan kata sandi" aria-pressed="false">
+                                <!-- Ikon mata terbuka menggunakan SVG inline -->
+                                <svg id="passwordToggleIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                                    aria-hidden="true">
+                                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </button>
 
                         </div>
+
                     </div>
 
 
@@ -112,15 +111,23 @@
                         <div class="input-wrapper">
 
                             <!-- Kolom untuk memasukkan ulang kata sandi -->
-                            <input
-                                type="password"
-                                id="confirmPassword"
-                                name="confirmPassword"
-                                placeholder="Masukkan kembali kata sandi"
-                                required
-                            >
+                            <input type="password" id="confirmPassword" name="confirmPassword"
+                                placeholder="Masukkan kembali kata sandi" required>
+
+                            <!-- Tombol untuk menampilkan atau menyembunyikan konfirmasi kata sandi -->
+                            <button type="button" id="toggleConfirmPassword" class="password-toggle"
+                                aria-label="Tampilkan konfirmasi kata sandi" aria-pressed="false">
+                                <!-- Ikon mata terbuka menggunakan SVG inline -->
+                                <svg id="confirmPasswordToggleIcon" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </button>
 
                         </div>
+
                     </div>
 
 
@@ -150,4 +157,5 @@
     <script src="../../js/auth.js"></script>
 
 </body>
+
 </html>

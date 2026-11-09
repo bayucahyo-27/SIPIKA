@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,11 +31,7 @@
             <div class="brand-content">
 
                 <!-- Logo SIPIKA -->
-                <img
-                    src="../../assets/images/logo_sipika.png"
-                    alt="Logo SIPIKA"
-                    class="brand-logo"
-                >
+                <img src="../../assets/images/logo_sipika.png" alt="Logo SIPIKA" class="brand-logo">
 
                 <!-- Deskripsi singkat sistem -->
                 <p class="brand-description">
@@ -72,22 +69,11 @@
                         <div class="input-wrapper">
 
                             <!-- Ikon username -->
-                            <img
-                                src="../../assets/icons/user.svg"
-                                alt=""
-                                class="input-icon"
-                                aria-hidden="true"
-                            >
+                            <img src="../../assets/icons/user.svg" alt="" class="input-icon" aria-hidden="true">
 
                             <!-- Kolom untuk memasukkan username -->
-                            <input
-                                type="text"
-                                id="username"
-                                name="username"
-                                placeholder="Masukkan username"
-                                autocomplete="username"
-                                required
-                            >
+                            <input type="text" id="username" name="username" placeholder="Masukkan username"
+                                autocomplete="username" required>
 
                         </div>
                     </div>
@@ -100,37 +86,25 @@
                         <div class="input-wrapper">
 
                             <!-- Ikon kata sandi -->
-                            <img
-                                src="../../assets/icons/lock.svg"
-                                alt=""
-                                class="input-icon"
-                                aria-hidden="true"
-                            >
+                            <img src="../../assets/icons/lock.svg" alt="" class="input-icon" aria-hidden="true">
 
                             <!-- Kolom untuk memasukkan kata sandi -->
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                placeholder="Masukkan kata sandi"
-                                autocomplete="current-password"
-                                required
-                            >
+                            <input type="password" id="password" name="password" placeholder="Masukkan kata sandi"
+                                autocomplete="current-password" required>
+
 
                             <!-- Tombol untuk menampilkan atau menyembunyikan kata sandi -->
-                            <button
-                                type="button"
-                                id="togglePassword"
-                                class="password-toggle"
-                                aria-label="Tampilkan kata sandi"
-                                aria-pressed="false"
-                            >
-                                <img
-                                    src="../../assets/icons/eye.svg"
-                                    alt=""
-                                    id="passwordToggleIcon"
-                                >
+                            <button type="button" id="togglePassword" class="password-toggle"
+                                aria-label="Tampilkan kata sandi" aria-pressed="false">
+                                <!-- Ikon mata terbuka menggunakan SVG inline -->
+                                <svg id="passwordToggleIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                                    aria-hidden="true">
+                                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
                             </button>
+
 
                         </div>
                     </div>
@@ -143,12 +117,7 @@
                         <div class="input-wrapper">
 
                             <!-- Ikon pilihan pengguna -->
-                            <img
-                               src="../../assets/icons/users.svg"
-                                alt=""
-                                class="input-icon"
-                                aria-hidden="true"
-                            >
+                            <img src="../../assets/icons/users.svg" alt="" class="input-icon" aria-hidden="true">
 
                             <!-- Daftar pilihan role pengguna -->
                             <select id="role" name="role" required>
@@ -205,4 +174,5 @@
     <script src="../../js/auth.js"></script>
 
 </body>
+
 </html>
