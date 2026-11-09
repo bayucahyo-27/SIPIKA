@@ -46,10 +46,8 @@ body {
     justify-content: space-between;
 
     background-image:
-        linear-gradient(
-            rgba(8, 30, 55, 0.12),
-            rgba(8, 30, 55, 0.12)
-        ),
+        linear-gradient(rgba(8, 30, 55, 0.12),
+            rgba(8, 30, 55, 0.12)),
         url("../assets/images/background_login.png");
 
     background-size: cover;
@@ -207,7 +205,7 @@ body {
     border-radius: 11px;
 
     transition: border-color 0.2s ease,
-                box-shadow 0.2s ease;
+        box-shadow 0.2s ease;
 }
 
 /* Efek ketika input sedang dipilih atau digunakan */
@@ -277,13 +275,44 @@ body {
 }
 
 /* Pengaturan tombol untuk menampilkan kata sandi */
+
+/* Pengaturan tombol ikon mata */
 .password-toggle {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     border: none;
     background: transparent;
-    color: #91a4bc;
     cursor: pointer;
-    font-size: 15px;
+    padding: 0;
 }
+
+/* Pengaturan ikon mata menggunakan SVG */
+.password-toggle svg {
+    width: 19px;
+    height: 19px;
+    color: #91a4bc;
+    transition: color 0.2s ease;
+}
+
+/* Efek ketika kursor diarahkan ke ikon mata */
+.password-toggle:hover svg {
+    color: var(--primary-color);
+}
+
+/* Efek fokus pada tombol ikon mata */
+.password-toggle:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 5px;
+}
+
+
 
 
 /* =========================================
@@ -647,10 +676,8 @@ body {
     justify-content: center;
 
     background-image:
-        linear-gradient(
-            rgba(8, 30, 55, 0.12),
-            rgba(8, 30, 55, 0.12)
-        ),
+        linear-gradient(rgba(8, 30, 55, 0.12),
+            rgba(8, 30, 55, 0.12)),
         url("../assets/images/background_login.png");
 
     background-size: cover;
@@ -799,10 +826,8 @@ body {
     justify-content: center;
 
     background-image:
-        linear-gradient(
-            rgba(8, 30, 55, 0.12),
-            rgba(8, 30, 55, 0.12)
-        ),
+        linear-gradient(rgba(8, 30, 55, 0.12),
+            rgba(8, 30, 55, 0.12)),
         url("../assets/images/background_login.png");
 
     background-size: cover;
