@@ -1,5 +1,5 @@
 /* Import style umum jika diperlukan atau gabungkan struktur sidebar/topbar */
-@import url('petugas.css');
+@import url("petugas.css");
 
 /* ===================================================== */
 /* DASHBOARD ADMIN STYLES                                */
@@ -26,9 +26,18 @@
   flex-shrink: 0;
 }
 
-.icon-blue-bg { background-color: #dbeafe; color: #2563eb; }
-.icon-green-bg { background-color: #dcfce7; color: #16a34a; }
-.icon-orange-bg { background-color: #ffedd5; color: #ea580c; }
+.icon-blue-bg {
+  background-color: #dbeafe;
+  color: #2563eb;
+}
+.icon-green-bg {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+.icon-orange-bg {
+  background-color: #ffedd5;
+  color: #ea580c;
+}
 
 .stat-info {
   display: flex;
@@ -56,7 +65,8 @@
   color: #94a3b8;
 }
 
-.stat-arrow-btn, .quick-arrow-btn {
+.stat-arrow-btn,
+.quick-arrow-btn {
   width: 32px;
   height: 32px;
   background-color: #eff6ff;
@@ -70,7 +80,8 @@
   transition: all 0.2s;
 }
 
-.stat-arrow-btn:hover, .quick-arrow-btn:hover {
+.stat-arrow-btn:hover,
+.quick-arrow-btn:hover {
   background-color: #2563eb;
   color: #ffffff;
 }
@@ -134,13 +145,18 @@
 }
 
 .about-sipika-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 70%; /* Lebar area putih tempat teks berada */
   height: 100%;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 60%, rgba(255, 255, 255, 0.7) 85%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.95) 60%,
+    rgba(255, 255, 255, 0.7) 85%,
+    transparent 100%
+  );
   z-index: 1;
 }
 
@@ -212,8 +228,6 @@
   font-size: 20px !important;
   flex-shrink: 0 !important;
 }
-
-
 
 /* ===================================================== */
 /* STYLE KELOLA PENGGUNA (GRID, TABEL, BADGE, SWITCH)    */
@@ -318,14 +332,14 @@
   background-color: #ffffff;
   border-radius: 12px;
   border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   margin-bottom: 24px;
 }
 
 /* Membuat teks pada kolom password mirip seperti tampilan desain UI (monospace) */
 .data-table td:nth-child(6) {
-  font-family: 'Courier New', Courier, monospace !important;
+  font-family: "Courier New", Courier, monospace !important;
 }
 
 .data-table {
@@ -349,8 +363,12 @@
   color: #334155;
 }
 
-.fw-semibold { font-weight: 600; }
-.text-center { text-align: center; }
+.fw-semibold {
+  font-weight: 600;
+}
+.text-center {
+  text-align: center;
+}
 
 /* Badges */
 .badge {
@@ -361,10 +379,22 @@
   display: inline-block;
 }
 
-.badge-petugas { background-color: #dcfce7; color: #15803d; }
-.badge-nelayan { background-color: #dbeafe; color: #1d4ed8; }
-.badge-status-aktif { background-color: #dcfce7; color: #15803d; }
-.badge-status-nonaktif { background-color: #fee2e2; color: #b91c1c; }
+.badge-petugas {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+.badge-nelayan {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+.badge-status-aktif {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+.badge-status-nonaktif {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
 
 /* Aksi & Toggle Switch */
 .action-buttons {
@@ -381,8 +411,12 @@
   font-size: 14px;
 }
 
-.text-blue { color: #3b82f6; }
-.text-red { color: #ef4444; }
+.text-blue {
+  color: #3b82f6;
+}
+.text-red {
+  color: #ef4444;
+}
 
 .switch {
   position: relative;
@@ -391,14 +425,21 @@
   height: 18px;
 }
 
-.switch input { opacity: 0; width: 0; height: 0; }
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
 
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #cbd5e1;
-  transition: .3s;
+  transition: 0.3s;
   border-radius: 18px;
 }
 
@@ -410,12 +451,16 @@
   left: 2px;
   bottom: 2px;
   background-color: white;
-  transition: .3s;
+  transition: 0.3s;
   border-radius: 50%;
 }
 
-input:checked + .slider { background-color: #2563eb; }
-input:checked + .slider:before { transform: translateX(14px); }
+input:checked + .slider {
+  background-color: #2563eb;
+}
+input:checked + .slider:before {
+  transform: translateX(14px);
+}
 
 /* Pagination Footer */
 .table-pagination-footer {
@@ -455,8 +500,10 @@ input:checked + .slider:before { transform: translateX(14px); }
   border-color: #1e293b;
 }
 
-.page-btn.disabled { opacity: 0.5; cursor: not-allowed; }
-
+.page-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 /* ===================================================== */
 /* RESET & PENGATURAN DASAR kelola pengguna              */
@@ -465,7 +512,7 @@ input:checked + .slider:before { transform: translateX(14px); }
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -603,8 +650,15 @@ body {
 /* BANNER UTAMA (DENGAN GAMBAR KAPAL & TRANSPARAN)       */
 /* ===================================================== */
 .admin-banner {
-  background: linear-gradient(90deg, #0b192c 0%, rgba(11, 25, 44, 0.85) 50%, rgba(11, 25, 44, 0.2) 75%, transparent 100%), 
-              url('../../assets/images/banner.jpeg') center/cover no-repeat !important;
+  background:
+    linear-gradient(
+      90deg,
+      #0b192c 0%,
+      rgba(11, 25, 44, 0.85) 50%,
+      rgba(11, 25, 44, 0.2) 75%,
+      transparent 100%
+    ),
+    url("../../assets/images/banner.jpeg") center/cover no-repeat !important;
   border-radius: 12px;
   padding: 32px 36px;
   color: #ffffff;
@@ -656,10 +710,22 @@ body {
   flex-shrink: 0;
 }
 
-.icon-blue-bg { background-color: #dbeafe; color: #2563eb; }
-.icon-green-bg { background-color: #dcfce7; color: #16a34a; }
-.icon-orange-bg { background-color: #ffedd5; color: #ea580c; }
-.icon-gray-bg { background-color: #f1f5f9; color: #64748b; }
+.icon-blue-bg {
+  background-color: #dbeafe;
+  color: #2563eb;
+}
+.icon-green-bg {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+.icon-orange-bg {
+  background-color: #ffedd5;
+  color: #ea580c;
+}
+.icon-gray-bg {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
 
 .stat-info {
   display: flex;
@@ -791,8 +857,12 @@ body {
   color: #334155;
 }
 
-.fw-semibold { font-weight: 600; }
-.text-center { text-align: center; }
+.fw-semibold {
+  font-weight: 600;
+}
+.text-center {
+  text-align: center;
+}
 
 /* BADGES & SWITCH */
 .badge {
@@ -803,10 +873,22 @@ body {
   display: inline-block;
 }
 
-.badge-petugas { background-color: #dcfce7; color: #15803d; }
-.badge-nelayan { background-color: #dbeafe; color: #1d4ed8; }
-.badge-status-aktif { background-color: #dcfce7; color: #15803d; }
-.badge-status-nonaktif { background-color: #fee2e2; color: #b91c1c; }
+.badge-petugas {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+.badge-nelayan {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+.badge-status-aktif {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+.badge-status-nonaktif {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
 
 .action-buttons {
   display: flex;
@@ -822,8 +904,12 @@ body {
   font-size: 14px;
 }
 
-.text-blue { color: #3b82f6; }
-.text-red { color: #ef4444; }
+.text-blue {
+  color: #3b82f6;
+}
+.text-red {
+  color: #ef4444;
+}
 
 .switch {
   position: relative;
@@ -831,26 +917,39 @@ body {
   width: 32px;
   height: 18px;
 }
-.switch input { opacity: 0; width: 0; height: 0; }
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #cbd5e1;
-  transition: .3s;
+  transition: 0.3s;
   border-radius: 18px;
 }
 .slider:before {
   position: absolute;
   content: "";
-  height: 14px; width: 14px;
-  left: 2px; bottom: 2px;
+  height: 14px;
+  width: 14px;
+  left: 2px;
+  bottom: 2px;
   background-color: white;
-  transition: .3s;
+  transition: 0.3s;
   border-radius: 50%;
 }
-input:checked + .slider { background-color: #2563eb; }
-input:checked + .slider:before { transform: translateX(14px); }
+input:checked + .slider {
+  background-color: #2563eb;
+}
+input:checked + .slider:before {
+  transform: translateX(14px);
+}
 
 /* PAGINATION & FOOTER */
 .table-pagination-footer {
@@ -871,14 +970,17 @@ input:checked + .slider:before { transform: translateX(14px); }
 }
 
 .page-btn {
-  width: 28px; height: 28px;
+  width: 28px;
+  height: 28px;
   border: 1px solid #e2e8f0;
   background: #ffffff;
   border-radius: 6px;
   cursor: pointer;
   font-size: 12px;
   color: #334155;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .page-btn.active {
@@ -896,7 +998,6 @@ input:checked + .slider:before { transform: translateX(14px); }
   color: #64748b;
 }
 
-
 /* ========================================================================== */
 /* 1. GLOBAL & RESET STYLES                                                 */
 /* ========================================================================== */
@@ -907,7 +1008,7 @@ input:checked + .slider:before { transform: translateX(14px); }
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #f8fafc;
   color: #0f172a;
 }
@@ -916,7 +1017,6 @@ body {
   display: flex;
   min-height: 100vh;
 }
-
 
 /* ========================================================================== */
 /* 2. SIDEBAR, TOPBAR & FOOTER (SHARED / UMUM)                              */
@@ -1057,7 +1157,7 @@ body {
 }
 
 .banner-text h2 {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 700;
   margin-bottom: 8px;
 }
@@ -1076,12 +1176,10 @@ body {
   background: #ffffff;
 }
 
-
 /* ========================================================================== */
 /* 3. DASHBOARD STYLES                                                      */
 /* ========================================================================== */
 /* (Tempat pengaturan khusus komponen, kartu statistik, dan grafik dashboard) */
-
 
 /* ========================================================================== */
 /* 4. KELOLA PENGGUNA STYLES                                                 */
@@ -1113,10 +1211,22 @@ body {
   font-size: 20px;
 }
 
-.icon-blue-bg { background: #dbeafe; color: #2563eb; }
-.icon-green-bg { background: #dcfce7; color: #16a34a; }
-.icon-orange-bg { background: #ffedd5; color: #ea580c; }
-.icon-gray-bg { background: #f1f5f9; color: #64748b; }
+.icon-blue-bg {
+  background: #dbeafe;
+  color: #2563eb;
+}
+.icon-green-bg {
+  background: #dcfce7;
+  color: #16a34a;
+}
+.icon-orange-bg {
+  background: #ffedd5;
+  color: #ea580c;
+}
+.icon-gray-bg {
+  background: #f1f5f9;
+  color: #64748b;
+}
 
 .stat-info {
   display: flex;
@@ -1181,7 +1291,7 @@ body {
   border: 1px solid #cbd5e1;
   border-radius: 8px;
   font-size: 14px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Poppins", sans-serif;
   outline: none;
 }
 
@@ -1209,7 +1319,7 @@ body {
   border: none;
   background: transparent;
   font-size: 14px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #0f172a;
   outline: none;
   cursor: pointer;
@@ -1223,7 +1333,7 @@ body {
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
-  font-family: 'Inter', sans-serif;
+  font-family: "Poppins", sans-serif;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1234,7 +1344,6 @@ body {
 .btn-primary-add:hover {
   background: #1d4ed8;
 }
-
 
 /* ========================================================================== */
 /* 5. DATA MASTER STYLES                                                    */
@@ -1253,7 +1362,7 @@ body {
   padding: 10px 20px;
   border-radius: 10px;
   font-weight: 500;
-  font-family: 'Inter', sans-serif;
+  font-family: "Poppins", sans-serif;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1308,10 +1417,22 @@ body {
   font-size: 18px;
 }
 
-.icon-blue-light { background: #dbeafe; color: #2563eb; }
-.icon-green-light { background: #dcfce7; color: #16a34a; }
-.icon-orange-light { background: #ffedd5; color: #ea580c; }
-.icon-purple-light { background: #f3e8ff; color: #9333ea; }
+.icon-blue-light {
+  background: #dbeafe;
+  color: #2563eb;
+}
+.icon-green-light {
+  background: #dcfce7;
+  color: #16a34a;
+}
+.icon-orange-light {
+  background: #ffedd5;
+  color: #ea580c;
+}
+.icon-purple-light {
+  background: #f3e8ff;
+  color: #9333ea;
+}
 
 .cat-info {
   flex-grow: 1;
@@ -1455,10 +1576,22 @@ body {
   display: inline-block;
 }
 
-.badge-petugas { background: #dbeafe; color: #1d4ed8; }
-.badge-nelayan { background: #f1f5f9; color: #475569; }
-.badge-status-aktif { background: #dcfce7; color: #15803d; }
-.badge-status-nonaktif { background: #fee2e2; color: #b91c1c; }
+.badge-petugas {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+.badge-nelayan {
+  background: #f1f5f9;
+  color: #475569;
+}
+.badge-status-aktif {
+  background: #dcfce7;
+  color: #15803d;
+}
+.badge-status-nonaktif {
+  background: #fee2e2;
+  color: #b91c1c;
+}
 
 /* Action Buttons & Switch */
 .action-buttons {
@@ -1477,8 +1610,12 @@ body {
   transition: opacity 0.2s;
 }
 
-.text-blue { color: #3b82f6; }
-.text-red { color: #ef4444; }
+.text-blue {
+  color: #3b82f6;
+}
+.text-red {
+  color: #ef4444;
+}
 
 .btn-icon:hover {
   opacity: 0.8;
@@ -1501,9 +1638,12 @@ body {
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #cbd5e1;
-  transition: .3s;
+  transition: 0.3s;
   border-radius: 20px;
 }
 
@@ -1515,7 +1655,7 @@ body {
   left: 2px;
   bottom: 2px;
   background-color: white;
-  transition: .3s;
+  transition: 0.3s;
   border-radius: 50%;
 }
 
@@ -1547,7 +1687,7 @@ input:checked + .slider:before {
   padding: 4px 8px;
   border: 1px solid #cbd5e1;
   border-radius: 6px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-left: 6px;
   outline: none;
 }
@@ -1616,7 +1756,6 @@ input:checked + .slider:before {
   width: 100% !important;
 }
 
-
 /* ========================================================================== */
 /* STYLING HALAMAN PROFIL ADMIN                                             */
 /* ========================================================================== */
@@ -1684,7 +1823,9 @@ input:checked + .slider:before {
 .avatar-circle i {
   font-size: 85px; /* Ukuran dibuat besar penuh */
   line-height: 1;
-  transform: translateY(8px); /* Sedikit menggeser ke bawah agar posisi kepala dan badan pas di tengah */
+  transform: translateY(
+    8px
+  ); /* Sedikit menggeser ke bawah agar posisi kepala dan badan pas di tengah */
 }
 
 /* Posisi lencana kamera di pojok kanan bawah */
@@ -1752,7 +1893,7 @@ input:checked + .slider:before {
   border: 1px solid #cbd5e1;
   border-radius: 8px;
   font-size: 14px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Poppins", sans-serif;
   outline: none;
   color: #0f172a;
 }
@@ -1782,7 +1923,7 @@ input:checked + .slider:before {
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
-  font-family: 'Inter', sans-serif;
+  font-family: "Poppins", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1795,4 +1936,3 @@ input:checked + .slider:before {
 .btn-profile-submit:hover {
   background: #1d4ed8;
 }
-

@@ -1,358 +1,298 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Evaluasi Model - SIPIKA</title>
 
     <!-- Google Fonts: Poppins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
     <!-- CSS Utama -->
-    <link rel="stylesheet" href="../../css/global.css">
-    <link rel="stylesheet" href="../../css/petugas.css">
+    <link rel="stylesheet" href="../../css/global.css" />
+    <link rel="stylesheet" href="../../css/petugas.css" />
 
     <!-- CSS Khusus Evaluasi Model -->
-    <link rel="stylesheet" href="../../css/evaluasi-model.css">
-</head>
+    <link rel="stylesheet" href="../../css/evaluasi-model.css" />
+  </head>
 
-<body class="evaluation-page">
-
+  <body class="evaluation-page">
     <div class="app-container">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <img
+            src="../../assets/images/logo.png"
+            alt="Logo SIPIKA"
+            class="brand-logo-img"
+            style="width: 150px; max-width: 100%"
+          />
+        </div>
 
-        <!-- SIDEBAR -->
-        <aside class="sidebar">
+        <ul class="sidebar-menu">
+          <li>
+            <a href="dashboard.html">
+              <i class="fa-solid fa-house"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
 
-            <div class="sidebar-brand">
-                <img
-                    src="../../assets/images/logo.png"
-                    alt="Logo SIPIKA"
-                    class="brand-logo-img"
-                    style="width: 150px; max-width: 100%;"
-                >
+          <li>
+            <a href="dataset.html">
+              <i class="fa-solid fa-database"></i>
+              <span>Data Dataset</span>
+            </a>
+          </li>
+
+          <li class="active">
+            <a href="evaluasi-model.html">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Evaluasi Model</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="riwayat-prediksi.html">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              <span>Riwayat Prediksi</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="profil.html">
+              <i class="fa-solid fa-user"></i>
+              <span>Profil</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-footer">
+          <a href="#" class="logout-btn">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="main-content">
+        <!-- TOPBAR & PROFIL -->
+        <header class="top-navbar">
+          <div class="user-profile-badge">
+            <div class="profile-avatar">
+              <i class="fa-solid fa-user"></i>
             </div>
 
-            <ul class="sidebar-menu">
-
-                <li>
-                    <a href="dashboard.html">
-                        <i class="fa-solid fa-house"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="dataset.html">
-                        <i class="fa-solid fa-database"></i>
-                        <span>Data Dataset</span>
-                    </a>
-                </li>
-
-                <li class="active">
-                    <a href="evaluasi-model.html">
-                        <i class="fa-solid fa-chart-line"></i>
-                        <span>Evaluasi Model</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="riwayat-prediksi.html">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-                        <span>Riwayat Prediksi</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="profil.html">
-                        <i class="fa-solid fa-user"></i>
-                        <span>Profil</span>
-                    </a>
-                </li>
-
-            </ul>
-
-            <div class="sidebar-footer">
-                <a href="../../index.html" class="logout-btn">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    <span>Logout</span>
-                </a>
+            <div class="profile-info">
+              <span class="profile-name">Bayu Cahyo</span>
+              <span class="profile-role">Petugas</span>
             </div>
+          </div>
+        </header>
 
-        </aside>
+        <!-- CONTENT BODY -->
+        <div class="content-body">
+          <!-- BANNER -->
+          <section class="banner-card evaluation-banner">
+            <div class="banner-text">
+              <div class="banner-eyebrow">
+                <span>HASIL</span>
+                <span class="banner-line"></span>
+              </div>
 
+              <h1>Evaluasi Model Decision Tree</h1>
 
-        <!-- MAIN CONTENT -->
-        <main class="main-content">
+              <p>
+                Halaman ini menampilkan hasil evaluasi performa model Decision
+                Tree dalam mengklasifikasikan tingkat produksi ikan tangkapan.
+              </p>
+            </div>
+          </section>
 
-            <!-- TOPBAR & PROFIL -->
-            <header class="top-navbar">
-
-                <div class="user-profile-badge">
-
-                    <div class="profile-avatar">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
-
-                    <div class="profile-info">
-                        <span class="profile-name">Bayu Cahyo</span>
-                        <span class="profile-role">Petugas</span>
-                    </div>
-
+          <!-- EVALUATION GRID: TABLE + ACCURACY -->
+          <section class="evaluation-grid">
+            <!-- KIRI: TABEL HASIL EVALUASI -->
+            <div class="eval-card">
+              <div class="eval-card-header">
+                <div class="eval-icon-box">
+                  <i class="fa-solid fa-chart-simple"></i>
                 </div>
 
-            </header>
-
-
-            <!-- CONTENT BODY -->
-            <div class="content-body">
-
-                <!-- BANNER -->
-                <section class="banner-card evaluation-banner">
-
-                    <div class="banner-text">
-
-                        <div class="banner-eyebrow">
-                            <span>HASIL</span>
-                            <span class="banner-line"></span>
-                        </div>
-
-                        <h1>Evaluasi Model Decision Tree</h1>
-
-                        <p>
-                            Halaman ini menampilkan hasil evaluasi performa model Decision Tree dalam
-                            mengklasifikasikan tingkat produksi ikan tangkapan.
-                        </p>
-
-                    </div>
-
-                </section>
-
-
-                <!-- EVALUATION GRID: TABLE + ACCURACY -->
-                <section class="evaluation-grid">
-
-                    <!-- KIRI: TABEL HASIL EVALUASI -->
-                    <div class="eval-card">
-
-                        <div class="eval-card-header">
-
-                            <div class="eval-icon-box">
-                                <i class="fa-solid fa-chart-simple"></i>
-                            </div>
-
-                            <div>
-                                <h3>Hasil Evaluasi</h3>
-                                <p>Berikut adalah performa model Decision Tree berdasarkan data uji.</p>
-                            </div>
-
-                        </div>
-
-                        <div class="eval-table-wrapper">
-
-                            <table class="data-table evaluation-table">
-
-                                <thead>
-                                    <tr>
-                                        <th>Kelas</th>
-                                        <th>Precision</th>
-                                        <th>Recall</th>
-                                        <th>F1-Score</th>
-                                        <th>Support</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <span class="badge badge-rendah">Rendah</span>
-                                        </td>
-                                        <td>0.90</td>
-                                        <td>0.88</td>
-                                        <td>0.89</td>
-                                        <td>168</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <span class="badge badge-sedang">Sedang</span>
-                                        </td>
-                                        <td>0.93</td>
-                                        <td>0.95</td>
-                                        <td>0.94</td>
-                                        <td>198</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <span class="badge badge-tinggi">Tinggi</span>
-                                        </td>
-                                        <td>0.91</td>
-                                        <td>0.89</td>
-                                        <td>0.90</td>
-                                        <td>134</td>
-                                    </tr>
-                                </tbody>
-
-                            </table>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- KANAN: AKURASI MODEL -->
-                    <div class="eval-card accuracy-card">
-
-                        <div class="accuracy-display">
-
-                            <div class="accuracy-icon">
-                                <i class="fa-solid fa-bullseye"></i>
-                            </div>
-
-                            <div class="accuracy-content">
-
-                                <div class="accuracy-title">
-                                    Akurasi Model
-                                </div>
-
-                                <div class="accuracy-value">
-                                    92.4%
-                                </div>
-
-                                <div class="accuracy-desc">
-                                    Persentase prediksi yang sesuai dengan data aktual.
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-
-                <!-- CONFUSION MATRIX SECTION -->
-                <section class="matrix-card">
-
-                    <div class="matrix-header">
-
-                        <div class="matrix-icon-box">
-                            <i class="fa-solid fa-table-cells"></i>
-                        </div>
-
-                        <div>
-                            <h3>Confusion Matrix</h3>
-                            <p>
-                                Visualisasi confusion matrix untuk melihat perbandingan antara kelas aktual dan hasil prediksi.
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="matrix-table-wrapper">
-
-                        <div class="axis-label-y">
-                            Aktual
-                        </div>
-
-
-                        <div class="matrix-main">
-
-                            <div class="matrix-prediction-title">
-                                Prediksi
-                            </div>
-
-                            <table class="matrix-table">
-
-                                <thead>
-                                    <tr>
-                                        <th class="matrix-empty-cell"></th>
-                                        <th>Rendah</th>
-                                        <th>Sedang</th>
-                                        <th>Tinggi</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-
-                                    <tr>
-                                        <th>Rendah</th>
-                                        <td class="matrix-cell-high">150</td>
-                                        <td class="matrix-cell-low">12</td>
-                                        <td class="matrix-cell-low">6</td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>Sedang</th>
-                                        <td class="matrix-cell-low">8</td>
-                                        <td class="matrix-cell-high">178</td>
-                                        <td class="matrix-cell-low">12</td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>Tinggi</th>
-                                        <td class="matrix-cell-low">5</td>
-                                        <td class="matrix-cell-low">14</td>
-                                        <td class="matrix-cell-high">115</td>
-                                    </tr>
-
-                                </tbody>
-
-                            </table>
-
-                        </div>
-
-
-                        <!-- LEGEND BAR -->
-                        <div class="matrix-legend-wrapper">
-
-                            <div class="legend-scale">
-
-                                <span>200</span>
-
-                                <div class="legend-bar"></div>
-
-                                <span>0</span>
-
-                            </div>
-
-                            <div class="matrix-legend">
-                                <span>200</span>
-                                <span>150</span>
-                                <span>100</span>
-                                <span>50</span>
-                                <span>0</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </section>
-
+                <div>
+                  <h3>Hasil Evaluasi</h3>
+                  <p>
+                    Berikut adalah performa model Decision Tree berdasarkan data
+                    uji.
+                  </p>
+                </div>
+              </div>
+
+              <div class="eval-table-wrapper">
+                <table class="data-table evaluation-table">
+                  <thead>
+                    <tr>
+                      <th>Kelas</th>
+                      <th>Precision</th>
+                      <th>Recall</th>
+                      <th>F1-Score</th>
+                      <th>Support</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>
+                        <span class="badge badge-rendah">Rendah</span>
+                      </td>
+                      <td>0.90</td>
+                      <td>0.88</td>
+                      <td>0.89</td>
+                      <td>168</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <span class="badge badge-sedang">Sedang</span>
+                      </td>
+                      <td>0.93</td>
+                      <td>0.95</td>
+                      <td>0.94</td>
+                      <td>198</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <span class="badge badge-tinggi">Tinggi</span>
+                      </td>
+                      <td>0.91</td>
+                      <td>0.89</td>
+                      <td>0.90</td>
+                      <td>134</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <!-- AKHIR CONTENT BODY -->
 
+            <!-- KANAN: AKURASI MODEL -->
+            <div class="eval-card accuracy-card">
+              <div class="accuracy-display">
+                <div class="accuracy-icon">
+                  <i class="fa-solid fa-bullseye"></i>
+                </div>
 
-            <!-- FOOTER -->
-            <footer class="footer-copyright">
-                <p>&copy; 2026 SIPIKA - Kelompok 13 Web</p>
-            </footer>
+                <div class="accuracy-content">
+                  <div class="accuracy-title">Akurasi Model</div>
 
-        </main>
+                  <div class="accuracy-value">92.4%</div>
 
+                  <div class="accuracy-desc">
+                    Persentase prediksi yang sesuai dengan data aktual.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- CONFUSION MATRIX SECTION -->
+          <section class="matrix-card">
+            <div class="matrix-header">
+              <div class="matrix-icon-box">
+                <i class="fa-solid fa-table-cells"></i>
+              </div>
+
+              <div>
+                <h3>Confusion Matrix</h3>
+                <p>
+                  Visualisasi confusion matrix untuk melihat perbandingan antara
+                  kelas aktual dan hasil prediksi.
+                </p>
+              </div>
+            </div>
+
+            <div class="matrix-table-wrapper">
+              <div class="axis-label-y">Aktual</div>
+
+              <div class="matrix-main">
+                <div class="matrix-prediction-title">Prediksi</div>
+
+                <table class="matrix-table">
+                  <thead>
+                    <tr>
+                      <th class="matrix-empty-cell"></th>
+                      <th>Rendah</th>
+                      <th>Sedang</th>
+                      <th>Tinggi</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <th>Rendah</th>
+                      <td class="matrix-cell-high">150</td>
+                      <td class="matrix-cell-low">12</td>
+                      <td class="matrix-cell-low">6</td>
+                    </tr>
+
+                    <tr>
+                      <th>Sedang</th>
+                      <td class="matrix-cell-low">8</td>
+                      <td class="matrix-cell-high">178</td>
+                      <td class="matrix-cell-low">12</td>
+                    </tr>
+
+                    <tr>
+                      <th>Tinggi</th>
+                      <td class="matrix-cell-low">5</td>
+                      <td class="matrix-cell-low">14</td>
+                      <td class="matrix-cell-high">115</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- LEGEND BAR -->
+              <div class="matrix-legend-wrapper">
+                <div class="legend-scale">
+                  <span>200</span>
+
+                  <div class="legend-bar"></div>
+
+                  <span>0</span>
+                </div>
+
+                <div class="matrix-legend">
+                  <span>200</span>
+                  <span>150</span>
+                  <span>100</span>
+                  <span>50</span>
+                  <span>0</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- AKHIR CONTENT BODY -->
+
+        <!-- FOOTER -->
+        <footer class="footer-copyright">
+          <p>&copy; 2026 SIPIKA - Kelompok 13 Web</p>
+        </footer>
+      </main>
     </div>
-
-
-</body>
+    <script src="../../js/global.js"></script>
+    <script src="../../js/petugas.js"></script>
+  </body>
 </html>

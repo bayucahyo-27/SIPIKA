@@ -1,557 +1,719 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Riwayat Prediksi - SIPIKA</title>
 
     <!-- FontAwesome -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
     <!-- CSS Global -->
-    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/global.css" />
 
     <!-- CSS Utama Petugas -->
-    <link rel="stylesheet" href="../../css/petugas.css">
-</head>
-<body class="history-page">
+    <link rel="stylesheet" href="../../css/petugas.css" />
+  </head>
+  <body class="history-page">
+    <div class="app-container">
+      <!-- SIDEBAR -->
+      <aside
+        class="sidebar"
+        style="
+          background-image: url(&quot;../../assets/images/sidebar.jpeg&quot;);
+          background-size: cover;
+          background-position: center;
+        "
+      >
+        <div class="sidebar-brand">
+          <img
+            src="../../assets/images/logo.png"
+            alt="Logo SIPIKA"
+            class="brand-logo-img"
+            style="width: 150px; max-width: 100%"
+          />
+        </div>
 
-  <div class="app-container">
-    
-    <!-- SIDEBAR -->
-    <aside class="sidebar" style="background-image: url('../../assets/images/sidebar.jpeg'); background-size: cover; background-position: center;">
-      <div class="sidebar-brand">
-        <img src="../../assets/images/logo.png" alt="Logo SIPIKA" class="brand-logo-img" style="width: 150px; max-width: 100%;">
-      </div>
+        <ul class="sidebar-menu">
+          <li>
+            <a href="dashboard.html">
+              <i class="fa-solid fa-house"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="dataset.html">
+              <i class="fa-solid fa-database"></i>
+              <span>Data Dataset</span>
+            </a>
+          </li>
+          <li>
+            <a href="evaluasi-model.html">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Evaluasi Model</span>
+            </a>
+          </li>
+          <li class="active">
+            <a href="riwayat-prediksi.html">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              <span>Riwayat Prediksi</span>
+            </a>
+          </li>
+          <li>
+            <a href="profil.html">
+              <i class="fa-solid fa-user"></i>
+              <span>Profil</span>
+            </a>
+          </li>
+        </ul>
 
-      <ul class="sidebar-menu">
-        <li>
-          <a href="dashboard.html">
-            <i class="fa-solid fa-house"></i>
-            <span>Dashboard</span>
+        <div class="sidebar-footer">
+          <a
+            href="#"
+            class="logout-btn"
+            onclick="
+              handleLogout();
+              return false;
+            "
+          >
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Logout</span>
           </a>
-        </li>
-        <li>
-          <a href="dataset.html">
-            <i class="fa-solid fa-database"></i>
-            <span>Data Dataset</span>
-          </a>
-        </li>
-        <li>
-          <a href="evaluasi-model.html">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Evaluasi Model</span>
-          </a>
-        </li>
-        <li class="active">
-          <a href="riwayat-prediksi.html">
-            <i class="fa-solid fa-clock-rotate-left"></i>
-            <span>Riwayat Prediksi</span>
-          </a>
-        </li>
-        <li>
-          <a href="profil.html">
-            <i class="fa-solid fa-user"></i>
-            <span>Profil</span>
-          </a>
-        </li>
-      </ul>
+        </div>
+      </aside>
 
-      <div class="sidebar-footer">
-        <a href="../../index.html" class="logout-btn">
-          <i class="fa-solid fa-arrow-right-from-bracket"></i>
-          <span>Logout</span>
-        </a>
-      </div>
-    </aside>
-
-    <!-- MAIN CONTENT -->
-    <div class="main-content">
-      
-      <!-- TOPBAR & PROFIL -->
-      <header class="top-navbar">
-
+      <!-- MAIN CONTENT -->
+      <div class="main-content">
+        <!-- TOPBAR & PROFIL -->
+        <header class="top-navbar">
           <div class="user-profile-badge">
+            <div class="profile-avatar">
+              <i class="fa-solid fa-user"></i>
+            </div>
 
-              <div class="profile-avatar">
-                  <i class="fa-solid fa-user"></i>
-              </div>
-
-              <div class="profile-info">
-                  <span class="profile-name">Bayu Cahyo</span>
-                  <span class="profile-role">Petugas</span>
-              </div>
-
+            <div class="profile-info">
+              <span class="profile-name">Bayu Cahyo</span>
+              <span class="profile-role">Petugas</span>
+            </div>
           </div>
+        </header>
 
-      </header>
-
-      <!-- CONTENT BODY -->
-      <div class="content-body">
-        
-        <!-- BANNER -->
-        <div class="banner-card history-banner">
+        <!-- CONTENT BODY -->
+        <div class="content-body">
+          <!-- BANNER -->
+          <div class="banner-card history-banner">
             <div class="banner-text">
+              <div class="banner-eyebrow">
+                <span>RIWAYAT KLASIFIKASI</span>
+                <span></span>
+              </div>
 
-                <div class="banner-eyebrow">
-                    <span>RIWAYAT KLASIFIKASI</span>
-                    <span></span>
-                </div>
+              <h2>Riwayat</h2>
 
-                <h2>Riwayat</h2>
-
-                <p>
-                    Halaman ini menampilkan riwayat hasil klasifikasi tingkat produksi ikan tangkapan berdasarkan data
-                    yang pernah diproses menggunakan algoritma Decision Tree.
-                </p>
-
+              <p>
+                Halaman ini menampilkan riwayat hasil klasifikasi tingkat
+                produksi ikan tangkapan berdasarkan data yang pernah diproses
+                menggunakan algoritma Decision Tree.
+              </p>
             </div>
+          </div>
+
+          <!-- MAIN DATA CARD -->
+          <div class="main-card history-card">
+            <!-- FILTER BAR -->
+            <div class="table-filter-bar">
+              <div class="search-input-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input
+                  type="text"
+                  id="searchInput"
+                  class="search-input"
+                  placeholder="Cari riwayat prediksi..."
+                  onkeyup="filterHistoryTable()"
+                />
+              </div>
+
+              <div class="filter-dropdown-wrapper">
+                <i class="fa-regular fa-calendar filter-icon"></i>
+                <select
+                  id="dateFilter"
+                  class="filter-select"
+                  onchange="filterHistoryTable()"
+                >
+                  <option value="">Semua Tanggal</option>
+                  <option value="2026-10">Oktober 2026</option>
+                  <option value="2026-09">September 2026</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- TABLE -->
+            <div class="table-responsive">
+              <table class="data-table" id="historyTable">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Tanggal</th>
+                    <th>Jenis Ikan</th>
+                    <th>Alat Tangkap</th>
+                    <th>Wilayah</th>
+                    <th>Musim</th>
+                    <th>Produksi (ton)</th>
+                    <th>Hasil Prediksi</th>
+                    <th style="text-align: center">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- HALAMAN 1 (10 Data Sesuai UI Figma) -->
+                  <tr data-page="1">
+                    <td>1</td>
+                    <td>10 Okt 2026, 14:23</td>
+                    <td>Cakalang</td>
+                    <td>Pancing</td>
+                    <td>Ternate</td>
+                    <td>Hujan</td>
+                    <td>1200</td>
+                    <td><span class="badge badge-tinggi">Tinggi</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="1">
+                    <td>2</td>
+                    <td>09 Okt 2026, 10:11</td>
+                    <td>Tuna</td>
+                    <td>Jaring</td>
+                    <td>Halmahera Timur</td>
+                    <td>Kemarau</td>
+                    <td>450</td>
+                    <td><span class="badge badge-sedang">Sedang</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="1">
+                    <td>3</td>
+                    <td>08 Okt 2026, 16:05</td>
+                    <td>Tongkol</td>
+                    <td>Pancing</td>
+                    <td>Tidore</td>
+                    <td>Pancaroba</td>
+                    <td>300</td>
+                    <td><span class="badge badge-rendah">Rendah</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="1">
+                    <td>4</td>
+                    <td>07 Okt 2026, 09:30</td>
+                    <td>Cakalang</td>
+                    <td>Bagan</td>
+                    <td>Ternate</td>
+                    <td>Hujan</td>
+                    <td>980</td>
+                    <td><span class="badge badge-sedang">Sedang</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="1">
+                    <td>5</td>
+                    <td>06 Okt 2026, 11:17</td>
+                    <td>Tuna</td>
+                    <td>Bagan</td>
+                    <td>Halmahera Selatan</td>
+                    <td>Kemarau</td>
+                    <td>1500</td>
+                    <td><span class="badge badge-tinggi">Tinggi</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="1">
+                    <td>6</td>
+                    <td>05 Okt 2026, 13:42</td>
+                    <td>Kembung</td>
+                    <td>Jaring</td>
+                    <td>Ternate</td>
+                    <td>Pancaroba</td>
+                    <td>200</td>
+                    <td><span class="badge badge-rendah">Rendah</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="1">
+                    <td>7</td>
+                    <td>04 Okt 2026, 15:28</td>
+                    <td>Tongkol</td>
+                    <td>Pancing</td>
+                    <td>Tidore</td>
+                    <td>Pancaroba</td>
+                    <td>720</td>
+                    <td><span class="badge badge-sedang">Sedang</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="1">
+                    <td>8</td>
+                    <td>03 Okt 2026, 08:19</td>
+                    <td>Cakalang</td>
+                    <td>Bagan</td>
+                    <td>Halmahera Utara</td>
+                    <td>Kemarau</td>
+                    <td>1100</td>
+                    <td><span class="badge badge-tinggi">Tinggi</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="1">
+                    <td>9</td>
+                    <td>02 Okt 2026, 12:03</td>
+                    <td>Tuna</td>
+                    <td>Jaring</td>
+                    <td>Kepulauan Sula</td>
+                    <td>Hujan</td>
+                    <td>430</td>
+                    <td><span class="badge badge-sedang">Sedang</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="1">
+                    <td>10</td>
+                    <td>01 Okt 2026, 10:55</td>
+                    <td>Kembung</td>
+                    <td>Pancing</td>
+                    <td>Ternate</td>
+                    <td>Hujan</td>
+                    <td>180</td>
+                    <td><span class="badge badge-rendah">Rendah</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+
+                  <!-- HALAMAN 2 (10 Data Lanjutan) -->
+                  <tr data-page="2" style="display: none">
+                    <td>11</td>
+                    <td>30 Sep 2026, 14:10</td>
+                    <td>Cakalang</td>
+                    <td>Pancing</td>
+                    <td>Halmahera Barat</td>
+                    <td>Kemarau</td>
+                    <td>1250</td>
+                    <td><span class="badge badge-tinggi">Tinggi</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="2" style="display: none">
+                    <td>12</td>
+                    <td>29 Sep 2026, 09:45</td>
+                    <td>Tongkol</td>
+                    <td>Jaring</td>
+                    <td>Ternate</td>
+                    <td>Pancaroba</td>
+                    <td>510</td>
+                    <td><span class="badge badge-sedang">Sedang</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="2" style="display: none">
+                    <td>13</td>
+                    <td>28 Sep 2026, 11:20</td>
+                    <td>Kembung</td>
+                    <td>Bagan</td>
+                    <td>Tidore</td>
+                    <td>Hujan</td>
+                    <td>220</td>
+                    <td><span class="badge badge-rendah">Rendah</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="2" style="display: none">
+                    <td>14</td>
+                    <td>27 Sep 2026, 16:30</td>
+                    <td>Tuna</td>
+                    <td>Pancing</td>
+                    <td>Halmahera Selatan</td>
+                    <td>Kemarau</td>
+                    <td>1350</td>
+                    <td><span class="badge badge-tinggi">Tinggi</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="2" style="display: none">
+                    <td>15</td>
+                    <td>26 Sep 2026, 08:15</td>
+                    <td>Cakalang</td>
+                    <td>Jaring</td>
+                    <td>Ternate</td>
+                    <td>Hujan</td>
+                    <td>890</td>
+                    <td><span class="badge badge-sedang">Sedang</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="2" style="display: none">
+                    <td>16</td>
+                    <td>25 Sep 2026, 13:50</td>
+                    <td>Tongkol</td>
+                    <td>Bagan</td>
+                    <td>Halmahera Utara</td>
+                    <td>Pancaroba</td>
+                    <td>640</td>
+                    <td><span class="badge badge-sedang">Sedang</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="2" style="display: none">
+                    <td>17</td>
+                    <td>24 Sep 2026, 10:05</td>
+                    <td>Kembung</td>
+                    <td>Pancing</td>
+                    <td>Kepulauan Sula</td>
+                    <td>Kemarau</td>
+                    <td>190</td>
+                    <td><span class="badge badge-rendah">Rendah</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="2" style="display: none">
+                    <td>18</td>
+                    <td>23 Sep 2026, 15:40</td>
+                    <td>Tuna</td>
+                    <td>Jaring</td>
+                    <td>Ternate</td>
+                    <td>Hujan</td>
+                    <td>1180</td>
+                    <td><span class="badge badge-tinggi">Tinggi</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="2" style="display: none">
+                    <td>19</td>
+                    <td>22 Sep 2026, 09:25</td>
+                    <td>Cakalang</td>
+                    <td>Pancing</td>
+                    <td>Tidore</td>
+                    <td>Pancaroba</td>
+                    <td>760</td>
+                    <td><span class="badge badge-sedang">Sedang</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="2" style="display: none">
+                    <td>20</td>
+                    <td>21 Sep 2026, 11:00</td>
+                    <td>Tongkol</td>
+                    <td>Bagan</td>
+                    <td>Halmahera Timur</td>
+                    <td>Kemarau</td>
+                    <td>310</td>
+                    <td><span class="badge badge-rendah">Rendah</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+
+                  <!-- HALAMAN 3 (10 Data Lanjutan) -->
+                  <tr data-page="3" style="display: none">
+                    <td>21</td>
+                    <td>20 Sep 2026, 14:00</td>
+                    <td>Tuna</td>
+                    <td>Pancing</td>
+                    <td>Halmahera Selatan</td>
+                    <td>Kemarau</td>
+                    <td>1420</td>
+                    <td><span class="badge badge-tinggi">Tinggi</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="3" style="display: none">
+                    <td>22</td>
+                    <td>19 Sep 2026, 10:30</td>
+                    <td>Cakalang</td>
+                    <td>Jaring</td>
+                    <td>Ternate</td>
+                    <td>Hujan</td>
+                    <td>950</td>
+                    <td><span class="badge badge-sedang">Sedang</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="3" style="display: none">
+                    <td>23</td>
+                    <td>18 Sep 2026, 16:15</td>
+                    <td>Kembung</td>
+                    <td>Bagan</td>
+                    <td>Halmahera Barat</td>
+                    <td>Pancaroba</td>
+                    <td>210</td>
+                    <td><span class="badge badge-rendah">Rendah</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="3" style="display: none">
+                    <td>24</td>
+                    <td>17 Sep 2026, 08:50</td>
+                    <td>Tongkol</td>
+                    <td>Pancing</td>
+                    <td>Tidore</td>
+                    <td>Kemarau</td>
+                    <td>680</td>
+                    <td><span class="badge badge-sedang">Sedang</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="3" style="display: none">
+                    <td>25</td>
+                    <td>16 Sep 2026, 12:40</td>
+                    <td>Tuna</td>
+                    <td>Bagan</td>
+                    <td>Kepulauan Sula</td>
+                    <td>Hujan</td>
+                    <td>1290</td>
+                    <td><span class="badge badge-tinggi">Tinggi</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="3" style="display: none">
+                    <td>26</td>
+                    <td>15 Sep 2026, 11:15</td>
+                    <td>Cakalang</td>
+                    <td>Jaring</td>
+                    <td>Halmahera Utara</td>
+                    <td>Pancaroba</td>
+                    <td>820</td>
+                    <td><span class="badge badge-sedang">Sedang</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="3" style="display: none">
+                    <td>27</td>
+                    <td>14 Sep 2026, 15:05</td>
+                    <td>Kembung</td>
+                    <td>Pancing</td>
+                    <td>Ternate</td>
+                    <td>Kemarau</td>
+                    <td>175</td>
+                    <td><span class="badge badge-rendah">Rendah</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="3" style="display: none">
+                    <td>28</td>
+                    <td>13 Sep 2026, 09:10</td>
+                    <td>Tongkol</td>
+                    <td>Bagan</td>
+                    <td>Tidore</td>
+                    <td>Hujan</td>
+                    <td>580</td>
+                    <td><span class="badge badge-sedang">Sedang</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="3" style="display: none">
+                    <td>29</td>
+                    <td>12 Sep 2026, 13:20</td>
+                    <td>Cakalang</td>
+                    <td>Pancing</td>
+                    <td>Halmahera Timur</td>
+                    <td>Kemarau</td>
+                    <td>1150</td>
+                    <td><span class="badge badge-tinggi">Tinggi</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <tr data-page="3" style="display: none">
+                    <td>30</td>
+                    <td>11 Sep 2026, 10:00</td>
+                    <td>Tuna</td>
+                    <td>Jaring</td>
+                    <td>Ternate</td>
+                    <td>Pancaroba</td>
+                    <td>490</td>
+                    <td><span class="badge badge-sedang">Sedang</span></td>
+                    <td style="text-align: center">
+                      <a href="detail-prediksi.html" class="btn-detail"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- PAGINATION -->
+            <div class="pagination-container">
+              <button
+                class="page-btn page-nav"
+                id="prevBtn"
+                onclick="changePage(currentPage - 1)"
+              >
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button class="page-btn page-num active" onclick="changePage(1)">
+                1
+              </button>
+              <button class="page-btn page-num" onclick="changePage(2)">
+                2
+              </button>
+              <button class="page-btn page-num" onclick="changePage(3)">
+                3
+              </button>
+              <button
+                class="page-btn page-nav"
+                id="nextBtn"
+                onclick="changePage(currentPage + 1)"
+              >
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
         </div>
+        <!-- Akhir dari .content-body -->
 
-        <!-- MAIN DATA CARD -->
-        <div class="main-card history-card">
-          
-          <!-- FILTER BAR -->
-          <div class="table-filter-bar">
-            <div class="search-input-wrapper">
-              <i class="fa-solid fa-magnifying-glass search-icon"></i>
-              <input type="text" id="searchInput" class="search-input" placeholder="Cari riwayat prediksi..." onkeyup="filterHistoryTable()">
-            </div>
-            
-            <div class="filter-dropdown-wrapper">
-              <i class="fa-regular fa-calendar filter-icon"></i>
-              <select id="dateFilter" class="filter-select" onchange="filterHistoryTable()">
-                <option value="">Semua Tanggal</option>
-                <option value="2026-10">Oktober 2026</option>
-                <option value="2026-09">September 2026</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- TABLE -->
-          <div class="table-responsive">
-            <table class="data-table" id="historyTable">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Tanggal</th>
-                  <th>Jenis Ikan</th>
-                  <th>Alat Tangkap</th>
-                  <th>Wilayah</th>
-                  <th>Musim</th>
-                  <th>Produksi (ton)</th>
-                  <th>Hasil Prediksi</th>
-                  <th style="text-align: center;">Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- HALAMAN 1 (10 Data Sesuai UI Figma) -->
-                <tr data-page="1">
-                  <td>1</td>
-                  <td>10 Okt 2026, 14:23</td>
-                  <td>Cakalang</td>
-                  <td>Pancing</td>
-                  <td>Ternate</td>
-                  <td>Hujan</td>
-                  <td>1200</td>
-                  <td><span class="badge badge-tinggi">Tinggi</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="1">
-                  <td>2</td>
-                  <td>09 Okt 2026, 10:11</td>
-                  <td>Tuna</td>
-                  <td>Jaring</td>
-                  <td>Halmahera Timur</td>
-                  <td>Kemarau</td>
-                  <td>450</td>
-                  <td><span class="badge badge-sedang">Sedang</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="1">
-                  <td>3</td>
-                  <td>08 Okt 2026, 16:05</td>
-                  <td>Tongkol</td>
-                  <td>Pancing</td>
-                  <td>Tidore</td>
-                  <td>Pancaroba</td>
-                  <td>300</td>
-                  <td><span class="badge badge-rendah">Rendah</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="1">
-                  <td>4</td>
-                  <td>07 Okt 2026, 09:30</td>
-                  <td>Cakalang</td>
-                  <td>Bagan</td>
-                  <td>Ternate</td>
-                  <td>Hujan</td>
-                  <td>980</td>
-                  <td><span class="badge badge-sedang">Sedang</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="1">
-                  <td>5</td>
-                  <td>06 Okt 2026, 11:17</td>
-                  <td>Tuna</td>
-                  <td>Bagan</td>
-                  <td>Halmahera Selatan</td>
-                  <td>Kemarau</td>
-                  <td>1500</td>
-                  <td><span class="badge badge-tinggi">Tinggi</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="1">
-                  <td>6</td>
-                  <td>05 Okt 2026, 13:42</td>
-                  <td>Kembung</td>
-                  <td>Jaring</td>
-                  <td>Ternate</td>
-                  <td>Pancaroba</td>
-                  <td>200</td>
-                  <td><span class="badge badge-rendah">Rendah</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="1">
-                  <td>7</td>
-                  <td>04 Okt 2026, 15:28</td>
-                  <td>Tongkol</td>
-                  <td>Pancing</td>
-                  <td>Tidore</td>
-                  <td>Pancaroba</td>
-                  <td>720</td>
-                  <td><span class="badge badge-sedang">Sedang</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="1">
-                  <td>8</td>
-                  <td>03 Okt 2026, 08:19</td>
-                  <td>Cakalang</td>
-                  <td>Bagan</td>
-                  <td>Halmahera Utara</td>
-                  <td>Kemarau</td>
-                  <td>1100</td>
-                  <td><span class="badge badge-tinggi">Tinggi</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="1">
-                  <td>9</td>
-                  <td>02 Okt 2026, 12:03</td>
-                  <td>Tuna</td>
-                  <td>Jaring</td>
-                  <td>Kepulauan Sula</td>
-                  <td>Hujan</td>
-                  <td>430</td>
-                  <td><span class="badge badge-sedang">Sedang</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="1">
-                  <td>10</td>
-                  <td>01 Okt 2026, 10:55</td>
-                  <td>Kembung</td>
-                  <td>Pancing</td>
-                  <td>Ternate</td>
-                  <td>Hujan</td>
-                  <td>180</td>
-                  <td><span class="badge badge-rendah">Rendah</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-
-                <!-- HALAMAN 2 (10 Data Lanjutan) -->
-                <tr data-page="2" style="display: none;">
-                  <td>11</td>
-                  <td>30 Sep 2026, 14:10</td>
-                  <td>Cakalang</td>
-                  <td>Pancing</td>
-                  <td>Halmahera Barat</td>
-                  <td>Kemarau</td>
-                  <td>1250</td>
-                  <td><span class="badge badge-tinggi">Tinggi</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="2" style="display: none;">
-                  <td>12</td>
-                  <td>29 Sep 2026, 09:45</td>
-                  <td>Tongkol</td>
-                  <td>Jaring</td>
-                  <td>Ternate</td>
-                  <td>Pancaroba</td>
-                  <td>510</td>
-                  <td><span class="badge badge-sedang">Sedang</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="2" style="display: none;">
-                  <td>13</td>
-                  <td>28 Sep 2026, 11:20</td>
-                  <td>Kembung</td>
-                  <td>Bagan</td>
-                  <td>Tidore</td>
-                  <td>Hujan</td>
-                  <td>220</td>
-                  <td><span class="badge badge-rendah">Rendah</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="2" style="display: none;">
-                  <td>14</td>
-                  <td>27 Sep 2026, 16:30</td>
-                  <td>Tuna</td>
-                  <td>Pancing</td>
-                  <td>Halmahera Selatan</td>
-                  <td>Kemarau</td>
-                  <td>1350</td>
-                  <td><span class="badge badge-tinggi">Tinggi</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="2" style="display: none;">
-                  <td>15</td>
-                  <td>26 Sep 2026, 08:15</td>
-                  <td>Cakalang</td>
-                  <td>Jaring</td>
-                  <td>Ternate</td>
-                  <td>Hujan</td>
-                  <td>890</td>
-                  <td><span class="badge badge-sedang">Sedang</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="2" style="display: none;">
-                  <td>16</td>
-                  <td>25 Sep 2026, 13:50</td>
-                  <td>Tongkol</td>
-                  <td>Bagan</td>
-                  <td>Halmahera Utara</td>
-                  <td>Pancaroba</td>
-                  <td>640</td>
-                  <td><span class="badge badge-sedang">Sedang</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="2" style="display: none;">
-                  <td>17</td>
-                  <td>24 Sep 2026, 10:05</td>
-                  <td>Kembung</td>
-                  <td>Pancing</td>
-                  <td>Kepulauan Sula</td>
-                  <td>Kemarau</td>
-                  <td>190</td>
-                  <td><span class="badge badge-rendah">Rendah</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="2" style="display: none;">
-                  <td>18</td>
-                  <td>23 Sep 2026, 15:40</td>
-                  <td>Tuna</td>
-                  <td>Jaring</td>
-                  <td>Ternate</td>
-                  <td>Hujan</td>
-                  <td>1180</td>
-                  <td><span class="badge badge-tinggi">Tinggi</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="2" style="display: none;">
-                  <td>19</td>
-                  <td>22 Sep 2026, 09:25</td>
-                  <td>Cakalang</td>
-                  <td>Pancing</td>
-                  <td>Tidore</td>
-                  <td>Pancaroba</td>
-                  <td>760</td>
-                  <td><span class="badge badge-sedang">Sedang</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="2" style="display: none;">
-                  <td>20</td>
-                  <td>21 Sep 2026, 11:00</td>
-                  <td>Tongkol</td>
-                  <td>Bagan</td>
-                  <td>Halmahera Timur</td>
-                  <td>Kemarau</td>
-                  <td>310</td>
-                  <td><span class="badge badge-rendah">Rendah</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-
-                <!-- HALAMAN 3 (10 Data Lanjutan) -->
-                <tr data-page="3" style="display: none;">
-                  <td>21</td>
-                  <td>20 Sep 2026, 14:00</td>
-                  <td>Tuna</td>
-                  <td>Pancing</td>
-                  <td>Halmahera Selatan</td>
-                  <td>Kemarau</td>
-                  <td>1420</td>
-                  <td><span class="badge badge-tinggi">Tinggi</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="3" style="display: none;">
-                  <td>22</td>
-                  <td>19 Sep 2026, 10:30</td>
-                  <td>Cakalang</td>
-                  <td>Jaring</td>
-                  <td>Ternate</td>
-                  <td>Hujan</td>
-                  <td>950</td>
-                  <td><span class="badge badge-sedang">Sedang</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="3" style="display: none;">
-                  <td>23</td>
-                  <td>18 Sep 2026, 16:15</td>
-                  <td>Kembung</td>
-                  <td>Bagan</td>
-                  <td>Halmahera Barat</td>
-                  <td>Pancaroba</td>
-                  <td>210</td>
-                  <td><span class="badge badge-rendah">Rendah</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="3" style="display: none;">
-                  <td>24</td>
-                  <td>17 Sep 2026, 08:50</td>
-                  <td>Tongkol</td>
-                  <td>Pancing</td>
-                  <td>Tidore</td>
-                  <td>Kemarau</td>
-                  <td>680</td>
-                  <td><span class="badge badge-sedang">Sedang</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="3" style="display: none;">
-                  <td>25</td>
-                  <td>16 Sep 2026, 12:40</td>
-                  <td>Tuna</td>
-                  <td>Bagan</td>
-                  <td>Kepulauan Sula</td>
-                  <td>Hujan</td>
-                  <td>1290</td>
-                  <td><span class="badge badge-tinggi">Tinggi</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="3" style="display: none;">
-                  <td>26</td>
-                  <td>15 Sep 2026, 11:15</td>
-                  <td>Cakalang</td>
-                  <td>Jaring</td>
-                  <td>Halmahera Utara</td>
-                  <td>Pancaroba</td>
-                  <td>820</td>
-                  <td><span class="badge badge-sedang">Sedang</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="3" style="display: none;">
-                  <td>27</td>
-                  <td>14 Sep 2026, 15:05</td>
-                  <td>Kembung</td>
-                  <td>Pancing</td>
-                  <td>Ternate</td>
-                  <td>Kemarau</td>
-                  <td>175</td>
-                  <td><span class="badge badge-rendah">Rendah</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="3" style="display: none;">
-                  <td>28</td>
-                  <td>13 Sep 2026, 09:10</td>
-                  <td>Tongkol</td>
-                  <td>Bagan</td>
-                  <td>Tidore</td>
-                  <td>Hujan</td>
-                  <td>580</td>
-                  <td><span class="badge badge-sedang">Sedang</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="3" style="display: none;">
-                  <td>29</td>
-                  <td>12 Sep 2026, 13:20</td>
-                  <td>Cakalang</td>
-                  <td>Pancing</td>
-                  <td>Halmahera Timur</td>
-                  <td>Kemarau</td>
-                  <td>1150</td>
-                  <td><span class="badge badge-tinggi">Tinggi</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-                <tr data-page="3" style="display: none;">
-                  <td>30</td>
-                  <td>11 Sep 2026, 10:00</td>
-                  <td>Tuna</td>
-                  <td>Jaring</td>
-                  <td>Ternate</td>
-                  <td>Pancaroba</td>
-                  <td>490</td>
-                  <td><span class="badge badge-sedang">Sedang</span></td>
-                  <td style="text-align: center;"><a href="detail-prediksi.html" class="btn-detail">Detail</a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- PAGINATION -->
-          <div class="pagination-container">
-            <button class="page-btn page-nav" id="prevBtn" onclick="changePage(currentPage - 1)"><i class="fa-solid fa-chevron-left"></i></button>
-            <button class="page-btn page-num active" onclick="changePage(1)">1</button>
-            <button class="page-btn page-num" onclick="changePage(2)">2</button>
-            <button class="page-btn page-num" onclick="changePage(3)">3</button>
-            <button class="page-btn page-nav" id="nextBtn" onclick="changePage(currentPage + 1)"><i class="fa-solid fa-chevron-right"></i></button>
-          </div>
-
-        </div>
-
-      </div> <!-- Akhir dari .content-body -->
-
-      <!-- FOOTER -->
-      <footer class="footer-copyright">
-        <p>&copy; 2026 SIPIKA - Kelompok 13 Web</p>
-      </footer>
-
+        <!-- FOOTER -->
+        <footer class="footer-copyright">
+          <p>&copy; 2026 SIPIKA - Kelompok 13 Web</p>
+        </footer>
+      </div>
     </div>
-  </div>
 
-  <!-- JAVASCRIPT PAGINATION & FILTER -->
-  <script>
-    let currentPage = 1;
-    const totalPages = 3;
+    <!-- JAVASCRIPT PAGINATION & FILTER -->
+    <script>
+      let currentPage = 1;
+      const totalPages = 3;
 
-    function changePage(page) {
-      if (page < 1 || page > totalPages) return;
-      currentPage = page;
+      function changePage(page) {
+        if (page < 1 || page > totalPages) return;
+        currentPage = page;
 
-      // Sembunyikan semua baris
-      const rows = document.querySelectorAll('#historyTable tbody tr');
-      rows.forEach(row => {
-        row.style.display = 'none';
-      });
+        // Sembunyikan semua baris
+        const rows = document.querySelectorAll("#historyTable tbody tr");
+        rows.forEach((row) => {
+          row.style.display = "none";
+        });
 
-      // Tampilkan data halaman aktif
-      const activeRows = document.querySelectorAll(`#historyTable tbody tr[data-page="${page}"]`);
-      activeRows.forEach(row => {
-        row.style.display = '';
-      });
+        // Tampilkan data halaman aktif
+        const activeRows = document.querySelectorAll(
+          `#historyTable tbody tr[data-page="${page}"]`,
+        );
+        activeRows.forEach((row) => {
+          row.style.display = "";
+        });
 
-      // Update tombol pagination
-      const pageButtons = document.querySelectorAll('.page-num');
-      pageButtons.forEach((btn, index) => {
-        if (index + 1 === page) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
-    }
+        // Update tombol pagination
+        const pageButtons = document.querySelectorAll(".page-num");
+        pageButtons.forEach((btn, index) => {
+          if (index + 1 === page) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
+        });
+      }
 
-    function filterHistoryTable() {
-      const searchValue = document.getElementById('searchInput').value.toLowerCase();
-      const rows = document.querySelectorAll('#historyTable tbody tr');
-      
-      rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        if (text.includes(searchValue)) {
-          row.style.display = '';
-        } else {
-          row.style.display = 'none';
-        }
-      });
-    }
-  </script>
+      function filterHistoryTable() {
+        const searchValue = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const rows = document.querySelectorAll("#historyTable tbody tr");
 
-</body>
+        rows.forEach((row) => {
+          const text = row.textContent.toLowerCase();
+          if (text.includes(searchValue)) {
+            row.style.display = "";
+          } else {
+            row.style.display = "none";
+          }
+        });
+      }
+    </script>
+    <script src="../../js/global.js"></script>
+    <script src="../../js/petugas.js"></script>
+  </body>
 </html>

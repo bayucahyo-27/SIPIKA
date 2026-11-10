@@ -1,259 +1,195 @@
+/**
+ * ==========================================
+ * AUTH.JS - SIPIKA Authentication (Final Version)
+ * ==========================================
+ * Menggabungkan validasi UI yang rapi dengan simulasi Session Management.
+ */
+
+// --- FUNGSI CADANGAN (BIAR GAK ERROR "saveSession is not defined" LAGI) ---
+function saveSession(userData) {
+  localStorage.setItem("sipika_user", JSON.stringify(userData));
+  localStorage.setItem("sipika_isLoggedIn", "true");
+}
+// --------------------------------------------------------------------------
+
 /* =========================================
-   1. FITUR TAMPILKAN / SEMBUNYIKAN PASSWORD
+   1. FITUR TAMPILKAN / SEMBUNYIKAN PASSWORD (Kode Asli Teman Lu)
 ========================================= */
-
-// Membuat fungsi untuk mengatur tombol ikon mata
 function setupPasswordToggle(inputId, buttonId, iconId) {
+  const passwordInput = document.getElementById(inputId);
+  const togglePassword = document.getElementById(buttonId);
+  const passwordToggleIcon = document.getElementById(iconId);
 
-    // Mengambil elemen HTML berdasarkan ID
-    const passwordInput = document.getElementById(inputId);
-    const togglePassword = document.getElementById(buttonId);
-    const passwordToggleIcon = document.getElementById(iconId);
+  if (passwordInput && togglePassword && passwordToggleIcon) {
+    togglePassword.addEventListener("click", function () {
+      const isPasswordHidden = passwordInput.type === "password";
 
-    // Memastikan semua elemen tersedia
-    if (passwordInput && togglePassword && passwordToggleIcon) {
-
-        // Menambahkan event ketika tombol mata diklik
-        togglePassword.addEventListener("click", function () {
-
-            // Memeriksa apakah password sedang tersembunyi
-            const isPasswordHidden = passwordInput.type === "password";
-
-            if (isPasswordHidden) {
-
-                // Menampilkan password
-                passwordInput.type = "text";
-
-                // Mengubah ikon menjadi mata dicoret
-                passwordToggleIcon.innerHTML = `
-                    <path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8"/>
-                    <path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c6.4 0 10 7 10 7a14 14 0 0 1-3.1 3.8M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7c1.4 0 2.7-.3 3.8-.8"/>
-                `;
-
-                togglePassword.setAttribute(
-                    "aria-label",
-                    "Sembunyikan kata sandi"
-                );
-
-                togglePassword.setAttribute("aria-pressed", "true");
-
-            } else {
-
-                // Menyembunyikan password
-                passwordInput.type = "password";
-
-                // Mengembalikan ikon menjadi mata terbuka
-                passwordToggleIcon.innerHTML = `
-                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                `;
-
-                togglePassword.setAttribute(
-                    "aria-label",
-                    "Tampilkan kata sandi"
-                );
-
-                togglePassword.setAttribute("aria-pressed", "false");
-
-            }
-
-        });
-
-    }
-
+      if (isPasswordHidden) {
+        passwordInput.type = "text";
+        passwordToggleIcon.innerHTML = `<path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c6.4 0 10 7 10 7a14 14 0 0 1-3.1 3.8M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7c1.4 0 2.7-.3 3.8-.8"/>`;
+        togglePassword.setAttribute("aria-label", "Sembunyikan kata sandi");
+        togglePassword.setAttribute("aria-pressed", "true");
+      } else {
+        passwordInput.type = "password";
+        passwordToggleIcon.innerHTML = `<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>`;
+        togglePassword.setAttribute("aria-label", "Tampilkan kata sandi");
+        togglePassword.setAttribute("aria-pressed", "false");
+      }
+    });
+  }
 }
 
-// Mengaktifkan fitur pada kolom password Login dan Register
 setupPasswordToggle("password", "togglePassword", "passwordToggleIcon");
-
-// Mengaktifkan fitur pada kolom konfirmasi password Register
 setupPasswordToggle(
-    "confirmPassword",
-    "toggleConfirmPassword",
-    "confirmPasswordToggleIcon"
+  "confirmPassword",
+  "toggleConfirmPassword",
+  "confirmPasswordToggleIcon",
 );
 
-
 /* =========================================
-   2. VALIDASI FORM LOGIN
+   2. LOGIKA LOGIN (DITAMBAHKAN SAVE SESSION)
 ========================================= */
-
-// Mengambil elemen form Login berdasarkan ID
 const loginForm = document.getElementById("loginForm");
 
-// Memastikan form Login tersedia pada halaman yang sedang dibuka
 if (loginForm) {
+  loginForm.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-    // Menambahkan event submit ketika pengguna menekan tombol Masuk
-    loginForm.addEventListener("submit", function (event) {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value;
+    const role = document.getElementById("role").value;
+    const btnMasuk = loginForm.querySelector("button[type='submit']");
 
-        // Mencegah form melakukan pengiriman secara otomatis
-        event.preventDefault();
+    if (username === "" || password === "" || role === "") {
+      alert("Mohon lengkapi seluruh data login.");
+      return;
+    }
 
-        // Mengambil nilai username, password, dan pilihan pengguna
-        const username = document.getElementById("username").value.trim();
-        const password = document.getElementById("password").value;
-        const role = document.getElementById("role").value;
+    // Simulasi Loading
+    const originalText = btnMasuk.innerText;
+    btnMasuk.innerText = "Memproses...";
+    btnMasuk.disabled = true;
 
-        // Memeriksa apakah seluruh kolom login sudah diisi
-        if (username === "" || password === "" || role === "") {
+    setTimeout(() => {
+      // --- INI KUNCINYA: KITA SIMPAN SESSION AGAR GLOBAL.JS TIDAK MENENDANG USER ---
+      const userData = {
+        username: username,
+        nama_lengkap: username, // Bisa disesuaikan nanti
+        role: role,
+      };
 
-            alert("Mohon lengkapi seluruh data login.");
+      // Panggil fungsi saveSession (sekarang sudah aman ada di atas)
+      saveSession(userData);
 
-            return;
-
-        }
-
-        // Mengarahkan pengguna berdasarkan role yang dipilih
-        if (role === "nelayan") {
-
-            // Mengarahkan pengguna ke Dashboard Nelayan
-            window.location.href = "../nelayan/dashboard.html";
-
-        } else if (role === "petugas") {
-
-            // Mengarahkan pengguna ke Dashboard Petugas
-            window.location.href = "../petugas/dashboard.html";
-
-        } else if (role === "admin") {
-
-            // Mengarahkan pengguna ke Dashboard Admin
-            window.location.href = "../admin/dashboard.html";
-
-        }
-
-    });
-
+      // Redirect sesuai role
+      if (role === "nelayan") {
+        window.location.href = "../nelayan/dashboard.html";
+      } else if (role === "petugas") {
+        window.location.href = "../petugas/dashboard.html";
+      } else if (role === "admin") {
+        window.location.href = "../admin/dashboard.html";
+      }
+    }, 800); // Delay 0.8 detik agar terasa seperti memproses
+  });
 }
 
-
 /* =========================================
-   3. VALIDASI FORM REGISTER
+   3. LOGIKA REGISTER (SIMULASI PENYIMPANAN)
 ========================================= */
-
-// Mengambil elemen form Register berdasarkan ID
 const registerForm = document.getElementById("registerForm");
 
-// Memastikan form Register tersedia pada halaman yang sedang dibuka
 if (registerForm) {
+  registerForm.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-    // Menambahkan event submit pada form Register
-    registerForm.addEventListener("submit", function (event) {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+    const btnDaftar = registerForm.querySelector("button[type='submit']");
 
-        // Mencegah form melakukan pengiriman secara otomatis
-        event.preventDefault();
+    if (email === "" || password === "" || confirmPassword === "") {
+      alert("Mohon lengkapi seluruh data pendaftaran.");
+      return;
+    }
 
-        // Mengambil nilai email dan kedua kolom password
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
-        const confirmPassword = document.getElementById("confirmPassword").value;
+    if (password !== confirmPassword) {
+      alert("Konfirmasi kata sandi tidak sesuai.");
+      return;
+    }
 
-        // Memeriksa apakah seluruh kolom pendaftaran sudah diisi
-        if (email === "" || password === "" || confirmPassword === "") {
-            alert("Mohon lengkapi seluruh data pendaftaran.");
-            return;
-        }
+    if (password.length < 8) {
+      alert("Kata sandi minimal terdiri dari 8 karakter.");
+      return;
+    }
 
-        // Memeriksa apakah password dan konfirmasi password sesuai
-        if (password !== confirmPassword) {
-            alert("Konfirmasi kata sandi tidak sesuai.");
-            return;
-        }
+    const originalText = btnDaftar.innerText;
+    btnDaftar.innerText = "Mendaftarkan...";
+    btnDaftar.disabled = true;
 
-        // Memeriksa apakah password memiliki minimal 8 karakter
-        if (password.length < 8) {
-            alert("Kata sandi minimal terdiri dari 8 karakter.");
-            return;
-        }
+    setTimeout(() => {
+      // Simpan ke mock database di localStorage
+      let users = JSON.parse(localStorage.getItem("sipika_mock_users")) || [];
 
-        // Memberikan informasi bahwa validasi frontend berhasil
-        alert(
-            "Form pendaftaran berhasil divalidasi. " +
-            "Proses penyimpanan akun akan dilanjutkan melalui backend."
-        );
+      // Cek duplikat
+      if (users.some((u) => u.email === email)) {
+        alert("Email sudah terdaftar!");
+        btnDaftar.innerText = originalText;
+        btnDaftar.disabled = false;
+        return;
+      }
 
-    });
+      // Buat user baru (Default role petugas untuk kemudahan testing lu)
+      const newUser = {
+        id: Date.now(),
+        username: email.split("@")[0],
+        nama_lengkap: email.split("@")[0],
+        email: email,
+        password: password,
+        role: "petugas", // <--- Default petugas biar lu gampang test login petugas
+      };
 
+      users.push(newUser);
+      localStorage.setItem("sipika_mock_users", JSON.stringify(users));
+
+      alert("Registrasi berhasil! Silakan login.");
+      window.location.href = "login.html";
+    }, 800);
+  });
 }
 
-
 /* =========================================
-   4. VALIDASI FORM LUPA KATA SANDI
+   4 & 5. LUPA & RESET PASSWORD (SIMULASI)
 ========================================= */
-
-// Mengambil elemen form Lupa Kata Sandi berdasarkan ID
 const forgotForm = document.getElementById("forgotForm");
-
-// Memastikan form Lupa Kata Sandi tersedia pada halaman yang sedang dibuka
 if (forgotForm) {
-
-    // Menambahkan event submit pada form Lupa Kata Sandi
-    forgotForm.addEventListener("submit", function (event) {
-
-        // Mencegah form melakukan pengiriman secara otomatis
-        event.preventDefault();
-
-        // Mengambil nilai email yang dimasukkan pengguna
-        const email = document.getElementById("email").value.trim();
-
-        // Memeriksa apakah kolom email sudah diisi
-        if (email === "") {
-            alert("Mohon masukkan email terdaftar.");
-            return;
-        }
-
-        // Memberikan informasi bahwa validasi frontend berhasil
-        alert(
-            "Email berhasil divalidasi. " +
-            "Pengiriman tautan pemulihan akan dihubungkan melalui backend."
-        );
-
-    });
-
+  forgotForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const email = document.getElementById("email").value.trim();
+    if (!email) {
+      alert("Mohon masukkan email terdaftar.");
+      return;
+    }
+    alert("Link pemulihan password telah dikirim ke email Anda. (Simulasi)");
+  });
 }
 
-
-/* =========================================
-   5. VALIDASI FORM RESET PASSWORD
-========================================= */
-
-// Mengambil elemen form Reset Password berdasarkan ID
 const resetForm = document.getElementById("resetForm");
-
-// Memastikan form Reset Password tersedia pada halaman yang sedang dibuka
 if (resetForm) {
+  resetForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const newPassword = document.getElementById("newPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
 
-    // Menambahkan event submit pada form Reset Password
-    resetForm.addEventListener("submit", function (event) {
-
-        // Mencegah form melakukan pengiriman secara otomatis
-        event.preventDefault();
-
-        // Mengambil nilai password baru dan konfirmasi password
-        const newPassword = document.getElementById("newPassword").value;
-        const confirmPassword = document.getElementById("confirmPassword").value;
-
-        // Memeriksa apakah seluruh kolom password sudah diisi
-        if (newPassword === "" || confirmPassword === "") {
-            alert("Mohon lengkapi seluruh data password.");
-            return;
-        }
-
-        // Memeriksa apakah password baru memiliki minimal 8 karakter
-        if (newPassword.length < 8) {
-            alert("Password baru minimal terdiri dari 8 karakter.");
-            return;
-        }
-
-        // Memeriksa apakah password baru dan konfirmasinya sesuai
-        if (newPassword !== confirmPassword) {
-            alert("Konfirmasi password tidak sesuai.");
-            return;
-        }
-
-        // Memberikan informasi bahwa validasi frontend berhasil
-        alert("Password baru berhasil divalidasi. Proses perubahan password akan dilanjutkan melalui backend.");
-
-    });
-
+    if (
+      !newPassword ||
+      !confirmPassword ||
+      newPassword.length < 8 ||
+      newPassword !== confirmPassword
+    ) {
+      alert("Password tidak valid atau tidak sesuai.");
+      return;
+    }
+    alert("Password berhasil diubah! Silakan login. (Simulasi)");
+    window.location.href = "login.html";
+  });
 }

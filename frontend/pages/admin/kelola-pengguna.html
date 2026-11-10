@@ -1,332 +1,474 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SIPIKA - Kelola Pengguna</title>
-  
-  <!-- Google Fonts & FontAwesome -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- CSS Utama Admin -->
-  <link rel="stylesheet" href="../../css/admin.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIPIKA - Kelola Pengguna</title>
 
-  <div class="app-container">
-    
-    <!-- SIDEBAR KIRI -->
-    <aside class="sidebar">
-      <div class="sidebar-brand">
-        <img src="../../assets/images/logo.png" alt="Logo SIPIKA" class="sidebar-logo-img">
-      </div>
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-      <nav class="sidebar-menu">
-        <a href="dashboard.html" class="menu-item">
-          <i class="fa-solid fa-house"></i>
-          <span>Dashboard</span>
-        </a>
-        <a href="kelola-pengguna.html" class="menu-item active">
-          <i class="fa-solid fa-users-gear"></i>
-          <span>Kelola Pengguna</span>
-        </a>
-        <a href="data-master.html" class="menu-item">
-          <i class="fa-solid fa-database"></i>
-          <span>Data Master</span>
-        </a>
-        <a href="profil.html" class="menu-item">
-          <i class="fa-solid fa-user"></i>
-          <span>Profil</span>
-        </a>
-      </nav>
+    <!-- CSS Utama Admin -->
+    <link rel="stylesheet" href="../../css/admin.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- SIDEBAR KIRI -->
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <img
+            src="../../assets/images/logo.png"
+            alt="Logo SIPIKA"
+            class="sidebar-logo-img"
+          />
+        </div>
 
-      <div class="sidebar-footer">
-        <a href="../auth/login.html" class="menu-item logout-btn">
-          <i class="fa-solid fa-right-from-bracket"></i>
-          <span>Logout</span>
-        </a>
-      </div>
-    </aside>
-
-    <!-- MAIN CONTENT AREA -->
-    <main class="main-content">
-      
-      <!-- TOPBAR INFO PROFIL ADMIN -->
-      <header class="topbar">
-        <div class="topbar-user">
-          <div class="user-avatar-small">
+        <nav class="sidebar-menu">
+          <a href="dashboard.html" class="menu-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="kelola-pengguna.html" class="menu-item active">
+            <i class="fa-solid fa-users-gear"></i>
+            <span>Kelola Pengguna</span>
+          </a>
+          <a href="data-master.html" class="menu-item">
+            <i class="fa-solid fa-database"></i>
+            <span>Data Master</span>
+          </a>
+          <a href="profil.html" class="menu-item">
             <i class="fa-solid fa-user"></i>
-          </div>
-          <div class="user-info-text">
-            <span class="user-name">Anindya</span>
-            <span class="user-status"><span class="status-dot"></span> Admin</span>
-          </div>
+            <span>Profil</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="../auth/login.html" class="menu-item logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+          </a>
         </div>
-      </header>
+      </aside>
 
-      <!-- KONTEN UTAMA -->
-      <div class="content-body">
-        
-        <!-- BANNER UTAMA (MENGGUNAKAN KELAS & STYLE YANG SAMA DENGAN DASHBOARD) -->
-        <div class="banner-card welcome-banner">
-          <div class="banner-text">
-            <h2>Kelola Pengguna</h2>
-            <p>Tambah, ubah, atau nonaktifkan akun Petugas dan Nelayan pada sistem SIPIKA.</p>
+      <!-- MAIN CONTENT AREA -->
+      <main class="main-content">
+        <!-- TOPBAR INFO PROFIL ADMIN -->
+        <header class="topbar">
+          <div class="topbar-user">
+            <div class="user-avatar-small">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="user-info-text">
+              <span class="user-name">Anindya</span>
+              <span class="user-status"
+                ><span class="status-dot"></span> Admin</span
+              >
+            </div>
           </div>
+        </header>
+
+        <!-- KONTEN UTAMA -->
+        <div class="content-body">
+          <!-- BANNER UTAMA (MENGGUNAKAN KELAS & STYLE YANG SAMA DENGAN DASHBOARD) -->
+          <div class="banner-card welcome-banner">
+            <div class="banner-text">
+              <h2>Kelola Pengguna</h2>
+              <p>
+                Tambah, ubah, atau nonaktifkan akun Petugas dan Nelayan pada
+                sistem SIPIKA.
+              </p>
+            </div>
+          </div>
+
+          <!-- 4 KOTAK STATISTIK -->
+          <section class="stats-grid-4">
+            <div class="stat-card">
+              <div class="stat-icon-wrapper icon-blue-bg">
+                <i class="fa-solid fa-users"></i>
+              </div>
+              <div class="stat-info">
+                <span class="stat-title">Total Pengguna</span>
+                <h3 class="stat-value">152</h3>
+                <span class="stat-desc">akun terdaftar</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon-wrapper icon-green-bg">
+                <i class="fa-solid fa-user"></i>
+              </div>
+              <div class="stat-info">
+                <span class="stat-title">Petugas</span>
+                <h3 class="stat-value">12</h3>
+                <span class="stat-desc">akun petugas</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon-wrapper icon-orange-bg">
+                <i class="fa-solid fa-user"></i>
+              </div>
+              <div class="stat-info">
+                <span class="stat-title">Nelayan</span>
+                <h3 class="stat-value">140</h3>
+                <span class="stat-desc">akun nelayan</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon-wrapper icon-gray-bg">
+                <i class="fa-solid fa-user"></i>
+              </div>
+              <div class="stat-info">
+                <span class="stat-title">Tidak Aktif</span>
+                <h3 class="stat-value">8</h3>
+                <span class="stat-desc">akun nonaktif</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- FILTER & ACTION BAR -->
+          <section class="table-filter-bar">
+            <div class="filter-left">
+              <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                  type="text"
+                  placeholder="Cari nama, username, atau email..."
+                />
+              </div>
+
+              <div class="select-group">
+                <label>Role</label>
+                <select>
+                  <option value="semua">Semua</option>
+                  <option value="petugas">Petugas</option>
+                  <option value="nelayan">Nelayan</option>
+                </select>
+              </div>
+
+              <div class="select-group">
+                <label>Status</label>
+                <select>
+                  <option value="semua">Semua</option>
+                  <option value="aktif">Aktif</option>
+                  <option value="tidak-aktif">Tidak Aktif</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="filter-right">
+              <button class="btn-primary-add">
+                <i class="fa-solid fa-plus"></i> Tambah Pengguna
+              </button>
+            </div>
+          </section>
+
+          <!-- TABEL DATA PENGGUNA -->
+          <section class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th width="40"><input type="checkbox" /></th>
+                  <th width="50">No.</th>
+                  <th>Nama Lengkap</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Password</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Tanggal Dibuat</th>
+                  <th class="text-center" width="100">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>1</td>
+                  <td class="fw-semibold">Andi Saputra (Hal 1)</td>
+                  <td>petugas1</td>
+                  <td>andi@example.com</td>
+                  <td>andisaputra123</td>
+                  <td><span class="badge badge-petugas">Petugas</span></td>
+                  <td><span class="badge badge-status-aktif">Aktif</span></td>
+                  <td>12 Jan 2025</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon text-blue" title="Edit">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      </button>
+                      <button class="btn-icon text-red" title="Hapus">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </button>
+                      <label class="switch"
+                        ><input type="checkbox" checked /><span
+                          class="slider round"
+                        ></span
+                      ></label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>2</td>
+                  <td class="fw-semibold">Siti Rahmawati (Hal 1)</td>
+                  <td>petugas2</td>
+                  <td>siti@example.com</td>
+                  <td>sitirahma2025</td>
+                  <td><span class="badge badge-petugas">Petugas</span></td>
+                  <td><span class="badge badge-status-aktif">Aktif</span></td>
+                  <td>15 Jan 2025</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon text-blue">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      </button>
+                      <button class="btn-icon text-red" title="Hapus">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </button>
+                      <label class="switch"
+                        ><input type="checkbox" checked /><span
+                          class="slider round"
+                        ></span
+                      ></label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>3</td>
+                  <td class="fw-semibold">Budi Santoso (Hal 1)</td>
+                  <td>nelayan1</td>
+                  <td>budi@example.com</td>
+                  <td>budisantoso99</td>
+                  <td><span class="badge badge-nelayan">Nelayan</span></td>
+                  <td><span class="badge badge-status-aktif">Aktif</span></td>
+                  <td>20 Jan 2025</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon text-blue">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      </button>
+                      <button class="btn-icon text-red" title="Hapus">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </button>
+                      <label class="switch"
+                        ><input type="checkbox" checked /><span
+                          class="slider round"
+                        ></span
+                      ></label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>4</td>
+                  <td class="fw-semibold">Maya Lestari (Hal 1)</td>
+                  <td>nelayan2</td>
+                  <td>maya@example.com</td>
+                  <td>mayalestari88</td>
+                  <td><span class="badge badge-nelayan">Nelayan</span></td>
+                  <td>
+                    <span class="badge badge-status-nonaktif">Tidak Aktif</span>
+                  </td>
+                  <td>22 Jan 2025</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon text-blue">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      </button>
+                      <button class="btn-icon text-red" title="Hapus">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </button>
+                      <label class="switch"
+                        ><input type="checkbox" /><span
+                          class="slider round"
+                        ></span
+                      ></label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- PAGINATION FOOTER -->
+            <div class="table-pagination-footer">
+              <div class="pagination-info">
+                Menampilkan 1 - 4 dari 152 pengguna
+                <select class="rows-per-page">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                </select>
+              </div>
+
+              <div class="pagination-nav">
+                <button class="page-btn nav-btn disabled">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">16</button>
+                <button class="page-btn nav-btn">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          </section>
         </div>
 
-        <!-- 4 KOTAK STATISTIK -->
-        <section class="stats-grid-4">
-          <div class="stat-card">
-            <div class="stat-icon-wrapper icon-blue-bg">
-              <i class="fa-solid fa-users"></i>
-            </div>
-            <div class="stat-info">
-              <span class="stat-title">Total Pengguna</span>
-              <h3 class="stat-value">152</h3>
-              <span class="stat-desc">akun terdaftar</span>
-            </div>
-          </div>
+        <!-- FOOTER APPS (SESUAI PERMINTAAN: SCROLL KE BAWAH) -->
+        <footer class="app-footer">
+          <p>&copy; 2026 SIPIKA - Kelompok 13 Web</p>
+        </footer>
+      </main>
+    </div>
 
-          <div class="stat-card">
-            <div class="stat-icon-wrapper icon-green-bg">
-              <i class="fa-solid fa-user"></i>
-            </div>
-            <div class="stat-info">
-              <span class="stat-title">Petugas</span>
-              <h3 class="stat-value">12</h3>
-              <span class="stat-desc">akun petugas</span>
-            </div>
-          </div>
+    <!-- SCRIPT PAGINATION INTERAKTIF -->
+    <script>
+      const totalUsers = 152;
+      let currentPage = 1;
+      let rowsPerPage = 10;
 
-          <div class="stat-card">
-            <div class="stat-icon-wrapper icon-orange-bg">
-              <i class="fa-solid fa-user"></i>
-            </div>
-            <div class="stat-info">
-              <span class="stat-title">Nelayan</span>
-              <h3 class="stat-value">140</h3>
-              <span class="stat-desc">akun nelayan</span>
-            </div>
-          </div>
+      const dummyData = [
+        {
+          no: 1,
+          nama: "Andi Saputra",
+          username: "petugas1",
+          email: "andi@example.com",
+          pass: "andisaputra123",
+          role: "Petugas",
+          status: "Aktif",
+          date: "12 Jan 2025",
+        },
+        {
+          no: 2,
+          nama: "Siti Rahmawati",
+          username: "petugas2",
+          email: "siti@example.com",
+          pass: "sitirahma2025",
+          role: "Petugas",
+          status: "Aktif",
+          date: "15 Jan 2025",
+        },
+        {
+          no: 3,
+          nama: "Budi Santoso",
+          username: "nelayan1",
+          email: "budi@example.com",
+          pass: "budisantoso99",
+          role: "Nelayan",
+          status: "Aktif",
+          date: "20 Jan 2025",
+        },
+        {
+          no: 4,
+          nama: "Maya Lestari",
+          username: "nelayan2",
+          email: "maya@example.com",
+          pass: "mayalestari88",
+          role: "Nelayan",
+          status: "Tidak Aktif",
+          date: "22 Jan 2025",
+        },
+        {
+          no: 5,
+          nama: "Rizal Hidayat",
+          username: "nelayan3",
+          email: "rizal@example.com",
+          pass: "rizalhidayat77",
+          role: "Nelayan",
+          status: "Aktif",
+          date: "25 Jan 2025",
+        },
+        {
+          no: 6,
+          nama: "Agus Salim",
+          username: "petugas3",
+          email: "agus@example.com",
+          pass: "agussalim321",
+          role: "Petugas",
+          status: "Aktif",
+          date: "28 Jan 2025",
+        },
+        {
+          no: 7,
+          nama: "Dewi Kartika",
+          username: "nelayan4",
+          email: "dewi@example.com",
+          pass: "dewikartika45",
+          role: "Nelayan",
+          status: "Aktif",
+          date: "30 Jan 2025",
+        },
+        {
+          no: 8,
+          nama: "Fahri Maulana",
+          username: "nelayan5",
+          email: "fahri@example.com",
+          pass: "fahri1234",
+          role: "Nelayan",
+          status: "Tidak Aktif",
+          date: "2 Feb 2025",
+        },
+        {
+          no: 9,
+          nama: "Lina Anggraini",
+          username: "petugas4",
+          email: "lina@example.com",
+          pass: "linaanggra21",
+          role: "Petugas",
+          status: "Aktif",
+          date: "5 Feb 2025",
+        },
+        {
+          no: 10,
+          nama: "Hasanuddin",
+          username: "nelayan6",
+          email: "hasan@example.com",
+          pass: "hasanuddin99",
+          role: "Nelayan",
+          status: "Aktif",
+          date: "8 Feb 2025",
+        },
+      ];
 
-          <div class="stat-card">
-            <div class="stat-icon-wrapper icon-gray-bg">
-              <i class="fa-solid fa-user"></i>
-            </div>
-            <div class="stat-info">
-              <span class="stat-title">Tidak Aktif</span>
-              <h3 class="stat-value">8</h3>
-              <span class="stat-desc">akun nonaktif</span>
-            </div>
-          </div>
-        </section>
+      const tableBody = document.querySelector(".data-table tbody");
+      const paginationNav = document.querySelector(".pagination-nav");
+      const paginationInfo = document.querySelector(".pagination-info");
+      const rowsSelect = document.querySelector(".rows-per-page");
 
-        <!-- FILTER & ACTION BAR -->
-        <section class="table-filter-bar">
-          <div class="filter-left">
-            <div class="search-box">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input type="text" placeholder="Cari nama, username, atau email...">
-            </div>
+      function renderTable(page) {
+        tableBody.innerHTML = "";
+        const startIdx = (page - 1) * rowsPerPage + 1;
+        const totalPage = Math.ceil(totalUsers / rowsPerPage);
 
-            <div class="select-group">
-              <label>Role</label>
-              <select>
-                <option value="semua">Semua</option>
-                <option value="petugas">Petugas</option>
-                <option value="nelayan">Nelayan</option>
-              </select>
-            </div>
+        for (let i = 0; i < Math.min(rowsPerPage, dummyData.length); i++) {
+          const item = dummyData[i];
+          const rowNo = startIdx + i;
+          const roleBadge =
+            item.role === "Petugas"
+              ? '<span class="badge badge-petugas">Petugas</span>'
+              : '<span class="badge badge-nelayan">Nelayan</span>';
 
-            <div class="select-group">
-              <label>Status</label>
-              <select>
-                <option value="semua">Semua</option>
-                <option value="aktif">Aktif</option>
-                <option value="tidak-aktif">Tidak Aktif</option>
-              </select>
-            </div>
-          </div>
+          const statusBadge =
+            item.status === "Aktif"
+              ? '<span class="badge badge-status-aktif">Aktif</span>'
+              : '<span class="badge badge-status-nonaktif">Tidak Aktif</span>';
 
-          <div class="filter-right">
-            <button class="btn-primary-add">
-              <i class="fa-solid fa-plus"></i> Tambah Pengguna
-            </button>
-          </div>
-        </section>
+          const isChecked = item.status === "Aktif" ? "checked" : "";
 
-        <!-- TABEL DATA PENGGUNA -->
-        <section class="table-container">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th width="40"><input type="checkbox"></th>
-                <th width="50">No.</th>
-                <th>Nama Lengkap</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th>Tanggal Dibuat</th>
-                <th class="text-center" width="100">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>1</td>
-                <td class="fw-semibold">Andi Saputra (Hal 1)</td>
-                <td>petugas1</td>
-                <td>andi@example.com</td>
-                <td>andisaputra123</td>
-                <td><span class="badge badge-petugas">Petugas</span></td>
-                <td><span class="badge badge-status-aktif">Aktif</span></td>
-                <td>12 Jan 2025</td>
-                <td>
-                  <div class="action-buttons">
-                    <button class="btn-icon text-blue" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button class="btn-icon text-red" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
-                    <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>2</td>
-                <td class="fw-semibold">Siti Rahmawati (Hal 1)</td>
-                <td>petugas2</td>
-                <td>siti@example.com</td>
-                <td>sitirahma2025</td>
-                <td><span class="badge badge-petugas">Petugas</span></td>
-                <td><span class="badge badge-status-aktif">Aktif</span></td>
-                <td>15 Jan 2025</td>
-                <td>
-                  <div class="action-buttons">
-                    <button class="btn-icon text-blue"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button class="btn-icon text-red" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
-                    <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>3</td>
-                <td class="fw-semibold">Budi Santoso (Hal 1)</td>
-                <td>nelayan1</td>
-                <td>budi@example.com</td>
-                <td>budisantoso99</td>
-                <td><span class="badge badge-nelayan">Nelayan</span></td>
-                <td><span class="badge badge-status-aktif">Aktif</span></td>
-                <td>20 Jan 2025</td>
-                <td>
-                  <div class="action-buttons">
-                    <button class="btn-icon text-blue"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button class="btn-icon text-red" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
-                    <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>4</td>
-                <td class="fw-semibold">Maya Lestari (Hal 1)</td>
-                <td>nelayan2</td>
-                <td>maya@example.com</td>
-                <td>mayalestari88</td>
-                <td><span class="badge badge-nelayan">Nelayan</span></td>
-                <td><span class="badge badge-status-nonaktif">Tidak Aktif</span></td>
-                <td>22 Jan 2025</td>
-                <td>
-                  <div class="action-buttons">
-                    <button class="btn-icon text-blue"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button class="btn-icon text-red" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
-                    <label class="switch"><input type="checkbox"><span class="slider round"></span></label>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- PAGINATION FOOTER -->
-          <div class="table-pagination-footer">
-            <div class="pagination-info">
-              Menampilkan 1 - 4 dari 152 pengguna
-              <select class="rows-per-page">
-                <option value="10">10</option>
-                <option value="25">25</option>
-              </select>
-            </div>
-
-            <div class="pagination-nav">
-              <button class="page-btn nav-btn disabled"><i class="fa-solid fa-chevron-left"></i></button>
-              <button class="page-btn active">1</button>
-              <button class="page-btn">2</button>
-              <button class="page-btn">3</button>
-              <button class="page-btn">16</button>
-              <button class="page-btn nav-btn"><i class="fa-solid fa-chevron-right"></i></button>
-            </div>
-          </div>
-        </section>
-
-      </div>
-
-      <!-- FOOTER APPS (SESUAI PERMINTAAN: SCROLL KE BAWAH) -->
-      <footer class="app-footer">
-        <p>&copy; 2026 SIPIKA - Kelompok 13 Web</p>
-      </footer>
-
-    </main>
-  </div>
-
-  <!-- SCRIPT PAGINATION INTERAKTIF -->
-  <script>
-    const totalUsers = 152;
-    let currentPage = 1;
-    let rowsPerPage = 10;
-
-    const dummyData = [
-      { no: 1, nama: "Andi Saputra", username: "petugas1", email: "andi@example.com", pass: "andisaputra123", role: "Petugas", status: "Aktif", date: "12 Jan 2025" },
-      { no: 2, nama: "Siti Rahmawati", username: "petugas2", email: "siti@example.com", pass: "sitirahma2025", role: "Petugas", status: "Aktif", date: "15 Jan 2025" },
-      { no: 3, nama: "Budi Santoso", username: "nelayan1", email: "budi@example.com", pass: "budisantoso99", role: "Nelayan", status: "Aktif", date: "20 Jan 2025" },
-      { no: 4, nama: "Maya Lestari", username: "nelayan2", email: "maya@example.com", pass: "mayalestari88", role: "Nelayan", status: "Tidak Aktif", date: "22 Jan 2025" },
-      { no: 5, nama: "Rizal Hidayat", username: "nelayan3", email: "rizal@example.com", pass: "rizalhidayat77", role: "Nelayan", status: "Aktif", date: "25 Jan 2025" },
-      { no: 6, nama: "Agus Salim", username: "petugas3", email: "agus@example.com", pass: "agussalim321", role: "Petugas", status: "Aktif", date: "28 Jan 2025" },
-      { no: 7, nama: "Dewi Kartika", username: "nelayan4", email: "dewi@example.com", pass: "dewikartika45", role: "Nelayan", status: "Aktif", date: "30 Jan 2025" },
-      { no: 8, nama: "Fahri Maulana", username: "nelayan5", email: "fahri@example.com", pass: "fahri1234", role: "Nelayan", status: "Tidak Aktif", date: "2 Feb 2025" },
-      { no: 9, nama: "Lina Anggraini", username: "petugas4", email: "lina@example.com", pass: "linaanggra21", role: "Petugas", status: "Aktif", date: "5 Feb 2025" },
-      { no: 10, nama: "Hasanuddin", username: "nelayan6", email: "hasan@example.com", pass: "hasanuddin99", role: "Nelayan", status: "Aktif", date: "8 Feb 2025" },
-    ];
-
-    const tableBody = document.querySelector('.data-table tbody');
-    const paginationNav = document.querySelector('.pagination-nav');
-    const paginationInfo = document.querySelector('.pagination-info');
-    const rowsSelect = document.querySelector('.rows-per-page');
-
-    function renderTable(page) {
-      tableBody.innerHTML = '';
-      const startIdx = (page - 1) * rowsPerPage + 1;
-      const totalPage = Math.ceil(totalUsers / rowsPerPage);
-
-      for (let i = 0; i < Math.min(rowsPerPage, dummyData.length); i++) {
-        const item = dummyData[i];
-        const rowNo = startIdx + i;
-        const roleBadge = item.role === 'Petugas' 
-          ? '<span class="badge badge-petugas">Petugas</span>' 
-          : '<span class="badge badge-nelayan">Nelayan</span>';
-        
-        const statusBadge = item.status === 'Aktif' 
-          ? '<span class="badge badge-status-aktif">Aktif</span>' 
-          : '<span class="badge badge-status-nonaktif">Tidak Aktif</span>';
-        
-        const isChecked = item.status === 'Aktif' ? 'checked' : '';
-
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
           <td><input type="checkbox"></td>
           <td>${rowNo}</td>
           <td class="fw-semibold">${item.nama} (Hal ${page})</td>
@@ -344,73 +486,84 @@
             </div>
           </td>
         `;
-        tableBody.appendChild(tr);
-      }
-
-      const endIdx = Math.min(page * rowsPerPage, totalUsers);
-      paginationInfo.childNodes[0].nodeValue = `Menampilkan ${startIdx} - ${endIdx} dari ${totalUsers} pengguna `;
-      renderPaginationButtons(totalPage);
-    }
-
-    function renderPaginationButtons(totalPages) {
-      paginationNav.innerHTML = '';
-      
-      const prevBtn = document.createElement('button');
-      prevBtn.className = `page-btn nav-btn ${currentPage === 1 ? 'disabled' : ''}`;
-      prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
-      prevBtn.onclick = () => { if (currentPage > 1) changePage(currentPage - 1); };
-      paginationNav.appendChild(prevBtn);
-
-      // --- REVISI DI SINI: Bikin array pages jadi dinamis ---
-      let pages = [];
-      if (currentPage <= 3) {
-        pages = [1, 2, 3, 4, '...', totalPages];
-      } else if (currentPage >= totalPages - 2) {
-        pages = [1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
-      } else {
-        pages = [1, '...', currentPage, currentPage + 1, '...', totalPages];
-      }
-      // -----------------------------------------------------
-
-      pages.forEach(p => {
-        if (p === '...') {
-          const dots = document.createElement('span');
-          dots.className = 'page-dots';
-          dots.innerText = '...';
-          dots.style.padding = '0 6px';
-          paginationNav.appendChild(dots);
-        } else {
-          const btn = document.createElement('button');
-          btn.className = `page-btn ${p === currentPage ? 'active' : ''}`;
-          btn.innerText = p;
-          btn.onclick = () => changePage(p);
-          paginationNav.appendChild(btn);
+          tableBody.appendChild(tr);
         }
-      });
 
-      const nextBtn = document.createElement('button');
-      nextBtn.className = `page-btn nav-btn ${currentPage === totalPages ? 'disabled' : ''}`;
-      nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
-      nextBtn.onclick = () => { if (currentPage < totalPages) changePage(currentPage + 1); };
-      paginationNav.appendChild(nextBtn);
-    }
+        const endIdx = Math.min(page * rowsPerPage, totalUsers);
+        paginationInfo.childNodes[0].nodeValue = `Menampilkan ${startIdx} - ${endIdx} dari ${totalUsers} pengguna `;
+        renderPaginationButtons(totalPage);
+      }
 
-    function changePage(page) {
-      currentPage = page;
-      renderTable(currentPage);
-    }
+      function renderPaginationButtons(totalPages) {
+        paginationNav.innerHTML = "";
 
-    if (rowsSelect) {
-      rowsSelect.addEventListener('change', (e) => {
-        rowsPerPage = parseInt(e.target.value);
-        currentPage = 1;
+        const prevBtn = document.createElement("button");
+        prevBtn.className = `page-btn nav-btn ${currentPage === 1 ? "disabled" : ""}`;
+        prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+        prevBtn.onclick = () => {
+          if (currentPage > 1) changePage(currentPage - 1);
+        };
+        paginationNav.appendChild(prevBtn);
+
+        // --- REVISI DI SINI: Bikin array pages jadi dinamis ---
+        let pages = [];
+        if (currentPage <= 3) {
+          pages = [1, 2, 3, 4, "...", totalPages];
+        } else if (currentPage >= totalPages - 2) {
+          pages = [
+            1,
+            "...",
+            totalPages - 3,
+            totalPages - 2,
+            totalPages - 1,
+            totalPages,
+          ];
+        } else {
+          pages = [1, "...", currentPage, currentPage + 1, "...", totalPages];
+        }
+        // -----------------------------------------------------
+
+        pages.forEach((p) => {
+          if (p === "...") {
+            const dots = document.createElement("span");
+            dots.className = "page-dots";
+            dots.innerText = "...";
+            dots.style.padding = "0 6px";
+            paginationNav.appendChild(dots);
+          } else {
+            const btn = document.createElement("button");
+            btn.className = `page-btn ${p === currentPage ? "active" : ""}`;
+            btn.innerText = p;
+            btn.onclick = () => changePage(p);
+            paginationNav.appendChild(btn);
+          }
+        });
+
+        const nextBtn = document.createElement("button");
+        nextBtn.className = `page-btn nav-btn ${currentPage === totalPages ? "disabled" : ""}`;
+        nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+        nextBtn.onclick = () => {
+          if (currentPage < totalPages) changePage(currentPage + 1);
+        };
+        paginationNav.appendChild(nextBtn);
+      }
+
+      function changePage(page) {
+        currentPage = page;
+        renderTable(currentPage);
+      }
+
+      if (rowsSelect) {
+        rowsSelect.addEventListener("change", (e) => {
+          rowsPerPage = parseInt(e.target.value);
+          currentPage = 1;
+          renderTable(currentPage);
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
         renderTable(currentPage);
       });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      renderTable(currentPage);
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>

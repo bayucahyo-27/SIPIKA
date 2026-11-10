@@ -1,373 +1,313 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Dashboard Petugas - SIPIKA</title>
 
     <!-- Link CSS -->
-    <link rel="stylesheet" href="../../css/global.css">
-    <link rel="stylesheet" href="../../css/petugas.css">
+    <link rel="stylesheet" href="../../css/global.css" />
+    <link rel="stylesheet" href="../../css/petugas.css" />
 
     <!-- FontAwesome untuk Ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
 
-<body>
-
+  <body>
     <div class="dashboard-container">
-
-        <!-- =================================
+      <!-- =================================
              SIDEBAR KIRI
         ================================== -->
-        <aside class="sidebar">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <img
+            src="../../assets/images/logo.png"
+            alt="Logo SIPIKA"
+            class="logo-img"
+          />
+        </div>
 
-            <div class="sidebar-brand">
-                <img src="../../assets/images/logo.png"
-                     alt="Logo SIPIKA"
-                     class="logo-img">
-            </div>
+        <ul class="sidebar-menu">
+          <li>
+            <a href="dashboard.html" class="active">
+              <i class="fa-solid fa-house"></i> Dashboard
+            </a>
+          </li>
 
-            <ul class="sidebar-menu">
-                <li>
-                    <a href="dashboard.html" class="active">
-                        <i class="fa-solid fa-house"></i> Dashboard
-                    </a>
-                </li>
+          <li>
+            <a href="dataset.html">
+              <i class="fa-solid fa-database"></i> Data Dataset
+            </a>
+          </li>
 
-                <li>
-                    <a href="dataset.html">
-                        <i class="fa-solid fa-database"></i> Data Dataset
-                    </a>
-                </li>
+          <li>
+            <a href="evaluasi-model.html">
+              <i class="fa-solid fa-chart-line"></i> Evaluasi Model
+            </a>
+          </li>
 
-                <li>
-                    <a href="evaluasi-model.html">
-                        <i class="fa-solid fa-chart-line"></i> Evaluasi Model
-                    </a>
-                </li>
+          <li>
+            <a href="riwayat-prediksi.html">
+              <i class="fa-solid fa-clock-rotate-left"></i> Riwayat Prediksi
+            </a>
+          </li>
 
-                <li>
-                    <a href="riwayat-prediksi.html">
-                        <i class="fa-solid fa-clock-rotate-left"></i> Riwayat Prediksi
-                    </a>
-                </li>
+          <li>
+            <a href="profil.html"> <i class="fa-solid fa-user"></i> Profil </a>
+          </li>
+        </ul>
 
-                <li>
-                    <a href="profil.html">
-                        <i class="fa-solid fa-user"></i> Profil
-                    </a>
-                </li>
-            </ul>
+        <div class="sidebar-footer">
+          <a href="#" class="logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+          </a>
+        </div>
+      </aside>
 
-            <div class="sidebar-footer">
-                <a href="../auth/login.html" class="logout-btn">
-                    <i class="fa-solid fa-right-from-bracket"></i> Logout
-                </a>
-            </div>
-
-        </aside>
-
-
-        <!-- =================================
+      <!-- =================================
              KONTEN UTAMA
         ================================== -->
-        <main class="main-content">
+      <main class="main-content">
+        <!-- TOPBAR -->
+        <header class="top-navbar">
+          <div class="user-profile-badge">
+            <div class="profile-avatar">
+              <i class="fa-solid fa-user"></i>
+            </div>
 
-            <!-- TOPBAR -->
-            <header class="top-navbar">
+            <div class="profile-info">
+              <span class="profile-name">Bayu Cahyo</span>
+              <span class="profile-role">Petugas</span>
+            </div>
+          </div>
+        </header>
 
-                <div class="user-profile-badge">
-
-                    <div class="profile-avatar">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
-
-                    <div class="profile-info">
-                        <span class="profile-name">Bayu Cahyo</span>
-                        <span class="profile-role">Petugas</span>
-                    </div>
-
-                </div>
-
-            </header>
-
-
-            <!-- =================================
+        <!-- =================================
                  DASHBOARD BODY CONTENT
             ================================== -->
-            <div class="content-body">
+        <div class="content-body">
+          <!-- BANNER SAMBUTAN -->
+          <div class="welcome-banner">
+            <div class="banner-text">
+              <span class="banner-tag"> Selamat Datang, </span>
 
-                <!-- BANNER SAMBUTAN -->
-                <div class="welcome-banner">
+              <h1>Bayu Cahyo!</h1>
 
-                    <div class="banner-text">
+              <p>
+                SIPIKA membantu mengklasifikasikan tingkat produksi ikan
+                tangkapan berdasarkan data yang tersedia menggunakan algoritma
+                Decision Tree.
+              </p>
+            </div>
+          </div>
 
-                        <span class="banner-tag">
-                            Selamat Datang,
-                        </span>
-
-                        <h1>Bayu Cahyo!</h1>
-
-                        <p>
-                            SIPIKA membantu mengklasifikasikan tingkat produksi ikan tangkapan
-                            berdasarkan data yang tersedia menggunakan algoritma Decision Tree.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <!-- =================================
+          <!-- =================================
                      CARD PENGENALAN SISTEM SIPIKA
                 ================================== -->
-                <div class="info-card">
-
-                    <div class="info-card-header">
-
-                        <!-- Ikon Pengenalan Sistem -->
-                        <div class="custom-card-icon">
-
-                            <svg viewBox="0 0 24 24"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 fill="none"
-                                 stroke="currentColor"
-                                 stroke-width="1.8"
-                                 stroke-linecap="round"
-                                 stroke-linejoin="round">
-
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16
+          <div class="info-card">
+            <div class="info-card-header">
+              <!-- Ikon Pengenalan Sistem -->
+              <div class="custom-card-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16
                                          a2 2 0 0 0 2 2h12
-                                         a2 2 0 0 0 2-2V8z"/>
+                                         a2 2 0 0 0 2-2V8z"
+                  />
 
-                                <path d="M14 2v6h6"/>
-                                <path d="M8 13h8"/>
-                                <path d="M8 17h8"/>
-                                <path d="M8 9h1"/>
+                  <path d="M14 2v6h6" />
+                  <path d="M8 13h8" />
+                  <path d="M8 17h8" />
+                  <path d="M8 9h1" />
+                </svg>
+              </div>
 
-                            </svg>
+              <div class="info-card-content">
+                <h3>Pengenalan Sistem SIPIKA</h3>
 
-                        </div>
+                <p>
+                  SIPIKA adalah sistem informasi yang digunakan untuk
+                  mengklasifikasikan tingkat produksi ikan tangkapan guna
+                  membantu nelayan dan petugas dalam memperoleh informasi
+                  produksi ikan dengan lebih cepat dan mudah.
+                </p>
+              </div>
+            </div>
+          </div>
 
-                        <div class="info-card-content">
-
-                            <h3>Pengenalan Sistem SIPIKA</h3>
-
-                            <p>
-                                SIPIKA adalah sistem informasi yang digunakan untuk
-                                mengklasifikasikan tingkat produksi ikan tangkapan guna
-                                membantu nelayan dan petugas dalam memperoleh informasi
-                                produksi ikan dengan lebih cepat dan mudah.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- =================================
+          <!-- =================================
                      CONTAINER UTAMA ALGORITMA
                 ================================== -->
-                <div class="algorithm-card">
+          <div class="algorithm-card">
+            <!-- PENGENALAN ALGORITMA DECISION TREE -->
+            <div class="algorithm-intro">
+              <div class="algorithm-intro-icon">
+                <img
+                  src="../../assets/images/icon-tree.png"
+                  alt="Icon Decision Tree"
+                  class="custom-card-icon"
+                />
+              </div>
 
+              <div class="algorithm-intro-content">
+                <h3>Pengenalan Algoritma Decision Tree</h3>
 
-                    <!-- PENGENALAN ALGORITMA DECISION TREE -->
-                    <div class="algorithm-intro">
-
-                        <div class="algorithm-intro-icon">
-
-                            <img src="../../assets/images/icon-tree.png"
-                                 alt="Icon Decision Tree"
-                                 class="custom-card-icon">
-
-                        </div>
-
-                        <div class="algorithm-intro-content">
-
-                            <h3>Pengenalan Algoritma Decision Tree</h3>
-
-                            <p>
-                                SIPIKA menggunakan algoritma Decision Tree untuk
-                                mengklasifikasikan tingkat produksi ikan tangkapan
-                                berdasarkan empat atribut utama, yaitu jenis ikan,
-                                alat tangkap, wilayah, dan musim.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- =================================
-                         ALUR VISUAL DECISION TREE
-                    ================================== -->
-                    <div class="dt-flow-container">
-
-
-                        <!-- STEP 1: INPUT DATA -->
-                        <div class="dt-box input-data-box">
-
-                            <span class="dt-box-title">
-                                Input Data
-                            </span>
-
-                            <div class="dt-item">
-                                <i class="fa-solid fa-fish-fins"></i>
-                                Jenis Ikan
-                            </div>
-
-                            <div class="dt-item">
-                                <svg class="input-attribute-icon"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="12" cy="4" r="2"
-                                            stroke="currentColor"
-                                            stroke-width="2.2"/>
-                                    <path d="M12 6V14.5C12 19.5 5 20.5 5 15V13"
-                                        stroke="currentColor"
-                                        stroke-width="2.2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"/>
-                                </svg>
-                                Alat Tangkap
-                            </div>
-
-                            <div class="dt-item">
-                                <i class="fa-solid fa-location-dot"></i>
-                                Wilayah
-                            </div>
-
-                            <div class="dt-item">
-                                <i class="fa-solid fa-calendar"></i>
-                                Musim
-                            </div>
-
-                        </div>
-
-
-                        <!-- PANAH PERTAMA -->
-                        <div class="dt-arrow">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-
-
-                        <!-- STEP 2: PROSES DECISION TREE -->
-                        <div class="dt-box process-box">
-
-                            <div class="dt-box-header">
-
-                                <!-- Ikon Decision Tree -->
-                                <div class="dt-icon-box process-icon">
-                                    <img src="../../assets/images/icon-tree.png"
-                                        alt="Ikon Proses Decision Tree"
-                                        class="dt-custom-icon">
-                                </div>
-
-                                <!-- Judul dan Deskripsi -->
-                                <div class="dt-box-content">
-
-                                    <span class="dt-box-title">
-                                        Proses Decision Tree
-                                    </span>
-
-                                    <p class="dt-box-description">
-                                        Model mempelajari pola dari data untuk menentukan
-                                        kategori tingkat produksi ikan tangkapan.
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- PANAH KEDUA -->
-                        <div class="dt-arrow">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-
-
-                        <!-- STEP 3: HASIL KLASIFIKASI -->
-                        <div class="dt-box result-box">
-
-                            <div class="dt-box-header">
-
-                                <!-- Ikon Hasil Klasifikasi -->
-                                <div class="dt-icon-box result-icon">
-                                    <img src="../../assets/images/icon-result.png"
-                                        alt="Ikon Hasil Klasifikasi"
-                                        class="dt-custom-icon">
-                                </div>
-
-                                <!-- Judul dan Deskripsi -->
-                                <div class="dt-box-content">
-
-                                    <span class="dt-box-title">
-                                        Hasil Klasifikasi
-                                    </span>
-
-                                    <p class="result-desc">
-                                        Tingkat produksi ikan tangkapan
-                                        diklasifikasikan menjadi tiga kategori.
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Badge Kategori -->
-                            <div class="badge-group">
-
-                                <span class="badge badge-rendah">
-                                    Rendah
-                                </span>
-
-                                <span class="badge badge-sedang">
-                                    Sedang
-                                </span>
-
-                                <span class="badge badge-tinggi">
-                                    Tinggi
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <!-- AKHIR DT-FLOW-CONTAINER -->
-
-                </div>
-                <!-- AKHIR ALGORITHM-CARD -->
-
+                <p>
+                  SIPIKA menggunakan algoritma Decision Tree untuk
+                  mengklasifikasikan tingkat produksi ikan tangkapan berdasarkan
+                  empat atribut utama, yaitu jenis ikan, alat tangkap, wilayah,
+                  dan musim.
+                </p>
+              </div>
             </div>
-            <!-- AKHIR CONTENT-BODY -->
-
 
             <!-- =================================
+                         ALUR VISUAL DECISION TREE
+                    ================================== -->
+            <div class="dt-flow-container">
+              <!-- STEP 1: INPUT DATA -->
+              <div class="dt-box input-data-box">
+                <span class="dt-box-title"> Input Data </span>
+
+                <div class="dt-item">
+                  <i class="fa-solid fa-fish-fins"></i>
+                  Jenis Ikan
+                </div>
+
+                <div class="dt-item">
+                  <svg
+                    class="input-attribute-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="12"
+                      cy="4"
+                      r="2"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                    />
+                    <path
+                      d="M12 6V14.5C12 19.5 5 20.5 5 15V13"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  Alat Tangkap
+                </div>
+
+                <div class="dt-item">
+                  <i class="fa-solid fa-location-dot"></i>
+                  Wilayah
+                </div>
+
+                <div class="dt-item">
+                  <i class="fa-solid fa-calendar"></i>
+                  Musim
+                </div>
+              </div>
+
+              <!-- PANAH PERTAMA -->
+              <div class="dt-arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+
+              <!-- STEP 2: PROSES DECISION TREE -->
+              <div class="dt-box process-box">
+                <div class="dt-box-header">
+                  <!-- Ikon Decision Tree -->
+                  <div class="dt-icon-box process-icon">
+                    <img
+                      src="../../assets/images/icon-tree.png"
+                      alt="Ikon Proses Decision Tree"
+                      class="dt-custom-icon"
+                    />
+                  </div>
+
+                  <!-- Judul dan Deskripsi -->
+                  <div class="dt-box-content">
+                    <span class="dt-box-title"> Proses Decision Tree </span>
+
+                    <p class="dt-box-description">
+                      Model mempelajari pola dari data untuk menentukan kategori
+                      tingkat produksi ikan tangkapan.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PANAH KEDUA -->
+              <div class="dt-arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+
+              <!-- STEP 3: HASIL KLASIFIKASI -->
+              <div class="dt-box result-box">
+                <div class="dt-box-header">
+                  <!-- Ikon Hasil Klasifikasi -->
+                  <div class="dt-icon-box result-icon">
+                    <img
+                      src="../../assets/images/icon-result.png"
+                      alt="Ikon Hasil Klasifikasi"
+                      class="dt-custom-icon"
+                    />
+                  </div>
+
+                  <!-- Judul dan Deskripsi -->
+                  <div class="dt-box-content">
+                    <span class="dt-box-title"> Hasil Klasifikasi </span>
+
+                    <p class="result-desc">
+                      Tingkat produksi ikan tangkapan diklasifikasikan menjadi
+                      tiga kategori.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Badge Kategori -->
+                <div class="badge-group">
+                  <span class="badge badge-rendah"> Rendah </span>
+
+                  <span class="badge badge-sedang"> Sedang </span>
+
+                  <span class="badge badge-tinggi"> Tinggi </span>
+                </div>
+              </div>
+            </div>
+            <!-- AKHIR DT-FLOW-CONTAINER -->
+          </div>
+          <!-- AKHIR ALGORITHM-CARD -->
+        </div>
+        <!-- AKHIR CONTENT-BODY -->
+
+        <!-- =================================
                  FOOTER HAK CIPTA
             ================================== -->
-            <footer class="footer-copyright">
-                &copy; 2026 SIPIKA - Kelompok 13 Web
-            </footer>
-
-        </main>
-        <!-- AKHIR MAIN-CONTENT -->
-
+        <footer class="footer-copyright">
+          &copy; 2026 SIPIKA - Kelompok 13 Web
+        </footer>
+      </main>
+      <!-- AKHIR MAIN-CONTENT -->
     </div>
     <!-- AKHIR DASHBOARD-CONTAINER -->
-
 
     <!-- SCRIPT JS -->
     <script src="../../js/global.js"></script>
     <script src="../../js/petugas.js"></script>
-
-</body>
+  </body>
 </html>
