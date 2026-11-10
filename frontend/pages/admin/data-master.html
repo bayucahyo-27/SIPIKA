@@ -1,607 +1,830 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SIPIKA - Data Master</title>
-  
-  <!-- Google Fonts & FontAwesome -->
+
+  <title>Data Master | SIPIKA</title>
+
+  <!-- FONT POPPINS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FONT AWESOME -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- CSS Utama Admin -->
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
   <link rel="stylesheet" href="../../css/admin.css">
 </head>
+
 <body>
 
-  <div class="app-container">
-    
-    <!-- SIDEBAR KIRI -->
+  <!-- KONTAINER UTAMA -->
+  <div class="dashboard-container">
+
+    <!-- SIDEBAR ADMIN -->
     <aside class="sidebar">
-      <div class="sidebar-brand">
-        <img src="../../assets/images/logo.png" alt="Logo SIPIKA" class="sidebar-logo-img">
+
+      <div class="sidebar-logo">
+        <img src="../../assets/images/logo_sipika.png" alt="Logo SIPIKA">
       </div>
 
       <nav class="sidebar-menu">
+
         <a href="dashboard.html" class="menu-item">
-          <i class="fa-solid fa-house"></i>
+          <img src="../../assets/icons/dashboard.svg" alt="">
           <span>Dashboard</span>
         </a>
+
         <a href="kelola-pengguna.html" class="menu-item">
-          <i class="fa-solid fa-users-gear"></i>
+          <img src="../../assets/icons/users.svg" alt="">
           <span>Kelola Pengguna</span>
         </a>
+
         <a href="data-master.html" class="menu-item active">
-          <i class="fa-solid fa-database"></i>
+          <img src="../../assets/icons/detail_informasi.svg" alt="">
           <span>Data Master</span>
         </a>
+
         <a href="profil.html" class="menu-item">
-          <i class="fa-solid fa-user"></i>
+          <img src="../../assets/icons/profil.svg" alt="">
           <span>Profil</span>
         </a>
+
       </nav>
 
-      <div class="sidebar-footer">
-        <a href="../auth/login.html" class="menu-item logout-btn">
-          <i class="fa-solid fa-right-from-bracket"></i>
+      <div class="sidebar-bottom">
+        <a href="../auth/login.html" class="menu-item logout-item">
+          <img src="../../assets/icons/logout.svg" alt="">
           <span>Logout</span>
         </a>
       </div>
+
     </aside>
 
-    <!-- MAIN CONTENT AREA -->
+    <!-- KONTEN UTAMA -->
     <main class="main-content">
-      
-      <!-- TOPBAR INFO PROFIL ADMIN -->
-      <header class="topbar">
-        <div class="topbar-user">
-          <div class="user-avatar-small">
-            <i class="fa-solid fa-user"></i>
+
+      <!-- HEADER AKUN ADMIN -->
+      <header class="top-header">
+
+        <div class="account-info">
+
+          <img src="../../assets/icons/circle_user_round.svg" alt="Ikon Admin" class="account-icon">
+
+          <div class="account-detail">
+            <span class="account-name">Admin: Anindya</span>
+
+            <span class="account-status">
+              <span class="status-indicator"></span>
+              Online
+            </span>
           </div>
-          <div class="user-info-text">
-            <span class="user-name">Anindya</span>
-            <span class="user-status"><span class="status-dot"></span> Admin</span>
-          </div>
+
         </div>
+
       </header>
 
-      <!-- KONTEN UTAMA -->
-      <div class="content-body">
-        
-        <!-- BANNER UTAMA DATA MASTER -->
-        <div class="banner-card welcome-banner">
-          <div class="banner-text">
-            <h2>Data Master</h2>
-            <p>Kelola data referensi dan dataset yang digunakan dalam klasifikasi produksi ikan tangkapan.</p>
+      <!-- KONTEN DATA MASTER -->
+      <div class="admin-content">
+
+        <!-- BANNER -->
+        <section class="welcome-banner">
+
+          <div class="welcome-text">
+            <h1>Data Master</h1>
+
+            <span>
+              Kelola data referensi dan dataset yang digunakan
+              dalam klasifikasi produksi ikan tangkapan.
+            </span>
           </div>
-        </div>
 
-        <!-- TAB NAVIGATION (Data Referensi / Dataset) -->
+        </section>
+
+        <!-- TAB NAVIGASI -->
         <div class="master-tabs-container">
-          <!-- REVISI IKON: Data Referensi diubah menjadi ikon gear/pengaturan sesuai Figma -->
+
           <button class="tab-btn active" id="tabReferensi" onclick="switchTab('referensi')">
-            <i class="fa-solid fa-gear"></i> Data Referensi
+
+            <i class="fa-solid fa-gear"></i>
+            Data Referensi
+
           </button>
-          <!-- REVISI IKON: Dataset diubah menjadi ikon database sesuai Figma -->
+
           <button class="tab-btn" id="tabDataset" onclick="switchTab('dataset')">
-            <i class="fa-solid fa-database"></i> Dataset
+
+            <i class="fa-solid fa-database"></i>
+            Dataset
+
           </button>
+
         </div>
 
-        <!-- ================= KONTEN TAB DATA REFERENSI ================= -->
-        <div id="sectionReferensi">
-          
-          <!-- 4 KARTU SUB-KATEGORI REFERENSI -->
-          <section class="master-category-grid">
-            <div class="category-card active" onclick="switchCategory('ikan')" id="cardIkan">
+        <!-- =================================
+                     TAB DATA REFERENSI
+                ================================== -->
+        <section id="sectionReferensi">
+
+          <!-- KARTU KATEGORI -->
+          <div class="master-category-grid">
+
+            <button class="category-card active" id="cardIkan" onclick="switchCategory('ikan')">
+
               <div class="cat-icon-wrapper icon-blue-light">
                 <i class="fa-solid fa-fish"></i>
               </div>
+
               <div class="cat-info">
                 <span class="cat-label">Jenis Ikan</span>
                 <span class="cat-count"><strong>5</strong> data</span>
               </div>
-              <i class="fa-solid fa-chevron-right cat-arrow"></i>
-            </div>
 
-            <div class="category-card" onclick="switchCategory('alat')" id="cardAlat">
+              <i class="fa-solid fa-chevron-right cat-arrow"></i>
+
+            </button>
+
+            <button class="category-card" id="cardAlat" onclick="switchCategory('alat')">
+
               <div class="cat-icon-wrapper icon-green-light">
-                <!-- SVG Kail Pancing Presisi -->
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="15" cy="5" r="2"></circle>
-                  <path d="M15 7v8a5 5 0 0 1-10 0v-2l3 3"></path>
-                </svg>
+                <i class="fa-solid fa-anchor"></i>
               </div>
+
               <div class="cat-info">
                 <span class="cat-label">Alat Tangkap</span>
                 <span class="cat-count"><strong>3</strong> data</span>
               </div>
-              <i class="fa-solid fa-chevron-right cat-arrow"></i>
-            </div>
 
-            <div class="category-card" onclick="switchCategory('wilayah')" id="cardWilayah">
+              <i class="fa-solid fa-chevron-right cat-arrow"></i>
+
+            </button>
+
+            <button class="category-card" id="cardWilayah" onclick="switchCategory('wilayah')">
+
               <div class="cat-icon-wrapper icon-orange-light">
                 <i class="fa-solid fa-location-dot"></i>
               </div>
+
               <div class="cat-info">
                 <span class="cat-label">Wilayah</span>
                 <span class="cat-count"><strong>5</strong> data</span>
               </div>
-              <i class="fa-solid fa-chevron-right cat-arrow"></i>
-            </div>
 
-            <div class="category-card" onclick="switchCategory('musim')" id="cardMusim">
+              <i class="fa-solid fa-chevron-right cat-arrow"></i>
+
+            </button>
+
+            <button class="category-card" id="cardMusim" onclick="switchCategory('musim')">
+
               <div class="cat-icon-wrapper icon-purple-light">
-                <i class="fa-solid fa-cloud"></i>
+                <i class="fa-solid fa-cloud-sun"></i>
               </div>
+
               <div class="cat-info">
                 <span class="cat-label">Musim</span>
                 <span class="cat-count"><strong>3</strong> data</span>
               </div>
+
               <i class="fa-solid fa-chevron-right cat-arrow"></i>
-            </div>
-          </section>
 
-          <!-- CARD TABEL SUB-KATEGORI REFERENSI -->
+            </button>
+
+          </div>
+
+          <!-- KONTENER TABEL REFERENSI -->
           <section class="master-content-card">
+
+            <!-- HEADER TABEL -->
             <div class="subcard-header">
+
               <div class="subcard-title">
-                <div class="icon-title-bg" id="subIconBg"><i class="fa-solid fa-fish"></i></div>
-                <div>
-                  <h3 id="subCardTitle">Data Master Jenis Ikan</h3>
-                  <p id="subCardDesc">Kelola daftar jenis ikan yang tersedia dalam sistem.</p>
+
+                <div class="icon-title-bg" id="subIconBg">
+                  <i class="fa-solid fa-fish"></i>
                 </div>
+
+                <div>
+                  <h3 id="subCardTitle">
+                    Data Master Jenis Ikan
+                  </h3>
+
+                  <p id="subCardDesc">
+                    Kelola daftar jenis ikan yang tersedia dalam sistem.
+                  </p>
+                </div>
+
               </div>
+
               <button class="btn-primary-add" id="btnAddData">
-                <i class="fa-solid fa-plus"></i> <span id="btnAddText">Tambah Jenis Ikan</span>
+                <i class="fa-solid fa-plus"></i>
+                <span id="btnAddText">Tambah Jenis Ikan</span>
               </button>
+
             </div>
 
-            <!-- PENCARIAN MEMANJANG FULL 100% -->
+            <!-- PENCARIAN -->
             <div class="table-search-single">
+
               <div class="search-box width-100">
                 <i class="fa-solid fa-magnifying-glass"></i>
+
                 <input type="text" id="searchInput" placeholder="Cari nama atau deskripsi ikan...">
               </div>
+
             </div>
 
-            <!-- TABEL DATA MASTER REFERENSI -->
+            <!-- TABEL REFERENSI -->
             <div class="table-container">
+
               <table class="data-table" id="masterTable">
+
                 <thead>
                   <tr id="tableHeaderRow">
-                    <th width="50">No.</th>
+                    <th>No.</th>
                     <th>Nama Jenis Ikan</th>
                     <th>Deskripsi</th>
                     <th>Tanggal Dibuat</th>
                     <th>Status</th>
-                    <th class="text-center" width="100">Aksi</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
+
                 <tbody id="tableBody">
-                  <tr>
-                    <td>1</td>
-                    <td class="fw-semibold">Cakalang</td>
-                    <td>Ikan cakalang (Katsuwonus pelamis)</td>
-                    <td>12 Jan 2025</td>
-                    <td><span class="badge badge-status-aktif">Aktif</span></td>
-                    <td>
-                      <div class="action-buttons">
-                        <button class="btn-icon text-blue btn-edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn-icon text-red btn-delete" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
-                        <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td class="fw-semibold">Layang</td>
-                    <td>Ikan layang (Decapterus spp.)</td>
-                    <td>12 Jan 2025</td>
-                    <td><span class="badge badge-status-aktif">Aktif</span></td>
-                    <td>
-                      <div class="action-buttons">
-                        <button class="btn-icon text-blue btn-edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn-icon text-red btn-delete" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
-                        <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td class="fw-semibold">Tuna</td>
-                    <td>Ikan tuna (Thunnus spp.)</td>
-                    <td>12 Jan 2025</td>
-                    <td><span class="badge badge-status-aktif">Aktif</span></td>
-                    <td>
-                      <div class="action-buttons">
-                        <button class="btn-icon text-blue btn-edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn-icon text-red btn-delete" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
-                        <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td class="fw-semibold">Selar</td>
-                    <td>Ikan selar (Selaroides spp.)</td>
-                    <td>12 Jan 2025</td>
-                    <td><span class="badge badge-status-aktif">Aktif</span></td>
-                    <td>
-                      <div class="action-buttons">
-                        <button class="btn-icon text-blue btn-edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn-icon text-red btn-delete" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
-                        <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td class="fw-semibold">Tongkol</td>
-                    <td>Ikan tongkol (Euthynnus affinis)</td>
-                    <td>12 Jan 2025</td>
-                    <td><span class="badge badge-status-aktif">Aktif</span></td>
-                    <td>
-                      <div class="action-buttons">
-                        <button class="btn-icon text-blue btn-edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn-icon text-red btn-delete" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
-                        <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
-                      </div>
-                    </td>
-                  </tr>
                 </tbody>
+
               </table>
 
-              <!-- PAGINATION FOOTER -->
               <div class="table-pagination-footer justify-end">
                 <div class="pagination-nav">
-                  <button class="page-btn nav-btn disabled"><i class="fa-solid fa-chevron-left"></i></button>
+                  <button class="page-btn nav-btn" disabled>‹</button>
                   <button class="page-btn active">1</button>
-                  <button class="page-btn nav-btn disabled"><i class="fa-solid fa-chevron-right"></i></button>
+                  <button class="page-btn nav-btn" disabled>›</button>
                 </div>
               </div>
+
             </div>
+
           </section>
-        </div>
 
+        </section>
 
-        <!-- ================= KONTEN TAB DATASET ================= -->
-        <div id="sectionDataset" style="display: none;">
+        <!-- =================================
+                     TAB DATASET
+                ================================== -->
+        <section id="sectionDataset" style="display: none;">
+
           <section class="master-content-card">
-            
-            <!-- SUB-HEADER DATASET -->
+
+            <!-- HEADER DATASET -->
             <div class="subcard-header">
+
               <div class="subcard-title">
-                <div class="icon-title-bg"><i class="fa-solid fa-database"></i></div>
+
+                <div class="icon-title-bg">
+                  <i class="fa-solid fa-database"></i>
+                </div>
+
                 <div>
                   <h3>Dataset</h3>
-                  <p>Kelola dataset yang digunakan untuk proses klasifikasi.</p>
+                  <p>
+                    Kelola dataset yang digunakan untuk proses klasifikasi.
+                  </p>
                 </div>
+
               </div>
+
               <button class="btn-primary-add" id="btnTambahDataset">
-                <i class="fa-solid fa-plus"></i> Tambah Dataset
+                <i class="fa-solid fa-plus"></i>
+                Tambah Dataset
               </button>
+
             </div>
 
-            <!-- PENCARIAN MEMANJANG FULL 100% -->
+            <!-- PENCARIAN DATASET -->
             <div class="table-search-single">
+
               <div class="search-box width-100">
                 <i class="fa-solid fa-magnifying-glass"></i>
+
                 <input type="text" id="searchDatasetInput" placeholder="Cari nama dataset...">
               </div>
+
             </div>
 
             <!-- TABEL DATASET -->
             <div class="table-container">
+
               <table class="data-table">
+
                 <thead>
                   <tr>
-                    <th width="50">No.</th>
+                    <th>No.</th>
                     <th>Nama Dataset</th>
                     <th>Jumlah Data</th>
                     <th>Tanggal Upload</th>
                     <th>Status</th>
-                    <th class="text-center" width="100">Aksi</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
+
                 <tbody id="datasetTableBody">
+
                   <tr>
-                    <td>1.</td>
+                    <td>1</td>
                     <td class="fw-semibold">dataset_sipika_v1.csv</td>
                     <td>500</td>
                     <td>12 Jan 2025</td>
                     <td><span class="badge badge-status-aktif">Aktif</span></td>
                     <td>
                       <div class="action-buttons">
-                        <button class="btn-icon text-blue btn-edit-dataset" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn-icon text-red btn-delete-dataset" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
+
+                        <!-- TOMBOL EDIT -->
+                        <button class="btn-icon text-blue btn-edit btn-edit-dataset" title="Edit">
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+
+                        <!-- TOMBOL HAPUS -->
+                        <button class="btn-icon text-red btn-delete btn-delete-dataset" title="Hapus">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+
                       </div>
                     </td>
                   </tr>
+
                   <tr>
-                    <td>2.</td>
+                    <td>2</td>
                     <td class="fw-semibold">dataset_sipika_v0.csv</td>
                     <td>450</td>
                     <td>5 Jan 2025</td>
                     <td><span class="badge badge-status-aktif">Aktif</span></td>
                     <td>
                       <div class="action-buttons">
-                        <button class="btn-icon text-blue btn-edit-dataset" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn-icon text-red btn-delete-dataset" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
+
+                        <!-- TOMBOL EDIT -->
+                        <button class="btn-icon text-blue btn-edit btn-edit-dataset" title="Edit">
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+
+                        <!-- TOMBOL HAPUS -->
+                        <button class="btn-icon text-red btn-delete btn-delete-dataset" title="Hapus">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+
                       </div>
                     </td>
                   </tr>
+
                   <tr>
-                    <td>3.</td>
+                    <td>3</td>
                     <td class="fw-semibold">dataset_uji.csv</td>
                     <td>320</td>
                     <td>20 Des 2024</td>
                     <td><span class="badge badge-status-aktif">Aktif</span></td>
                     <td>
                       <div class="action-buttons">
-                        <button class="btn-icon text-blue btn-edit-dataset" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn-icon text-red btn-delete-dataset" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
+
+                        <!-- TOMBOL EDIT -->
+                        <button class="btn-icon text-blue btn-edit btn-edit-dataset" title="Edit">
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+
+                        <!-- TOMBOL HAPUS -->
+                        <button class="btn-icon text-red btn-delete btn-delete-dataset" title="Hapus">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+
                       </div>
                     </td>
                   </tr>
+
                   <tr>
-                    <td>4.</td>
+                    <td>4</td>
                     <td class="fw-semibold">dataset_lama.csv</td>
                     <td>600</td>
                     <td>10 Des 2024</td>
                     <td><span class="badge badge-status-aktif">Aktif</span></td>
                     <td>
                       <div class="action-buttons">
-                        <button class="btn-icon text-blue btn-edit-dataset" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn-icon text-red btn-delete-dataset" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
+
+                        <!-- TOMBOL EDIT -->
+                        <button class="btn-icon text-blue btn-edit btn-edit-dataset" title="Edit">
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+
+                        <!-- TOMBOL HAPUS -->
+                        <button class="btn-icon text-red btn-delete btn-delete-dataset" title="Hapus">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+
                       </div>
                     </td>
                   </tr>
+
                 </tbody>
+
               </table>
 
-              <!-- PAGINATION FOOTER DATASET -->
               <div class="table-pagination-footer justify-end">
                 <div class="pagination-nav">
-                  <button class="page-btn nav-btn disabled"><i class="fa-solid fa-chevron-left"></i></button>
+                  <button class="page-btn nav-btn" disabled>‹</button>
                   <button class="page-btn active">1</button>
-                  <button class="page-btn nav-btn disabled"><i class="fa-solid fa-chevron-right"></i></button>
+                  <button class="page-btn nav-btn" disabled>›</button>
                 </div>
               </div>
+
             </div>
 
           </section>
-        </div>
+
+        </section>
 
       </div>
 
-      <!-- FOOTER APPS -->
-      <footer class="app-footer">
-        <p>&copy; 2026 SIPIKA - Kelompok 13 Web</p>
+      <!-- FOOTER -->
+      <footer class="dashboard-footer">
+        <p>&copy; 2026 SIPIKA — Kelompok 13 Web</p>
       </footer>
 
     </main>
+
   </div>
 
-  <!-- SCRIPT INTERAKTIF TAB DATA MASTER & DATASET -->
+  <!-- JAVASCRIPT DATA MASTER -->
   <script>
+
+
+    // DATA REFERENSI SIPIKA
     const masterData = {
+
+      // 1. JENIS IKAN
       ikan: [
-        { no: 1, name: "Cakalang", desc: "Ikan cakalang (Katsuwonus pelamis)", date: "12 Jan 2025" },
-        { no: 2, name: "Layang", desc: "Ikan layang (Decapterus spp.)", date: "12 Jan 2025" },
-        { no: 3, name: "Tuna", desc: "Ikan tuna (Thunnus spp.)", date: "12 Jan 2025" },
-        { no: 4, name: "Selar", desc: "Ikan selar (Selaroides spp.)", date: "12 Jan 2025" },
-        { no: 5, name: "Tongkol", desc: "Ikan tongkol (Euthynnus affinis)", date: "12 Jan 2025" }
+        {
+          no: 1,
+          name: "Cakalang",
+          desc: "Jenis ikan cakalang",
+          date: "12 Jan 2025"
+        },
+        {
+          no: 2,
+          name: "Layang",
+          desc: "Jenis ikan layang",
+          date: "12 Jan 2025"
+        },
+        {
+          no: 3,
+          name: "Tuna",
+          desc: "Jenis ikan tuna",
+          date: "12 Jan 2025"
+        },
+        {
+          no: 4,
+          name: "Selar",
+          desc: "Jenis ikan selar",
+          date: "12 Jan 2025"
+        },
+        {
+          no: 5,
+          name: "Tongkol",
+          desc: "Jenis ikan tongkol",
+          date: "12 Jan 2025"
+        }
       ],
+
+      // 2. ALAT TANGKAP
       alat: [
-        { no: 1, name: "Pancing Ulur", desc: "Alat tangkap pancing tangan vertikal", date: "14 Jan 2025" },
-        { no: 2, name: "Jaring Insang", desc: "Gill net permukaan", date: "14 Jan 2025" },
-        { no: 3, name: "Pukat Cincin", desc: "Purse seine untuk pelagis", date: "14 Jan 2025" }
+        {
+          no: 1,
+          name: "Bagan",
+          desc: "Jenis alat tangkap bagan",
+          date: "14 Jan 2025"
+        },
+        {
+          no: 2,
+          name: "Jaring",
+          desc: "Jenis alat tangkap jaring",
+          date: "14 Jan 2025"
+        },
+        {
+          no: 3,
+          name: "Pancing",
+          desc: "Jenis alat tangkap pancing",
+          date: "14 Jan 2025"
+        }
       ],
+
+      // 3. WILAYAH
       wilayah: [
-        { no: 1, name: "Perairan Ternate", desc: "Zona tangkapan sekitar Pulau Ternate", date: "15 Jan 2025" },
-        { no: 2, name: "Halmahera Selatan", desc: "Zona perairan Obi dan Bacan", date: "15 Jan 2025" },
-        { no: 3, name: "Pulau Morotai", desc: "Zona utara Maluku Utara", date: "15 Jan 2025" },
-        { no: 4, name: "Perairan Tidore", desc: "Zona selat Tidore dan Maitara", date: "15 Jan 2025" },
-        { no: 5, name: "Laut Maluku", desc: "Zona lepas pantai terbuka", date: "15 Jan 2025" }
+        {
+          no: 1,
+          name: "Halmahera Selatan",
+          desc: "Wilayah kabupaten Halmahera Selatan",
+          date: "15 Jan 2025"
+        },
+        {
+          no: 2,
+          name: "Kota Ternate",
+          desc: "Wilayah Kota Ternate",
+          date: "15 Jan 2025"
+        },
+        {
+          no: 3,
+          name: "Halmahera Utara",
+          desc: "Wilayah kabupaten Halmahera Utara",
+          date: "15 Jan 2025"
+        },
+        {
+          no: 4,
+          name: "Pulau Morotai",
+          desc: "Wilayah Pulau Morotai",
+          date: "15 Jan 2025"
+        },
+        {
+          no: 5,
+          name: "Kepulauan Sula",
+          desc: "Wilayah Kepulauan Sula",
+          date: "15 Jan 2025"
+        }
       ],
+
+      // 4. MUSIM
       musim: [
-        { no: 1, name: "Musim Baratan", desc: "Desember - Februari (Gelombang tinggi)", date: "18 Jan 2025" },
-        { no: 2, name: "Musim Timur", desc: "Juni - Agustus (Puncak kelimpahan ikan)", date: "18 Jan 2025" },
-        { no: 3, name: "Musim Peralihan", desc: "Peralihan antar musim angin", date: "18 Jan 2025" }
+        {
+          no: 1,
+          name: "Hujan",
+          desc: "Kategori musim hujan",
+          date: "18 Jan 2025"
+        },
+        {
+          no: 2,
+          name: "Kemarau",
+          desc: "Kategori musim kemarau",
+          date: "18 Jan 2025"
+        },
+        {
+          no: 3,
+          name: "Pancaroba",
+          desc: "Kategori musim peralihan",
+          date: "18 Jan 2025"
+        }
       ]
+
     };
 
-    // Fungsi Pergantian Tab Utama (Data Referensi / Dataset)
+
+
+
+    // KONFIGURASI KATEGORI
+    const categoryConfig = {
+
+      ikan: {
+        title: "Data Master Jenis Ikan",
+        desc: "Kelola daftar jenis ikan yang tersedia dalam sistem.",
+        button: "Tambah Jenis Ikan",
+        placeholder: "Cari nama atau deskripsi ikan...",
+        heading: "Nama Jenis Ikan",
+        icon: '<i class="fa-solid fa-fish"></i>'
+      },
+
+      alat: {
+        title: "Data Master Alat Tangkap",
+        desc: "Kelola daftar alat tangkap ikan yang digunakan nelayan.",
+        button: "Tambah Alat Tangkap",
+        placeholder: "Cari nama atau deskripsi alat tangkap...",
+        heading: "Nama Alat Tangkap",
+        icon: '<i class="fa-solid fa-anchor"></i>'
+      },
+
+      wilayah: {
+        title: "Data Master Wilayah Penangkapan",
+        desc: "Kelola area dan zona wilayah perairan tangkapan.",
+        button: "Tambah Wilayah",
+        placeholder: "Cari nama atau deskripsi wilayah...",
+        heading: "Nama Wilayah",
+        icon: '<i class="fa-solid fa-location-dot"></i>'
+      },
+
+      musim: {
+        title: "Data Master Musim",
+        desc: "Kelola data kategori musim tangkapan ikan.",
+        button: "Tambah Musim",
+        placeholder: "Cari nama atau deskripsi musim...",
+        heading: "Nama Musim",
+        icon: '<i class="fa-solid fa-cloud-sun"></i>'
+      }
+
+    };
+
+    // TAB DATA REFERENSI DAN DATASET
     function switchTab(tab) {
-      document.getElementById('tabReferensi').classList.remove('active');
-      document.getElementById('tabDataset').classList.remove('active');
-      
-      if (tab === 'referensi') {
-        document.getElementById('tabReferensi').classList.add('active');
-        document.getElementById('sectionReferensi').style.display = 'block';
-        document.getElementById('sectionDataset').style.display = 'none';
-      } else {
-        document.getElementById('tabDataset').classList.add('active');
-        document.getElementById('sectionReferensi').style.display = 'none';
-        document.getElementById('sectionDataset').style.display = 'block';
-      }
+
+      const referensi = document.getElementById("sectionReferensi");
+      const dataset = document.getElementById("sectionDataset");
+
+      document.getElementById("tabReferensi").classList.toggle("active", tab === "referensi");
+      document.getElementById("tabDataset").classList.toggle("active", tab === "dataset");
+
+      referensi.style.display = tab === "referensi" ? "block" : "none";
+      dataset.style.display = tab === "dataset" ? "block" : "none";
+
     }
 
-    // Fungsi Pergantian Kategori Sub-Referensi
+    // PERGANTIAN KATEGORI
     function switchCategory(category) {
-      document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active'));
-      
-      let title = "";
-      let desc = "";
-      let btnText = "";
-      let searchPlaceholder = "";
-      let iconHTML = "";
-      let headerHTML = "";
 
-      if (category === 'ikan') {
-        document.getElementById('cardIkan').classList.add('active');
-        title = "Data Master Jenis Ikan";
-        desc = "Kelola daftar jenis ikan yang tersedia dalam sistem.";
-        btnText = "Tambah Jenis Ikan";
-        searchPlaceholder = "Cari nama atau deskripsi ikan...";
-        iconHTML = `<i class="fa-solid fa-fish"></i>`;
-        headerHTML = `
-          <tr>
-            <th width="50">No.</th>
-            <th>Nama Jenis Ikan</th>
-            <th>Deskripsi</th>
-            <th>Tanggal Dibuat</th>
-            <th>Status</th>
-            <th class="text-center" width="100">Aksi</th>
-          </tr>`;
-      } else if (category === 'alat') {
-        document.getElementById('cardAlat').classList.add('active');
-        title = "Data Master Alat Tangkap";
-        desc = "Kelola daftar alat tangkap ikan yang digunakan nelayan.";
-        btnText = "Tambah Alat Tangkap";
-        searchPlaceholder = "Cari nama atau deskripsi alat tangkap...";
-        iconHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="5" r="2"></circle><path d="M15 7v8a5 5 0 0 1-10 0v-2l3 3"></path></svg>`;
-        headerHTML = `
-          <tr>
-            <th width="50">No.</th>
-            <th>Nama Alat Tangkap</th>
-            <th>Deskripsi</th>
-            <th>Tanggal Dibuat</th>
-            <th>Status</th>
-            <th class="text-center" width="100">Aksi</th>
-          </tr>`;
-      } else if (category === 'wilayah') {
-        document.getElementById('cardWilayah').classList.add('active');
-        title = "Data Master Wilayah Penangkapan";
-        desc = "Kelola area dan zona wilayah perairan tangkapan.";
-        btnText = "Tambah Wilayah";
-        searchPlaceholder = "Cari nama atau deskripsi wilayah...";
-        iconHTML = `<i class="fa-solid fa-location-dot"></i>`;
-        headerHTML = `
-          <tr>
-            <th width="50">No.</th>
-            <th>Nama Wilayah</th>
-            <th>Deskripsi</th>
-            <th>Tanggal Dibuat</th>
-            <th>Status</th>
-            <th class="text-center" width="100">Aksi</th>
-          </tr>`;
-      } else if (category === 'musim') {
-        document.getElementById('cardMusim').classList.add('active');
-        title = "Data Master Musim";
-        desc = "Kelola data kategori musim tangkapan ikan.";
-        btnText = "Tambah Musim";
-        searchPlaceholder = "Cari nama atau deskripsi musim...";
-        iconHTML = `<i class="fa-solid fa-cloud"></i>`;
-        headerHTML = `
-          <tr>
-            <th width="50">No.</th>
-            <th>Nama Musim</th>
-            <th>Deskripsi</th>
-            <th>Tanggal Dibuat</th>
-            <th>Status</th>
-            <th class="text-center" width="100">Aksi</th>
-          </tr>`;
-      }
+      document.querySelectorAll(".category-card").forEach(card => {
+        card.classList.remove("active");
+      });
 
-      document.getElementById('subCardTitle').innerText = title;
-      document.getElementById('subCardDesc').innerText = desc;
-      document.getElementById('btnAddText').innerText = btnText;
-      document.getElementById('searchInput').placeholder = searchPlaceholder;
-      document.getElementById('subIconBg').innerHTML = iconHTML;
-      document.getElementById('tableHeaderRow').innerHTML = headerHTML;
+      const activeCard = document.getElementById(
+        category === "ikan" ? "cardIkan" :
+          category === "alat" ? "cardAlat" :
+            category === "wilayah" ? "cardWilayah" : "cardMusim"
+      );
 
-      const tbody = document.getElementById('tableBody');
+      activeCard.classList.add("active");
+
+      const config = categoryConfig[category];
+
+      document.getElementById("subCardTitle").textContent = config.title;
+      document.getElementById("subCardDesc").textContent = config.desc;
+      document.getElementById("btnAddText").textContent = config.button;
+      document.getElementById("searchInput").placeholder = config.placeholder;
+      document.getElementById("subIconBg").innerHTML = config.icon;
+
+      document.getElementById("tableHeaderRow").innerHTML = `
+                <th>No.</th>
+                <th>${config.heading}</th>
+                <th>Deskripsi</th>
+                <th>Tanggal Dibuat</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            `;
+
+      renderMasterTable(category);
+
+      document.getElementById("searchInput").value = "";
+
+    }
+
+    // MENAMPILKAN DATA REFERENSI
+    function renderMasterTable(category) {
+
+      const tbody = document.getElementById("tableBody");
+
       tbody.innerHTML = "";
-      
-      masterData[category].forEach((item) => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${item.no}</td>
-          <td class="fw-semibold">${item.name}</td>
-          <td>${item.desc}</td>
-          <td>${item.date}</td>
-          <td><span class="badge badge-status-aktif">Aktif</span></td>
-          <td>
-            <div class="action-buttons">
-              <button class="btn-icon text-blue btn-edit" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
-              <button class="btn-icon text-red btn-delete" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
-              <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
-            </div>
-          </td>
-        `;
-        tbody.appendChild(tr);
+
+      masterData[category].forEach(item => {
+
+        const row = document.createElement("tr");
+
+
+        row.innerHTML = `
+    <td>${item.no}</td>
+    <td class="fw-semibold">${item.name}</td>
+    <td>${item.desc}</td>
+    <td>${item.date}</td>
+
+    <td>
+        <span class="badge badge-status-aktif">Aktif</span>
+    </td>
+
+    <td>
+        <div class="action-buttons">
+
+            <button class="btn-icon text-blue btn-edit" title="Edit">
+                <i class="fa-solid fa-pen"></i>
+            </button>
+
+            <button class="btn-icon text-red btn-delete" title="Hapus">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+
+            <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider round"></span>
+            </label>
+
+        </div>
+    </td>
+`;
+
+
+        tbody.appendChild(row);
+
       });
 
-      attachEvents();
+      attachReferenceEvents();
+
     }
 
-    // Event Listener Hapus, Edit, dan Pencarian
-    function attachEvents() {
-      // Tombol Hapus Referensi
-      document.querySelectorAll('#tableBody .btn-delete').forEach(button => {
-        button.onclick = function() {
-          if (confirm('Apakah Anda yakin ingin menghapus data referensi ini?')) {
-            this.closest('tr').remove();
+    // EVENT TOMBOL REFERENSI
+    function attachReferenceEvents() {
+
+      document.querySelectorAll("#tableBody .btn-delete").forEach(button => {
+
+        button.onclick = function () {
+
+          const row = this.closest("tr");
+          const name = row.querySelector(".fw-semibold").textContent;
+
+          if (confirm("Hapus data " + name + "?")) {
+            row.remove();
           }
+
         };
+
       });
 
-      // Tombol Edit Referensi
-      document.querySelectorAll('#tableBody .btn-edit').forEach(button => {
-        button.onclick = function() {
-          const rowName = this.closest('tr').querySelector('.fw-semibold').innerText;
-          alert('Ubah data referensi: ' + rowName);
+      document.querySelectorAll("#tableBody .btn-edit").forEach(button => {
+
+        button.onclick = function () {
+
+          const name = this.closest("tr").querySelector(".fw-semibold").textContent;
+
+          alert("Fitur edit data: " + name);
+
         };
+
       });
+
     }
 
-    // Event Listener Khusus Tabel Dataset
-    function attachDatasetEvents() {
-      // Hapus Dataset
-      document.querySelectorAll('#datasetTableBody .btn-delete-dataset').forEach(button => {
-        button.onclick = function() {
-          if (confirm('Apakah Anda yakin ingin menghapus file dataset ini?')) {
-            this.closest('tr').remove();
-          }
-        };
+    // PENCARIAN REFERENSI
+    document.getElementById("searchInput").addEventListener("input", function () {
+
+      const keyword = this.value.toLowerCase();
+
+      document.querySelectorAll("#tableBody tr").forEach(row => {
+
+        row.style.display = row.textContent.toLowerCase().includes(keyword) ? "" : "none";
+
       });
 
-      // Edit Dataset
-      document.querySelectorAll('#datasetTableBody .btn-edit-dataset').forEach(button => {
-        button.onclick = function() {
-          const fileName = this.closest('tr').querySelector('.fw-semibold').innerText;
-          alert('Ubah detail dataset: ' + fileName);
-        };
-      });
-    }
-
-    // Fitur Pencarian Real-Time Referensi
-    document.getElementById('searchInput').addEventListener('keyup', function() {
-      const filter = this.value.toLowerCase();
-      const rows = document.querySelectorAll('#tableBody tr');
-      rows.forEach(row => {
-        const text = row.innerText.toLowerCase();
-        row.style.display = text.includes(filter) ? '' : 'none';
-      });
     });
 
-    // Fitur Pencarian Real-Time Dataset
-    document.getElementById('searchDatasetInput').addEventListener('keyup', function() {
-      const filter = this.value.toLowerCase();
-      const rows = document.querySelectorAll('#datasetTableBody tr');
-      rows.forEach(row => {
-        const text = row.innerText.toLowerCase();
-        row.style.display = text.includes(filter) ? '' : 'none';
+    // PENCARIAN DATASET
+    document.getElementById("searchDatasetInput").addEventListener("input", function () {
+
+      const keyword = this.value.toLowerCase();
+
+      document.querySelectorAll("#datasetTableBody tr").forEach(row => {
+
+        row.style.display = row.textContent.toLowerCase().includes(keyword) ? "" : "none";
+
       });
+
     });
 
-    // Inisialisasi awal
-    attachEvents();
-    attachDatasetEvents();
+    // EVENT TOMBOL DATASET
+    document.querySelectorAll(".btn-delete-dataset").forEach(button => {
+
+      button.addEventListener("click", function () {
+
+        const row = this.closest("tr");
+        const name = row.querySelector(".fw-semibold").textContent;
+
+        if (confirm("Hapus dataset " + name + "?")) {
+          row.remove();
+        }
+
+      });
+
+    });
+
+    document.querySelectorAll(".btn-edit-dataset").forEach(button => {
+
+      button.addEventListener("click", function () {
+
+        const name = this.closest("tr").querySelector(".fw-semibold").textContent;
+
+        alert("Fitur edit dataset: " + name);
+
+      });
+
+    });
+
+    // TOMBOL TAMBAH
+    document.getElementById("btnAddData").addEventListener("click", function () {
+
+      alert("Form tambah data referensi akan dibuat pada tahap berikutnya.");
+
+    });
+
+    document.getElementById("btnTambahDataset").addEventListener("click", function () {
+
+      alert("Form tambah dataset akan dibuat pada tahap berikutnya.");
+
+    });
+
+    // INISIALISASI AWAL
+    switchCategory("ikan");
+
   </script>
+
 </body>
+
 </html>

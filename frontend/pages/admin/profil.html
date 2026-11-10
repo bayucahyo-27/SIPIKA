@@ -1,192 +1,321 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>SIPIKA - Profil Admin</title>
-  
-  <!-- Google Fonts & FontAwesome -->
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- CSS Utama Admin -->
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
   <link rel="stylesheet" href="../../css/admin.css">
 </head>
+
 <body>
 
-  <div class="app-container">
-    
-    <!-- SIDEBAR KIRI -->
+  <div class="dashboard-container">
+
+    <!-- SIDEBAR ADMIN -->
     <aside class="sidebar">
-      <div class="sidebar-brand">
-        <img src="../../assets/images/logo.png" alt="Logo SIPIKA" class="sidebar-logo-img">
+
+      <div class="sidebar-logo">
+        <img src="../../assets/images/logo_sipika.png" alt="Logo SIPIKA">
       </div>
 
       <nav class="sidebar-menu">
+
         <a href="dashboard.html" class="menu-item">
-          <i class="fa-solid fa-house"></i>
+          <img src="../../assets/icons/dashboard.svg" alt="">
           <span>Dashboard</span>
         </a>
+
         <a href="kelola-pengguna.html" class="menu-item">
-          <i class="fa-solid fa-users-gear"></i>
+          <img src="../../assets/icons/users.svg" alt="">
           <span>Kelola Pengguna</span>
         </a>
+
         <a href="data-master.html" class="menu-item">
-          <i class="fa-solid fa-database"></i>
+          <img src="../../assets/icons/detail_informasi.svg" alt="">
           <span>Data Master</span>
         </a>
+
         <a href="profil.html" class="menu-item active">
-          <i class="fa-solid fa-user"></i>
+          <img src="../../assets/icons/profil.svg" alt="">
           <span>Profil</span>
         </a>
+
       </nav>
 
-      <div class="sidebar-footer">
-        <a href="../auth/login.html" class="menu-item logout-btn">
-          <i class="fa-solid fa-right-from-bracket"></i>
+      <div class="sidebar-bottom">
+        <a href="../auth/login.html" class="menu-item logout-item">
+          <img src="../../assets/icons/logout.svg" alt="">
           <span>Logout</span>
         </a>
       </div>
+
     </aside>
 
-    <!-- MAIN CONTENT AREA -->
+
+
+
+    <!-- MAIN CONTENT -->
     <main class="main-content">
-      
-      <!-- TOPBAR INFO PROFIL ADMIN -->
-      <header class="topbar">
-        <div class="topbar-user">
-          <div class="user-avatar-small">
-            <i class="fa-solid fa-user"></i>
+
+      <!-- HEADER AKUN ADMIN -->
+      <header class="top-header">
+
+        <div class="account-info .profile-account-info">
+
+          <img src="../../assets/icons/circle_user_round.svg" alt="Ikon pengguna" class="account-icon">
+
+          <div class="account-detail">
+
+            <span class="account-name">
+              Admin: Anindya
+            </span>
+
+            <span class="account-status">
+              <span class="status-indicator" aria-hidden="true"></span>
+              Online
+            </span>
+
           </div>
-          <div class="user-info-text">
-            <span class="user-name">Anindya</span>
-            <span class="user-status"><span class="status-dot"></span> Admin</span>
-          </div>
+
         </div>
+
       </header>
 
-      <!-- KONTEN UTAMA -->
-      <div class="content-body">
-        
-        <!-- BANNER UTAMA PROFIL -->
-        <div class="banner-card welcome-banner">
-          <div class="banner-text">
-            <h2>Profil Admin</h2>
-            <p>Kelola informasi akun dan keamanan akun Admin SIPIKA.</p>
+
+
+      <!-- KONTEN ADMIN -->
+      <div class="admin-content">
+
+        <!-- BANNER PROFIL -->
+        <section class="welcome-banner">
+
+          <div class="welcome-text">
+            <h1>Profil Admin</h1>
+
+            <span>
+              Kelola informasi akun dan keamanan akun Admin SIPIKA.
+            </span>
           </div>
-        </div>
 
-        <!-- GRID 2 KOLOM (Informasi Akun & Ubah Password) -->
+        </section>
+
+
+        <!-- GRID PROFIL -->
         <div class="profile-grid">
-          
-          <!-- KOLOM KIRI: INFORMASI AKUN -->
+
+
+          <!-- INFORMASI AKUN -->
           <section class="profile-card">
-            <h3 class="profile-section-title">Informasi Akun</h3>
-            
-            <!-- AVATAR & UPLOAD FOTO (Membuka File Explorer Tanpa JS Rumit) -->
+
+            <h3 class="profile-section-title">
+              Informasi Akun
+            </h3>
+
+            <div class="profile-divider"></div>
+
+
+            <!-- AVATAR ADMIN -->
             <div class="profile-avatar-container">
-                <div class="avatar-wrapper">
-                    <div class="avatar-circle" id="avatarCircle">
-                    <i class="fa-solid fa-user"></i>
-                    </div>
-                    <label for="uploadAvatar" class="camera-badge" title="Ubah Foto Profil">
-                    <i class="fa-solid fa-camera"></i>
-                    </label>
-                    <input type="file" id="uploadAvatar" accept="image/*" style="display: none;">
-                </div>
-                <span class="profile-role-badge">Admin</span>
-                </div>
 
-            <form onsubmit="event.preventDefault(); alert('Perubahan informasi akun berhasil disimpan!');">
-              <div class="form-group-profile">
-                <label>Username</label>
-                <div class="input-with-icon">
+              <div class="avatar-wrapper">
+
+                <div class="avatar-circle" id="avatarCircle">
                   <i class="fa-solid fa-user"></i>
-                  <input type="text" value="adminsipika01" required>
                 </div>
+
+                <label for="uploadAvatar" class="camera-badge" title="Ubah Foto Profil">
+
+                  <i class="fa-solid fa-camera"></i>
+
+                </label>
+
+                <input type="file" id="uploadAvatar" accept="image/*" hidden>
+
               </div>
 
+              <span class="profile-role-badge">
+                Admin
+              </span>
+
+            </div>
+
+
+            <!-- FORM INFORMASI AKUN -->
+            <form class="profile-form">
+
               <div class="form-group-profile">
-                <label>Email</label>
+
+                <label for="username">
+                  Username
+                </label>
+
                 <div class="input-with-icon">
-                  <i class="fa-solid fa-envelope"></i>
-                  <input type="email" value="adminsipika01@gmail.com" required>
+
+                  <i class="fa-regular fa-user"></i>
+
+                  <input type="text" id="username" name="username" value="adminsipika01" required>
+
                 </div>
+
               </div>
+
+
+              <div class="form-group-profile">
+
+                <label for="email">
+                  Email
+                </label>
+
+                <div class="input-with-icon">
+
+                  <i class="fa-regular fa-at"></i>
+
+                  <input type="email" id="email" name="email" value="adminsipika01@gmail.com" required>
+
+                </div>
+
+              </div>
+
 
               <button type="submit" class="btn-profile-submit">
-                <i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan
+
+                <i class="fa-regular fa-floppy-disk"></i>
+
+                Simpan Perubahan
+
               </button>
+
             </form>
+
           </section>
 
 
-          <!-- KOLOM KANAN: UBAH PASSWORD -->
+
+          <!-- UBAH PASSWORD -->
           <section class="profile-card">
-            <h3 class="profile-section-title">Ubah Password</h3>
 
-            <form onsubmit="event.preventDefault(); alert('Password berhasil diubah!');">
+            <h3 class="profile-section-title">
+              Ubah Password
+            </h3>
+
+            <div class="profile-divider"></div>
+
+
+            <form class="profile-form password-form">
+
+
+              <!-- PASSWORD LAMA -->
               <div class="form-group-profile">
-                <label>Password Lama</label>
+
+                <label for="oldPassword">
+                  Password Lama
+                </label>
+
                 <div class="input-with-icon">
+
                   <i class="fa-solid fa-lock"></i>
-                  <input type="password" id="oldPassword" placeholder="Masukkan password lama" required>
-                  <i class="fa-solid fa-eye toggle-password" onclick="togglePassword('oldPassword', this)"></i>
+
+                  <input type="password" id="oldPassword" name="oldPassword" placeholder="Masukkan password lama"
+                    required>
+
+                  <i class="fa-regular fa-eye-slash toggle-password"></i>
+
                 </div>
+
               </div>
 
+
+
+              <!-- PASSWORD BARU -->
               <div class="form-group-profile">
-                <label>Password Baru</label>
+
+                <label for="newPassword">
+                  Password Baru
+                </label>
+
                 <div class="input-with-icon">
+
                   <i class="fa-solid fa-lock"></i>
-                  <input type="password" id="newPassword" placeholder="Masukkan password baru" required>
-                  <i class="fa-solid fa-eye toggle-password" onclick="togglePassword('newPassword', this)"></i>
+
+                  <input type="password" id="newPassword" name="newPassword" placeholder="Masukkan password baru"
+                    required>
+
+                  <i class="fa-regular fa-eye-slash toggle-password"></i>
+
                 </div>
+
               </div>
 
+
+
+              <!-- KONFIRMASI PASSWORD -->
               <div class="form-group-profile">
-                <label>Konfirmasi Password Baru</label>
+
+                <label for="confirmPassword">
+                  Konfirmasi Password Baru
+                </label>
+
                 <div class="input-with-icon">
+
                   <i class="fa-solid fa-lock"></i>
-                  <input type="password" id="confirmPassword" placeholder="Ulangi password baru" required>
-                  <i class="fa-solid fa-eye toggle-password" onclick="togglePassword('confirmPassword', this)"></i>
+
+                  <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Ulangi password baru"
+                    required>
+
+                  <i class="fa-regular fa-eye-slash toggle-password"></i>
+
                 </div>
+
               </div>
+
 
               <button type="submit" class="btn-profile-submit">
-                <i class="fa-solid fa-key"></i> Ubah Password
+
+                <i class="fa-solid fa-wrench"></i>
+
+                Ubah Password
+
               </button>
+
             </form>
+
           </section>
 
         </div>
 
       </div>
 
-      <!-- FOOTER APPS -->
-      <footer class="app-footer">
-        <p>&copy; 2026 SIPIKA - Kelompok 13 Web</p>
+
+      <!-- FOOTER -->
+      <footer class="dashboard-footer">
+
+        <p>
+          &copy; 2026 SIPIKA - Kelompok 13 Web
+        </p>
+
       </footer>
 
     </main>
+
   </div>
 
-  <!-- SCRIPT UNTUK FITUR MATA PASSWORD -->
-  <script>
-    function togglePassword(fieldId, iconElement) {
-      const inputField = document.getElementById(fieldId);
-      if (inputField.type === "password") {
-        inputField.type = "text";
-        iconElement.classList.remove("fa-eye");
-        iconElement.classList.add("fa-eye-slash");
-      } else {
-        inputField.type = "password";
-        iconElement.classList.remove("fa-eye-slash");
-        iconElement.classList.add("fa-eye");
-      }
-    }
-  </script>
+  <!-- SCRIPT GLOBAL -->
+  <script src="../../js/global.js"></script>
+  <script src="../../js/admin.js"></script>
+
 </body>
+
 </html>
