@@ -2,41 +2,39 @@
    1. GLOBAL & RESET
 ================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
 :root {
-    --primary: #2563eb;
-    --primary-dark: #1d4ed8;
-    --primary-light: #eff6ff;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #eff6ff;
 
-    --text-primary: #0f172a;
-    --text-secondary: #64748b;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
 
-    --background: #f8fafc;
-    --surface: #ffffff;
-    --border: #e2e8f0;
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --border: #e2e8f0;
 
-    --sidebar-width: 225px;
+  --sidebar-width: 225px;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background: var(--background);
-    color: var(--text-primary);
-    min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: var(--background);
+  color: var(--text-primary);
+  min-height: 100vh;
 }
-
-
 
 /* =================================
    2. LAYOUT UTAMA PETUGAS
@@ -44,44 +42,44 @@ body {
 
 .dashboard-container,
 .app-container {
-    display: flex;
-    align-items: stretch;
+  display: flex;
+  align-items: stretch;
 
-    width: 100%;
-    height: 100vh;
-    min-height: 100vh;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
 
-    overflow: hidden;
+  overflow: hidden;
 }
 
 /* Konten utama */
 .main-content {
-    flex: 1;
-    min-width: 0;
+  flex: 1;
+  min-width: 0;
 
-    width: calc(100% - var(--sidebar-width));
-    height: 100vh;
-    min-height: 0;
+  width: calc(100% - var(--sidebar-width));
+  height: 100vh;
+  min-height: 0;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    background: var(--background);
+  background: var(--background);
 
-    overflow-x: hidden;
-    overflow-y: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Area isi halaman */
 .content-body {
-    width: 100%;
-    min-width: 0;
+  width: 100%;
+  min-width: 0;
 
-    padding: 0 32px 32px;
+  padding: 0 32px 32px;
 
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 /* =================================
@@ -89,164 +87,159 @@ body {
 ================================= */
 
 .sidebar {
-    flex: 0 0 225px !important;
+  flex: 0 0 225px !important;
 
-    width: 225px !important;
-    min-width: 225px !important;
-    max-width: 225px !important;
+  width: 225px !important;
+  min-width: 225px !important;
+  max-width: 225px !important;
 
-    height: 100vh !important;
-    min-height: 100vh !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
 
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
 
-    padding: 12px 0 10px !important;
+  padding: 12px 0 10px !important;
 
-    background:
-        linear-gradient(
-            rgba(11, 25, 44, 0.85),
-            rgba(11, 25, 44, 0.85)
-        ),
-        url('../assets/images/sidebar.jpeg') !important;
+  background:
+    linear-gradient(rgba(11, 25, 44, 0.85), rgba(11, 25, 44, 0.85)),
+    url("../assets/images/sidebar.jpeg") !important;
 
-    background-position: center !important;
-    background-size: cover !important;
-    background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
 
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
 
-    flex-shrink: 0 !important;
-    box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
 }
-
 
 /* =====================================================
    2. LOGO SIPIKA
 ===================================================== */
 
 .sidebar .sidebar-brand {
-    width: 100% !important;
-    height: 144px !important;
-    min-height: 144px !important;
+  width: 100% !important;
+  height: 144px !important;
+  min-height: 144px !important;
 
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 
-    padding: 0 !important;
-    margin: 0 0 20px !important;
+  padding: 0 !important;
+  margin: 0 0 20px !important;
 
-    flex-shrink: 0 !important;
+  flex-shrink: 0 !important;
 }
 
 .sidebar .sidebar-brand img {
-    width: 144px !important;
-    height: 144px !important;
+  width: 144px !important;
+  height: 144px !important;
 
-    max-width: 144px !important;
-    max-height: 144px !important;
+  max-width: 144px !important;
+  max-height: 144px !important;
 
-    display: block !important;
+  display: block !important;
 
-    object-fit: contain !important;
-    object-position: center !important;
+  object-fit: contain !important;
+  object-position: center !important;
 
-    margin: 0 auto !important;
+  margin: 0 auto !important;
 }
-
 
 /* =====================================================
    3. MENU NAVIGASI
 ===================================================== */
 
 .sidebar .sidebar-menu {
-    width: 100% !important;
+  width: 100% !important;
 
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
 
-    gap: 5px !important;
+  gap: 5px !important;
 
-    padding: 0 9.5px !important;
-    margin: 0 !important;
+  padding: 0 9.5px !important;
+  margin: 0 !important;
 
-    list-style: none !important;
+  list-style: none !important;
 
-    flex-shrink: 0 !important;
+  flex-shrink: 0 !important;
 }
 
 .sidebar .sidebar-menu li {
-    width: 100% !important;
-    height: 46.5px !important;
-    min-height: 46.5px !important;
+  width: 100% !important;
+  height: 46.5px !important;
+  min-height: 46.5px !important;
 
-    display: block !important;
+  display: block !important;
 
-    list-style: none !important;
+  list-style: none !important;
 }
 
 /* Ukuran setiap menu: 221 × 46.5px */
 .sidebar .sidebar-menu li a {
-    width: 100% !important;
-    height: 46.5px !important;
-    min-height: 46.5px !important;
+  width: 100% !important;
+  height: 46.5px !important;
+  min-height: 46.5px !important;
 
-    display: flex !important;
-    align-items: center !important;
+  display: flex !important;
+  align-items: center !important;
 
-    gap: 13px !important;
+  gap: 13px !important;
 
-    padding: 0 14px !important;
+  padding: 0 14px !important;
 
-    color: #cbd5e1 !important;
+  color: #cbd5e1 !important;
 
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 14px !important;
-    font-weight: 500 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
 
-    line-height: 1.4 !important;
-    text-decoration: none !important;
+  line-height: 1.4 !important;
+  text-decoration: none !important;
 
-    border-radius: 9px !important;
+  border-radius: 9px !important;
 
-    box-sizing: border-box !important;
+  box-sizing: border-box !important;
 
-    transition: background 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 /* Ikon menu */
 .sidebar .sidebar-menu li a i {
-    width: 21px !important;
-    min-width: 21px !important;
+  width: 21px !important;
+  min-width: 21px !important;
 
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 
-    font-size: 18px !important;
+  font-size: 18px !important;
 
-    text-align: center !important;
+  text-align: center !important;
 }
 
 /* Hover menu */
 .sidebar .sidebar-menu li a:hover {
-    background: rgba(255, 255, 255, 0.10) !important;
-    color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
 }
 
 /* Menu aktif */
 .sidebar .sidebar-menu li.active a,
 .sidebar .sidebar-menu li a.active {
-    background: #0866f5 !important;
-    color: #ffffff !important;
+  background: #0866f5 !important;
+  color: #ffffff !important;
 
-    font-weight: 600 !important;
+  font-weight: 600 !important;
 
-    box-shadow: 0 3px 8px rgba(8, 102, 245, 0.22);
+  box-shadow: 0 3px 8px rgba(8, 102, 245, 0.22);
 }
 
 /* =====================================================
@@ -254,67 +247,67 @@ body {
 ===================================================== */
 
 .sidebar .sidebar-footer {
-    position: relative !important;
+  position: relative !important;
 
-    width: 100% !important;
+  width: 100% !important;
 
-    display: block !important;
+  display: block !important;
 
-    margin-top: auto !important;
+  margin-top: auto !important;
 
-    padding: 18px 16px 4px !important;
+  padding: 18px 16px 4px !important;
 
-    border: none !important;
+  border: none !important;
 
-    flex-shrink: 0 !important;
+  flex-shrink: 0 !important;
 }
 
 /* Garis Logout hanya selebar area navigasi */
 .sidebar .sidebar-footer::before {
-    content: "";
+  content: "";
 
-    position: absolute;
+  position: absolute;
 
-    top: 0;
-    left: 16px;
-    right: 16px;
+  top: 0;
+  left: 16px;
+  right: 16px;
 
-    height: 1px;
+  height: 1px;
 
-    background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.65);
 }
 
 /* Tombol Logout */
 .sidebar .sidebar-footer .logout-btn {
-    width: 100% !important;
+  width: 100% !important;
 
-    display: flex !important;
-    align-items: center !important;
+  display: flex !important;
+  align-items: center !important;
 
-    gap: 12px !important;
+  gap: 12px !important;
 
-    padding: 0 9px !important;
+  padding: 0 9px !important;
 
-    color: #ef4444 !important;
+  color: #ef4444 !important;
 
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 14px !important;
-    font-weight: 500 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
 
-    text-decoration: none !important;
+  text-decoration: none !important;
 }
 
 /* Ikon Logout */
 .sidebar .sidebar-footer .logout-btn i {
-    width: 20px !important;
-    min-width: 20px !important;
+  width: 20px !important;
+  min-width: 20px !important;
 
-    font-size: 16px !important;
-    text-align: center !important;
+  font-size: 16px !important;
+  text-align: center !important;
 }
 
 .sidebar .sidebar-footer .logout-btn:hover {
-    color: #fca5a5 !important;
+  color: #fca5a5 !important;
 }
 
 /* =====================================================
@@ -322,55 +315,53 @@ body {
 ===================================================== */
 
 @media (max-width: 768px) {
+  .sidebar {
+    flex: 0 0 auto !important;
 
-    .sidebar {
-        flex: 0 0 auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
 
-        width: 100% !important;
-        min-width: 0 !important;
-        max-width: none !important;
+    height: auto !important;
+    min-height: auto !important;
 
-        height: auto !important;
-        min-height: auto !important;
+    padding: 14px 12px !important;
+  }
 
-        padding: 14px 12px !important;
-    }
+  .sidebar .sidebar-brand {
+    height: auto !important;
+    min-height: 0 !important;
 
-    .sidebar .sidebar-brand {
-        height: auto !important;
-        min-height: 0 !important;
+    margin-bottom: 14px !important;
+  }
 
-        margin-bottom: 14px !important;
-    }
+  .sidebar .sidebar-brand img {
+    width: 85px !important;
+    height: auto !important;
+  }
 
-    .sidebar .sidebar-brand img {
-        width: 85px !important;
-        height: auto !important;
-    }
+  .sidebar .sidebar-menu {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
 
-    .sidebar .sidebar-menu {
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
+    padding: 0 !important;
+  }
 
-        padding: 0 !important;
-    }
+  .sidebar .sidebar-menu li {
+    width: auto !important;
+    height: auto !important;
+  }
 
-    .sidebar .sidebar-menu li {
-        width: auto !important;
-        height: auto !important;
-    }
+  .sidebar .sidebar-menu li a {
+    width: auto !important;
+    height: 40px !important;
+    min-height: 40px !important;
+  }
 
-    .sidebar .sidebar-menu li a {
-        width: auto !important;
-        height: 40px !important;
-        min-height: 40px !important;
-    }
-
-    .sidebar .sidebar-footer {
-        margin-top: 14px !important;
-    }
-
+  .sidebar .sidebar-footer {
+    margin-top: 14px !important;
+  }
 }
 
 /* =================================
@@ -378,96 +369,96 @@ body {
 ================================= */
 
 .top-navbar {
-    width: 100%;
-    min-height: 70px;
+  width: 100%;
+  min-height: 70px;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 
-    padding: 0 32px;
-    flex-shrink: 0;
+  padding: 0 32px;
+  flex-shrink: 0;
 }
 
 /* Badge profil pengguna */
 .user-profile-badge {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-    padding: 5px 12px;
+  padding: 5px 12px;
 
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 30px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 30px;
 
-    box-shadow: 0 2px 5px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 2px 5px rgba(15, 23, 42, 0.05);
 }
 
 /* Avatar */
 .user-profile-badge .profile-avatar {
-    position: relative;
+  position: relative;
 
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: #0866c6;
-    color: #ffffff;
+  background: #0866c6;
+  color: #ffffff;
 
-    border-radius: 50%;
-    font-size: 13px;
+  border-radius: 50%;
+  font-size: 13px;
 }
 
 /* Informasi pengguna */
 .user-profile-badge .profile-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
 }
 
 /* Nama pengguna */
 .user-profile-badge .profile-name {
-    margin: 0;
+  margin: 0;
 
-    color: #0f172a;
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.4;
+  color: #0f172a;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
 /* Status / Role */
 .user-profile-badge .profile-role {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 
-    margin: 0;
+  margin: 0;
 
-    color: #64748b;
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1.4;
+  color: #64748b;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
 }
 
 /* Indikator aktif hijau */
 .user-profile-badge .profile-role::before {
-    content: "";
+  content: "";
 
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    min-width: 6px;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  min-width: 6px;
 
-    background: #22c55e;
-    border-radius: 50%;
+  background: #22c55e;
+  border-radius: 50%;
 }
 
 /* =================================
@@ -477,276 +468,273 @@ body {
 /* ---------- Welcome Banner ---------- */
 
 .welcome-banner {
-    width: 100%;
-    height: 160px;
-    min-height: 160px;
+  width: 100%;
+  height: 160px;
+  min-height: 160px;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 
-    padding: 24px 32px;
-    margin: 0;
+  padding: 24px 32px;
+  margin: 0;
 
-    background:
-        linear-gradient(
-            90deg,
-            rgba(248, 250, 252, 0.97) 0%,
-            rgba(248, 250, 252, 0.92) 30%,
-            rgba(248, 250, 252, 0.65) 43%,
-            rgba(248, 250, 252, 0.20) 52%,
-            rgba(248, 250, 252, 0) 62%
-        ),
-        url('../assets/images/banner.jpg');
+  background:
+    linear-gradient(
+      90deg,
+      rgba(248, 250, 252, 0.97) 0%,
+      rgba(248, 250, 252, 0.92) 30%,
+      rgba(248, 250, 252, 0.65) 43%,
+      rgba(248, 250, 252, 0.2) 52%,
+      rgba(248, 250, 252, 0) 62%
+    ),
+    url("../assets/images/banner.jpg");
 
-    background-size: cover;
-    background-position: right center;
-    background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
 
-    border-radius: 16px;
-    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05);
-    overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
 }
 
 /* Pembungkus teks banner */
 .welcome-banner .banner-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
-    width: 100%;
-    max-width: 620px;
-    gap: 4px;
+  width: 100%;
+  max-width: 620px;
+  gap: 4px;
 }
 
 /* Label sambutan */
 .welcome-banner .banner-tag {
-    display: block;
+  display: block;
 
-    margin: 0;
+  margin: 0;
 
-    color: #2563eb;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    line-height: 1.5;
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  line-height: 1.5;
 }
 
 /* Nama petugas */
 .welcome-banner .banner-text h1 {
-    margin: 0;
+  margin: 0;
 
-    color: #0f172a;
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 1.3;
+  color: #0f172a;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
 /* Deskripsi banner */
 .welcome-banner .banner-text p {
-    max-width: 600px;
-    margin: 2px 0 0;
+  max-width: 600px;
+  margin: 2px 0 0;
 
-    color: #0f172a;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 1.6;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
 }
 
-
 /* ---------- Information Card ---------- */
-
 
 /* ---------- PENGENALAN SISTEM SIPIKA ---------- */
 
 .info-card {
-    width: 100%;
-    min-height: 104px;
+  width: 100%;
+  min-height: 104px;
 
-    padding: 14px 22px;
-    margin: 0;
+  padding: 14px 22px;
+  margin: 0;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
 
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
 }
 
 /* Susunan ikon dan teks */
 .info-card-header {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    align-items: center;
-    gap: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
 
-    margin: 0;
+  margin: 0;
 }
 /* Kotak ikon Pengenalan Sistem */
 .custom-card-icon {
-    width: 52px;
-    height: 52px;
-    min-width: 52px;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: #e0f2fe;
-    border-radius: 14px;
+  background: #e0f2fe;
+  border-radius: 14px;
 
-    color: #1683e8;
+  color: #1683e8;
 }
 
 /* Gambar SVG di dalam kotak */
 .custom-card-icon svg {
-    width: 24px;
-    height: 24px;
-    display: block;
+  width: 24px;
+  height: 24px;
+  display: block;
 }
 
 /* Pembungkus judul dan deskripsi */
 .info-card-content {
-    flex: 1;
-    min-width: 0;
+  flex: 1;
+  min-width: 0;
 
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 /* Judul kartu */
 .info-card-content h3 {
-    margin: 0;
+  margin: 0;
 
-    color: #0f2f57;
-    font-family: 'Poppins', sans-serif;
-    font-size: 19px;
-    font-weight: 700;
-    line-height: 1.4;
+  color: #0f2f57;
+  font-family: "Poppins", sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
 /* Deskripsi kartu */
 .info-card-content p {
-    margin: 0;
+  margin: 0;
 
-    color: #475569;
-    font-family: 'Poppins', sans-serif;
-    font-size: 14.5px;
-    font-weight: 400;
-    line-height: 1.5;
+  color: #475569;
+  font-family: "Poppins", sans-serif;
+  font-size: 14.5px;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 /* ---------- CONTAINER UTAMA ALGORITMA ---------- */
 
 .algorithm-card {
-    width: 100%;
-    padding: 20px 18px;
+  width: 100%;
+  padding: 20px 18px;
 
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
 
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
 }
 
 /* ---------- PENGENALAN ALGORITMA DECISION TREE ---------- */
 
 .algorithm-intro {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 12px;
 
-    margin: 0;
+  margin: 0;
 }
 
 /* Ikon Decision Tree */
 .algorithm-intro-icon {
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .algorithm-intro-icon .custom-card-icon {
-    width: 46px;
-    height: 46px;
+  width: 46px;
+  height: 46px;
 
-    display: block;
-    object-fit: contain;
+  display: block;
+  object-fit: contain;
 }
 
 /* Pembungkus judul dan deskripsi */
 .algorithm-intro-content {
-    flex: 1;
-    min-width: 0;
+  flex: 1;
+  min-width: 0;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
 }
 
 /* Judul */
 .algorithm-intro-content h3 {
-    margin: 0;
+  margin: 0;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 19px;
-    font-weight: 700;
-    line-height: 1.4;
-    color: #0f2f57;
+  font-family: "Poppins", sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #0f2f57;
 }
 
 /* Deskripsi */
 .algorithm-intro-content p {
-    margin: 0;
+  margin: 0;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 14.5px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #475569;
+  font-family: "Poppins", sans-serif;
+  font-size: 14.5px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #475569;
 }
-
 
 /* ---------- Decision Tree Flow ---------- */
 
 /* Pembungkus tiga container dan dua panah */
 .dt-flow-container {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
 
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 
-    background: transparent;
-    border: none;
-    border-radius: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
 }
 
 /* Ketiga kotak memiliki lebar yang sama */
 .dt-flow-container > .dt-box {
-    flex: 1 1 0;
-    width: 0;
-    min-width: 0;
-    box-sizing: border-box;
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 /* =================================
@@ -755,94 +743,94 @@ body {
 
 /* Container Proses Decision Tree */
 .dt-flow-container > .process-box {
-    min-height: 131px;
+  min-height: 131px;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    padding: 14px;
+  padding: 14px;
 
-    background: #f0edff;
-    border: none;
-    border-radius: 10px;
-    box-shadow: none;
+  background: #f0edff;
+  border: none;
+  border-radius: 10px;
+  box-shadow: none;
 }
 
 /* Susunan ikon dan konten */
 .process-box .dt-box-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
 }
 
 /* Kolom judul dan deskripsi */
 .process-box .dt-box-content {
-    flex: 1;
-    min-width: 0;
+  flex: 1;
+  min-width: 0;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
 }
 
 /* Lingkaran pembungkus ikon Decision Tree */
 .process-box .dt-icon-box.process-icon {
-    width: 75px !important;
-    height: 75px !important;
-    min-width: 75px !important;
-    max-width: 75px !important;
+  width: 75px !important;
+  height: 75px !important;
+  min-width: 75px !important;
+  max-width: 75px !important;
 
-    flex: 0 0 75px !important;
+  flex: 0 0 75px !important;
 
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 
-    padding: 0 !important;
-    margin: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 
-    background: #e4e0ff !important;
-    border-radius: 50% !important;
+  background: #e4e0ff !important;
+  border-radius: 50% !important;
 }
 
 /* Gambar ikon Decision Tree */
 .process-box .dt-icon-box.process-icon img.dt-custom-icon {
-    width: 42px !important;
-    height: 42px !important;
-    max-width: 42px !important;
-    max-height: 42px !important;
+  width: 42px !important;
+  height: 42px !important;
+  max-width: 42px !important;
+  max-height: 42px !important;
 
-    object-fit: contain !important;
-    display: block !important;
+  object-fit: contain !important;
+  display: block !important;
 
-    padding: 0 !important;
-    margin: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 /* Judul Proses Decision Tree */
 .process-box .dt-box-title {
-    display: block;
-    margin: 0;
+  display: block;
+  margin: 0;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.4;
-    color: #0f2f57;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #0f2f57;
 }
 
 /* Deskripsi Proses Decision Tree */
 .process-box .dt-box-description {
-    margin: 0;
+  margin: 0;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1.5;
-    text-align: left;
-    color: #475569;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  color: #475569;
 }
 
 /* =================================
@@ -851,75 +839,75 @@ body {
 
 /* Container Input Data */
 .dt-flow-container > .dt-box:first-child {
-    min-height: 178px;
+  min-height: 178px;
 
-    padding: 12px 14px;
+  padding: 12px 14px;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    background: #e8f3ff;
-    border: none;
-    border-radius: 10px;
-    box-shadow: none;
+  background: #e8f3ff;
+  border: none;
+  border-radius: 10px;
+  box-shadow: none;
 }
 
 /* Judul Input Data */
 .dt-flow-container > .dt-box:first-child .dt-box-title {
-    display: block;
-    text-align: center;
-    margin-bottom: 9px;
+  display: block;
+  text-align: center;
+  margin-bottom: 9px;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: #0f2f57;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f2f57;
 }
 
 /* Item atribut Input Data */
 .dt-flow-container > .dt-box:first-child .dt-item {
-    display: flex;
-    align-items: center;
-    gap: 9px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
 
-    padding: 5px 8px;
-    margin-bottom: 5px;
+  padding: 5px 8px;
+  margin-bottom: 5px;
 
-    background: #ffffff;
-    border-radius: 7px;
+  background: #ffffff;
+  border-radius: 7px;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    color: #172b4d;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #172b4d;
 }
 
 /* Ikon atribut Input Data */
 .dt-flow-container > .dt-box:first-child .dt-item i {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 
-    font-size: 15px;
-    color: #1877e8;
+  font-size: 15px;
+  color: #1877e8;
 }
 
 /* Ikon SVG atribut Input Data */
 .dt-flow-container > .dt-box:first-child .dt-item .input-attribute-icon {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 
-    flex-shrink: 0;
-    color: #1877e8;
+  flex-shrink: 0;
+  color: #1877e8;
 }
 
 /* Menghilangkan margin item terakhir */
 .dt-flow-container > .dt-box:first-child .dt-item:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 /* =================================
@@ -928,136 +916,136 @@ body {
 
 /* Container Hasil Klasifikasi */
 .dt-flow-container > .result-box {
-    min-height: 166px;
+  min-height: 166px;
 
-    padding: 14px;
+  padding: 14px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
 
-    background: #e9f7f3;
-    border: none;
-    border-radius: 10px;
-    box-shadow: none;
+  background: #e9f7f3;
+  border: none;
+  border-radius: 10px;
+  box-shadow: none;
 }
 
 /* Susunan ikon dan konten */
 .result-box .dt-box-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
 }
 
 /* Lingkaran hijau luar */
 .result-box .result-icon {
-    width: 54px;
-    height: 54px;
-    min-width: 54px;
-    flex: 0 0 54px;
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+  flex: 0 0 54px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: #d2f2e7;
-    border-radius: 50%;
+  background: #d2f2e7;
+  border-radius: 50%;
 }
 
 /* Ikon hijau bagian dalam */
 .result-box .result-icon .dt-custom-icon {
-    width: 42px;
-    height: 42px;
+  width: 42px;
+  height: 42px;
 
-    display: block;
-    object-fit: contain;
+  display: block;
+  object-fit: contain;
 
-    border-radius: 50%;
-    background: #c4ecdf;
-    padding: 0;
+  border-radius: 50%;
+  background: #c4ecdf;
+  padding: 0;
 }
 
 /* Kolom judul dan deskripsi */
 .result-box .dt-box-content {
-    flex: 1;
-    min-width: 0;
+  flex: 1;
+  min-width: 0;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
 
-    padding-top: 2px;
+  padding-top: 2px;
 }
 
 /* Judul Hasil Klasifikasi */
 .result-box .dt-box-title {
-    display: block;
-    margin: 0;
+  display: block;
+  margin: 0;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.4;
-    color: #0f2f57;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #0f2f57;
 }
 
 /* Deskripsi */
 .result-box .result-desc {
-    margin: 0;
+  margin: 0;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #475569;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #475569;
 }
 
 /* Pembungkus tiga badge */
 .result-box .badge-group {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 /* Bentuk dasar badge */
 .result-box .badge {
-    width: 64px;
-    height: 30px;
-    flex: 0 0 64px;
+  width: 64px;
+  height: 30px;
+  flex: 0 0 64px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    border-radius: 10px;
+  border-radius: 10px;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 /* Badge Rendah */
 .result-box .badge-rendah {
-    background: #ffe1e1;
-    color: #c62828;
+  background: #ffe1e1;
+  color: #c62828;
 }
 
 /* Badge Sedang */
 .result-box .badge-sedang {
-    background: #fff0d1;
-    color: #ad6500;
+  background: #fff0d1;
+  color: #ad6500;
 }
 
 /* Badge Tinggi */
 .result-box .badge-tinggi {
-    background: #b8f7df;
-    color: #07865b;
+  background: #b8f7df;
+  color: #07865b;
 }
 
 /* =================================
@@ -1065,23 +1053,23 @@ body {
 ================================= */
 
 @media (max-width: 768px) {
-    .dt-flow-container {
-        max-width: 100%;
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
+  .dt-flow-container {
+    max-width: 100%;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 
-    .dt-flow-container > .dt-box:first-child,
-    .dt-flow-container > .process-box,
-    .dt-flow-container > .result-box {
-        width: 100%;
-        min-height: auto;
-    }
+  .dt-flow-container > .dt-box:first-child,
+  .dt-flow-container > .process-box,
+  .dt-flow-container > .result-box {
+    width: 100%;
+    min-height: auto;
+  }
 
-    .dt-arrow {
-        transform: rotate(90deg);
-        justify-self: center;
-    }
+  .dt-arrow {
+    transform: rotate(90deg);
+    justify-self: center;
+  }
 }
 
 /* =================================
@@ -1093,180 +1081,175 @@ body {
 ========================================= */
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
+  margin: 0;
+  min-height: 100vh;
 
-    font-family: 'Poppins', sans-serif;
-    background: #edf3fa;
-    color: #0f172a;
+  font-family: "Poppins", sans-serif;
+  background: #edf3fa;
+  color: #0f172a;
 }
 
 .app-container {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-    overflow: hidden;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
 }
-
 
 /* =========================================
    2. SIDEBAR
 ========================================= */
 
 .sidebar {
-    width: 190px;
-    min-width: 190px;
-    min-height: 100vh;
+  width: 190px;
+  min-width: 190px;
+  min-height: 100vh;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    padding: 22px 10px 18px;
+  padding: 22px 10px 18px;
 
-    background:
-        linear-gradient(
-            rgba(0, 25, 54, 0.90),
-            rgba(0, 15, 35, 0.96)
-        ),
-        url('../assets/images/sidebar.jpeg');
+  background:
+    linear-gradient(rgba(0, 25, 54, 0.9), rgba(0, 15, 35, 0.96)),
+    url("../assets/images/sidebar.jpeg");
 
-    background-size: cover;
-    background-position: center;
+  background-size: cover;
+  background-position: center;
 
-    color: #ffffff;
+  color: #ffffff;
 }
 
 /* Logo SIPIKA */
 
 .sidebar-brand {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    margin-bottom: 52px;
+  margin-bottom: 52px;
 }
 
 .brand-logo-img {
-    width: 105px;
-    height: auto;
-    object-fit: contain;
+  width: 105px;
+  height: auto;
+  object-fit: contain;
 }
 
 /* Navigasi sidebar */
 
 .sidebar-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .sidebar-menu li {
-    list-style: none;
+  list-style: none;
 }
 
 /* Link navigasi */
 
 .sidebar-menu li a {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    align-items: center;
-    gap: 11px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
 
-    padding: 9px 12px;
+  padding: 9px 12px;
 
-    color: #cbd5e1;
-    text-decoration: none;
+  color: #cbd5e1;
+  text-decoration: none;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
 
-    border-radius: 7px;
-    transition: background 0.2s ease;
+  border-radius: 7px;
+  transition: background 0.2s ease;
 }
 
 /* Ikon navigasi */
 
 .sidebar-menu li a i {
-    width: 15px;
-    min-width: 15px;
+  width: 15px;
+  min-width: 15px;
 
-    font-size: 14px;
-    text-align: center;
+  font-size: 14px;
+  text-align: center;
 }
 
 /* Hover navigasi */
 
 .sidebar-menu li a:hover {
-    background: rgba(255, 255, 255, 0.10);
-    color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
 /* Menu aktif */
 
 .sidebar-menu li.active a {
-    background: #0866f5;
-    color: #ffffff;
-    font-weight: 600;
+  background: #0866f5;
+  color: #ffffff;
+  font-weight: 600;
 }
 
 /* Footer sidebar */
 
 .sidebar-footer {
-    margin-top: auto;
+  margin-top: auto;
 
-    padding: 20px 10px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.75);
+  padding: 20px 10px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.75);
 }
 
 /* Tombol logout */
 
 .logout-btn {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 
-    color: #ef4444;
-    text-decoration: none;
+  color: #ef4444;
+  text-decoration: none;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
 }
 
 .logout-btn i {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .logout-btn:hover {
-    color: #fca5a5;
+  color: #fca5a5;
 }
-
 
 /* =========================================
    3. MAIN CONTENT
 ========================================= */
 
 .main-content {
-    flex: 1;
-    min-width: 0;
-    min-height: 100vh;
+  flex: 1;
+  min-width: 0;
+  min-height: 100vh;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    background: #edf3fa;
+  background: #edf3fa;
 }
 
 /* =========================================
@@ -1274,1013 +1257,1101 @@ body {
 ========================================= */
 
 .topbar {
-    width: 100%;
-    height: 56px;
-    min-height: 56px;
+  width: 100%;
+  height: 56px;
+  min-height: 56px;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 
-    padding: 0 20px;
+  padding: 0 20px;
 }
 
 /* Container profil */
 
 .topbar-profile {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
-    padding: 5px 10px;
+  padding: 5px 10px;
 
-    background: #ffffff;
-    border-radius: 9px;
+  background: #ffffff;
+  border-radius: 9px;
 }
 
 /* Avatar */
 
 .topbar-profile .profile-avatar {
-    width: 24px;
-    height: 24px;
-    min-width: 24px;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: #0866f5;
-    color: #ffffff;
+  background: #0866f5;
+  color: #ffffff;
 
-    border-radius: 50%;
-    font-size: 12px;
+  border-radius: 50%;
+  font-size: 12px;
 }
 
 /* Informasi profil */
 
 .topbar-profile .profile-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 /* Nama pengguna */
 
 .topbar-profile .profile-name {
-    color: #0f172a;
+  color: #0f172a;
 
-    font-size: 10px;
-    font-weight: 700;
-    line-height: 1.4;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
 /* Role pengguna */
 
 .topbar-profile .profile-role {
-    display: flex;
-    align-items: center;
-    gap: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 
-    color: #64748b;
+  color: #64748b;
 
-    font-size: 9px;
-    font-weight: 400;
-    line-height: 1.4;
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.4;
 }
 
 /* Status aktif */
 
 .status-dot {
-    width: 6px;
-    height: 6px;
+  width: 6px;
+  height: 6px;
 
-    display: inline-block;
+  display: inline-block;
 
-    background: #22c55e;
-    border-radius: 50%;
+  background: #22c55e;
+  border-radius: 50%;
 }
-
 
 /* =========================================
    5. CONTENT BODY
 ========================================= */
 
 .content-body {
-    flex: 1;
-    min-width: 0;
+  flex: 1;
+  min-width: 0;
 
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 
-    padding: 0 20px 16px;
+  padding: 0 20px 16px;
 }
-
 
 /* =========================================
    6. BANNER DATASET
 ========================================= */
 
 .banner-card {
-    width: 100%;
-    height: 160px;
-    min-height: 160px;
+  width: 100%;
+  height: 160px;
+  min-height: 160px;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    padding: 18px 24px;
+  padding: 18px 24px;
 
-    background:
-        linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0.98) 0%,
-            rgba(255, 255, 255, 0.94) 34%,
-            rgba(255, 255, 255, 0.55) 57%,
-            rgba(255, 255, 255, 0.02) 100%
-        ),
-        url('../assets/images/banner.jpg');
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(255, 255, 255, 0.94) 34%,
+      rgba(255, 255, 255, 0.55) 57%,
+      rgba(255, 255, 255, 0.02) 100%
+    ),
+    url("../assets/images/banner.jpg");
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-    border: 1px solid #d8e5f3;
-    border-radius: 12px;
-    overflow: hidden;
+  border: 1px solid #d8e5f3;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 /* Pembungkus teks banner */
 
 .banner-text {
-    width: 100%;
-    max-width: 540px;
+  width: 100%;
+  max-width: 540px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 /* Label PENGELOLAAN */
 
 .banner-eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .banner-eyebrow span:first-child {
-    color: #0875f5;
+  color: #0875f5;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 1.5;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
 }
 
 /* Garis dekoratif */
 
 .banner-line {
-    width: 28px;
-    height: 2px;
+  width: 28px;
+  height: 2px;
 
-    display: inline-block;
+  display: inline-block;
 
-    background: #0875f5;
-    border-radius: 2px;
+  background: #0875f5;
+  border-radius: 2px;
 }
 
 /* Judul Data Dataset */
 
 .banner-text h1 {
-    margin: 0;
+  margin: 0;
 
-    color: #080808;
+  color: #080808;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 1.2;
+  font-family: "Poppins", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 /* Deskripsi banner */
 
 .banner-text p {
-    max-width: 520px;
+  max-width: 520px;
 
-    margin: 5px 0 0;
+  margin: 5px 0 0;
 
-    color: #111827;
+  color: #111827;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.45;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.45;
 }
-
 
 /* =========================================
    7. FILTER & ACTION BAR
 ========================================= */
 
 .filter-action-bar {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 /* Kotak pencarian */
 
 .search-box {
-    height: 30px;
-    flex: 1;
-    min-width: 130px;
+  height: 30px;
+  flex: 1;
+  min-width: 130px;
 
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
-    padding: 0 11px;
+  padding: 0 11px;
 
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 7px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
 }
 
 .search-box i {
-    color: #64748b;
-    font-size: 11px;
+  color: #64748b;
+  font-size: 11px;
 }
 
 .search-box input {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    padding: 0;
+  padding: 0;
 
-    background: transparent;
-    border: none;
-    outline: none;
+  background: transparent;
+  border: none;
+  outline: none;
 
-    color: #334155;
+  color: #334155;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 10px;
+  font-family: "Poppins", sans-serif;
+  font-size: 10px;
 }
 
 .search-box input::placeholder {
-    color: #94a3b8;
+  color: #94a3b8;
 }
 
 /* Kelompok filter */
 
 .filter-group {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
 /* Dropdown filter */
 
 .filter-select {
-    height: 30px;
-    min-width: 0;
+  height: 30px;
+  min-width: 0;
 
-    padding: 0 8px;
+  padding: 0 8px;
 
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 7px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
 
-    color: #334155;
+  color: #334155;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 9px;
+  font-family: "Poppins", sans-serif;
+  font-size: 9px;
 
-    outline: none;
-    cursor: pointer;
+  outline: none;
+  cursor: pointer;
 }
 
 /* Tombol Tambah Data */
 
 .btn-primary {
-    height: 30px;
+  height: 30px;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 
-    padding: 0 13px;
+  padding: 0 13px;
 
-    background: #0866f5;
-    border: none;
-    border-radius: 7px;
+  background: #0866f5;
+  border: none;
+  border-radius: 7px;
 
-    color: #ffffff;
+  color: #ffffff;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
 
-    white-space: nowrap;
-    cursor: pointer;
+  white-space: nowrap;
+  cursor: pointer;
 
-    transition: background 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .btn-primary:hover {
-    background: #0052cc;
+  background: #0052cc;
 }
 
 .btn-primary i {
-    font-size: 11px;
+  font-size: 11px;
 }
-
 
 /* =========================================
    8. TABLE CARD
 ========================================= */
 
 .table-card {
-    width: 100%;
-    min-width: 0;
+  width: 100%;
+  min-width: 0;
 
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 11px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 11px;
 
-    overflow-x: auto;
+  overflow-x: auto;
 }
 
 /* Tabel dataset */
 
 .data-table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 
-    color: #1e293b;
+  color: #1e293b;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 10px;
+  font-family: "Poppins", sans-serif;
+  font-size: 10px;
 
-    text-align: left;
+  text-align: left;
 }
 
 /* Header tabel */
 
 .data-table thead {
-    background: #d6eaff;
+  background: #d6eaff;
 }
 
 .data-table thead th {
-    height: 29px;
+  height: 29px;
 
-    padding: 0 9px;
+  padding: 0 9px;
 
-    color: #172b45;
+  color: #172b45;
 
-    font-size: 9px;
-    font-weight: 700;
+  font-size: 9px;
+  font-weight: 700;
 
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 /* Baris tabel */
 
 .data-table tbody tr {
-    height: 27px;
-    border-bottom: 1px solid #edf2f7;
+  height: 27px;
+  border-bottom: 1px solid #edf2f7;
 }
 
 .data-table tbody tr:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 /* Sel tabel */
 
 .data-table tbody td {
-    padding: 4px 9px;
+  padding: 4px 9px;
 
-    color: #26364e;
+  color: #26364e;
 
-    font-size: 10px;
-    font-weight: 400;
+  font-size: 10px;
+  font-weight: 400;
 
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 /* Hover baris */
 
 .data-table tbody tr:hover {
-    background: #f8fbff;
+  background: #f8fbff;
 }
 
 /* Perataan kolom nomor */
 
 .data-table th:first-child,
 .data-table td:first-child {
-    width: 36px;
-    text-align: center;
+  width: 36px;
+  text-align: center;
 }
 
 /* Perataan kolom produksi */
 
 .data-table th:nth-child(6),
 .data-table td:nth-child(6) {
-    text-align: center;
+  text-align: center;
 }
 
 /* Perataan kolom kategori */
 
 .data-table th:nth-child(7),
 .data-table td:nth-child(7) {
-    text-align: center;
+  text-align: center;
 }
 
 /* Perataan kolom aksi */
 
 .data-table th:last-child,
 .data-table td:last-child {
-    width: 75px;
-    text-align: center;
+  width: 75px;
+  text-align: center;
 }
-
 
 /* =========================================
    9. BADGE KATEGORI
 ========================================= */
 
 .badge {
-    min-width: 58px;
+  min-width: 58px;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    padding: 2px 9px;
+  padding: 2px 9px;
 
-    border-radius: 20px;
+  border-radius: 20px;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 9px;
-    font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
 
-    line-height: 1.3;
+  line-height: 1.3;
 }
 
 .badge-tinggi {
-    background: #d4f4e2;
-    color: #07834e;
+  background: #d4f4e2;
+  color: #07834e;
 }
 
 .badge-sedang {
-    background: #ffedcc;
-    color: #b96b00;
+  background: #ffedcc;
+  color: #b96b00;
 }
 
 .badge-rendah {
-    background: #ffe1e1;
-    color: #d32323;
+  background: #ffe1e1;
+  color: #d32323;
 }
-
 
 /* =========================================
    10. ACTION BUTTON
 ========================================= */
 
 .action-btn {
-    width: 19px;
-    height: 22px;
+  width: 19px;
+  height: 22px;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    padding: 0;
+  padding: 0;
 
-    background: transparent;
-    border: none;
+  background: transparent;
+  border: none;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .action-btn i {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .btn-edit {
-    color: #0866f5;
+  color: #0866f5;
 }
 
 .btn-delete {
-    color: #dc2626;
+  color: #dc2626;
 }
 
 .btn-edit:hover {
-    color: #004bb8;
+  color: #004bb8;
 }
 
 .btn-delete:hover {
-    color: #991b1b;
+  color: #991b1b;
 }
-
 
 /* =========================================
    11. PAGINATION
 ========================================= */
 
 .pagination-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
 
-    padding: 10px 12px 12px;
+  padding: 10px 12px 12px;
 }
 
 /* Tombol halaman */
 
 .page-btn {
-    width: 21px;
-    height: 21px;
+  width: 21px;
+  height: 21px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    padding: 0;
+  padding: 0;
 
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
 
-    color: #334155;
+  color: #334155;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 9px;
+  font-family: "Poppins", sans-serif;
+  font-size: 9px;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .page-btn i {
-    font-size: 9px;
+  font-size: 9px;
 }
 
 /* Halaman aktif */
 
 .page-btn.active {
-    background: #0866f5;
-    border-color: #0866f5;
-    color: #ffffff;
+  background: #0866f5;
+  border-color: #0866f5;
+  color: #ffffff;
 }
 
 .page-btn:hover:not(.active) {
-    background: #eff6ff;
+  background: #eff6ff;
 }
-
 
 /* =========================================
    12. FOOTER COPYRIGHT
 ========================================= */
 
 .footer-copyright {
-    width: 100%;
+  width: 100%;
 
-    padding: 12px 20px 15px;
-    margin-top: auto;
+  padding: 12px 20px 15px;
+  margin-top: auto;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    text-align: center;
-    color: #94a3b8;
+  text-align: center;
+  color: #94a3b8;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 9px;
-    font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  font-size: 9px;
+  font-weight: 400;
 }
 
 .footer-copyright p {
-    margin: 0;
+  margin: 0;
 }
-
 
 /* =========================================
    13. MODAL FORM
 ========================================= */
 
 .modal-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 999;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
 
-    display: none;
-    align-items: center;
-    justify-content: center;
+  display: none;
+  align-items: center;
+  justify-content: center;
 
-    padding: 20px;
+  padding: 20px;
 
-    background: rgba(15, 23, 42, 0.48);
-    backdrop-filter: blur(3px);
+  background: rgba(15, 23, 42, 0.48);
+  backdrop-filter: blur(3px);
 }
 
 /* Kotak modal */
 
 .modal-card {
-    width: 100%;
-    max-width: 420px;
-    max-height: 90vh;
+  width: 100%;
+  max-width: 420px;
+  max-height: 90vh;
 
-    overflow-y: auto;
+  overflow-y: auto;
 
-    background: #ffffff;
-    border-radius: 13px;
+  background: #ffffff;
+  border-radius: 13px;
 
-    box-shadow: 0 15px 45px rgba(15, 23, 42, 0.18);
+  box-shadow: 0 15px 45px rgba(15, 23, 42, 0.18);
 }
 
 /* Header modal */
 
 .modal-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    padding: 17px 20px;
+  padding: 17px 20px;
 
-    border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .modal-header h3 {
-    margin: 0;
+  margin: 0;
 
-    color: #0f172a;
+  color: #0f172a;
 
-    font-size: 16px;
-    font-weight: 700;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 /* Tombol tutup */
 
 .modal-close {
-    width: 28px;
-    height: 28px;
+  width: 28px;
+  height: 28px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: #f1f5f9;
-    border: none;
-    border-radius: 7px;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 7px;
 
-    color: #64748b;
-    cursor: pointer;
+  color: #64748b;
+  cursor: pointer;
 }
 
 .modal-close:hover {
-    background: #e2e8f0;
+  background: #e2e8f0;
 }
 
 /* Isi modal */
 
 .modal-body {
-    padding: 20px;
+  padding: 20px;
 }
 
 /* Kelompok form */
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 
-    margin-bottom: 14px;
+  margin-bottom: 14px;
 }
 
 /* Label form */
 
 .form-group label {
-    color: #334155;
+  color: #334155;
 
-    font-size: 11px;
-    font-weight: 600;
+  font-size: 11px;
+  font-weight: 600;
 }
 
 /* Input form */
 
 .form-group input {
-    width: 100%;
-    height: 36px;
+  width: 100%;
+  height: 36px;
 
-    padding: 0 11px;
+  padding: 0 11px;
 
-    background: #ffffff;
-    border: 1px solid #cbd5e1;
-    border-radius: 7px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
 
-    color: #1e293b;
+  color: #1e293b;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
 
-    outline: none;
+  outline: none;
 }
 
 .form-group input:focus {
-    border-color: #0866f5;
-    box-shadow: 0 0 0 2px rgba(8, 102, 245, 0.10);
+  border-color: #0866f5;
+  box-shadow: 0 0 0 2px rgba(8, 102, 245, 0.1);
 }
 
 .form-group input::placeholder {
-    color: #94a3b8;
+  color: #94a3b8;
 }
 
 /* Tombol modal */
 
 .modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
 
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 /* Tombol batal */
 
 .btn-secondary {
-    height: 34px;
+  height: 34px;
 
-    padding: 0 14px;
+  padding: 0 14px;
 
-    background: #f1f5f9;
-    border: 1px solid #e2e8f0;
-    border-radius: 7px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
 
-    color: #475569;
+  color: #475569;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .btn-secondary:hover {
-    background: #e2e8f0;
+  background: #e2e8f0;
 }
 
 /* Tombol simpan */
 
 .modal-actions .btn-primary {
-    height: 34px;
+  height: 34px;
 }
 
+/* ==========================================================================
+   FITUR BARU: TABS & CSV UPLOAD (KHUSUS HALAMAN DATASET)
+   ========================================================================== */
+
+.modal-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 12px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  transition: all 0.3s;
+  font-family: "Poppins", sans-serif;
+}
+
+.tab-btn:hover {
+  color: #0875f5;
+}
+.tab-btn.active {
+  color: #0875f5;
+  border-bottom-color: #0875f5;
+}
+
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+
+.csv-upload-area {
+  text-align: center;
+  padding: 30px 20px;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  background: #f9fafb;
+}
+
+.csv-icon {
+  font-size: 48px;
+  color: #0875f5;
+  margin-bottom: 15px;
+}
+.csv-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1f2937;
+  font-family: "Poppins", sans-serif;
+}
+.csv-desc {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.btn-csv-upload {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #0875f5;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+  font-family: "Poppins", sans-serif;
+}
+.btn-csv-upload:hover {
+  background: #065bb8;
+}
+
+.csv-preview {
+  margin-top: 15px;
+  padding: 15px;
+  background: #e0f2fe;
+  border-radius: 6px;
+}
+.csv-preview p {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #0369a1;
+  font-family: "Poppins", sans-serif;
+}
+
+.btn-process-csv {
+  padding: 8px 16px;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+}
+.btn-process-csv:hover {
+  background: #059669;
+}
 
 /* =========================================
    14. RESPONSIVE TABLET
 ========================================= */
 
 @media (max-width: 1024px) {
+  .sidebar {
+    width: 175px;
+    min-width: 175px;
+  }
 
-    .sidebar {
-        width: 175px;
-        min-width: 175px;
-    }
+  .content-body {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 
-    .content-body {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
+  .filter-action-bar {
+    flex-wrap: wrap;
+  }
 
-    .filter-action-bar {
-        flex-wrap: wrap;
-    }
+  .search-box {
+    flex-basis: 100%;
+  }
 
-    .search-box {
-        flex-basis: 100%;
-    }
+  .filter-group {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
 
-    .filter-group {
-        width: 100%;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    }
+  .filter-select {
+    flex: 1;
+  }
 
-    .filter-select {
-        flex: 1;
-    }
-
-    .data-table {
-        min-width: 750px;
-    }
+  .data-table {
+    min-width: 750px;
+  }
 }
-
 
 /* =========================================
    15. RESPONSIVE MOBILE
 ========================================= */
 
 @media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+    overflow: visible;
+  }
 
-    .app-container {
-        flex-direction: column;
-        overflow: visible;
-    }
+  .sidebar {
+    width: 100%;
+    min-width: 0;
+    min-height: auto;
 
-    .sidebar {
-        width: 100%;
-        min-width: 0;
-        min-height: auto;
+    padding: 12px;
+  }
 
-        padding: 12px;
-    }
+  .sidebar-brand {
+    margin-bottom: 14px;
+  }
 
-    .sidebar-brand {
-        margin-bottom: 14px;
-    }
+  .brand-logo-img {
+    width: 85px;
+  }
 
-    .brand-logo-img {
-        width: 85px;
-    }
+  .sidebar-menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-    .sidebar-menu {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  .sidebar-menu li a {
+    padding: 9px 10px;
+  }
 
-    .sidebar-menu li a {
-        padding: 9px 10px;
-    }
+  .sidebar-footer {
+    margin-top: 12px;
+  }
 
-    .sidebar-footer {
-        margin-top: 12px;
-    }
+  .main-content {
+    min-height: auto;
+  }
 
-    .main-content {
-        min-height: auto;
-    }
+  .topbar {
+    padding: 0 14px;
+  }
 
-    .topbar {
-        padding: 0 14px;
-    }
+  .content-body {
+    padding: 0 14px 14px;
+    gap: 12px;
+  }
 
-    .content-body {
-        padding: 0 14px 14px;
-        gap: 12px;
-    }
+  .banner-card {
+    min-height: 135px;
+    padding: 16px;
 
-    .banner-card {
-        min-height: 135px;
-        padding: 16px;
+    background-position: center;
+  }
 
-        background-position: center;
-    }
+  .banner-text h1 {
+    font-size: 25px;
+  }
 
-    .banner-text h1 {
-        font-size: 25px;
-    }
+  .banner-eyebrow span:first-child {
+    font-size: 13px;
+  }
 
-    .banner-eyebrow span:first-child {
-        font-size: 13px;
-    }
+  .banner-text p {
+    font-size: 12px;
+  }
 
-    .banner-text p {
-        font-size: 12px;
-    }
+  .filter-group {
+    gap: 6px;
+  }
 
-    .filter-group {
-        gap: 6px;
-    }
+  .filter-select {
+    flex: 1 1 45%;
+  }
 
-    .filter-select {
-        flex: 1 1 45%;
-    }
+  .btn-primary {
+    flex: 1 1 100%;
+  }
 
-    .btn-primary {
-        flex: 1 1 100%;
-    }
+  .table-card {
+    overflow-x: auto;
+  }
 
-    .table-card {
-        overflow-x: auto;
-    }
+  .data-table {
+    min-width: 750px;
+  }
 
-    .data-table {
-        min-width: 750px;
-    }
-
-    .footer-copyright {
-        padding: 14px;
-    }
+  .footer-copyright {
+    padding: 14px;
+  }
 }
-
 
 /* =========================================
    16. RESPONSIVE SMALL MOBILE
 ========================================= */
 
 @media (max-width: 480px) {
+  .banner-card {
+    min-height: 125px;
+  }
 
-    .banner-card {
-        min-height: 125px;
-    }
+  .banner-text h1 {
+    font-size: 22px;
+  }
 
-    .banner-text h1 {
-        font-size: 22px;
-    }
+  .banner-text p {
+    font-size: 11px;
+  }
 
-    .banner-text p {
-        font-size: 11px;
-    }
+  .filter-select {
+    flex-basis: 100%;
+  }
 
-    .filter-select {
-        flex-basis: 100%;
-    }
-
-    .modal-card {
-        max-width: 100%;
-    }
+  .modal-card {
+    max-width: 100%;
+  }
 }
-
-
-
 
 /* =====================================================
    SIPIKA - HALAMAN EVALUASI MODEL
    CSS KHUSUS evaluasi-model.html
 ===================================================== */
 
-
 /* =====================================================
    1. FONT GLOBAL HALAMAN
 ===================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
 body {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .main-content,
 .main-content * {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .main-content i[class*="fa-"] {
-    font-family: "Font Awesome 6 Free" !important;
-    font-style: normal;
+  font-family: "Font Awesome 6 Free" !important;
+  font-style: normal;
 }
 
 .main-content i.fa-solid {
-    font-weight: 900 !important;
+  font-weight: 900 !important;
 }
-
 
 /* =====================================================
    2. LAYOUT UTAMA
 ===================================================== */
 
 .app-container {
-    display: flex;
-    min-height: 100vh;
-    width: 100%;
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
 }
 
 .main-content {
-    flex: 1;
-    min-width: 0;
-    min-height: 100vh;
+  flex: 1;
+  min-width: 0;
+  min-height: 100vh;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    background: #edf3fa;
+  background: #edf3fa;
 }
 
 /* Konten utama harus tersusun vertikal */
 .content-body {
-    width: 100%;
-    flex: 1;
-    min-width: 0;
+  width: 100%;
+  flex: 1;
+  min-width: 0;
 
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 
-    gap: 16px;
+  gap: 16px;
 
-    padding: 0 20px 12px;
+  padding: 0 20px 12px;
 
-    background: #edf3fa;
+  background: #edf3fa;
 }
-
 
 /* =====================================================
    3. SIDEBAR
@@ -2288,20 +2359,14 @@ body {
 ===================================================== */
 
 .sidebar {
+  background-image:
+    linear-gradient(rgba(0, 22, 48, 0.92), rgba(0, 14, 33, 0.95)),
+    url("../assets/images/sidebar.jpeg") !important;
 
-    background-image:
-        linear-gradient(
-            rgba(0, 22, 48, 0.92),
-            rgba(0, 14, 33, 0.95)
-        ),
-        url('../assets/images/sidebar.jpeg') !important;
-
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
-
 
 /* =====================================================
    4. TOPBAR
@@ -2309,148 +2374,144 @@ body {
 ===================================================== */
 
 .topbar {
-    width: 100%;
-    min-height: 56px;
+  width: 100%;
+  min-height: 56px;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 
-    padding: 0 20px;
+  padding: 0 20px;
 }
 
 .topbar-profile {
-    display: flex;
-    align-items: center;
-    gap: 9px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
 
-    padding: 6px 12px;
+  padding: 6px 12px;
 
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 30px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 30px;
 
-    box-shadow: 0 2px 5px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 2px 5px rgba(15, 23, 42, 0.05);
 }
 
 .profile-avatar {
-    width: 30px;
-    height: 30px;
-    min-width: 30px;
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: #0866f5;
-    color: #ffffff;
+  background: #0866f5;
+  color: #ffffff;
 
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .profile-avatar i {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .profile-info {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
 }
 
 .profile-name {
-    color: #0f172a;
-    font-size: 11px;
-    font-weight: 700;
+  color: #0f172a;
+  font-size: 11px;
+  font-weight: 700;
 }
 
 .profile-role {
-    color: #64748b;
-    font-size: 10px;
-    font-weight: 400;
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 400;
 }
 
 .status-dot {
-    display: inline-block;
+  display: inline-block;
 
-    width: 6px;
-    height: 6px;
+  width: 6px;
+  height: 6px;
 
-    margin-right: 3px;
+  margin-right: 3px;
 
-    background: #22c55e;
-    border-radius: 50%;
+  background: #22c55e;
+  border-radius: 50%;
 }
-
 
 /* =====================================================
    5. BANNER EVALUASI
 ===================================================== */
 
 .banner-card {
-    position: relative;
+  position: relative;
 
-    width: 100%;
-    min-width: 0;
-    min-height: 120px;
+  width: 100%;
+  min-width: 0;
+  min-height: 120px;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    padding: 16px 24px;
+  padding: 16px 24px;
 
-    background-image:
-        linear-gradient(
-            90deg,
-            #ffffff 0%,
-            rgba(255, 255, 255, 0.97) 32%,
-            rgba(255, 255, 255, 0.75) 45%,
-            rgba(255, 255, 255, 0) 68%
-        ),
-        url('../assets/images/banner.jpg') !important;
+  background-image:
+    linear-gradient(
+      90deg,
+      #ffffff 0%,
+      rgba(255, 255, 255, 0.97) 32%,
+      rgba(255, 255, 255, 0.75) 45%,
+      rgba(255, 255, 255, 0) 68%
+    ),
+    url("../assets/images/banner.jpg") !important;
 
-    background-size: cover !important;
-    background-position: center right !important;
-    background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center right !important;
+  background-repeat: no-repeat !important;
 
-    border: 1px solid #dce6f1;
-    border-radius: 12px;
+  border: 1px solid #dce6f1;
+  border-radius: 12px;
 
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .banner-text {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 
-    width: 100%;
-    max-width: 550px;
+  width: 100%;
+  max-width: 550px;
 }
 
 .banner-text h1 {
+  margin: 0;
 
-    margin: 0;
+  color: #000000;
 
-    color: #000000;
-
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 1.25;
-
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.25;
 }
 
 .banner-text p {
-    max-width: 540px;
+  max-width: 540px;
 
-    margin: 5px 0 0;
+  margin: 5px 0 0;
 
-    color: #173b65;
+  color: #173b65;
 
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 1.5;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
 }
-
 
 /* =====================================================
    6. GRID HASIL EVALUASI DAN AKURASI
@@ -2458,195 +2519,191 @@ body {
 ===================================================== */
 
 .evaluation-grid {
-    width: 100%;
-    min-width: 0;
+  width: 100%;
+  min-width: 0;
 
-    display: grid !important;
+  display: grid !important;
 
-    grid-template-columns: minmax(0, 2fr) minmax(250px, 1fr) !important;
+  grid-template-columns: minmax(0, 2fr) minmax(250px, 1fr) !important;
 
-    align-items: stretch;
-    gap: 16px;
+  align-items: stretch;
+  gap: 16px;
 
-    margin: 0 !important;
-    padding: 0;
+  margin: 0 !important;
+  padding: 0;
 }
-
 
 /* =====================================================
    7. CARD HASIL EVALUASI DAN AKURASI
 ===================================================== */
 
 .eval-card {
-    min-width: 0;
-    min-height: 200px;
+  min-width: 0;
+  min-height: 200px;
 
-    padding: 14px 15px;
+  padding: 14px 15px;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    background: #ffffff;
+  background: #ffffff;
 
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
 
-    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
 }
 
 /* Header card hasil evaluasi */
 
 .eval-card-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-    margin-bottom: 12px;
+  margin-bottom: 12px;
 }
 
 /* Lingkaran ikon */
 
 .eval-icon-box,
 .matrix-icon-box {
-    width: 34px;
-    height: 34px;
-    min-width: 34px;
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    color: #2563eb;
-    background: #e8f1ff;
+  color: #2563eb;
+  background: #e8f1ff;
 
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .eval-icon-box i,
 .matrix-icon-box i {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 /* Judul card */
 
 .eval-card-header h3,
 .matrix-header h3 {
-    margin: 0;
+  margin: 0;
 
-    color: #0f172a;
+  color: #0f172a;
 
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1.4;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
 /* Deskripsi card */
 
 .eval-card-header p,
 .matrix-header p {
-    margin: 2px 0 0;
+  margin: 2px 0 0;
 
-    color: #64748b;
+  color: #64748b;
 
-    font-size: 9px;
-    font-weight: 400;
-    line-height: 1.5;
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.5;
 }
-
 
 /* =====================================================
    8. TABEL HASIL EVALUASI
 ===================================================== */
 
 .data-table {
-    width: 100%;
+  width: 100%;
 
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 
-    text-align: center;
+  text-align: center;
 }
 
 /* Header tabel */
 
 .data-table thead th {
-    height: 29px;
+  height: 29px;
 
-    padding: 6px 8px;
+  padding: 6px 8px;
 
-    background: #cce5ff;
-    color: #173b65;
+  background: #cce5ff;
+  color: #173b65;
 
-    font-size: 10px;
-    font-weight: 700;
+  font-size: 10px;
+  font-weight: 700;
 
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 /* Sudut tabel */
 
 .data-table thead th:first-child {
-    border-top-left-radius: 7px;
+  border-top-left-radius: 7px;
 }
 
 .data-table thead th:last-child {
-    border-top-right-radius: 7px;
+  border-top-right-radius: 7px;
 }
 
 /* Isi tabel */
 
 .data-table tbody td {
-    height: 32px;
+  height: 32px;
 
-    padding: 5px 8px;
+  padding: 5px 8px;
 
-    color: #263b59;
+  color: #263b59;
 
-    font-size: 10px;
-    font-weight: 400;
+  font-size: 10px;
+  font-weight: 400;
 
-    border-bottom: 1px solid #edf2f7;
+  border-bottom: 1px solid #edf2f7;
 }
 
 .data-table tbody tr:last-child td {
-    border-bottom: none;
+  border-bottom: none;
 }
-
 
 /* =====================================================
    9. BADGE KATEGORI
 ===================================================== */
 
 .badge {
-    min-width: 58px;
+  min-width: 58px;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    padding: 3px 9px;
+  padding: 3px 9px;
 
-    border-radius: 20px;
+  border-radius: 20px;
 
-    font-size: 9px;
-    font-weight: 600;
+  font-size: 9px;
+  font-weight: 600;
 }
 
 .badge-rendah {
-    background: #ffe1e1;
-    color: #c62828;
+  background: #ffe1e1;
+  color: #c62828;
 }
 
 .badge-sedang {
-    background: #fff0d1;
-    color: #ad6500;
+  background: #fff0d1;
+  color: #ad6500;
 }
 
 .badge-tinggi {
-    background: #d1f5e3;
-    color: #07865b;
+  background: #d1f5e3;
+  color: #07865b;
 }
-
 
 /* =====================================================
    10. CARD AKURASI MODEL
@@ -2654,49 +2711,49 @@ body {
 ===================================================== */
 
 .evaluation-grid > .eval-card:nth-child(2) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    padding: 16px;
+  padding: 16px;
 }
 
 /* Ikon, angka, dan keterangan */
 
 .accuracy-display {
-    width: 100%;
-    max-width: 250px;
-    min-height: 140px;
+  width: 100%;
+  max-width: 250px;
+  min-height: 140px;
 
-    display: flex;
-    flex-direction: row !important;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: flex-start;
 
-    gap: 12px;
+  gap: 12px;
 
-    padding: 8px;
-    text-align: left !important;
+  padding: 8px;
+  text-align: left !important;
 }
 
 /* Ikon akurasi */
 
 .accuracy-icon {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    margin: 0;
+  margin: 0;
 
-    background: #dceaff;
-    color: #1674ff;
+  background: #dceaff;
+  color: #1674ff;
 
-    border-radius: 50%;
-    font-size: 21px;
+  border-radius: 50%;
+  font-size: 21px;
 }
 
 /* Pembungkus informasi akurasi
@@ -2704,43 +2761,42 @@ body {
    sehingga setiap elemen diatur melalui selector. */
 
 .accuracy-display > div:not(.accuracy-icon) {
-    text-align: left;
+  text-align: left;
 }
 
 .accuracy-display > div[style] {
-    margin: 0 0 3px !important;
+  margin: 0 0 3px !important;
 
-    color: #0f172a !important;
+  color: #0f172a !important;
 
-    font-size: 11px !important;
-    font-weight: 700 !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
 }
 
 /* Angka akurasi */
 
 .accuracy-value {
-    margin: 0 0 5px;
+  margin: 0 0 5px;
 
-    color: #102d53;
+  color: #102d53;
 
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1.2;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 /* Deskripsi akurasi */
 
 .accuracy-desc {
-    width: 100%;
-    max-width: 180px;
+  width: 100%;
+  max-width: 180px;
 
-    color: #64748b;
+  color: #64748b;
 
-    font-size: 9px;
-    font-weight: 400;
-    line-height: 1.5;
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.5;
 }
-
 
 /* =====================================================
    11. CARD CONFUSION MATRIX
@@ -2748,232 +2804,228 @@ body {
 ===================================================== */
 
 .matrix-card {
-    position: relative;
+  position: relative;
 
-    width: 100%;
-    min-width: 0;
-    min-height: 218px;
+  width: 100%;
+  min-width: 0;
+  min-height: 218px;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    padding: 14px 15px;
+  padding: 14px 15px;
 
-    background: #ffffff;
+  background: #ffffff;
 
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
 
-    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
 }
 
 /* Header confusion matrix */
 
 .matrix-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 /* Ikon matrix */
 
 .matrix-icon-box {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
-
 
 /* =====================================================
    12. SUSUNAN TABEL CONFUSION MATRIX
 ===================================================== */
 
 .matrix-table-wrapper {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    gap: 14px;
+  gap: 14px;
 
-    margin: 5px auto 0;
+  margin: 5px auto 0;
 }
 
 /* Label aktual */
 
 .axis-label-y {
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
 
-    color: #334155;
+  color: #334155;
 
-    font-size: 9px;
-    font-weight: 700;
+  font-size: 9px;
+  font-weight: 700;
 }
 
 /* Pembungkus tabel dan judul */
 
 .matrix-table-wrapper > div:nth-child(2) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
 
 /* =====================================================
    13. TABEL CONFUSION MATRIX
 ===================================================== */
 
 .matrix-table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 
-    text-align: center;
-    font-size: 9px;
+  text-align: center;
+  font-size: 9px;
 }
 
 /* Ukuran sel */
 
 .matrix-table th,
 .matrix-table td {
-    min-width: 82px;
-    height: 34px;
+  min-width: 82px;
+  height: 34px;
 
-    padding: 6px 10px;
+  padding: 6px 10px;
 
-    border: 1px solid #ffffff;
+  border: 1px solid #ffffff;
 }
 
 /* Header tabel */
 
 .matrix-table thead th {
-    background: #f1f6fd;
+  background: #f1f6fd;
 
-    color: #334155;
+  color: #334155;
 
-    font-size: 9px;
-    font-weight: 600;
+  font-size: 9px;
+  font-weight: 600;
 }
 
 /* Sel kosong */
 
 .matrix-table thead tr:first-child th:first-child {
-    background: transparent !important;
-    border: none !important;
+  background: transparent !important;
+  border: none !important;
 }
 
 /* Header prediksi */
 
 .matrix-table thead tr:first-child th[colspan="3"] {
-    background: #ffffff;
-    border-bottom: 2px solid #e2e8f0 !important;
+  background: #ffffff;
+  border-bottom: 2px solid #e2e8f0 !important;
 }
 
 /* Label baris */
 
 .matrix-table tbody th {
-    background: #ffffff;
+  background: #ffffff;
 
-    color: #475569;
+  color: #475569;
 
-    font-size: 9px;
-    font-weight: 500;
+  font-size: 9px;
+  font-weight: 500;
 
-    text-align: right;
+  text-align: right;
 }
 
 /* Sel angka */
 
 .matrix-table tbody td {
-    background: #eff6ff;
+  background: #eff6ff;
 
-    color: #1e293b;
+  color: #1e293b;
 
-    font-size: 9px;
-    font-weight: 500;
+  font-size: 9px;
+  font-weight: 500;
 }
 
 /* Nilai 150 - biru sedang */
 
 .matrix-table tbody tr:nth-child(1) td:nth-child(2) {
-    background: #2874bd;
-    color: #ffffff;
-    font-weight: 700;
+  background: #2874bd;
+  color: #ffffff;
+  font-weight: 700;
 }
 
 /* Nilai 178 - biru tua */
 
 .matrix-table tbody tr:nth-child(2) td:nth-child(3) {
-    background: #124b8b;
-    color: #ffffff;
-    font-weight: 700;
+  background: #124b8b;
+  color: #ffffff;
+  font-weight: 700;
 }
 
 /* Nilai 115 - biru muda */
 
 .matrix-table tbody tr:nth-child(3) td:nth-child(4) {
-    background: #4b9be5;
-    color: #ffffff;
-    font-weight: 700;
+  background: #4b9be5;
+  color: #ffffff;
+  font-weight: 700;
 }
 
 /* Judul Prediksi di bawah tabel */
 
 .matrix-table-wrapper > div:nth-child(2) > div[style] {
-    margin-top: 8px !important;
+  margin-top: 8px !important;
 
-    color: #334155 !important;
+  color: #334155 !important;
 
-    font-size: 9px !important;
-    font-weight: 700 !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
 }
-
 
 /* =====================================================
    14. LEGEND GRADASI WARNA
 ===================================================== */
 
 .matrix-table-wrapper > div[style*="display: flex"] {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
-    margin-left: 12px !important;
+  margin-left: 12px !important;
 }
 
 /* Bar gradasi */
 
 .legend-bar {
-    width: 10px;
-    height: 90px;
+  width: 10px;
+  height: 90px;
 
-    background: linear-gradient(
-        to bottom,
-        #124b8b 0%,
-        #2874bd 45%,
-        #4b9be5 70%,
-        #dbeafe 100%
-    );
+  background: linear-gradient(
+    to bottom,
+    #124b8b 0%,
+    #2874bd 45%,
+    #4b9be5 70%,
+    #dbeafe 100%
+  );
 
-    border-radius: 2px;
+  border-radius: 2px;
 }
 
 /* Angka legend */
 
 .matrix-legend {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
-    gap: 9px;
+  gap: 9px;
 
-    margin-left: 0 !important;
+  margin-left: 0 !important;
 
-    color: #64748b;
-    font-size: 8px;
+  color: #64748b;
+  font-size: 8px;
 }
-
 
 /* =====================================================
    15. FOOTER
@@ -2981,131 +3033,120 @@ body {
 ===================================================== */
 
 .footer-copyright {
-    width: 100%;
-    flex-shrink: 0;
+  width: 100%;
+  flex-shrink: 0;
 
-    margin-top: auto;
-    padding: 12px 20px 15px;
+  margin-top: auto;
+  padding: 12px 20px 15px;
 
-    color: #94a3b8;
+  color: #94a3b8;
 
-    font-size: 9px;
-    font-weight: 400;
+  font-size: 9px;
+  font-weight: 400;
 
-    text-align: center;
+  text-align: center;
 }
 
 .footer-copyright p {
-    margin: 0;
+  margin: 0;
 }
-
 
 /* =====================================================
    16. RESPONSIVE TABLET
 ===================================================== */
 
 @media (max-width: 1024px) {
+  .content-body {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 
-    .content-body {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
+  .evaluation-grid {
+    grid-template-columns: minmax(0, 1.6fr) minmax(220px, 1fr) !important;
+  }
 
-    .evaluation-grid {
-        grid-template-columns: minmax(0, 1.6fr) minmax(220px, 1fr) !important;
-    }
+  .data-table {
+    font-size: 9px;
+  }
 
-    .data-table {
-        font-size: 9px;
-    }
-
-    .matrix-table th,
-    .matrix-table td {
-        min-width: 65px;
-    }
-
+  .matrix-table th,
+  .matrix-table td {
+    min-width: 65px;
+  }
 }
-
 
 /* =====================================================
    17. RESPONSIVE MOBILE
 ===================================================== */
 
 @media (max-width: 768px) {
+  .content-body {
+    padding: 0 12px 12px;
+    gap: 12px;
+  }
 
-    .content-body {
-        padding: 0 12px 12px;
-        gap: 12px;
-    }
+  .banner-card {
+    min-height: 125px;
+    padding: 15px;
 
-    .banner-card {
-        min-height: 125px;
-        padding: 15px;
+    background-position: center right !important;
+  }
 
-        background-position: center right !important;
-    }
+  .banner-text h2 {
+    font-size: 22px;
+  }
 
-    .banner-text h2 {
-        font-size: 22px;
-    }
+  .banner-text p {
+    font-size: 11px;
+  }
 
-    .banner-text p {
-        font-size: 11px;
-    }
+  .evaluation-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
 
-    .evaluation-grid {
-        grid-template-columns: 1fr !important;
-        gap: 12px;
-    }
+  .eval-card {
+    min-height: auto;
+  }
 
-    .eval-card {
-        min-height: auto;
-    }
+  .evaluation-grid > .eval-card:nth-child(2) {
+    min-height: 150px;
+  }
 
-    .evaluation-grid > .eval-card:nth-child(2) {
-        min-height: 150px;
-    }
+  .matrix-card {
+    min-height: 200px;
+    overflow-x: auto;
+  }
 
-    .matrix-card {
-        min-height: 200px;
-        overflow-x: auto;
-    }
+  .matrix-table-wrapper {
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
 
-    .matrix-table-wrapper {
-        justify-content: flex-start;
-        overflow-x: auto;
-    }
-
-    .footer-copyright {
-        padding: 14px;
-    }
-
+  .footer-copyright {
+    padding: 14px;
+  }
 }
-
 
 /* =====================================================
    18. RESPONSIVE SMALL MOBILE
 ===================================================== */
 
 @media (max-width: 480px) {
+  .banner-text h2 {
+    font-size: 19px;
+  }
 
-    .banner-text h2 {
-        font-size: 19px;
-    }
+  .banner-text p {
+    font-size: 10px;
+  }
 
-    .banner-text p {
-        font-size: 10px;
-    }
-
-    .matrix-table th,
-    .matrix-table td {
-        min-width: 55px;
-        padding: 5px;
-    }
-
+  .matrix-table th,
+  .matrix-table td {
+    min-width: 55px;
+    padding: 5px;
+  }
 }
-
-
 
 /* =====================================================
    HALAMAN RIWAYAT PREDIKSI SIPIKA
@@ -3114,381 +3155,381 @@ body {
 /* ---------- KARTU UTAMA ---------- */
 
 .history-card {
-    width: 100%;
-    min-width: 0;
-    min-height: 0;
-    flex: 1;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    padding: 12px !important;
-    margin: 0 !important;
+  padding: 12px !important;
+  margin: 0 !important;
 
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
 
-    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
 }
 
 /* ---------- FILTER BAR ---------- */
 
 .history-card .table-filter-bar {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    gap: 12px;
-    margin: 0 0 8px;
-    padding: 0;
+  gap: 12px;
+  margin: 0 0 8px;
+  padding: 0;
 }
 
 /* Pencarian */
 
 .history-card .search-input-wrapper {
-    position: relative;
+  position: relative;
 
-    width: 520px;
-    max-width: 100%;
-    min-width: 220px;
+  width: 520px;
+  max-width: 100%;
+  min-width: 220px;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .history-card .search-icon {
-    position: absolute;
-    left: 12px;
+  position: absolute;
+  left: 12px;
 
-    color: #94a3b8;
-    font-size: 11px;
+  color: #94a3b8;
+  font-size: 11px;
 
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .history-card .search-input {
-    width: 100%;
-    height: 29px;
+  width: 100%;
+  height: 29px;
 
-    padding: 0 12px 0 30px;
+  padding: 0 12px 0 30px;
 
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
 
-    background: #ffffff;
-    color: #334155;
+  background: #ffffff;
+  color: #334155;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 9px;
+  font-family: "Poppins", sans-serif;
+  font-size: 9px;
 
-    outline: none;
-    transition: border-color 0.2s ease;
+  outline: none;
+  transition: border-color 0.2s ease;
 }
 
 .history-card .search-input::placeholder {
-    color: #94a3b8;
+  color: #94a3b8;
 }
 
 .history-card .search-input:focus {
-    border-color: #60a5fa;
+  border-color: #60a5fa;
 }
 
 /* Filter tanggal */
 
 .history-card .filter-dropdown-wrapper {
-    position: relative;
+  position: relative;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    min-width: 132px;
+  min-width: 132px;
 }
 
 .history-card .filter-icon {
-    position: absolute;
-    left: 11px;
+  position: absolute;
+  left: 11px;
 
-    color: #2563eb;
-    font-size: 11px;
+  color: #2563eb;
+  font-size: 11px;
 
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .history-card .filter-select {
-    width: 100%;
-    height: 29px;
+  width: 100%;
+  height: 29px;
 
-    padding: 0 25px 0 29px;
+  padding: 0 25px 0 29px;
 
-    appearance: none;
+  appearance: none;
 
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
 
-    background-color: #ffffff;
-    color: #334155;
+  background-color: #ffffff;
+  color: #334155;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 9px;
+  font-family: "Poppins", sans-serif;
+  font-size: 9px;
 
-    outline: none;
-    cursor: pointer;
+  outline: none;
+  cursor: pointer;
 }
 
 .history-card .filter-select:focus {
-    border-color: #60a5fa;
+  border-color: #60a5fa;
 }
 
 /* ---------- TABEL ---------- */
 
 .history-card .table-responsive {
-    width: 100%;
-    min-width: 0;
+  width: 100%;
+  min-width: 0;
 
-    overflow-x: auto;
-    overflow-y: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
 
-    border: 1px solid #e2e8f0;
-    border-radius: 9px;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
 }
 
 .history-card .data-table {
-    width: 100%;
-    min-width: 760px;
+  width: 100%;
+  min-width: 760px;
 
-    border-collapse: separate;
-    border-spacing: 0;
+  border-collapse: separate;
+  border-spacing: 0;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 9px;
+  font-family: "Poppins", sans-serif;
+  font-size: 9px;
 
-    color: #0f172a;
+  color: #0f172a;
 }
 
 /* Header tabel */
 
 .history-card .data-table thead th {
-    height: 28px;
+  height: 28px;
 
-    padding: 7px 10px;
+  padding: 7px 10px;
 
-    background: #cfe6ff;
-    color: #0f2f57;
+  background: #cfe6ff;
+  color: #0f2f57;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 9px;
-    font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  font-size: 9px;
+  font-weight: 700;
 
-    text-align: left;
-    white-space: nowrap;
+  text-align: left;
+  white-space: nowrap;
 
-    border: none;
+  border: none;
 }
 
 .history-card .data-table thead th:first-child {
-    border-top-left-radius: 8px;
+  border-top-left-radius: 8px;
 }
 
 .history-card .data-table thead th:last-child {
-    border-top-right-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 /* Isi tabel */
 
 .history-card .data-table tbody td {
-    height: 30px;
+  height: 30px;
 
-    padding: 6px 10px;
+  padding: 6px 10px;
 
-    background: #ffffff;
-    color: #0f172a;
+  background: #ffffff;
+  color: #0f172a;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 9px;
-    font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  font-size: 9px;
+  font-weight: 400;
 
-    white-space: nowrap;
+  white-space: nowrap;
 
-    border: none;
-    border-bottom: 1px solid #f1f5f9;
+  border: none;
+  border-bottom: 1px solid #f1f5f9;
 }
 
 .history-card .data-table tbody tr:last-child td {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .history-card .data-table tbody tr:hover td {
-    background: #f8fbff;
+  background: #f8fbff;
 }
 
 /* Jenis ikan */
 
 .history-card .data-table tbody td:nth-child(3) {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 /* ---------- BADGE HASIL PREDIKSI ---------- */
 
 .history-card .badge {
-    min-width: 55px;
+  min-width: 55px;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    padding: 3px 9px;
+  padding: 3px 9px;
 
-    border-radius: 20px;
+  border-radius: 20px;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 8px;
-    font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  font-size: 8px;
+  font-weight: 500;
 
-    line-height: 1.4;
+  line-height: 1.4;
 }
 
 .history-card .badge-tinggi {
-    background: #d1fae5;
-    color: #059669;
+  background: #d1fae5;
+  color: #059669;
 }
 
 .history-card .badge-sedang {
-    background: #fef3c7;
-    color: #d97706;
+  background: #fef3c7;
+  color: #d97706;
 }
 
 .history-card .badge-rendah {
-    background: #fee2e2;
-    color: #dc2626;
+  background: #fee2e2;
+  color: #dc2626;
 }
 
 /* ---------- TOMBOL DETAIL ---------- */
 
 .history-card .btn-detail {
-    min-width: 44px;
+  min-width: 44px;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    padding: 3px 9px;
+  padding: 3px 9px;
 
-    background: #2563eb;
-    color: #ffffff;
+  background: #2563eb;
+  color: #ffffff;
 
-    border: none;
-    border-radius: 6px;
+  border: none;
+  border-radius: 6px;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 8px;
-    font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  font-size: 8px;
+  font-weight: 500;
 
-    text-decoration: none;
+  text-decoration: none;
 
-    transition: background 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .history-card .btn-detail:hover {
-    background: #1d4ed8;
+  background: #1d4ed8;
 }
 
 /* ---------- PAGINATION ---------- */
 
 .history-card .pagination-container {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 
-    gap: 5px;
+  gap: 5px;
 
-    margin-top: 7px;
-    padding: 0;
+  margin-top: 7px;
+  padding: 0;
 }
 
 .history-card .page-btn {
-    width: 21px;
-    height: 21px;
-    min-width: 21px;
+  width: 21px;
+  height: 21px;
+  min-width: 21px;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    padding: 0;
+  padding: 0;
 
-    background: #ffffff;
-    color: #475569;
+  background: #ffffff;
+  color: #475569;
 
-    border: 1px solid #e2e8f0;
-    border-radius: 5px;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 9px;
-    font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  font-size: 9px;
+  font-weight: 500;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .history-card .page-btn:hover:not(:disabled) {
-    background: #eff6ff;
-    border-color: #bfdbfe;
-    color: #2563eb;
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #2563eb;
 }
 
 .history-card .page-btn.active {
-    background: #2563eb;
-    color: #ffffff;
-    border-color: #2563eb;
-    font-weight: 600;
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+  font-weight: 600;
 }
 
 .history-card .page-btn:disabled {
-    opacity: 0.45;
-    cursor: not-allowed;
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 /* ---------- RESPONSIVE ---------- */
 
 @media (max-width: 900px) {
-    .history-card {
-        padding: 10px !important;
-    }
+  .history-card {
+    padding: 10px !important;
+  }
 
-    .history-card .table-filter-bar {
-        flex-wrap: wrap;
-    }
+  .history-card .table-filter-bar {
+    flex-wrap: wrap;
+  }
 
-    .history-card .search-input-wrapper {
-        flex: 1;
-        width: auto;
-    }
+  .history-card .search-input-wrapper {
+    flex: 1;
+    width: auto;
+  }
 
-    .history-card .filter-dropdown-wrapper {
-        min-width: 130px;
-    }
+  .history-card .filter-dropdown-wrapper {
+    min-width: 130px;
+  }
 }
 
 @media (max-width: 600px) {
-    .history-card .table-filter-bar {
-        align-items: stretch;
-        flex-direction: column;
-    }
+  .history-card .table-filter-bar {
+    align-items: stretch;
+    flex-direction: column;
+  }
 
-    .history-card .search-input-wrapper,
-    .history-card .filter-dropdown-wrapper {
-        width: 100%;
-    }
+  .history-card .search-input-wrapper,
+  .history-card .filter-dropdown-wrapper {
+    width: 100%;
+  }
 
-    .history-card .data-table {
-        min-width: 760px;
-    }
+  .history-card .data-table {
+    min-width: 760px;
+  }
 }
 
 /* =====================================================
@@ -3496,113 +3537,112 @@ body {
 ===================================================== */
 
 .history-banner {
-    position: relative !important;
+  position: relative !important;
 
-    width: 100% !important;
-    height: 160px !important;
-    min-height: 160px !important;
+  width: 100% !important;
+  height: 160px !important;
+  min-height: 160px !important;
 
-    display: flex !important;
-    align-items: center !important;
+  display: flex !important;
+  align-items: center !important;
 
-    padding: 12px 20px !important;
+  padding: 12px 20px !important;
 
-    /* Gambar kapal lebih jelas */
-    background-image:
-        linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0.96) 0%,
-            rgba(255, 255, 255, 0.85) 28%,
-            rgba(255, 255, 255, 0.30) 43%,
-            rgba(255, 255, 255, 0) 58%
-        ),
-        url('../assets/images/banner.jpg') !important;
+  /* Gambar kapal lebih jelas */
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(255, 255, 255, 0.85) 28%,
+      rgba(255, 255, 255, 0.3) 43%,
+      rgba(255, 255, 255, 0) 58%
+    ),
+    url("../assets/images/banner.jpg") !important;
 
-    background-size: cover !important;
-    background-position: center right !important;
-    background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center right !important;
+  background-repeat: no-repeat !important;
 
-    border: 1px solid #d8e5f3 !important;
-    border-radius: 12px !important;
+  border: 1px solid #d8e5f3 !important;
+  border-radius: 12px !important;
 
-    overflow: hidden !important;
+  overflow: hidden !important;
 }
 
 /* Area teks */
 
 .history-banner .banner-text {
-    position: relative !important;
-    z-index: 1 !important;
+  position: relative !important;
+  z-index: 1 !important;
 
-    width: 100% !important;
-    max-width: 600px !important;
+  width: 100% !important;
+  max-width: 600px !important;
 
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
 
-    gap: 0 !important;
+  gap: 0 !important;
 }
 
 /* Label RIWAYAT KLASIFIKASI */
 
 .history-banner .banner-eyebrow {
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
 
-    margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .history-banner .banner-eyebrow span:first-child {
-    color: #0875f5 !important;
+  color: #0875f5 !important;
 
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 13px !important;
-    font-weight: 700 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
 
-    letter-spacing: 0 !important;
-    line-height: 1.4 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.4 !important;
 }
 
 .history-banner .banner-eyebrow span:last-child {
-    width: 28px !important;
-    height: 2px !important;
+  width: 28px !important;
+  height: 2px !important;
 
-    background: #0875f5 !important;
-    border-radius: 2px !important;
+  background: #0875f5 !important;
+  border-radius: 2px !important;
 }
 
 /* Judul Riwayat */
 
 .history-banner .banner-text h2 {
-    margin: 0 !important;
+  margin: 0 !important;
 
-    color: #0f172a !important;
+  color: #0f172a !important;
 
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 32px !important;
-    font-weight: 700 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 32px !important;
+  font-weight: 700 !important;
 
-    line-height: 1.25 !important;
+  line-height: 1.25 !important;
 }
 
 /* Deskripsi */
 
 .history-banner .banner-text p {
-    max-width: 600px !important;
+  max-width: 600px !important;
 
-    margin: 2px 0 0 !important;
+  margin: 2px 0 0 !important;
 
-    color: #000000 !important;
+  color: #000000 !important;
 
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 13px !important;
-    font-weight: 400 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
 
-    line-height: 1.5 !important;
+  line-height: 1.5 !important;
 }
-
 
 /* =====================================================
    HALAMAN DETAIL PREDIKSI - SIPIKA
@@ -3611,641 +3651,633 @@ body {
 /* ---------- CONTENT BODY ---------- */
 
 .detail-prediction-page .detail-content-body {
-    width: 100%;
-    flex: 1;
-    min-width: 0;
+  width: 100%;
+  flex: 1;
+  min-width: 0;
 
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 
-    gap: 16px;
-    padding: 0 20px 12px;
+  gap: 16px;
+  padding: 0 20px 12px;
 
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* ---------- BANNER DETAIL ---------- */
 
 .detail-prediction-page .detail-banner {
-    position: relative !important;
+  position: relative !important;
 
-    width: 100% !important;
-    height: 180px !important;
-    min-height: 180px !important;
+  width: 100% !important;
+  height: 180px !important;
+  min-height: 180px !important;
 
-    display: flex !important;
-    align-items: center !important;
+  display: flex !important;
+  align-items: center !important;
 
-    padding: 14px 22px !important;
+  padding: 14px 22px !important;
 
-    background-image: url('../assets/images/banner-ikan.jpg') !important;
-    background-size: cover !important;
-    background-position: center right !important;
-    background-repeat: no-repeat !important;
+  background-image: url("../assets/images/banner-ikan.jpg") !important;
+  background-size: cover !important;
+  background-position: center right !important;
+  background-repeat: no-repeat !important;
 
-    border: 1px solid #d8e5f3 !important;
-    border-radius: 12px !important;
+  border: 1px solid #d8e5f3 !important;
+  border-radius: 12px !important;
 
-    overflow: hidden !important;
+  overflow: hidden !important;
 }
-
 
 /* Lapisan gradasi untuk keterbacaan teks */
 .detail-prediction-page .detail-banner::before {
-    content: "";
+  content: "";
 
-    position: absolute;
-    inset: 0;
+  position: absolute;
+  inset: 0;
 
-    background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0.97) 0%,
-        rgba(255, 255, 255, 0.90) 34%,
-        rgba(255, 255, 255, 0.45) 53%,
-        rgba(255, 255, 255, 0) 70%
-    );
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.97) 0%,
+    rgba(255, 255, 255, 0.9) 34%,
+    rgba(255, 255, 255, 0.45) 53%,
+    rgba(255, 255, 255, 0) 70%
+  );
 
-    pointer-events: none;
+  pointer-events: none;
 }
 
 /* Area teks banner */
 .detail-prediction-page .detail-banner .banner-text {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 
-    width: 100%;
-    max-width: 560px;
+  width: 100%;
+  max-width: 560px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
-    gap: 0;
+  gap: 0;
 }
 
 /* Label DETAIL */
 .detail-prediction-page .detail-banner .banner-eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .detail-prediction-page .detail-banner .banner-eyebrow span:first-child {
-    color: #0875f5;
+  color: #0875f5;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
 
-    line-height: 1.4;
+  line-height: 1.4;
 }
 
 .detail-prediction-page .detail-banner .banner-line {
-    display: block;
+  display: block;
 
-    width: 28px;
-    height: 2px;
+  width: 28px;
+  height: 2px;
 
-    background: #0875f5;
-    border-radius: 2px;
+  background: #0875f5;
+  border-radius: 2px;
 }
 
 /* Judul banner */
 .detail-prediction-page .detail-banner .banner-text h2 {
-    margin: 0;
+  margin: 0;
 
-    color: #0f2f57;
+  color: #0f2f57;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 28px;
-    font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
 
-    line-height: 1.25;
+  line-height: 1.25;
 }
 
 /* Deskripsi banner */
 .detail-prediction-page .detail-banner .banner-text p {
-    max-width: 560px;
+  max-width: 560px;
 
-    margin: 2px 0 0;
+  margin: 2px 0 0;
 
-    color: #475569;
+  color: #475569;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
 
-    line-height: 1.5;
+  line-height: 1.5;
 }
 
 /* ---------- GRID DETAIL ---------- */
 
 .detail-prediction-page .detail-grid {
-    width: 100%;
-    min-width: 0;
+  width: 100%;
+  min-width: 0;
 
-    display: grid;
-    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr);
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr);
 
-    align-items: start;
-    gap: 16px;
+  align-items: start;
+  gap: 16px;
 }
 
 /* ---------- KOLOM KIRI ---------- */
 
 .detail-prediction-page .detail-left-column {
-    min-width: 0;
+  min-width: 0;
 
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 
-    gap: 0;
+  gap: 0;
 }
 
 /* Kartu gabungan foto dan informasi */
 .detail-prediction-page .detail-information-card {
-    width: 100%;
-    min-width: 0;
+  width: 100%;
+  min-width: 0;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    gap: 14px;
+  gap: 14px;
 
-    padding: 18px;
+  padding: 18px;
 
-    background: #ffffff;
-    border: 1px solid #edf1f6;
-    border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #edf1f6;
+  border-radius: 14px;
 
-    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.025);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.025);
 }
 
 /* Foto ikan */
 .detail-prediction-page .fish-photo-card {
-    width: 100%;
-    height: 210px;
-    overflow: hidden;
-    border-radius: 11px;
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+  border-radius: 11px;
 }
 
 .detail-prediction-page .fish-preview-img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 11px;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 11px;
 }
 
 /* ---------- INFORMASI PREDIKSI ---------- */
 
 .detail-prediction-page .info-prediksi-card {
-    width: 100%;
-    min-width: 0;
+  width: 100%;
+  min-width: 0;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 
-    background: transparent;
-    border: none;
-    box-shadow: none;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 /* Judul setiap bagian kartu */
 .detail-prediction-page .card-section-title {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    gap: 10px;
+  gap: 10px;
 
-    margin: 0 0 12px;
+  margin: 0 0 12px;
 
-    color: #0f2f57;
+  color: #0f2f57;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
 
-    line-height: 1.4;
+  line-height: 1.4;
 }
 
 .detail-prediction-page .card-section-title i {
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    font-size: 20px;
-    color: #1683f8;
+  font-size: 20px;
+  color: #1683f8;
 }
 
 /* Daftar informasi */
 .detail-prediction-page .info-list {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .detail-prediction-page .info-list li {
-    width: 100%;
-    min-height: 45px;
+  width: 100%;
+  min-height: 45px;
 
-    display: grid;
-    grid-template-columns: minmax(0, 170px) 12px minmax(0, 1fr);
+  display: grid;
+  grid-template-columns: minmax(0, 170px) 12px minmax(0, 1fr);
 
-    align-items: center;
-    gap: 8px;
+  align-items: center;
+  gap: 8px;
 
-    padding: 8px 0;
+  padding: 8px 0;
 
-    border-bottom: 1px solid #edf1f6;
+  border-bottom: 1px solid #edf1f6;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
 }
 
 .detail-prediction-page .info-list li:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 /* Label dan ikon informasi */
 .detail-prediction-page .info-label {
-    min-width: 0;
+  min-width: 0;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    gap: 10px;
+  gap: 10px;
 
-    color: #475569;
+  color: #475569;
 
-    font-weight: 400;
+  font-weight: 400;
 }
 
 .detail-prediction-page .info-label i {
-    width: 18px;
-    min-width: 18px;
+  width: 18px;
+  min-width: 18px;
 
-    color: #1683f8;
-    font-size: 17px;
+  color: #1683f8;
+  font-size: 17px;
 
-    text-align: center;
+  text-align: center;
 }
 
 /* Tanda titik dua */
 .detail-prediction-page .info-colon {
-    color: #64748b;
-    font-weight: 500;
+  color: #64748b;
+  font-weight: 500;
 }
 
 /* Nilai informasi */
 .detail-prediction-page .info-value {
-    min-width: 0;
+  min-width: 0;
 
-    color: #0f2f57;
+  color: #0f2f57;
 
-    font-weight: 700;
-    line-height: 1.4;
+  font-weight: 700;
+  line-height: 1.4;
 
-    overflow-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Tanggal dibuat menjadi dua baris seperti referensi */
 .detail-prediction-page .info-list li:nth-child(2) .info-value {
-    max-width: 135px;
+  max-width: 135px;
 }
 
 /* ---------- TOMBOL KEMBALI ---------- */
 
 .detail-prediction-page .back-btn-wrapper {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    justify-content: flex-start;
+  display: flex;
+  justify-content: flex-start;
 
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
 .detail-prediction-page .btn-back-outline {
-    min-width: 133px;
-    height: 46px;
+  min-width: 133px;
+  height: 46px;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    padding: 0 20px;
+  padding: 0 20px;
 
-    background: #ffffff;
-    color: #0875f5;
+  background: #ffffff;
+  color: #0875f5;
 
-    border: 2px solid #0875f5;
-    border-radius: 10px;
+  border: 2px solid #0875f5;
+  border-radius: 10px;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
 
-    text-decoration: none;
+  text-decoration: none;
 
-    transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .detail-prediction-page .btn-back-outline:hover {
-    background: #0875f5;
-    color: #ffffff;
+  background: #0875f5;
+  color: #ffffff;
 }
 
 /* ---------- KOLOM KANAN ---------- */
 
 .detail-prediction-page .detail-right-column {
-    min-width: 0;
+  min-width: 0;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    gap: 16px;
+  gap: 16px;
 }
 
 /* Pengaturan umum kartu kanan */
 .detail-prediction-page .detail-right-column .content-card {
-    width: 100%;
-    min-width: 0;
+  width: 100%;
+  min-width: 0;
 
-    padding: 18px 22px;
+  padding: 18px 22px;
 
-    border: 1px solid;
-    border-radius: 14px;
+  border: 1px solid;
+  border-radius: 14px;
 
-    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.025);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.025);
 
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* ---------- HASIL KLASIFIKASI ---------- */
 
 .detail-prediction-page .result-card {
-    min-height: 230px;
+  min-height: 230px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 
-    background: #e8f8f1;
-    border-color: #bcebd6 !important;
+  background: #e8f8f1;
+  border-color: #bcebd6 !important;
 }
 
 .detail-prediction-page .result-card .card-section-title {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .detail-prediction-page .result-card .green-title {
-    color: #0f2f57;
+  color: #0f2f57;
 }
 
 .detail-prediction-page .result-card .green-title i {
-    color: #08a66b;
+  color: #08a66b;
 }
 
 /* Badge hasil */
 .detail-prediction-page .result-badge-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    margin: 8px 0 12px;
+  margin: 8px 0 12px;
 }
 
 .detail-prediction-page .badge-result-lg {
-    min-width: 205px;
-    min-height: 58px;
+  min-width: 205px;
+  min-height: 58px;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    padding: 5px 28px;
+  padding: 5px 28px;
 
-    border-radius: 40px;
+  border-radius: 40px;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 30px;
-    font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
 
-    line-height: 1.3;
+  line-height: 1.3;
 }
 
 .detail-prediction-page .badge-result-lg.badge-tinggi {
-    background: #b8f1d4;
-    color: #216b46;
+  background: #b8f1d4;
+  color: #216b46;
 }
 
 .detail-prediction-page .badge-result-lg.badge-sedang {
-    background: #fef0bd;
-    color: #a16207;
+  background: #fef0bd;
+  color: #a16207;
 }
 
 .detail-prediction-page .badge-result-lg.badge-rendah {
-    background: #fee2e2;
-    color: #b91c1c;
+  background: #fee2e2;
+  color: #b91c1c;
 }
 
 /* Deskripsi hasil */
 .detail-prediction-page .result-desc {
-    margin: 0;
+  margin: 0;
 
-    color: #153c52;
+  color: #153c52;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
 
-    line-height: 1.5;
-    text-align: center;
+  line-height: 1.5;
+  text-align: center;
 }
 
 /* ---------- KESIMPULAN ---------- */
 
 .detail-prediction-page .conclusion-card {
-    min-height: 138px;
+  min-height: 138px;
 
-    background: #eaf3ff;
-    border-color: #c9e0ff !important;
+  background: #eaf3ff;
+  border-color: #c9e0ff !important;
 }
 
 .detail-prediction-page .conclusion-card .card-section-title {
-    margin-bottom: 2px;
+  margin-bottom: 2px;
 }
 
 .detail-prediction-page .conclusion-card .blue-title i {
-    color: #1683f8;
+  color: #1683f8;
 }
 
 /* ---------- SARAN UNTUK NELAYAN ---------- */
 
 .detail-prediction-page .suggestion-card {
-    min-height: 150px;
+  min-height: 150px;
 
-    background: #fff8e8;
-    border-color: #ffe1a0 !important;
+  background: #fff8e8;
+  border-color: #ffe1a0 !important;
 }
 
 .detail-prediction-page .suggestion-card .card-section-title {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .detail-prediction-page .suggestion-card .warning-title i {
-    color: #f59e0b;
+  color: #f59e0b;
 }
 
 /* Teks kesimpulan dan saran */
 .detail-prediction-page .card-text-body {
-    margin: 0;
+  margin: 0;
 
-    color: #334155;
+  color: #334155;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
 
-    line-height: 1.45;
+  line-height: 1.45;
 }
 
 /* ---------- RESPONSIVE TABLET ---------- */
 
 @media (max-width: 992px) {
+  .detail-prediction-page .detail-grid {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+    gap: 12px;
+  }
 
-    .detail-prediction-page .detail-grid {
-        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
-        gap: 12px;
-    }
+  .detail-prediction-page .detail-information-card {
+    padding: 14px;
+  }
 
-    .detail-prediction-page .detail-information-card {
-        padding: 14px;
-    }
+  .detail-prediction-page .fish-photo-card {
+    height: 180px;
+  }
 
-    .detail-prediction-page .fish-photo-card {
-        height: 180px;
-    }
+  .detail-prediction-page .info-list li {
+    grid-template-columns: minmax(0, 140px) 10px minmax(0, 1fr);
+    font-size: 12px;
+    gap: 5px;
+  }
 
-    .detail-prediction-page .info-list li {
-        grid-template-columns: minmax(0, 140px) 10px minmax(0, 1fr);
-        font-size: 12px;
-        gap: 5px;
-    }
-
-    .detail-prediction-page .card-text-body {
-        font-size: 12px;
-    }
-
+  .detail-prediction-page .card-text-body {
+    font-size: 12px;
+  }
 }
 
 /* ---------- RESPONSIVE MOBILE ---------- */
 
 @media (max-width: 768px) {
+  .detail-prediction-page .detail-content-body {
+    padding: 0 16px 20px;
+    gap: 14px;
+  }
 
-    .detail-prediction-page .detail-content-body {
-        padding: 0 16px 20px;
-        gap: 14px;
-    }
+  .detail-prediction-page .detail-banner {
+    height: auto;
+    min-height: 125px;
+    padding: 16px;
+  }
 
-    .detail-prediction-page .detail-banner {
-        height: auto;
-        min-height: 125px;
-        padding: 16px;
-    }
+  .detail-prediction-page .detail-banner .banner-text h2 {
+    font-size: 23px;
+  }
 
-    .detail-prediction-page .detail-banner .banner-text h2 {
-        font-size: 23px;
-    }
+  .detail-prediction-page .detail-banner .banner-text p {
+    font-size: 12px;
+  }
 
-    .detail-prediction-page .detail-banner .banner-text p {
-        font-size: 12px;
-    }
+  .detail-prediction-page .detail-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
 
-    .detail-prediction-page .detail-grid {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 16px;
-    }
+  .detail-prediction-page .detail-information-card {
+    padding: 16px;
+  }
 
-    .detail-prediction-page .detail-information-card {
-        padding: 16px;
-    }
+  .detail-prediction-page .fish-photo-card {
+    height: 220px;
+  }
 
-    .detail-prediction-page .fish-photo-card {
-        height: 220px;
-    }
+  .detail-prediction-page .detail-right-column {
+    gap: 12px;
+  }
 
-    .detail-prediction-page .detail-right-column {
-        gap: 12px;
-    }
+  .detail-prediction-page .info-list li {
+    grid-template-columns: minmax(0, 160px) 10px minmax(0, 1fr);
+  }
 
-    .detail-prediction-page .info-list li {
-        grid-template-columns: minmax(0, 160px) 10px minmax(0, 1fr);
-    }
-
-    .detail-prediction-page .detail-right-column .content-card {
-        min-height: auto;
-        padding: 18px;
-    }
-
+  .detail-prediction-page .detail-right-column .content-card {
+    min-height: auto;
+    padding: 18px;
+  }
 }
 
 @media (max-width: 480px) {
+  .detail-prediction-page .detail-banner .banner-eyebrow span:first-child {
+    font-size: 11px;
+  }
 
-    .detail-prediction-page .detail-banner .banner-eyebrow span:first-child {
-        font-size: 11px;
-    }
+  .detail-prediction-page .detail-banner .banner-text h2 {
+    font-size: 21px;
+  }
 
-    .detail-prediction-page .detail-banner .banner-text h2 {
-        font-size: 21px;
-    }
+  .detail-prediction-page .detail-banner .banner-text p {
+    font-size: 11px;
+  }
 
-    .detail-prediction-page .detail-banner .banner-text p {
-        font-size: 11px;
-    }
+  .detail-prediction-page .fish-photo-card {
+    height: 190px;
+  }
 
-    .detail-prediction-page .fish-photo-card {
-        height: 190px;
-    }
+  .detail-prediction-page .card-section-title {
+    font-size: 17px;
+  }
 
-    .detail-prediction-page .card-section-title {
-        font-size: 17px;
-    }
+  .detail-prediction-page .info-list li {
+    grid-template-columns: minmax(0, 125px) 10px minmax(0, 1fr);
+    font-size: 11px;
+  }
 
-    .detail-prediction-page .info-list li {
-        grid-template-columns: minmax(0, 125px) 10px minmax(0, 1fr);
-        font-size: 11px;
-    }
+  .detail-prediction-page .info-label {
+    gap: 6px;
+  }
 
-    .detail-prediction-page .info-label {
-        gap: 6px;
-    }
+  .detail-prediction-page .info-label i {
+    font-size: 14px;
+    width: 16px;
+    min-width: 16px;
+  }
 
-    .detail-prediction-page .info-label i {
-        font-size: 14px;
-        width: 16px;
-        min-width: 16px;
-    }
-
-    .detail-prediction-page .badge-result-lg {
-        min-width: 170px;
-        min-height: 50px;
-        font-size: 25px;
-    }
-
+  .detail-prediction-page .badge-result-lg {
+    min-width: 170px;
+    min-height: 50px;
+    font-size: 25px;
+  }
 }
-
 
 /* =====================================================
    TYPOGRAPHY BANNER DETAIL PREDIKSI
@@ -4253,44 +4285,43 @@ body {
 
 /* Label DETAIL */
 .detail-prediction-page .detail-banner .banner-eyebrow span:first-child {
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 13px !important;
-    font-weight: 700 !important;
-    color: #0875f5 !important;
-    line-height: 1.4 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #0875f5 !important;
+  line-height: 1.4 !important;
 }
 
 /* Garis di samping DETAIL */
 .detail-prediction-page .detail-banner .banner-line {
-    width: 28px !important;
-    height: 2px !important;
-    background: #0875f5 !important;
+  width: 28px !important;
+  height: 2px !important;
+  background: #0875f5 !important;
 }
 
 /* Judul Detail Prediksi */
 .detail-prediction-page .detail-banner .banner-text h2 {
-    margin: 0 !important;
+  margin: 0 !important;
 
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 32px !important;
-    font-weight: 700 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 32px !important;
+  font-weight: 700 !important;
 
-    color: #000000 !important;
-    line-height: 1.25 !important;
+  color: #000000 !important;
+  line-height: 1.25 !important;
 }
 
 /* Penjelasan di bawah judul */
 .detail-prediction-page .detail-banner .banner-text p {
-    margin: 2px 0 0 !important;
+  margin: 2px 0 0 !important;
 
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 13px !important;
-    font-weight: 400 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
 
-    color: #000000 !important;
-    line-height: 1.5 !important;
+  color: #000000 !important;
+  line-height: 1.5 !important;
 }
-
 
 /* =====================================================
    REVISI INFORMASI PREDIKSI
@@ -4302,23 +4333,23 @@ body {
 .detail-prediction-page .info-prediksi-card .info-label,
 .detail-prediction-page .info-prediksi-card .info-colon,
 .detail-prediction-page .info-prediksi-card .info-value {
-    color: #000000 !important;
-    font-family: 'Poppins', sans-serif !important;
+  color: #000000 !important;
+  font-family: "Poppins", sans-serif !important;
 }
 
 /* Ikon informasi tetap berwarna biru */
 .detail-prediction-page .info-prediksi-card .info-label i {
-    color: #1683f8 !important;
+  color: #1683f8 !important;
 }
 
 /* Tanggal dan jam tersusun vertikal */
 .detail-prediction-page .info-prediksi-card .info-date-value {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
 
-    line-height: 1.4;
+  line-height: 1.4;
 }
 
 /* Warna hitam seluruh teks Informasi Prediksi */
@@ -4329,16 +4360,15 @@ body {
 .detail-prediction-page .info-prediksi-card .info-label,
 .detail-prediction-page .info-prediksi-card .info-colon,
 .detail-prediction-page .info-prediksi-card .info-value {
-    color: #000000 !important;
-    font-family: 'Poppins', sans-serif !important;
+  color: #000000 !important;
+  font-family: "Poppins", sans-serif !important;
 }
 
 /* Ikon tetap biru */
 .detail-prediction-page .info-prediksi-card .card-section-title i,
 .detail-prediction-page .info-prediksi-card .info-label i {
-    color: #1683f8 !important;
+  color: #1683f8 !important;
 }
-
 
 /* =====================================================
    REVISI HASIL KLASIFIKASI, KESIMPULAN & SARAN
@@ -4347,36 +4377,36 @@ body {
 /* ---------- JUDUL KETIGA KARTU ---------- */
 
 .detail-prediction-page .detail-right-column .card-section-title {
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 24px !important;
-    font-weight: 700 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
 
-    color: #000000 !important;
+  color: #000000 !important;
 }
 
 /* ---------- UKURAN IKON ---------- */
 
 .detail-prediction-page .detail-right-column .card-section-title i {
-    width: 30px;
-    flex-shrink: 0;
+  width: 30px;
+  flex-shrink: 0;
 
-    font-size: 26px !important;
-    text-align: center;
+  font-size: 26px !important;
+  text-align: center;
 }
 
 /* Ikon Hasil Klasifikasi */
 .detail-prediction-page .result-card .green-title i {
-    color: #08a66b !important;
+  color: #08a66b !important;
 }
 
 /* Ikon Kesimpulan */
 .detail-prediction-page .conclusion-card .blue-title i {
-    color: #1683f8 !important;
+  color: #1683f8 !important;
 }
 
 /* Ikon Saran untuk Nelayan */
 .detail-prediction-page .suggestion-card .warning-title i {
-    color: #f59e0b !important;
+  color: #f59e0b !important;
 }
 
 /* ---------- PENJELASAN KETIGA KARTU ---------- */
@@ -4384,158 +4414,149 @@ body {
 .detail-prediction-page .result-card .result-desc,
 .detail-prediction-page .conclusion-card .card-text-body,
 .detail-prediction-page .suggestion-card .card-text-body {
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 17px !important;
-    font-weight: 400 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 17px !important;
+  font-weight: 400 !important;
 
-    color: #000000 !important;
-    line-height: 1.45 !important;
+  color: #000000 !important;
+  line-height: 1.45 !important;
 }
 
 /* Ikon lampu Saran untuk Nelayan */
 .detail-prediction-page .suggestion-icon {
-    width: 30px;
-    height: 30px;
-    min-width: 30px;
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    color: #f59e0b;
+  color: #f59e0b;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .detail-prediction-page .suggestion-icon svg {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 
-    display: block;
-    overflow: visible;
+  display: block;
+  overflow: visible;
 }
-
 
 /* =====================================================
    PENYESUAIAN TINGGI KARTU INFORMASI PREDIKSI
 ===================================================== */
 
 .detail-prediction-page .detail-information-card {
-    padding-bottom: 50px !important;
+  padding-bottom: 50px !important;
 }
-
-
-
-
 
 /* =====================================================
    HALAMAN PROFIL PENGGUNA - SIPIKA
 ===================================================== */
-
 
 /* =================================
    1. CONTENT BODY PROFIL
 ================================= */
 
 .profile-page .profile-content-body {
-    width: 100%;
-    flex: 1;
+  width: 100%;
+  flex: 1;
 
-    min-width: 0;
-    min-height: 0;
+  min-width: 0;
+  min-height: 0;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    gap: 14px;
+  gap: 14px;
 
-    padding: 0 20px 12px;
+  padding: 0 20px 12px;
 
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
-
 
 /* =================================
    2. BANNER PROFIL
 ================================= */
 
 .profile-page .profile-welcome-banner {
-    width: 100%;
+  width: 100%;
 
-    height: 160px;
-    min-height: 160px;
+  height: 160px;
+  min-height: 160px;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    padding: 24px 32px;
+  padding: 24px 32px;
 
-    background-size: cover;
-    background-position: right center;
-    background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
 
-    border-radius: 16px;
-    overflow: hidden;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 /* Label PROFIL dan garis */
 
 .profile-page .profile-banner-label {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    gap: 12px;
+  gap: 12px;
 }
 
 .profile-page .profile-banner-label .banner-tag {
-    margin: 0;
+  margin: 0;
 
-    color: #2563eb;
+  color: #2563eb;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
 
-    letter-spacing: 1.2px;
-    line-height: 1.5;
+  letter-spacing: 1.2px;
+  line-height: 1.5;
 }
 
 .profile-page .profile-banner-line {
-    width: 80px;
-    height: 2px;
+  width: 80px;
+  height: 2px;
 
-    display: inline-block;
+  display: inline-block;
 
-    background: #2563eb;
-    border-radius: 2px;
+  background: #2563eb;
+  border-radius: 2px;
 }
-
 
 /* =================================
    3. GRID PROFIL
 ================================= */
 
 .profile-page .profile-grid {
-    width: 100%;
-    min-width: 0;
+  width: 100%;
+  min-width: 0;
 
-    flex: 1;
+  flex: 1;
 
-    display: grid;
+  display: grid;
 
-    grid-template-columns:
-        minmax(0, 1fr)
-        minmax(0, 1fr);
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr);
 
-    align-items: stretch;
+  align-items: stretch;
 
-    gap: 18px;
+  gap: 18px;
 
-    min-height: 390px;
+  min-height: 390px;
 }
-
 
 /* =================================
    4. KARTU PROFIL DAN PASSWORD
@@ -4543,499 +4564,493 @@ body {
 
 .profile-page .profile-info-card,
 .profile-page .profile-password-card {
-    width: 100%;
-    min-width: 0;
+  width: 100%;
+  min-width: 0;
 
-    min-height: 390px;
+  min-height: 390px;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    padding: 18px;
+  padding: 18px;
 
-    background: #ffffff;
+  background: #ffffff;
 
-    border: 1px solid #e2e8f0;
-    border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
 
-    box-shadow: 0 2px 7px rgba(15, 23, 42, 0.035);
+  box-shadow: 0 2px 7px rgba(15, 23, 42, 0.035);
 
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
-
 
 /* =================================
    5. JUDUL KARTU
 ================================= */
 
 .profile-page .card-header-title {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    gap: 12px;
+  gap: 12px;
 
-    margin: 0;
+  margin: 0;
 }
 
 .profile-page .card-header-title h3 {
-    margin: 0;
+  margin: 0;
 
-    color: #0f2f57;
+  color: #0f2f57;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
 
-    line-height: 1.4;
+  line-height: 1.4;
 }
 
 /* Lingkaran ikon judul */
 
 .profile-page .icon-circle-badge {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: #e1edff;
+  background: #e1edff;
 
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .profile-page .icon-circle-badge .icon-blue {
-    color: #0875f5;
-    font-size: 15px;
+  color: #0875f5;
+  font-size: 15px;
 }
-
 
 /* =================================
    6. AVATAR PROFIL
 ================================= */
 
 .profile-page .profile-avatar-wrapper {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    padding: 10px 0 12px;
+  padding: 10px 0 12px;
 }
 
 /* Pembungkus avatar dan tombol kamera */
 
 .profile-page .profile-avatar-container {
-    position: relative;
+  position: relative;
 
-    width: 120px;
-    height: 120px;
+  width: 120px;
+  height: 120px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Lingkaran avatar */
 
 .profile-page .avatar-large {
-    position: relative;
+  position: relative;
 
-    width: 116px;
-    height: 116px;
+  width: 116px;
+  height: 116px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: #0866e9;
-    color: #ffffff;
+  background: #0866e9;
+  color: #ffffff;
 
-    border-radius: 50%;
+  border-radius: 50%;
 
-    overflow: hidden;
+  overflow: hidden;
 }
 
 /* Ikon default pengguna */
 
 .profile-page .avatar-large > i {
-    font-size: 64px;
-    color: #ffffff;
+  font-size: 64px;
+  color: #ffffff;
 }
 
 /* Gambar yang diunggah */
 
 .profile-page .avatar-large img {
-    position: absolute;
-    inset: 0;
+  position: absolute;
+  inset: 0;
 
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    object-fit: cover;
-    object-position: center;
+  object-fit: cover;
+  object-position: center;
 
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 /* Tombol kamera */
 
 .profile-page .upload-badge {
-    position: absolute;
+  position: absolute;
 
-    right: 0;
-    bottom: 4px;
+  right: 0;
+  bottom: 4px;
 
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: #0875f5;
-    color: #ffffff;
+  background: #0875f5;
+  color: #ffffff;
 
-    border: 3px solid #ffffff;
-    border-radius: 50%;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
 
-    font-size: 12px;
+  font-size: 12px;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition: background 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .profile-page .upload-badge:hover {
-    background: #1d4ed8;
+  background: #1d4ed8;
 }
 
 /* Username */
 
 .profile-page .profile-username {
-    margin: 10px 0 3px;
+  margin: 10px 0 3px;
 
-    color: #0f2f57;
+  color: #0f2f57;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
 
-    line-height: 1.4;
+  line-height: 1.4;
 }
 
 /* Badge role */
 
 .profile-page .badge-role {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    min-width: 78px;
+  min-width: 78px;
 
-    padding: 4px 12px;
+  padding: 4px 12px;
 
-    background: #e0edff;
-    color: #0875f5;
+  background: #e0edff;
+  color: #0875f5;
 
-    border-radius: 20px;
+  border-radius: 20px;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
 }
-
 
 /* =================================
    7. DETAIL INFORMASI PROFIL
 ================================= */
 
 .profile-page .profile-detail-list {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    margin-top: 12px;
+  margin-top: 12px;
 
-    border-top: 1px solid #edf1f6;
+  border-top: 1px solid #edf1f6;
 }
 
 /* Setiap baris informasi */
 
 .profile-page .profile-detail-item {
-    width: 100%;
-    min-height: 67px;
+  width: 100%;
+  min-height: 67px;
 
-    display: grid;
+  display: grid;
 
-    grid-template-columns:
-        minmax(0, 1fr)
-        minmax(0, 1.05fr);
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1.05fr);
 
-    align-items: center;
+  align-items: center;
 
-    gap: 8px;
+  gap: 8px;
 
-    border-bottom: 1px solid #edf1f6;
+  border-bottom: 1px solid #edf1f6;
 }
 
 .profile-page .profile-detail-item:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 /* Label informasi */
 
 .profile-page .detail-label {
-    min-width: 0;
+  min-width: 0;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    gap: 12px;
+  gap: 12px;
 
-    color: #334155;
+  color: #334155;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 /* Lingkaran ikon kecil */
 
 .profile-page .icon-circle-badge-small {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: #e1edff;
+  background: #e1edff;
 
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .profile-page .icon-circle-badge-small .icon-blue {
-    color: #0875f5;
-    font-size: 14px;
+  color: #0875f5;
+  font-size: 14px;
 }
 
 /* Nilai informasi */
 
 .profile-page .detail-value {
-    min-width: 0;
+  min-width: 0;
 
-    display: grid;
+  display: grid;
 
-    grid-template-columns: 18px minmax(0, 1fr);
+  grid-template-columns: 18px minmax(0, 1fr);
 
-    align-items: center;
+  align-items: center;
 
-    gap: 3px;
+  gap: 3px;
 
-    color: #0f2f57;
+  color: #0f2f57;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
 }
 
 .profile-page .detail-value .separator {
-    color: #334155;
-    font-weight: 400;
+  color: #334155;
+  font-weight: 400;
 }
-
 
 /* =================================
    8. FORM UBAH PASSWORD
 ================================= */
 
 .profile-page .profile-password-form {
-    flex: 1;
+  flex: 1;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    margin-top: 18px;
+  margin-top: 18px;
 }
 
 /* Kelompok input */
 
 .profile-page .form-group-password {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    gap: 7px;
+  gap: 7px;
 
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 
 /* Label input */
 
 .profile-page .form-group-password label {
-    color: #0f2f57;
+  color: #0f2f57;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 /* Pembungkus input dan ikon mata */
 
 .profile-page .input-password-wrapper {
-    position: relative;
+  position: relative;
 
-    width: 100%;
-    height: 52px;
+  width: 100%;
+  height: 52px;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    border: 1px solid #cfe0fa;
-    border-radius: 11px;
+  border: 1px solid #cfe0fa;
+  border-radius: 11px;
 
-    background: #ffffff;
+  background: #ffffff;
 
-    transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .profile-page .input-password-wrapper:focus-within {
-    border-color: #2563eb;
+  border-color: #2563eb;
 }
 
 /* Input password */
 
 .profile-page .input-password-wrapper input {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    padding: 0 42px 0 14px;
+  padding: 0 42px 0 14px;
 
-    background: transparent;
+  background: transparent;
 
-    border: none;
-    outline: none;
+  border: none;
+  outline: none;
 
-    color: #0f2f57;
+  color: #0f2f57;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
 }
 
 .profile-page .input-password-wrapper input::placeholder {
-    color: #94a3b8;
-    opacity: 1;
+  color: #94a3b8;
+  opacity: 1;
 }
 
 /* Ikon tampil/sembunyikan password */
 
 .profile-page .toggle-password {
-    position: absolute;
+  position: absolute;
 
-    right: 13px;
+  right: 13px;
 
-    color: #94a3b8;
+  color: #94a3b8;
 
-    font-size: 14px;
+  font-size: 14px;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition: color 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .profile-page .toggle-password:hover {
-    color: #2563eb;
+  color: #2563eb;
 }
-
 
 /* =================================
    9. TOMBOL FORM PASSWORD
 ================================= */
 
 .profile-page .form-actions-profile {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 
-    gap: 10px;
+  gap: 10px;
 
-    margin-top: auto;
-    padding-top: 16px;
+  margin-top: auto;
+  padding-top: 16px;
 }
 
 /* Tombol Batal */
 
 .profile-page .btn-batal {
-    min-width: 96px;
-    height: 42px;
+  min-width: 96px;
+  height: 42px;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    padding: 0 17px;
+  padding: 0 17px;
 
-    background: #ffffff;
-    color: #0875f5;
+  background: #ffffff;
+  color: #0875f5;
 
-    border: 1.5px solid #0875f5;
-    border-radius: 9px;
+  border: 1.5px solid #0875f5;
+  border-radius: 9px;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .profile-page .btn-batal:hover {
-    background: #eff6ff;
+  background: #eff6ff;
 }
 
 /* Tombol Ubah Password */
 
 .profile-page .btn-simpan {
-    min-width: 155px;
-    height: 42px;
+  min-width: 155px;
+  height: 42px;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    padding: 0 17px;
+  padding: 0 17px;
 
-    background: #0866e9;
-    color: #ffffff;
+  background: #0866e9;
+  color: #ffffff;
 
-    border: 1px solid #0866e9;
-    border-radius: 9px;
+  border: 1px solid #0866e9;
+  border-radius: 9px;
 
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition: background 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .profile-page .btn-simpan:hover {
-    background: #1d4ed8;
+  background: #1d4ed8;
 }
-
 
 /* =================================
    10. FOOTER PROFIL
@@ -5043,153 +5058,140 @@ body {
 ================================= */
 
 .profile-page .main-content {
-    min-width: 0;
-    min-height: 100vh;
+  min-width: 0;
+  min-height: 100vh;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .profile-page .footer-copyright {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    margin-top: auto;
+  margin-top: auto;
 
-    text-align: center;
+  text-align: center;
 }
-
 
 /* =================================
    11. RESPONSIVE TABLET
 ================================= */
 
 @media (max-width: 900px) {
+  .profile-page .profile-content-body {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 
-    .profile-page .profile-content-body {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
+  .profile-page .profile-grid {
+    gap: 12px;
+  }
 
-    .profile-page .profile-grid {
-        gap: 12px;
-    }
+  .profile-page .profile-info-card,
+  .profile-page .profile-password-card {
+    padding: 14px;
+  }
 
-    .profile-page .profile-info-card,
-    .profile-page .profile-password-card {
-        padding: 14px;
-    }
+  .profile-page .profile-detail-item {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+  }
 
-    .profile-page .profile-detail-item {
-        grid-template-columns:
-            minmax(0, 1fr)
-            minmax(0, 1fr);
-    }
+  .profile-page .detail-label {
+    gap: 7px;
+    font-size: 11px;
+  }
 
-    .profile-page .detail-label {
-        gap: 7px;
-        font-size: 11px;
-    }
-
-    .profile-page .icon-circle-badge-small {
-        width: 34px;
-        height: 34px;
-        min-width: 34px;
-    }
-
+  .profile-page .icon-circle-badge-small {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+  }
 }
-
 
 /* =================================
    12. RESPONSIVE MOBILE
 ================================= */
 
 @media (max-width: 768px) {
+  .profile-page .profile-grid {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: auto;
+  }
 
-    .profile-page .profile-grid {
-        grid-template-columns: minmax(0, 1fr);
-        min-height: auto;
-    }
+  .profile-page .profile-info-card,
+  .profile-page .profile-password-card {
+    min-height: 390px;
+  }
 
-    .profile-page .profile-info-card,
-    .profile-page .profile-password-card {
-        min-height: 390px;
-    }
+  .profile-page .profile-content-body {
+    gap: 14px;
+    padding: 0 16px 20px;
+  }
 
-    .profile-page .profile-content-body {
-        gap: 14px;
-        padding: 0 16px 20px;
-    }
+  .profile-page .profile-welcome-banner {
+    min-height: 145px;
+    height: auto;
+    padding: 20px;
+  }
 
-    .profile-page .profile-welcome-banner {
-        min-height: 145px;
-        height: auto;
-        padding: 20px;
-    }
+  .profile-page .profile-detail-item {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1.1fr);
+  }
 
-    .profile-page .profile-detail-item {
-        grid-template-columns:
-            minmax(0, 1fr)
-            minmax(0, 1.1fr);
-    }
-
-    .profile-page .form-actions-profile {
-        margin-top: 20px;
-    }
-
+  .profile-page .form-actions-profile {
+    margin-top: 20px;
+  }
 }
-
 
 /* =================================
    13. SMALL MOBILE
 ================================= */
 
 @media (max-width: 480px) {
+  .profile-page .profile-info-card,
+  .profile-page .profile-password-card {
+    padding: 14px;
+  }
 
-    .profile-page .profile-info-card,
-    .profile-page .profile-password-card {
-        padding: 14px;
-    }
+  .profile-page .profile-detail-item {
+    min-height: 60px;
+  }
 
-    .profile-page .profile-detail-item {
-        min-height: 60px;
-    }
+  .profile-page .detail-label {
+    font-size: 10px;
+  }
 
-    .profile-page .detail-label {
-        font-size: 10px;
-    }
+  .profile-page .detail-value {
+    font-size: 10px;
+  }
 
-    .profile-page .detail-value {
-        font-size: 10px;
-    }
+  .profile-page .btn-batal {
+    min-width: 80px;
+  }
 
-    .profile-page .btn-batal {
-        min-width: 80px;
-    }
-
-    .profile-page .btn-simpan {
-        min-width: 130px;
-    }
-
+  .profile-page .btn-simpan {
+    min-width: 130px;
+  }
 }
-
-
 
 /* ---------- Footer ---------- */
 
 .footer-copyright {
-    padding: 18px 32px;
-    margin-top: auto;
+  padding: 18px 32px;
+  margin-top: auto;
 
-    color: var(--text-secondary);
-    font-size: 11px;
-    text-align: center;
+  color: var(--text-secondary);
+  font-size: 11px;
+  text-align: center;
 }
-
-
 
 /* =====================================================
    REVISI UKURAN CONTAINER PROFIL
@@ -5197,123 +5199,122 @@ body {
 
 /* Grid dua kolom */
 .profile-page .profile-grid {
-    width: 100%;
-    height: 420px;
-    min-height: 420px;
+  width: 100%;
+  height: 420px;
+  min-height: 420px;
 
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 
-    align-items: stretch;
-    gap: 18px;
+  align-items: stretch;
+  gap: 18px;
 
-    flex: 0 0 420px;
+  flex: 0 0 420px;
 }
 
 /* Kedua container */
 .profile-page .profile-info-card,
 .profile-page .profile-password-card {
-    width: 100%;
-    height: 420px;
-    min-height: 420px;
+  width: 100%;
+  height: 420px;
+  min-height: 420px;
 
-    padding: 16px;
+  padding: 16px;
 
-    box-sizing: border-box;
-    overflow: hidden;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* ---------- PENYESUAIAN ISI INFORMASI PROFIL ---------- */
 
 /* Avatar diperkecil sedikit */
 .profile-page .profile-avatar-container {
-    width: 96px;
-    height: 96px;
+  width: 96px;
+  height: 96px;
 }
 
 .profile-page .avatar-large {
-    width: 90px;
-    height: 90px;
+  width: 90px;
+  height: 90px;
 }
 
 .profile-page .avatar-large > i {
-    font-size: 50px;
+  font-size: 50px;
 }
 
 .profile-page .profile-avatar-wrapper {
-    padding: 5px 0 8px;
+  padding: 5px 0 8px;
 }
 
 .profile-page .profile-detail-list {
-    margin-top: 8px;
+  margin-top: 8px;
 }
 
 /* Jarak baris informasi */
 .profile-page .profile-detail-item {
-    min-height: 56px;
+  min-height: 56px;
 }
 
 /* Ikon informasi */
 .profile-page .icon-circle-badge-small {
-    width: 34px;
-    height: 34px;
-    min-width: 34px;
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
 }
 
 /* ---------- PENYESUAIAN FORM PASSWORD ---------- */
 
 .profile-page .profile-password-form {
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
 .profile-page .form-group-password {
-    margin-bottom: 14px;
+  margin-bottom: 14px;
 }
 
 .profile-page .input-password-wrapper {
-    height: 48px;
+  height: 48px;
 }
 
 /* Tombol tetap di bagian kanan bawah */
 .profile-page .form-actions-profile {
-    margin-top: auto;
-    padding-top: 16px;
-    padding-bottom: 0;
+  margin-top: auto;
+  padding-top: 16px;
+  padding-bottom: 0;
 }
 
 /* ---------- FOOTER ---------- */
 
 .profile-page .footer-copyright {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    margin-top: auto;
-    padding: 12px 20px 15px;
+  margin-top: auto;
+  padding: 12px 20px 15px;
 
-    text-align: center;
+  text-align: center;
 }
 
 /* ---------- RESPONSIVE ---------- */
 
 @media (max-width: 768px) {
-    .profile-page .profile-grid {
-        height: auto;
-        min-height: 0;
-        flex: none;
+  .profile-page .profile-grid {
+    height: auto;
+    min-height: 0;
+    flex: none;
 
-        grid-template-columns: minmax(0, 1fr);
-    }
+    grid-template-columns: minmax(0, 1fr);
+  }
 
-    .profile-page .profile-info-card,
-    .profile-page .profile-password-card {
-        height: auto;
-        min-height: 390px;
-    }
+  .profile-page .profile-info-card,
+  .profile-page .profile-password-card {
+    height: auto;
+    min-height: 390px;
+  }
 }
-
 
 /* =====================================================
    REVISI IKON UBAH PASSWORD
@@ -5321,30 +5322,28 @@ body {
 
 /* Ukuran ikon gembok Ubah Password */
 .profile-page .profile-password-card .profile-lock-icon {
-    width: 24px !important;
-    height: 24px !important;
+  width: 24px !important;
+  height: 24px !important;
 
-    display: block !important;
-    flex-shrink: 0;
+  display: block !important;
+  flex-shrink: 0;
 
-    color: #0875f5 !important;
+  color: #0875f5 !important;
 }
 
 /* Lingkaran tetap */
 .profile-page .profile-password-card .icon-circle-badge {
-    width: 48px !important;
-    height: 48px !important;
-    min-width: 48px !important;
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: #dbeafe !important;
-    border-radius: 50% !important;
+  background: #dbeafe !important;
+  border-radius: 50% !important;
 }
-
-
 
 /* =================================
    9. RESPONSIVE
@@ -5353,147 +5352,138 @@ body {
 /* Tablet */
 
 @media (max-width: 992px) {
+  :root {
+    --sidebar-width: 220px;
+  }
 
-    :root {
-        --sidebar-width: 220px;
-    }
+  .content-body {
+    padding: 0 24px 24px;
+  }
 
-    .content-body {
-        padding: 0 24px 24px;
-    }
+  .top-navbar {
+    padding: 0 24px;
+  }
 
-    .top-navbar {
-        padding: 0 24px;
-    }
+  .dt-flow-container {
+    flex-wrap: wrap;
+  }
 
-    .dt-flow-container {
-        flex-wrap: wrap;
-    }
-
-    .dt-box {
-        flex-basis: 40%;
-    }
+  .dt-box {
+    flex-basis: 40%;
+  }
 }
-
 
 /* Mobile */
 
 @media (max-width: 768px) {
+  .dashboard-container,
+  .app-container {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
 
-.dashboard-container,
-    .app-container {
-        flex-direction: column;
-        height: auto;
-        min-height: 100vh;
-        overflow: visible;
-    }
-
-    .sidebar {
+  .sidebar {
     background:
-        linear-gradient(
-            rgba(11, 25, 44, 0.85),
-            rgba(11, 25, 44, 0.85)
-        ),
-        url('../assets/images/sidebar.jpeg');
+      linear-gradient(rgba(11, 25, 44, 0.85), rgba(11, 25, 44, 0.85)),
+      url("../assets/images/sidebar.jpeg");
 
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    }
+  }
 
-    .sidebar-brand {
-        margin-bottom: 12px;
-    }
+  .sidebar-brand {
+    margin-bottom: 12px;
+  }
 
-    .sidebar-menu {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
+  .sidebar-menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 
-    .sidebar-footer {
-        margin-top: 16px;
-    }
+  .sidebar-footer {
+    margin-top: 16px;
+  }
 
-    .main-content {
-        min-height: auto;
-        overflow: visible;
-    }
+  .main-content {
+    min-height: auto;
+    overflow: visible;
+  }
 
-    .top-navbar {
-        min-height: 64px;
-        padding: 0 16px;
-    }
+  .top-navbar {
+    min-height: 64px;
+    padding: 0 16px;
+  }
 
-    .content-body {
-        padding: 0 16px 24px;
-        gap: 18px;
-    }
+  .content-body {
+    padding: 0 16px 24px;
+    gap: 18px;
+  }
 
-    .welcome-banner {
-        min-height: 150px;
-        padding: 20px;
-        background-position: center;
-    }
+  .welcome-banner {
+    min-height: 150px;
+    padding: 20px;
+    background-position: center;
+  }
 
-    .banner-text h1 {
-        font-size: 22px;
-    }
+  .banner-text h1 {
+    font-size: 22px;
+  }
 
-    .banner-text p {
-        font-size: 12px;
-    }
+  .banner-text p {
+    font-size: 12px;
+  }
 
-    .info-card {
-        padding: 20px;
-    }
+  .info-card {
+    padding: 20px;
+  }
 
-    .dt-flow-container {
-        flex-direction: column;
-        align-items: stretch;
-    }
+  .dt-flow-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-    .dt-box {
-        width: 100%;
-    }
+  .dt-box {
+    width: 100%;
+  }
 
-    .dt-arrow {
-        align-self: center;
-        transform: rotate(90deg);
-    }
+  .dt-arrow {
+    align-self: center;
+    transform: rotate(90deg);
+  }
 
-    .footer-copyright {
-        padding: 16px;
-    }
+  .footer-copyright {
+    padding: 16px;
+  }
 }
-
 
 /* Small Mobile */
 
 @media (max-width: 480px) {
+  .banner-text h1 {
+    font-size: 19px;
+  }
 
-    .banner-text h1 {
-        font-size: 19px;
-    }
+  .user-profile-badge {
+    gap: 8px;
+    padding: 6px 10px;
+  }
 
-    .user-profile-badge {
-        gap: 8px;
-        padding: 6px 10px;
-    }
+  .user-profile-badge .profile-avatar {
+    width: 32px;
+    height: 32px;
+  }
 
-    .user-profile-badge .profile-avatar {
-        width: 32px;
-        height: 32px;
-    }
+  .info-card {
+    padding: 16px;
+  }
 
-    .info-card {
-        padding: 16px;
-    }
-
-    .info-card h3 {
-        font-size: 14px;
-    }
+  .info-card h3 {
+    font-size: 14px;
+  }
 }
-
 
 /* =====================================================
    REVISI CONFUSION MATRIX
@@ -5503,210 +5493,202 @@ body {
 /* ---------- CARD ---------- */
 
 .matrix-card {
-    width: 100%;
-    min-width: 0;
-    min-height: 245px;
+  width: 100%;
+  min-width: 0;
+  min-height: 245px;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Header kartu */
 .matrix-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-    margin-bottom: 0;
-    flex-shrink: 0;
+  margin-bottom: 0;
+  flex-shrink: 0;
 }
-
 
 /* ---------- WRAPPER VISUALISASI ---------- */
 
 .matrix-table-wrapper {
-    width: 100%;
-    flex: 1 1 auto;
-    min-height: 170px;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 170px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    flex-wrap: nowrap;
-    gap: 10px;
+  flex-wrap: nowrap;
+  gap: 10px;
 
-    margin: 0 auto;
-    padding: 12px 0 4px;
+  margin: 0 auto;
+  padding: 12px 0 4px;
 
-    overflow: visible;
+  overflow: visible;
 }
-
 
 /* ---------- LABEL AKTUAL ---------- */
 
 .axis-label-y {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    color: #334155;
-    font-size: 10px;
-    font-weight: 700;
+  color: #334155;
+  font-size: 10px;
+  font-weight: 700;
 }
-
 
 /* ---------- AREA TABEL ---------- */
 
 .matrix-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    flex: 0 0 auto;
-    gap: 5px;
+  flex: 0 0 auto;
+  gap: 5px;
 }
 
 /* Judul Prediksi */
 .matrix-prediction-title {
-    margin: 0 0 3px;
+  margin: 0 0 3px;
 
-    color: #0f172a;
-    font-size: 12px;
-    font-weight: 600;
-    text-align: center;
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
 }
-
 
 /* ---------- TABEL ---------- */
 
 .matrix-table {
-    width: max-content;
+  width: max-content;
 
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 
-    table-layout: fixed;
-    text-align: center;
+  table-layout: fixed;
+  text-align: center;
 }
 
 /* Semua sel */
 .matrix-table th,
 .matrix-table td {
-    height: 38px;
-    padding: 7px 12px;
+  height: 38px;
+  padding: 7px 12px;
 
-    font-size: 10px;
-    border: 1px solid #ffffff;
+  font-size: 10px;
+  border: 1px solid #ffffff;
 }
 
 /* Kolom kosong di kiri atas */
 .matrix-table .matrix-empty-cell {
-    width: 74px;
-    min-width: 74px;
+  width: 74px;
+  min-width: 74px;
 
-    background: transparent !important;
-    border: none !important;
+  background: transparent !important;
+  border: none !important;
 }
 
 /* Kolom prediksi */
 .matrix-table thead th:not(.matrix-empty-cell),
 .matrix-table tbody td {
-    width: 84px;
-    min-width: 84px;
+  width: 84px;
+  min-width: 84px;
 }
 
 /* Label kelas aktual */
 .matrix-table tbody th {
-    width: 74px;
-    min-width: 74px;
+  width: 74px;
+  min-width: 74px;
 
-    text-align: right;
-    padding-right: 12px;
+  text-align: right;
+  padding-right: 12px;
 
-    background: #ffffff;
-    color: #334155;
+  background: #ffffff;
+  color: #334155;
 
-    font-size: 10px;
-    font-weight: 500;
+  font-size: 10px;
+  font-weight: 500;
 }
-
 
 /* ---------- LEGEND / COLORBAR ---------- */
 
 .matrix-legend-wrapper {
-    display: flex !important;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 
-    flex: 0 0 auto;
-    gap: 8px;
+  flex: 0 0 auto;
+  gap: 8px;
 
-    margin: 0 0 0 8px !important;
+  margin: 0 0 0 8px !important;
 }
 
 /* Area gradasi */
 .matrix-legend-wrapper .legend-scale {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    flex: 0 0 auto;
-    height: 130px;
+  flex: 0 0 auto;
+  height: 130px;
 }
 
 /* Sembunyikan angka 200 dan 0 yang duplikat */
 .matrix-legend-wrapper .legend-scale > span {
-    display: none !important;
+  display: none !important;
 }
 
 /* Batang gradasi */
 .matrix-legend-wrapper .legend-bar {
-    width: 11px;
-    height: 130px;
+  width: 11px;
+  height: 130px;
 
-    flex-shrink: 0;
-    border-radius: 2px;
+  flex-shrink: 0;
+  border-radius: 2px;
 }
 
 /* Angka skala di sebelah gradasi */
 .matrix-legend-wrapper .matrix-legend {
-    height: 130px;
+  height: 130px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
 
-    gap: 0;
-    margin: 0 !important;
+  gap: 0;
+  margin: 0 !important;
 
-    color: #64748b;
-    font-size: 9px;
-    line-height: 1;
+  color: #64748b;
+  font-size: 9px;
+  line-height: 1;
 }
-
 
 /* ---------- RESPONSIVE ---------- */
 
 @media (max-width: 768px) {
+  .matrix-card {
+    overflow-x: auto;
+  }
 
-    .matrix-card {
-        overflow-x: auto;
-    }
-
-    .matrix-table-wrapper {
-        justify-content: center;
-        min-width: 480px;
-    }
-
+  .matrix-table-wrapper {
+    justify-content: center;
+    min-width: 480px;
+  }
 }
 
 /* =====================================================
@@ -5716,66 +5698,66 @@ body {
 /* ---------- LABEL KOLOM DI LUAR AREA MATRIX ---------- */
 
 .matrix-table thead th:not(.matrix-empty-cell) {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 
-    color: #334155 !important;
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 10px !important;
-    font-weight: 500 !important;
+  color: #334155 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
 }
 
 /* Hilangkan seluruh latar header tabel */
 .matrix-table thead tr {
-    background: transparent !important;
+  background: transparent !important;
 }
 
 /* ---------- JUDUL PREDIKSI ---------- */
 
 .matrix-main {
-    width: max-content;
-    align-items: stretch;
+  width: max-content;
+  align-items: stretch;
 }
 
 .matrix-prediction-title {
-    width: calc(100% - 74px);
-    margin-left: 74px !important;
-    margin-bottom: 3px;
+  width: calc(100% - 74px);
+  margin-left: 74px !important;
+  margin-bottom: 3px;
 
-    align-self: flex-start;
-    box-sizing: border-box;
+  align-self: flex-start;
+  box-sizing: border-box;
 
-    color: #0f172a !important;
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 12px !important;
-    font-weight: 700 !important;
-    line-height: 1.5;
+  color: #0f172a !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.5;
 
-    text-align: center !important;
+  text-align: center !important;
 }
 
 /* ---------- JUDUL AKTUAL ---------- */
 
 .axis-label-y {
-    position: relative;
-    top: 19px;
+  position: relative;
+  top: 19px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
 
-    color: #0f172a !important;
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 12px !important;
-    font-weight: 700 !important;
-    line-height: 1.5;
+  color: #0f172a !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.5;
 
-    text-align: center;
-    white-space: nowrap;
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* =====================================================
@@ -5784,35 +5766,35 @@ body {
 
 /* Geser colorbar sejajar dengan area sel matriks */
 .matrix-legend-wrapper {
-    position: relative;
-    transform: translateY(32px);
+  position: relative;
+  transform: translateY(32px);
 
-    margin-top: 0 !important;
+  margin-top: 0 !important;
 }
 
 /* Tinggi gradasi */
 .matrix-legend-wrapper .legend-scale {
-    height: 112px !important;
-    align-items: stretch;
+  height: 112px !important;
+  align-items: stretch;
 }
 
 /* Batang gradasi */
 .matrix-legend-wrapper .legend-bar {
-    height: 112px !important;
-    width: 11px;
+  height: 112px !important;
+  width: 11px;
 }
 
 /* Angka 200 sampai 0 */
 .matrix-legend-wrapper .matrix-legend {
-    height: 112px !important;
+  height: 112px !important;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between !important;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between !important;
+  align-items: flex-start;
 
-    gap: 0 !important;
-    margin: 0 !important;
+  gap: 0 !important;
+  margin: 0 !important;
 }
 
 /* =====================================================
@@ -5821,44 +5803,44 @@ body {
 
 /* Garis pembungkus tabel itu sendiri */
 .evaluation-table {
-    width: 100% !important;
+  width: 100% !important;
 
-    border-collapse: separate !important;
-    border-spacing: 0 !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
 
-    border: 1px solid #e7eef7 !important;
-    border-radius: 13px;
+  border: 1px solid #e7eef7 !important;
+  border-radius: 13px;
 
-    overflow: hidden;
+  overflow: hidden;
 }
 
 /* Garis halus antar kolom pada header */
 .evaluation-table thead th {
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* Garis halus antar kolom pada isi tabel */
 .evaluation-table tbody td {
-    border-right: 1px solid #edf2f7;
-    border-bottom: 1px solid #edf2f7;
+  border-right: 1px solid #edf2f7;
+  border-bottom: 1px solid #edf2f7;
 }
 
 /* Hilangkan garis kanan pada kolom terakhir */
 .evaluation-table thead th:last-child,
 .evaluation-table tbody td:last-child {
-    border-right: none;
+  border-right: none;
 }
 
 /* Hilangkan garis bawah pada baris terakhir */
 .evaluation-table tbody tr:last-child td {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 /* Sudut atas header */
 .evaluation-table thead th:first-child {
-    border-top-left-radius: 12px;
+  border-top-left-radius: 12px;
 }
 
 .evaluation-table thead th:last-child {
-    border-top-right-radius: 12px;
+  border-top-right-radius: 12px;
 }

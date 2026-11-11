@@ -317,6 +317,129 @@ function initDatasetPage() {
 
   // Inisialisasi awal: Tampilkan halaman 1
   switchPage(1);
+
+  // ==========================================
+  // FITUR TAMBAHAN: TAB SWITCHER & CSV UPLOAD
+  // ==========================================
+
+  // 1. Logika Pindah Tab (Manual <-> CSV)
+  const tabBtns = document.querySelectorAll(".tab-btn");
+  tabBtns.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const tabName = this.getAttribute("data-tab");
+
+      // Hapus kelas active dari semua tombol dan konten
+      tabBtns.forEach((b) => b.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach((content) => {
+        content.classList.remove("active");
+      });
+
+      // Tambah kelas active ke tombol dan konten yang dipilih
+      // Tambah kelas active ke tombol dan konten yang dipilih
+      this.classList.add("active");
+
+      // PERBAIKAN: Handle case "csv" menjadi "CSV" agar sesuai dengan ID di HTML
+      let targetId = "tab" + tabName.charAt(0).toUpperCase() + tabName.slice(1);
+      if (tabName === "csv") targetId = "tabCSV";
+
+      const targetContent = document.getElementById(targetId);
+      if (targetContent) targetContent.classList.add("active");
+    });
+  });
+
+  // 2. Logika Buka File Explorer & Preview File CSV
+  const btnUploadCsv = document.querySelector(".btn-csv-upload");
+  const csvFileInput = document.getElementById("csvFileInput");
+
+  if (btnUploadCsv && csvFileInput) {
+    // Paksa buka file explorer saat tombol custom diklik
+    btnUploadCsv.addEventListener("click", function (e) {
+      e.preventDefault(); // Mencegah konflik dengan tag <label>
+      csvFileInput.click(); // <-- INI KUNCINYA: Membuka file explorer
+    });
+
+    // Logika preview setelah file dipilih
+    csvFileInput.addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        document.getElementById("csvFileName").textContent =
+          "File terpilih: " + file.name;
+        document.getElementById("csvPreview").style.display = "block";
+      } else {
+        document.getElementById("csvPreview").style.display = "none";
+      }
+    });
+  }
+  // 3. Logika Proses Data CSV
+  window.processCSV = function () {
+    const file = csvFileInput.files[0];
+    if (!file) {
+      alert("Pilih file CSV terlebih dahulu!");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const text = e.target.result;
+      const rows = text.split("\n");
+      let successCount = 0;
+      let errorCount = 0;
+
+      // Loop data CSV (skip baris 0 karena itu header kolom)
+      for (let i = 1; i < rows.length; i++) {
+        const row = rows[i].trim();
+        if (!row) continue;
+
+        const columns = row.split(",");
+        if (columns.length >= 5) {
+          const jenis = columns[0].trim();
+          const alat = columns[1].trim();
+          const wilayah = columns[2].trim();
+          const musim = columns[3].trim();
+          const produksi = parseInt(columns[4].trim());
+
+          if (jenis && alat && wilayah && musim && !isNaN(produksi)) {
+            let kategoriBadge = "";
+            if (produksi > 1000)
+              kategoriBadge = '<span class="badge badge-tinggi">Tinggi</span>';
+            else if (produksi >= 500)
+              kategoriBadge = '<span class="badge badge-sedang">Sedang</span>';
+            else
+              kategoriBadge = '<span class="badge badge-rendah">Rendah</span>';
+
+            const tableBody = datasetTable.getElementsByTagName("tbody")[0];
+            const newRow = tableBody.insertRow();
+            newRow.setAttribute("data-page", currentPage);
+            newRow.innerHTML = `
+              <td>${tableBody.rows.length}</td>
+              <td>${jenis}</td>
+              <td>${alat}</td>
+              <td>${wilayah}</td>
+              <td>${musim}</td>
+              <td>${produksi}</td>
+              <td>${kategoriBadge}</td>
+              <td>
+                <button class="action-btn btn-edit" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                <button class="action-btn btn-delete" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+              </td>
+            `;
+            successCount++;
+          } else {
+            errorCount++;
+          }
+        } else {
+          errorCount++;
+        }
+      }
+
+      reorderRows(); // Rapikan nomor urut
+      alert(
+        `Berhasil menambahkan ${successCount} data dari CSV! ${errorCount > 0 ? errorCount + " data gagal diproses (format salah)." : ""}`,
+      );
+      closeModal(); // Tutup modal setelah selesai
+    };
+    reader.readAsText(file);
+  };
 }
 
 // ==========================================

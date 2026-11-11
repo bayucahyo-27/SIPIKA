@@ -71,14 +71,14 @@ if (loginForm) {
     btnMasuk.disabled = true;
 
     setTimeout(() => {
-      // --- INI KUNCINYA: KITA SIMPAN SESSION AGAR GLOBAL.JS TIDAK MENENDANG USER ---
+      //  KITA SIMPAN SESSION AGAR GLOBAL.JS TIDAK MENENDANG USER ---
       const userData = {
         username: username,
         nama_lengkap: username, // Bisa disesuaikan nanti
         role: role,
       };
 
-      // Panggil fungsi saveSession (sekarang sudah aman ada di atas)
+      // Panggil fungsi saveSession 
       saveSession(userData);
 
       // Redirect sesuai role

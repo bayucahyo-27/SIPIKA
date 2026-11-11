@@ -79,7 +79,14 @@
         </ul>
 
         <div class="sidebar-footer">
-          <a href="#" class="logout-btn">
+          <a
+            href="#"
+            class="logout-btn"
+            onclick="
+              handleLogout();
+              return false;
+            "
+          >
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
             <span>Logout</span>
           </a>

@@ -81,7 +81,14 @@
         </ul>
 
         <div class="sidebar-footer">
-          <a href="#" class="logout-btn">
+          <a
+            href="#"
+            class="logout-btn"
+            onclick="
+              handleLogout();
+              return false;
+            "
+          >
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
             <span>Logout</span>
           </a>
@@ -501,77 +508,135 @@
     <!-- AKHIR APP CONTAINER -->
 
     <!-- =================================
-         MODAL TAMBAH / EDIT DATA
-    ================================== -->
+     MODAL TAMBAH / EDIT DATA
+================================== -->
     <div id="dataModal" class="modal-overlay" style="display: none">
       <div class="modal-card">
         <div class="modal-header">
           <h3 id="modalTitle">Tambah Data Dataset</h3>
-
-          <button class="modal-close" type="button" aria-label="Tutup modal">
+          <button
+            class="modal-close"
+            type="button"
+            onclick="closeModal()"
+            aria-label="Tutup modal"
+          >
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
 
         <div class="modal-body">
-          <form id="datasetForm">
-            <div class="form-group">
-              <label for="inputJenis">Jenis Ikan</label>
+          <!-- TAB SWITCHER -->
+          <div class="modal-tabs">
+            <button type="button" class="tab-btn active" data-tab="manual">
+              <i class="fa-solid fa-keyboard"></i> Input Manual
+            </button>
+            <button type="button" class="tab-btn" data-tab="csv">
+              <i class="fa-solid fa-file-csv"></i> Upload CSV
+            </button>
+          </div>
+
+          <!-- TAB 1: INPUT MANUAL -->
+          <div id="tabManual" class="tab-content active">
+            <form id="datasetForm" onsubmit="saveData(event)">
+              <div class="form-group">
+                <label for="inputJenis">Jenis Ikan</label>
+                <input
+                  type="text"
+                  id="inputJenis"
+                  required
+                  placeholder="Contoh: Cakalang"
+                />
+              </div>
+              <div class="form-group">
+                <label for="inputAlat">Alat Tangkap</label>
+                <input
+                  type="text"
+                  id="inputAlat"
+                  required
+                  placeholder="Contoh: Pancing"
+                />
+              </div>
+              <div class="form-group">
+                <label for="inputWilayah">Wilayah</label>
+                <input
+                  type="text"
+                  id="inputWilayah"
+                  required
+                  placeholder="Contoh: Ternate"
+                />
+              </div>
+              <div class="form-group">
+                <label for="inputMusim">Musim</label>
+                <input
+                  type="text"
+                  id="inputMusim"
+                  required
+                  placeholder="Contoh: Kemarau"
+                />
+              </div>
+              <div class="form-group">
+                <label for="inputProduksi">Produksi (kg)</label>
+                <input
+                  type="number"
+                  id="inputProduksi"
+                  required
+                  min="0"
+                  placeholder="Contoh: 1200"
+                />
+              </div>
+              <div class="modal-actions">
+                <button
+                  type="button"
+                  class="btn-secondary"
+                  onclick="closeModal()"
+                >
+                  Batal
+                </button>
+                <button type="submit" class="btn-primary">Simpan</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- TAB 2: UPLOAD CSV (INI YANG BARU!) -->
+          <div id="tabCSV" class="tab-content">
+            <div class="csv-upload-area">
+              <i class="fa-solid fa-cloud-arrow-up csv-icon"></i>
+              <p class="csv-title">Pilih File CSV</p>
+              <p class="csv-desc">
+                Format: Jenis Ikan, Alat Tangkap, Wilayah, Musim, Produksi
+              </p>
+
+              <label for="csvFileInput" class="btn-csv-upload">
+                <i class="fa-solid fa-folder-open"></i> Pilih File
+              </label>
               <input
-                type="text"
-                id="inputJenis"
-                required
-                placeholder="Contoh: Cakalang"
+                type="file"
+                id="csvFileInput"
+                accept=".csv"
+                style="display: none"
               />
-            </div>
 
-            <div class="form-group">
-              <label for="inputAlat">Alat Tangkap</label>
-              <input
-                type="text"
-                id="inputAlat"
-                required
-                placeholder="Contoh: Pancing"
-              />
+              <div id="csvPreview" class="csv-preview" style="display: none">
+                <p id="csvFileName"></p>
+                <button
+                  type="button"
+                  class="btn-process-csv"
+                  onclick="processCSV()"
+                >
+                  <i class="fa-solid fa-upload"></i> Proses Data
+                </button>
+              </div>
             </div>
-
-            <div class="form-group">
-              <label for="inputWilayah">Wilayah</label>
-              <input
-                type="text"
-                id="inputWilayah"
-                required
-                placeholder="Contoh: Ternate"
-              />
+            <div class="modal-actions" style="margin-top: 20px">
+              <button
+                type="button"
+                class="btn-secondary"
+                onclick="closeModal()"
+              >
+                Tutup
+              </button>
             </div>
-
-            <div class="form-group">
-              <label for="inputMusim">Musim</label>
-              <input
-                type="text"
-                id="inputMusim"
-                required
-                placeholder="Contoh: Kemarau"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="inputProduksi">Produksi (kg)</label>
-              <input
-                type="number"
-                id="inputProduksi"
-                required
-                min="0"
-                placeholder="Contoh: 1200"
-              />
-            </div>
-
-            <div class="modal-actions">
-              <button type="button" class="btn-secondary">Batal</button>
-
-              <button type="submit" class="btn-primary">Simpan</button>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
