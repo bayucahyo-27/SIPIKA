@@ -393,6 +393,10 @@ body {
   border-radius: 30px;
 
   box-shadow: 0 2px 5px rgba(15, 23, 42, 0.05);
+
+  /* FLEKSIBILITAS: Batasi lebar badge biar nggak maksa layout */
+  max-width: 280px;
+  overflow: hidden;
 }
 
 /* Avatar */
@@ -420,6 +424,10 @@ body {
   flex-direction: column;
   justify-content: center;
   gap: 1px;
+
+  /* FLEKSIBILITAS: Penting! Biar teks bisa dipotong, bukan maksa lebar */
+  min-width: 0;
+  flex: 1;
 }
 
 /* Nama pengguna */
@@ -431,6 +439,13 @@ body {
   font-size: 14px;
   font-weight: 700;
   line-height: 1.4;
+
+  /* FLEKSIBILITAS: Potong email/nama yang kepanjangan */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+  display: block;
 }
 
 /* Status / Role */
@@ -491,7 +506,7 @@ body {
     url("../assets/images/banner.jpg");
 
   background-size: cover;
-  background-position: right center;
+  background-position: 85% center;
   background-repeat: no-repeat;
 
   border-radius: 16px;
@@ -1054,21 +1069,27 @@ body {
 
 @media (max-width: 768px) {
   .dt-flow-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important;
     max-width: 100%;
-    grid-template-columns: 1fr;
-    gap: 12px;
   }
 
-  .dt-flow-container > .dt-box:first-child,
-  .dt-flow-container > .process-box,
-  .dt-flow-container > .result-box {
-    width: 100%;
-    min-height: auto;
+  .dt-flow-container > .dt-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    flex: none !important;
   }
 
   .dt-arrow {
-    transform: rotate(90deg);
-    justify-self: center;
+    width: 100% !important;
+    text-align: center !important;
+    transform: rotate(90deg) !important;
+    margin: -8px 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
 }
 
@@ -1383,7 +1404,7 @@ body {
     url("../assets/images/banner.jpg");
 
   background-size: cover;
-  background-position: center;
+  background-position: 85% center; /* SAMAKAN: 85% DARI KIRI */
   background-repeat: no-repeat;
 
   border: 1px solid #d8e5f3;
@@ -2220,7 +2241,7 @@ body {
     min-height: 135px;
     padding: 16px;
 
-    background-position: center;
+    background-position: 85% center !important; /* SAMAKAN DI MOBILE */
   }
 
   .banner-text h1 {
@@ -2474,7 +2495,7 @@ body {
     url("../assets/images/banner.jpg") !important;
 
   background-size: cover !important;
-  background-position: center right !important;
+  background-position: 85% center !important;
   background-repeat: no-repeat !important;
 
   border: 1px solid #dce6f1;
@@ -2552,6 +2573,9 @@ body {
   border-radius: 12px;
 
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+
+  /* FLEKSIBILITAS: Izinkan scroll horizontal jika isinya kepanjangan */
+  overflow-x: auto;
 }
 
 /* Header card hasil evaluasi */
@@ -2617,8 +2641,9 @@ body {
    8. TABEL HASIL EVALUASI
 ===================================================== */
 
-.data-table {
+.eval-card .data-table {
   width: 100%;
+  min-width: 600px; /* Paksa tabel tetap lebar agar tidak gepeng */
 
   border-collapse: collapse;
   border-spacing: 0;
@@ -3061,12 +3086,15 @@ body {
     padding-right: 15px;
   }
 
+  /* FLEKSIBILITAS: Card numpuk ke bawah di tablet */
   .evaluation-grid {
-    grid-template-columns: minmax(0, 1.6fr) minmax(220px, 1fr) !important;
+    grid-template-columns: 1fr !important;
   }
 
-  .data-table {
+  /* Sesuaikan ukuran tabel evaluasi di tablet */
+  .eval-card .data-table {
     font-size: 9px;
+    min-width: 500px;
   }
 
   .matrix-table th,
@@ -3089,7 +3117,7 @@ body {
     min-height: 125px;
     padding: 15px;
 
-    background-position: center right !important;
+    background-position: 85% center !important;
   }
 
   .banner-text h2 {
@@ -3560,7 +3588,7 @@ body {
     url("../assets/images/banner.jpg") !important;
 
   background-size: cover !important;
-  background-position: center right !important;
+  background-position: 85% center !important;
   background-repeat: no-repeat !important;
 
   border: 1px solid #d8e5f3 !important;
@@ -3681,7 +3709,7 @@ body {
 
   background-image: url("../assets/images/banner-ikan.jpg") !important;
   background-size: cover !important;
-  background-position: center right !important;
+  background-position: 85% center !important;
   background-repeat: no-repeat !important;
 
   border: 1px solid #d8e5f3 !important;
@@ -4496,7 +4524,7 @@ body {
   padding: 24px 32px;
 
   background-size: cover;
-  background-position: right center;
+  background-position: 85% center;
   background-repeat: no-repeat;
 
   border-radius: 16px;
@@ -5364,98 +5392,149 @@ body {
     padding: 0 24px;
   }
 
+  /* FLEKSIBILITAS: Decision Tree jadi vertikal di tablet */
   .dt-flow-container {
-    flex-wrap: wrap;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 20px !important;
   }
 
-  .dt-box {
-    flex-basis: 40%;
+  .dt-flow-container > .dt-box {
+    width: 100% !important;
+    max-width: 400px !important;
+    flex: none !important;
+  }
+
+  .dt-arrow {
+    width: 100% !important; /* Paksa panah selebar container */
+    text-align: center !important; /* Teks/ikon di tengah */
+    transform: rotate(90deg) !important;
+    margin: -10px 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
 }
 
 /* Mobile */
 
 @media (max-width: 768px) {
+  /* 1. Layout Utama: Numpuk ke bawah */
   .dashboard-container,
   .app-container {
-    flex-direction: column;
-    height: auto;
-    min-height: 100vh;
-    overflow: visible;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow: visible !important;
   }
 
+  /* 2. Sidebar: Paksa lebar penuh & tinggi otomatis (Mengalahkan Section 3) */
   .sidebar {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    flex-shrink: 0 !important;
+
     background:
       linear-gradient(rgba(11, 25, 44, 0.85), rgba(11, 25, 44, 0.85)),
-      url("../assets/images/sidebar.jpeg");
-
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+      url("../assets/images/sidebar.jpeg") !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
   }
 
   .sidebar-brand {
-    margin-bottom: 12px;
+    margin-bottom: 12px !important;
   }
 
+  /* 3. Menu Sidebar: Jadi horizontal & wrap */
   .sidebar-menu {
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+
+  .sidebar-menu li {
+    width: auto !important;
+    height: auto !important;
+  }
+
+  .sidebar-menu li a {
+    width: auto !important;
+    height: auto !important;
+    padding: 8px 12px !important;
+    font-size: 12px !important;
   }
 
   .sidebar-footer {
-    margin-top: 16px;
+    margin-top: 16px !important;
   }
 
+  /* 4. Konten Utama: Lebar penuh */
   .main-content {
-    min-height: auto;
-    overflow: visible;
+    width: 100% !important;
+    min-height: auto !important;
+    overflow: visible !important;
   }
 
   .top-navbar {
-    min-height: 64px;
-    padding: 0 16px;
+    min-height: 64px !important;
+    padding: 0 16px !important;
   }
 
+  /* 5. Padding & Spacing Konten */
   .content-body {
-    padding: 0 16px 24px;
-    gap: 18px;
+    padding: 16px !important;
+    gap: 18px !important;
   }
 
-  .welcome-banner {
-    min-height: 150px;
-    padding: 20px;
-    background-position: center;
+  /* 6. Banner & Info Card */
+  .welcome-banner,
+  .banner-card {
+    min-height: 140px !important;
+    height: auto !important;
+    padding: 20px !important;
+    background-position: 85% center; /* KAPAL SELALU DI POSISI 85% DARI KIRI */
   }
 
   .banner-text h1 {
-    font-size: 22px;
+    font-size: 22px !important;
   }
 
   .banner-text p {
-    font-size: 12px;
+    font-size: 12px !important;
   }
 
   .info-card {
-    padding: 20px;
+    padding: 20px !important;
   }
 
+  /* 7. Decision Tree (Backup untuk Mobile) */
+  /* 7. Decision Tree (Backup untuk Mobile) */
   .dt-flow-container {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: column !important;
+    align-items: center !important; /* Ubah dari stretch ke center */
   }
 
   .dt-box {
-    width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   .dt-arrow {
-    align-self: center;
-    transform: rotate(90deg);
+    width: 100% !important;
+    text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    transform: rotate(90deg) !important;
   }
 
   .footer-copyright {
-    padding: 16px;
+    padding: 16px !important;
   }
 }
 

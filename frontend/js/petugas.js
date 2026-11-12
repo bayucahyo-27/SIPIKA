@@ -32,26 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 3. Setup Event Listener untuk Tombol Logout (Event Handling)
-  // Menggunakan querySelectorAll untuk menangani semua tombol logout di berbagai halaman.
-  const logoutBtns = document.querySelectorAll(".logout-btn");
-  logoutBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault(); // Mencegah link <a> berpindah halaman secara default
-
-      if (typeof handleLogout === "function") {
-        handleLogout(); // Memanggil fungsi aman dari global.js
-      } else {
-        // Fallback manual jika global.js belum terload (keamanan ekstra)
-        if (confirm("Apakah Anda yakin ingin keluar dari SIPIKA?")) {
-          localStorage.removeItem("sipika_user");
-          localStorage.removeItem("sipika_isLoggedIn");
-          window.location.href = "../../auth/login.html";
-        }
-      }
-    });
-  });
-
   // 4. Panggil Inisialisasi Spesifik per Halaman
   // Fungsi-fungsi di bawah akan otomatis "skip" (return) jika elemennya tidak ada di halaman tersebut.
   initDatasetPage();
