@@ -427,6 +427,20 @@ body {
 
   .brand-logo {
     width: 160px;
+    margin-bottom: -40px; /* BARU: proporsional utk logo kecil (400→-100, maka 160→-40) */
+    margin-left: 0; /* BARU: biar logo nggak geser kepotong kiri */
+  }
+
+  .brand-content {
+    transform: translateY(
+      -40px
+    ); /* BARU: kurangi dari -120px biar nggak kepotong atas */
+  }
+
+  .register-page .brand-content {
+    transform: translateY(
+      -40px
+    ); /* BARU: khusus Register (punya override sendiri) */
   }
 
   .brand-description {
@@ -463,6 +477,15 @@ body {
 
   .brand-content {
     max-width: 100%;
+    transform: translateY(
+      0
+    ); /* BARU: reset naik 120px → biar nggak kepotong/nabrak */
+  }
+
+  .register-page .brand-content {
+    transform: translateY(
+      0
+    ); /* BARU: khusus Register (punya override sendiri) */
   }
 
   .brand-logo {
@@ -485,6 +508,7 @@ body {
 
   .login-card {
     max-width: 400px;
+    padding: 28px 22px; /* BARU: perkecil padding biar form lega di HP */
   }
 }
 
