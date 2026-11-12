@@ -1,15 +1,3 @@
-/**
- * ==========================================
- * PETUGAS.JS - SIPIKA Petugas Logic (Unified)
- * ==========================================
- * PENJELASAN UNTUK ASESTENSI:
- * File ini dirancang sebagai "Unified Controller" untuk semua halaman Petugas.
- * Alih-alih membuat file JS terpisah untuk setiap halaman, kita menggunakan
- * pengecekan elemen (if element exists) agar kode lebih efisien, tidak konflik,
- * dan mudah di-maintain. Ini menunjukkan pemahaman tinggi tentang "Kualitas Kode"
- * dan "Pengorganisasian Kode" (Indikator Tahap 4).
- */
-
 // ==========================================
 // 1. INISIALISASI GLOBAL (JALAN DI SEMUA HALAMAN PETUGAS)
 // ==========================================

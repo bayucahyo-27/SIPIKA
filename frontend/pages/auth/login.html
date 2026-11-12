@@ -1,178 +1,193 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Deskripsi singkat halaman untuk mesin pencari dan browser -->
-    <meta name="description" content="SIPIKA - Sistem Klasifikasi Tingkat Produksi Ikan Tangkapan di Maluku Utara">
+    <meta
+      name="description"
+      content="SIPIKA - Sistem Klasifikasi Tingkat Produksi Ikan Tangkapan di Maluku Utara"
+    />
 
     <!-- Judul yang ditampilkan pada tab browser -->
     <title>Login | SIPIKA</title>
 
     <!-- Menghubungkan Google Fonts: Poppins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Menghubungkan file CSS untuk mengatur tampilan halaman autentikasi -->
-    <link rel="stylesheet" href="../../css/auth.css">
-</head>
+    <link rel="stylesheet" href="../../css/auth.css" />
+  </head>
 
-<body>
-
+  <body>
     <!-- Kontainer utama yang membungkus seluruh halaman login -->
     <main class="login-page">
+      <!-- Bagian kiri: Identitas SIPIKA -->
+      <section class="brand-section" aria-label="Identitas SIPIKA">
+        <div class="brand-content">
+          <!-- Logo SIPIKA -->
+          <img
+            src="../../assets/images/logo_sipika.png"
+            alt="Logo SIPIKA"
+            class="brand-logo"
+          />
 
-        <!-- Bagian kiri: Identitas SIPIKA -->
-        <section class="brand-section" aria-label="Identitas SIPIKA">
+          <!-- Deskripsi singkat sistem -->
+          <p class="brand-description">
+            Sistem Klasifikasi Produksi<br />
+            Ikan Tangkapan di Maluku Utara
+          </p>
 
-            <div class="brand-content">
+          <!-- Elemen dekorasi pada bagian identitas -->
+          <div class="brand-decoration"></div>
+        </div>
+      </section>
 
-                <!-- Logo SIPIKA -->
-                <img src="../../assets/images/logo_sipika.png" alt="Logo SIPIKA" class="brand-logo">
+      <!-- Bagian kanan: Form login pengguna -->
+      <section class="login-section" aria-label="Form login">
+        <div class="login-card">
+          <!-- Judul dan pengantar halaman login -->
+          <header class="login-header">
+            <h2>Selamat Datang</h2>
+            <p>Silakan masuk ke sistem untuk melanjutkan</p>
+          </header>
 
-                <!-- Deskripsi singkat sistem -->
-                <p class="brand-description">
-                    Sistem Klasifikasi Produksi<br>
-                    Ikan Tangkapan di Maluku Utara
-                </p>
+          <!-- Form untuk memasukkan data login pengguna -->
+          <form id="loginForm" class="login-form">
+            <!-- Input username -->
+            <div class="form-group">
+              <label for="username">USERNAME</label>
 
-                <!-- Elemen dekorasi pada bagian identitas -->
-                <div class="brand-decoration"></div>
+              <div class="input-wrapper">
+                <!-- Ikon username -->
+                <img
+                  src="../../assets/icons/user.svg"
+                  alt=""
+                  class="input-icon"
+                  aria-hidden="true"
+                />
 
+                <!-- Kolom untuk memasukkan username -->
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  placeholder="Masukkan username"
+                  autocomplete="username"
+                />
+              </div>
             </div>
 
-        </section>
+            <!-- Input kata sandi -->
+            <div class="form-group">
+              <label for="password">KATA SANDI</label>
 
+              <div class="input-wrapper">
+                <!-- Ikon kata sandi -->
+                <img
+                  src="../../assets/icons/lock.svg"
+                  alt=""
+                  class="input-icon"
+                  aria-hidden="true"
+                />
 
-        <!-- Bagian kanan: Form login pengguna -->
-        <section class="login-section" aria-label="Form login">
+                <!-- Kolom untuk memasukkan kata sandi -->
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Masukkan kata sandi"
+                  autocomplete="current-password"
+                />
 
-            <div class="login-card">
-
-                <!-- Judul dan pengantar halaman login -->
-                <header class="login-header">
-                    <h2>Selamat Datang</h2>
-                    <p>Silakan masuk ke sistem untuk melanjutkan</p>
-                </header>
-
-
-                <!-- Form untuk memasukkan data login pengguna -->
-                <form id="loginForm" class="login-form">
-
-                    <!-- Input username -->
-                    <div class="form-group">
-                        <label for="username">USERNAME</label>
-
-                        <div class="input-wrapper">
-
-                            <!-- Ikon username -->
-                            <img src="../../assets/icons/user.svg" alt="" class="input-icon" aria-hidden="true">
-
-                            <!-- Kolom untuk memasukkan username -->
-                            <input type="text" id="username" name="username" placeholder="Masukkan username"
-                                autocomplete="username" required>
-
-                        </div>
-                    </div>
-
-
-                    <!-- Input kata sandi -->
-                    <div class="form-group">
-                        <label for="password">KATA SANDI</label>
-
-                        <div class="input-wrapper">
-
-                            <!-- Ikon kata sandi -->
-                            <img src="../../assets/icons/lock.svg" alt="" class="input-icon" aria-hidden="true">
-
-                            <!-- Kolom untuk memasukkan kata sandi -->
-                            <input type="password" id="password" name="password" placeholder="Masukkan kata sandi"
-                                autocomplete="current-password" required>
-
-
-                            <!-- Tombol untuk menampilkan atau menyembunyikan kata sandi -->
-                            <button type="button" id="togglePassword" class="password-toggle"
-                                aria-label="Tampilkan kata sandi" aria-pressed="false">
-                                <!-- Ikon mata terbuka menggunakan SVG inline -->
-                                <svg id="passwordToggleIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                                    aria-hidden="true">
-                                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" />
-                                    <circle cx="12" cy="12" r="3" />
-                                </svg>
-                            </button>
-
-
-                        </div>
-                    </div>
-
-
-                    <!-- Pilihan pengguna berdasarkan role -->
-                    <div class="form-group">
-                        <label for="role">PILIH PENGGUNA</label>
-
-                        <div class="input-wrapper">
-
-                            <!-- Ikon pilihan pengguna -->
-                            <img src="../../assets/icons/users.svg" alt="" class="input-icon" aria-hidden="true">
-
-                            <!-- Daftar pilihan role pengguna -->
-                            <select id="role" name="role" required>
-                                <option value="" selected disabled>
-                                    Pilih jenis pengguna
-                                </option>
-                                <option value="nelayan">Nelayan</option>
-                                <option value="petugas">Petugas</option>
-                                <option value="admin">Admin</option>
-                            </select>
-                        </div>
-                    </div>
-
-
-                    <!-- Tautan menuju halaman lupa kata sandi -->
-                    <div class="forgot-password">
-                        <a href="forgot-password.html">
-                            Lupa Kata Sandi?
-                        </a>
-                    </div>
-
-
-                    <!-- Tombol untuk mengirim form login -->
-                    <button type="submit" class="login-button">
-                        MASUK
-                    </button>
-
-                </form>
-
-
-                <!-- Pemisah antara form login dan tautan registrasi -->
-                <div class="form-divider">
-                    <span></span>
-                    <p>atau</p>
-                    <span></span>
-                </div>
-
-
-                <!-- Tautan menuju halaman registrasi akun -->
-                <div class="register-link">
-                    <p>
-                        Belum Punya Akun?
-                        <a href="register.html">Daftar Sekarang</a>
-                    </p>
-                </div>
-
+                <!-- Tombol untuk menampilkan atau menyembunyikan kata sandi -->
+                <button
+                  type="button"
+                  id="togglePassword"
+                  class="password-toggle"
+                  aria-label="Tampilkan kata sandi"
+                  aria-pressed="false"
+                >
+                  <!-- Ikon mata terbuka menggunakan SVG inline -->
+                  <svg
+                    id="passwordToggleIcon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"
+                    />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
-        </section>
+            <!-- Pilihan pengguna berdasarkan role -->
+            <div class="form-group">
+              <label for="role">PILIH PENGGUNA</label>
 
+              <div class="input-wrapper">
+                <!-- Ikon pilihan pengguna -->
+                <img
+                  src="../../assets/icons/users.svg"
+                  alt=""
+                  class="input-icon"
+                  aria-hidden="true"
+                />
+
+                <!-- Daftar pilihan role pengguna -->
+                <select id="role" name="role">
+                  <option value="" selected disabled>
+                    Pilih jenis pengguna
+                  </option>
+                  <option value="nelayan">Nelayan</option>
+                  <option value="petugas">Petugas</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Tautan menuju halaman lupa kata sandi -->
+            <div class="forgot-password">
+              <a href="forgot-password.html"> Lupa Kata Sandi? </a>
+            </div>
+
+            <!-- Tombol untuk mengirim form login -->
+            <button type="submit" class="login-button">MASUK</button>
+          </form>
+
+          <!-- Pemisah antara form login dan tautan registrasi -->
+          <div class="form-divider">
+            <span></span>
+            <p>atau</p>
+            <span></span>
+          </div>
+
+          <!-- Tautan menuju halaman registrasi akun -->
+          <div class="register-link">
+            <p>
+              Belum Punya Akun?
+              <a href="register.html">Daftar Sekarang</a>
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Menghubungkan file JavaScript untuk menangani interaksi halaman login -->
+    <script src="../../js/global.js"></script>
     <script src="../../js/auth.js"></script>
-
-</body>
-
+  </body>
 </html>

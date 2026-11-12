@@ -1,9 +1,8 @@
-
 /**
  * ==========================================
  * GLOBAL.JS - SIPIKA Frontend Utilities
  * ==========================================
- * File ini berisi fungsi-fungsi dasar yang digunakan 
+ * File ini berisi fungsi-fungsi dasar yang digunakan
  * di seluruh halaman aplikasi SIPIKA.
  */
 
@@ -15,12 +14,12 @@ const API_BASE_URL = "http://localhost/SIPIKA/backend";
 // ==========================================
 
 /**
- * Menyimpan data user ke localStorage setelah login berhasil
+ * Menyimpan data user ke sessionStorage (akan terhapus otomatis saat tab ditutup)
  * @param {Object} userData - Data user dari backend
  */
 function saveSession(userData) {
-  localStorage.setItem("sipika_user", JSON.stringify(userData));
-  localStorage.setItem("sipika_isLoggedIn", "true");
+  sessionStorage.setItem("sipika_user", JSON.stringify(userData));
+  sessionStorage.setItem("sipika_isLoggedIn", "true");
 }
 
 /**
@@ -28,7 +27,7 @@ function saveSession(userData) {
  * @returns {Object|null} Data user atau null jika belum login
  */
 function getSession() {
-  const user = localStorage.getItem("sipika_user");
+  const user = sessionStorage.getItem("sipika_user");
   return user ? JSON.parse(user) : null;
 }
 
@@ -36,8 +35,8 @@ function getSession() {
  * Menghapus sesi user (Logout)
  */
 function clearSession() {
-  localStorage.removeItem("sipika_user");
-  localStorage.removeItem("sipika_isLoggedIn");
+  sessionStorage.removeItem("sipika_user");
+  sessionStorage.removeItem("sipika_isLoggedIn");
 }
 
 /**
@@ -45,8 +44,8 @@ function clearSession() {
  * Jika belum, redirect ke halaman login.
  */
 function requireAuth() {
-  const isLoggedIn = localStorage.getItem("sipika_isLoggedIn") === "true";
-  
+  const isLoggedIn = sessionStorage.getItem("sipika_isLoggedIn") === "true";
+
   // Cek apakah user sedang di halaman auth (login/register)
   const isAuthPage = window.location.href.includes("/auth/");
 
@@ -76,14 +75,39 @@ function handleLogout() {
 // ==========================================
 
 /**
- * Menampilkan notifikasi/alert yang lebih rapi daripada alert() bawaan browser
+ * Menampilkan notifikasi custom di tengah layar
  * @param {string} message - Pesan yang ingin ditampilkan
  * @param {string} type - Tipe notifikasi ('success', 'error', 'warning')
  */
 function showNotification(message, type = "success") {
-  // Untuk sementara kita pakai alert() bawaan dulu biar simpel.
-  // Nanti bisa diganti dengan custom toast notification kalau mau nilai plus.
-  alert(`[${type.toUpperCase()}] ${message}`);
+  // 1. Hapus notifikasi lama jika masih ada (mencegah tumpukan)
+  const existingNotification = document.getElementById("customNotification");
+  if (existingNotification) {
+    existingNotification.remove();
+  }
+
+  // 2. Buat elemen notifikasi baru
+  const notification = document.createElement("div");
+  notification.id = "customNotification";
+  notification.className = type; // Menambahkan class 'success', 'error', atau 'warning'
+
+  // 3. Isi dengan HTML (styling diambil dari file CSS, bukan di sini)
+  notification.innerHTML = `
+    <p>${message}</p>
+    <button class="close-btn" onclick="this.parentElement.remove()" aria-label="Tutup">×</button>
+  `;
+
+  // 4. Masukkan ke dalam body
+  document.body.appendChild(notification);
+
+  // 5. Auto close setelah 3 detik dengan animasi fade out
+  setTimeout(() => {
+    if (notification.parentElement) {
+      notification.style.opacity = "0";
+      notification.style.transition = "opacity 0.3s ease";
+      setTimeout(() => notification.remove(), 300);
+    }
+  }, 3000);
 }
 
 /**
@@ -94,7 +118,7 @@ function showNotification(message, type = "success") {
 function setLoadingState(button, originalText) {
   button.disabled = true;
   button.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Memproses...`;
-  
+
   // Kembalikan ke state semula setelah 2 detik (simulasi)
   setTimeout(() => {
     button.disabled = false;
@@ -111,9 +135,11 @@ function updateHeaderUserInfo() {
     // Update nama di header (sesuaikan ID dengan HTML temen lu)
     const headerName = document.getElementById("headerUserName");
     const headerRole = document.getElementById("headerUserRole");
-    
+
     if (headerName) headerName.textContent = user.nama_lengkap || user.username;
-    if (headerRole) headerRole.textContent = user.role.charAt(0).toUpperCase() + user.role.slice(1);
+    if (headerRole)
+      headerRole.textContent =
+        user.role.charAt(0).toUpperCase() + user.role.slice(1);
   }
 }
 
@@ -123,7 +149,7 @@ function updateHeaderUserInfo() {
 document.addEventListener("DOMContentLoaded", () => {
   requireAuth();
   updateHeaderUserInfo();
-  
+
   // Cek jika ada tombol logout, tambahkan event listener
   const logoutBtn = document.getElementById("btnLogout");
   if (logoutBtn) {
