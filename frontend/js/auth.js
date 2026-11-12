@@ -37,7 +37,6 @@ function clearError(inputId) {
 
 // Hapus error otomatis saat user mulai mengetik/memilih
 [
-  "username",
   "password",
   "role",
   "email",
@@ -64,18 +63,22 @@ if (loginForm) {
     event.preventDefault();
     console.log("🔥 Form Login disubmit!");
 
-    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
     const role = document.getElementById("role").value;
 
     // 1. Reset semua error dulu sebelum validasi baru
-    ["username", "password", "role"].forEach(clearError);
+    ["email", "password", "role"].forEach(clearError);
 
     let hasError = false;
 
     // 2. Cek satu per satu, tampilkan error spesifik di bawah kolom
-    if (username === "") {
-      showError("username", "Username wajib diisi.");
+    if (email === "") {
+      showError("email", "Email wajib diisi.");
+      hasError = true;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      // BARU: Validasi format email (harus ada @ dan titik)
+      showError("email", "Format email tidak valid.");
       hasError = true;
     }
     if (password === "") {
@@ -95,13 +98,17 @@ if (loginForm) {
       return;
     }
 
+    // BARU: Potong nama sebelum tanda @ (contoh: "salminmuhaimindgkilla@gmail.com" → "salminmuhaimindgkilla")
+    const namaUser = email.split("@")[0];
+
     if (typeof saveSession === "function") {
       saveSession({
-        username: username,
-        nama_lengkap: username,
+        username: namaUser, // BARU: pakai nama hasil potongan
+        nama_lengkap: namaUser, // BARU: pakai nama hasil potongan
+        email: email, // BARU: simpan email asli juga (buat data lengkap)
         role: role,
       });
-      console.log("✅ Sesi disimpan untuk role:", role);
+      console.log("✅ Sesi disimpan untuk role:", role, "| User:", namaUser);
     }
 
     if (role === "nelayan") {
