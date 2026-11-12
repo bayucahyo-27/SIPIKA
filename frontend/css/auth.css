@@ -166,7 +166,7 @@ body {
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 /* Pengaturan kelompok label dan input */
@@ -530,7 +530,7 @@ body {
 .register-card {
   width: 100%;
   max-width: 480px;
-  height: 500px;
+  min-height: 500px;
   padding: 40px;
 
   border-radius: 24px;
@@ -560,7 +560,7 @@ body {
 .register-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 /* Pengaturan kelompok label dan input Register */
@@ -1001,4 +1001,25 @@ body {
     opacity: 1;
     transform: translate(-50%, -50%);
   }
+}
+
+/* =========================================
+   15. INLINE ERROR MESSAGE (VALIDASI FORM)
+========================================= */
+
+/* Tampilan dasar pesan error (tersembunyi secara default) */
+.error-message {
+  display: none;
+  color: #ef4444; /* Warna merah untuk error */
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 6px;
+  margin-left: 4px;
+  min-height: 18px; /* Mencegah layout bergeser naik-turun saat pesan muncul/hilang */
+}
+
+/* Class ini akan ditambahkan oleh JavaScript saat ada error */
+.input-wrapper.has-error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1) !important;
 }
