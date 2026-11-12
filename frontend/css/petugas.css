@@ -1064,6 +1064,36 @@ body {
 }
 
 /* =================================
+   HOVER EFFECT: KOTAK DECISION TREE
+================================= */
+
+/* Transisi smooth untuk semua kotak */
+.dt-flow-container > .dt-box {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  cursor: default;
+}
+
+/* Hover: Input Data */
+.dt-flow-container > .dt-box:first-child:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(232, 243, 255, 0.6);
+}
+
+/* Hover: Proses Decision Tree */
+.dt-flow-container > .process-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(240, 237, 255, 0.7);
+}
+
+/* Hover: Hasil Klasifikasi */
+.dt-flow-container > .result-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(233, 247, 243, 0.7);
+}
+
+/* =================================
    RESPONSIVE DECISION TREE
 ================================= */
 
