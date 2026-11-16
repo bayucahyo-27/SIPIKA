@@ -4480,6 +4480,38 @@ body {
   line-height: 1.45 !important;
 }
 
+/* =================================
+   HOVER EFFECT: 3 KARTU DETAIL PREDIKSI
+================================= */
+
+/* Transisi smooth untuk semua kartu */
+.detail-prediction-page .result-card,
+.detail-prediction-page .conclusion-card,
+.detail-prediction-page .suggestion-card {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  cursor: default;
+}
+
+/* Hover: Hasil Klasifikasi (hijau muda) */
+.detail-prediction-page .result-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(188, 235, 214, 0.6);
+}
+
+/* Hover: Kesimpulan (biru muda) */
+.detail-prediction-page .conclusion-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(201, 224, 255, 0.7);
+}
+
+/* Hover: Saran untuk Nelayan (kuning muda) */
+.detail-prediction-page .suggestion-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 225, 160, 0.7);
+}
+
 /* Ikon lampu Saran untuk Nelayan */
 .detail-prediction-page .suggestion-icon {
   width: 30px;
