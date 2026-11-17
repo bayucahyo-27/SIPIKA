@@ -310,51 +310,78 @@ if (registerForm) {
 }
 
 // ==========================================
-// 4. LOGIKA LUPA PASSWORD
+// 4. LOGIKA LUPA PASSWORD (TERHUBUNG KE BACKEND)
 // ==========================================
 const forgotForm = document.getElementById("forgotForm");
 
 if (forgotForm) {
   console.log("✅ forgotForm DITEMUKAN");
 
-  forgotForm.addEventListener("submit", function (event) {
+  forgotForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const email = document.getElementById("email").value.trim();
-
-    // 1. Reset error email dulu sebelum validasi
     clearError("email");
 
     let hasError = false;
-
-    // 2. Cek apakah email kosong
     if (email === "") {
       showError("email", "Email tidak boleh kosong.");
       hasError = true;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError("email", "Format email tidak valid.");
+      hasError = true;
     }
 
-    // 3. Jika ada error, STOP di sini (jangan lanjut kirim)
-    if (hasError) {
-      return;
-    }
+    if (hasError) return;
 
-    // 4. Jika validasi lolos, tampilkan notifikasi sukses
-    showNotification(
-      "Link pemulihan password telah dikirim ke email Anda.",
-      "success",
-    );
+    try {
+      const response = await fetch(
+        "http://localhost/SIPIKA/backend/auth/forgot",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        },
+      );
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        // Tampilkan pesan sukses
+        if (typeof showNotification === "function") {
+          showNotification(result.message, "success");
+        } else {
+          alert(result.message);
+        }
+
+        // Email sudah terkirim, tampilkan pesan sukses saja
+        alert(result.message);
+      } else {
+        // Pesan error umum (biar aman dari email enumeration)
+        alert(
+          result.message || "Jika email terdaftar, link reset telah dikirim.",
+        );
+      }
+    } catch (error) {
+      console.error("❌ Error koneksi backend:", error);
+      alert("Gagal terhubung ke server.");
+    }
   });
+
+  const emailInput = document.getElementById("email");
+  if (emailInput)
+    emailInput.addEventListener("input", () => clearError("email"));
 }
 
 // ==========================================
-// 5. LOGIKA RESET PASSWORD
+// 5. LOGIKA RESET PASSWORD (TERHUBUNG KE BACKEND)
 // ==========================================
 const resetForm = document.getElementById("resetForm");
 
 if (resetForm) {
   console.log("✅ resetForm DITEMUKAN");
 
-  resetForm.addEventListener("submit", function (event) {
+  resetForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const newPassword = document.getElementById("newPassword").value;
@@ -362,12 +389,9 @@ if (resetForm) {
       "resetConfirmPassword",
     ).value;
 
-    // 1. Reset semua error reset password dulu
     ["newPassword", "resetConfirmPassword"].forEach(clearError);
 
     let hasError = false;
-
-    // 2. Cek field kosong
     if (newPassword === "") {
       showError("newPassword", "Password baru tidak boleh kosong.");
       hasError = true;
@@ -380,34 +404,63 @@ if (resetForm) {
       hasError = true;
     }
 
-    // 3. Jika ada yang kosong, STOP dulu (jangan cek panjang password)
-    if (hasError) {
-      return;
-    }
+    if (hasError) return;
 
-    // 4. Validasi panjang password
     if (newPassword.length < 8) {
       showError("newPassword", "Kata sandi minimal terdiri dari 8 karakter.");
       hasError = true;
     }
 
-    // 5. Validasi kesamaan password
     if (newPassword !== resetConfirmPassword) {
       showError("resetConfirmPassword", "Konfirmasi password tidak sesuai.");
       hasError = true;
     }
 
-    // 6. Jika masih ada error dari langkah 4 atau 5, STOP
-    if (hasError) {
+    if (hasError) return;
+
+    // Ambil token dari URL (contoh: ?token=abc123...)
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
+
+    if (!token) {
+      alert("Token reset tidak valid atau tidak ditemukan.");
       return;
     }
 
-    // Jika semua validasi lolos
-    showNotification("Password berhasil diubah! Silakan login.", "success");
+    try {
+      const response = await fetch(
+        "http://localhost/SIPIKA/backend/auth/reset",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token, password: newPassword }),
+        },
+      );
 
-    setTimeout(() => {
-      window.location.href = "login.html";
-    }, 1500);
+      const result = await response.json();
+
+      if (result.status === "success") {
+        if (typeof showNotification === "function") {
+          showNotification(result.message, "success");
+        } else {
+          alert(result.message);
+        }
+
+        setTimeout(() => {
+          window.location.href = "login.html";
+        }, 1500);
+      } else {
+        showError("newPassword", result.message);
+      }
+    } catch (error) {
+      console.error("❌ Error koneksi backend:", error);
+      alert("Gagal terhubung ke server.");
+    }
+  });
+
+  ["newPassword", "resetConfirmPassword"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("input", () => clearError(id));
   });
 }
 
