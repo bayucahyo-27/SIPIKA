@@ -29,47 +29,109 @@ if (classificationForm) {
         // Mencegah halaman dimuat ulang ketika form dikirim
         event.preventDefault();
 
-        // Mengambil nilai dari setiap pilihan pada form
-        const jenisIkan = document.getElementById("jenisIkan").value;
-        const alatTangkap = document.getElementById("alatTangkap").value;
-        const wilayah = document.getElementById("wilayah").value;
-        const musim = document.getElementById("musim").value;
+        // Mengambil tombol klasifikasi
+        const classifyButton = classificationForm.querySelector(
+            'button[type="submit"]'
+        );
 
+        const originalButtonText = classifyButton.innerHTML;
 
-        /* -----------------------------------------
-           HASIL SIMULASI SEMENTARA
-           BELUM MENGGUNAKAN ALGORITMA DECISION TREE
-        ----------------------------------------- */
+        // Mengubah tombol menjadi loading klasifikasi
+        classifyButton.disabled = true;
+        classifyButton.innerHTML = `
+    <i data-lucide="loader-circle" class="loading-icon"></i>
+    Memproses...
+`;
 
-        // Menentukan hasil demo secara manual
-        const hasilDemo = "Tinggi";
-
-        // Menampilkan tingkat produksi pada halaman
-        productionLevel.textContent = hasilDemo;
-
-        // Menampilkan kesimpulan berdasarkan data yang dimasukkan
-        conclusionText.textContent =
-            `Berdasarkan data yang dimasukkan, ikan ${jenisIkan} ` +
-            `yang ditangkap menggunakan ${alatTangkap} di wilayah ` +
-            `${wilayah} pada musim ${musim} ditampilkan sebagai ` +
-            `contoh hasil klasifikasi ${hasilDemo.toLowerCase()}. ` +
-            `Hasil ini masih berupa simulasi tampilan.`;
-
-        // Menampilkan saran kepada nelayan
-        suggestionText.textContent =
-            "Nelayan disarankan untuk mempertahankan penggunaan " +
-            "alat tangkap yang sesuai, memeriksa prakiraan cuaca " +
-            "sebelum melaut, dan tetap mematuhi aturan penangkapan ikan.";
-
-        // Menyembunyikan tampilan awal sebelum klasifikasi
-        resultPlaceholder.hidden = true;
-
-        // Menampilkan bagian hasil klasifikasi
-        resultContent.hidden = false;
-
-        // Memperbarui ikon Lucide setelah hasil ditampilkan
         lucide.createIcons();
 
+        setTimeout(function () {
+            // Mengambil nilai dari setiap pilihan pada form klasfikasi
+            const jenisIkan = document.getElementById("jenisIkan").value;
+            const alatTangkap = document.getElementById("alatTangkap").value;
+            const wilayah = document.getElementById("wilayah").value;
+            const musim = document.getElementById("musim").value;
+
+
+            /* -----------------------------------------
+               HASIL SIMULASI SEMENTARA
+               BELUM MENGGUNAKAN ALGORITMA DECISION TREE
+            ----------------------------------------- */
+
+            // Menentukan hasil demo secara manual
+            const hasilDemo = "Tinggi";
+
+            // Menyimpan hasil klasifikasi ke localStorage
+            const now = new Date();
+
+            const tanggalLokal = [
+                now.getFullYear(),
+                String(now.getMonth() + 1).padStart(2, "0"),
+                String(now.getDate()).padStart(2, "0")
+            ].join("-");
+
+            const waktuLokal = [
+                String(now.getHours()).padStart(2, "0"),
+                String(now.getMinutes()).padStart(2, "0")
+            ].join(":");
+
+            const riwayatBaru = {
+                date: tanggalLokal,
+                time: waktuLokal,
+                fish: jenisIkan,
+                gear: alatTangkap,
+                region: wilayah,
+                season: musim,
+                result: hasilDemo
+            };
+
+            // Mengambil riwayat yang sudah tersimpan
+            const savedHistory = JSON.parse(
+                localStorage.getItem("sipikaHistory") || "[]"
+            );
+
+            // Menambahkan riwayat terbaru di urutan pertama
+            savedHistory.unshift(riwayatBaru);
+
+            // Menyimpan kembali ke browser
+            localStorage.setItem(
+                "sipikaHistory",
+                JSON.stringify(savedHistory)
+            );
+
+            // Menampilkan tingkat produksi pada halaman
+            productionLevel.textContent = hasilDemo;
+
+            // Menampilkan kesimpulan berdasarkan data yang dimasukkan
+            conclusionText.textContent =
+                `Berdasarkan data yang dimasukkan, ikan ${jenisIkan} ` +
+                `yang ditangkap menggunakan ${alatTangkap} di wilayah ` +
+                `${wilayah} pada musim ${musim} ditampilkan sebagai ` +
+                `contoh hasil klasifikasi ${hasilDemo.toLowerCase()}. ` +
+                `Hasil ini masih berupa simulasi tampilan.`;
+
+            // Menampilkan saran kepada nelayan
+            suggestionText.textContent =
+                "Nelayan disarankan untuk mempertahankan penggunaan " +
+                "alat tangkap yang sesuai, memeriksa prakiraan cuaca " +
+                "sebelum melaut, dan tetap mematuhi aturan penangkapan ikan.";
+
+            // Menyembunyikan tampilan awal sebelum klasifikasi
+            resultPlaceholder.hidden = true;
+
+            // Menampilkan bagian hasil klasifikasi
+            resultContent.hidden = false;
+
+            // Memperbarui ikon Lucide setelah hasil ditampilkan
+            lucide.createIcons();
+
+            // Mengembalikan tombol ke tampilan awal
+            classifyButton.disabled = false;
+            classifyButton.innerHTML = originalButtonText;
+
+            lucide.createIcons();
+
+        }, 3000);
     });
 
 
@@ -112,8 +174,13 @@ const nextPage = document.getElementById("nextPage");
 // Memeriksa apakah elemen utama halaman riwayat tersedia
 if (historyTableBody && historySearch && dateFilter) {
 
+    // Mengambil riwayat klasifikasi dari localStorage
+    const savedHistory = JSON.parse(
+        localStorage.getItem("sipikaHistory") || "[]"
+    );
     // Menyimpan data dummy riwayat klasifikasi
     const historyData = [
+        ...savedHistory,
         { date: "2025-05-12", time: "10:23", fish: "Cakalang", gear: "Jaring", region: "Kota Ternate", season: "Kemarau", result: "Tinggi" },
         { date: "2025-05-10", time: "14:17", fish: "Layang", gear: "Bagan", region: "Halmahera Selatan", season: "Pancaroba", result: "Sedang" },
         { date: "2025-05-08", time: "09:05", fish: "Tuna", gear: "Pancing", region: "Kepulauan Sula", season: "Hujan", result: "Rendah" },
@@ -148,6 +215,36 @@ if (historyTableBody && historySearch && dateFilter) {
         { date: "2025-04-15", time: "16:25", fish: "Selar", gear: "Pancing", region: "Halmahera Selatan", season: "Kemarau", result: "Tinggi" }
     ];
 
+    // Membuat pilihan bulan berdasarkan data riwayat
+    function populateDateFilter() {
+        const months = [
+            "Januari", "Februari", "Maret", "April",
+            "Mei", "Juni", "Juli", "Agustus",
+            "September", "Oktober", "November", "Desember"
+        ];
+
+        // Mengambil daftar bulan unik dari data riwayat
+        const uniqueMonths = [
+            ...new Set(historyData.map(item => item.date.slice(0, 7)))
+        ].sort((a, b) => b.localeCompare(a));
+
+        // Mempertahankan pilihan Semua Tanggal
+        dateFilter.innerHTML = '<option value="all">Semua Tanggal</option>';
+
+        // Membuat pilihan bulan secara otomatis
+        uniqueMonths.forEach(month => {
+            const [year, monthNumber] = month.split("-");
+
+            const option = document.createElement("option");
+            option.value = month;
+            option.textContent = `${months[Number(monthNumber) - 1]} ${year}`;
+
+            dateFilter.appendChild(option);
+        });
+    }
+
+    // Menjalankan pengaturan filter bulan
+    populateDateFilter();
 
     /* =========================================
        4. PENGATURAN PAGINATION
@@ -364,3 +461,222 @@ if (historyTableBody && historySearch && dateFilter) {
     // Menampilkan data riwayat ketika halaman pertama kali dibuka
     renderHistory();
 }
+/* =========================================
+   FITUR EDIT PROFIL NELAYAN
+   PENYIMPANAN MENGGUNAKAN LOCAL STORAGE
+========================================= */
+
+// Mengambil elemen halaman profil
+const profileForm = document.getElementById("profileForm");
+const fullNameInput = document.getElementById("fullName");
+const profileDisplayName = document.getElementById("profileDisplayName");
+const profileDisplayFullName = document.getElementById("profileDisplayFullName");
+const cancelProfileButton = document.getElementById("cancelProfileButton");
+
+// Mengambil elemen nama pada seluruh halaman nelayan
+const accountNames = document.querySelectorAll(".account-name");
+const welcomeUserName = document.getElementById("welcomeUserName");
+
+// Nama default jika belum pernah diubah
+const defaultName = "Salmin";
+
+// Mengambil nama dari localStorage
+function getProfileName() {
+    return localStorage.getItem("sipikaProfile") || defaultName;
+}
+
+// Memperbarui nama pada seluruh halaman
+function updateProfileName(name) {
+
+    // Memperbarui kotak pengguna kanan atas
+    accountNames.forEach(element => {
+        element.textContent = `Nelayan: ${name}`;
+    });
+
+    // Memperbarui ucapan selamat datang di Dashboard
+    if (welcomeUserName) {
+        welcomeUserName.textContent = `${name}!`;
+    }
+
+    // Memperbarui nama pada halaman Profil
+    if (profileDisplayName) {
+        profileDisplayName.textContent = name;
+    }
+
+    if (profileDisplayFullName) {
+        profileDisplayFullName.textContent = name;
+    }
+
+    // Memperbarui input nama pada halaman Profil
+    if (fullNameInput) {
+        fullNameInput.value = name;
+    }
+}
+
+// Menampilkan nama tersimpan ketika halaman dibuka
+updateProfileName(getProfileName());
+
+
+// Menyimpan perubahan profil
+if (profileForm) {
+
+    profileForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const newName = fullNameInput.value.trim();
+
+        // Memastikan nama tidak kosong
+        if (!newName) {
+            alert("Nama lengkap tidak boleh kosong!");
+            return;
+        }
+
+        // Menyimpan nama ke browser
+        localStorage.setItem("sipikaProfile", newName);
+
+        // Memperbarui seluruh tampilan nama
+        updateProfileName(newName);
+
+        alert("Profil berhasil diperbarui!");
+    });
+
+    // Mengembalikan nama ketika tombol Batal ditekan
+    if (cancelProfileButton) {
+        cancelProfileButton.addEventListener("click", function () {
+            updateProfileName(getProfileName());
+        });
+    }
+}
+
+/* =========================================
+   FITUR GANTI FOTO PROFIL NELAYAN
+========================================= */
+
+const profileImage = document.getElementById("profileImage");
+const profileCameraButton = document.getElementById("profileCameraButton");
+const profileImageInput = document.getElementById("profileImageInput");
+
+// Mengambil foto yang sudah tersimpan
+const savedProfileImage = localStorage.getItem("sipikaProfileImage");
+
+// Menampilkan foto tersimpan ketika halaman dibuka
+if (profileImage && savedProfileImage) {
+    profileImage.src = savedProfileImage;
+}
+
+// Membuka pilihan foto dari perangkat
+if (profileCameraButton && profileImageInput) {
+    profileCameraButton.addEventListener("click", function () {
+        profileImageInput.click();
+    });
+}
+
+// Menyimpan sementara foto yang dipilih
+let selectedProfileImage = null;
+
+// Ketika pengguna memilih foto
+if (profileImageInput) {
+    profileImageInput.addEventListener("change", function () {
+
+        const file = this.files[0];
+
+        if (!file) return;
+
+        // Memastikan file merupakan gambar
+        if (!file.type.startsWith("image/")) {
+            alert("Silakan pilih file gambar!");
+            this.value = "";
+            return;
+        }
+
+        // Membatasi ukuran file maksimal 5 MB
+        if (file.size > 5 * 1024 * 1024) {
+            alert("Ukuran foto maksimal 5 MB!");
+            this.value = "";
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+
+            const image = new Image();
+
+            image.onload = function () {
+
+                // Memperkecil gambar agar hemat penyimpanan
+                const canvas = document.createElement("canvas");
+                const maxSize = 512;
+
+                let width = image.width;
+                let height = image.height;
+
+                if (width > height && width > maxSize) {
+                    height *= maxSize / width;
+                    width = maxSize;
+                } else if (height > maxSize) {
+                    width *= maxSize / height;
+                    height = maxSize;
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+
+                const context = canvas.getContext("2d");
+                context.drawImage(image, 0, 0, width, height);
+
+                // Mengubah gambar menjadi JPEG
+                selectedProfileImage = canvas.toDataURL(
+                    "image/jpeg",
+                    0.8
+                );
+
+                // Menampilkan preview foto
+                profileImage.src = selectedProfileImage;
+            };
+
+            image.src = event.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    });
+}
+
+// Menyimpan foto ketika tombol Simpan Perubahan ditekan
+if (profileForm) {
+    profileForm.addEventListener("submit", function () {
+
+        if (selectedProfileImage) {
+            try {
+                localStorage.setItem(
+                    "sipikaProfileImage",
+                    selectedProfileImage
+                );
+
+                selectedProfileImage = null;
+
+            } catch (error) {
+                alert("Foto gagal disimpan. Silakan pilih foto yang lebih kecil.");
+            }
+        }
+    });
+}
+
+// Mengembalikan foto tersimpan ketika tombol Batal ditekan
+if (cancelProfileButton) {
+    cancelProfileButton.addEventListener("click", function () {
+
+        selectedProfileImage = null;
+
+        if (profileImage) {
+            profileImage.src =
+                localStorage.getItem("sipikaProfileImage") ||
+                "../../assets/icons/profile_avatar.svg";
+        }
+
+        if (profileImageInput) {
+            profileImageInput.value = "";
+        }
+    });
+}
+

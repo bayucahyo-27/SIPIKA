@@ -1714,6 +1714,18 @@ body {
   font-weight: 600;
 }
 
+/* BADGE STATUS DATA MASTER */
+.badge-status-nonaktif {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background-color: #ffe1e1;
+  color: #ef4444;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+}
+
 /* SUSUNAN TOMBOL AKSI */
 .data-table .action-buttons {
   display: flex;
@@ -2047,7 +2059,7 @@ body {
   border-radius: 7px;
 }
 
-.input-with-icon > i:first-child {
+.input-with-icon>i:first-child {
   flex-shrink: 0;
   color: #8da0ba;
   font-size: 12px;
@@ -2381,4 +2393,346 @@ body {
     font-size: 8px;
   }
 
+}
+
+/* =========================================
+   ANIMASI HOVER TENTANG SIPIKA - ADMIN
+========================================= */
+
+.about-section {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(25, 54, 85, 0.12);
+}
+
+/* ==========================================
+   MODAL TAMBAH PENGGUNA
+========================================== */
+
+.user-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.user-modal-overlay[hidden] {
+  display: none !important;
+}
+
+.user-modal {
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+}
+
+.user-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.user-modal-header h2 {
+  margin: 0 0 6px;
+  color: #0f172a;
+  font-size: 21px;
+}
+
+.user-modal-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.modal-close {
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+.modal-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 16px;
+}
+
+.modal-form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.modal-form-group input,
+.modal-form-group select {
+  width: 100%;
+  box-sizing: border-box;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #dbe4f0;
+  border-radius: 8px;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  color: #334155;
+}
+
+.modal-form-group input:focus,
+.modal-form-group select:focus {
+  border-color: #1684df;
+}
+
+.modal-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.btn-modal-cancel,
+.btn-modal-save {
+  padding: 11px 18px;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-modal-cancel {
+  background: white;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+}
+
+.btn-modal-save {
+  background: #0879dc;
+  color: white;
+  border: 1px solid #0879dc;
+}
+
+.btn-modal-save:hover {
+  background: #0568bd;
+}
+
+.btn-modal-cancel:hover {
+  background: #eff6ff;
+}
+
+/* Perbaikan tombol aksi pada pengguna baru */
+.user-action-buttons .status-toggle {
+  width: 30px;
+  height: 17px;
+  min-width: 30px;
+  padding: 0;
+  border: none;
+  border-radius: 20px;
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.user-action-buttons .status-toggle::before {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  transition: transform 0.2s ease;
+}
+
+.user-action-buttons .status-toggle.active::before {
+  transform: translateX(13px);
+}
+
+/* ==========================================
+   MODAL TAMBAH DATA MASTER
+========================================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+
+  padding: 26px;
+  background-color: #ffffff;
+  border-radius: 14px;
+
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+
+  margin-bottom: 24px;
+}
+
+.modal-header h2 {
+  margin: 0 0 6px;
+  color: #142238;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.modal-header p {
+  margin: 0;
+  color: #718198;
+  font-size: 11px;
+}
+
+.modal-close {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+
+  border: none;
+  border-radius: 7px;
+  background: #f1f5f9;
+
+  color: #64748b;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  background: #e2e8f0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  margin-bottom: 17px;
+}
+
+.form-group label {
+  color: #263c58;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 11px 12px;
+
+  border: 1px solid #d8e2ee;
+  border-radius: 8px;
+  outline: none;
+
+  color: #263c58;
+  background-color: #ffffff;
+
+  font-family: var(--font-main);
+  font-size: 11px;
+}
+
+.form-group input {
+  height: 40px;
+}
+
+.form-group textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #0876f9;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  margin-top: 24px;
+}
+
+.btn-modal-cancel,
+.btn-modal-save {
+  min-height: 37px;
+  padding: 0 16px;
+
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.btn-modal-cancel {
+  color: #0876f9;
+  background-color: #ffffff;
+  border: 1px solid #0876f9;
+}
+
+.btn-modal-save {
+  color: #ffffff;
+  background-color: #0876f9;
+  border: 1px solid #0876f9;
+}
+
+.btn-modal-cancel:hover {
+  background-color: #eff6ff;
+}
+
+.btn-modal-save:hover {
+  background-color: #075fd0;
+}
+
+/* FOTO PROFIL ADMIN */
+#avatarCircle {
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+#avatarCircle .admin-profile-photo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
 }

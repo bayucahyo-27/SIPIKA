@@ -300,6 +300,7 @@
                 <i class="fa-solid fa-plus"></i>
                 Tambah Dataset
               </button>
+              <input type="file" id="inputFileDataset" accept=".csv,text/csv" hidden>
 
             </div>
 
@@ -444,6 +445,90 @@
 
       </div>
 
+      <!-- MODAL TAMBAH DATA REFERENSI -->
+      <div class="modal-overlay" id="modalTambahData" style="display: none;">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <div>
+              <h2 id="modalTitle">Tambah Jenis Ikan</h2>
+              <p>Masukkan informasi data referensi baru.</p>
+            </div>
+
+            <button type="button" class="modal-close" id="btnCloseModal">
+              &times;
+            </button>
+          </div>
+
+          <form id="formTambahData">
+
+            <div class="form-group">
+              <label for="inputNamaData" id="labelNamaData">
+                Nama Jenis Ikan
+              </label>
+              <input type="text" id="inputNamaData" placeholder="Masukkan nama data" required>
+            </div>
+
+            <div class="form-group">
+              <label for="inputDeskripsiData">Deskripsi</label>
+              <textarea id="inputDeskripsiData" rows="3" placeholder="Masukkan deskripsi data" required></textarea>
+            </div>
+
+            <div class="modal-actions">
+              <button type="button" class="btn-modal-cancel" id="btnBatalModal">
+                Batal
+              </button>
+
+              <button type="submit" class="btn-modal-save">
+                Simpan Data
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- MODAL EDIT DATASET -->
+      <div class="modal-overlay" id="modalEditDataset" style="display: none;">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <div>
+              <h2>Edit Dataset</h2>
+              <p>Perbarui informasi dataset.</p>
+            </div>
+
+            <button type="button" class="modal-close" id="btnCloseEditDataset">
+              &times;
+            </button>
+          </div>
+
+          <form id="formEditDataset">
+
+            <div class="form-group">
+              <label for="editNamaDataset">Nama Dataset</label>
+              <input type="text" id="editNamaDataset" required>
+            </div>
+
+            <div class="form-group">
+              <label for="editJumlahDataset">Jumlah Data</label>
+              <input type="number" id="editJumlahDataset" min="1" required>
+            </div>
+
+            <div class="modal-actions">
+              <button type="button" class="btn-modal-cancel" id="btnBatalEditDataset">
+                Batal
+              </button>
+
+              <button type="submit" class="btn-modal-save">
+                Simpan Perubahan
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
       <!-- FOOTER -->
       <footer class="dashboard-footer">
         <p>&copy; 2026 SIPIKA — Kelompok 13 Web</p>
@@ -574,8 +659,8 @@
 
     };
 
-
-
+    // Menyimpan kategori yang sedang dipilih
+    let activeCategory = "ikan";
 
     // KONFIGURASI KATEGORI
     const categoryConfig = {
@@ -635,6 +720,8 @@
     // PERGANTIAN KATEGORI
     function switchCategory(category) {
 
+      activeCategory = category;
+
       document.querySelectorAll(".category-card").forEach(card => {
         card.classList.remove("active");
       });
@@ -670,88 +757,135 @@
 
     }
 
+
     // MENAMPILKAN DATA REFERENSI
     function renderMasterTable(category) {
 
       const tbody = document.getElementById("tableBody");
-
       tbody.innerHTML = "";
 
-      masterData[category].forEach(item => {
+      masterData[category].forEach((item, index) => {
 
+        // Status awal otomatis Aktif
+        if (!item.status) {
+          item.status = "Aktif";
+        }
+
+        const isActive = item.status === "Aktif";
         const row = document.createElement("tr");
 
+        row.dataset.index = index;
 
         row.innerHTML = `
-    <td>${item.no}</td>
-    <td class="fw-semibold">${item.name}</td>
-    <td>${item.desc}</td>
-    <td>${item.date}</td>
+            <td>${index + 1}</td>
+            <td class="fw-semibold">${item.name}</td>
+            <td>${item.desc}</td>
+            <td>${item.date}</td>
 
-    <td>
-        <span class="badge badge-status-aktif">Aktif</span>
-    </td>
+            <td>
+                <span class="badge ${isActive ? "badge-status-aktif" : "badge-status-nonaktif"}">
+                    ${item.status}
+                </span>
+            </td>
 
-    <td>
-        <div class="action-buttons">
+            <td>
+                <div class="action-buttons">
 
-            <button class="btn-icon text-blue btn-edit" title="Edit">
-                <i class="fa-solid fa-pen"></i>
-            </button>
+                    <button type="button" class="btn-icon text-blue btn-edit" title="Edit">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
 
-            <button class="btn-icon text-red btn-delete" title="Hapus">
-                <i class="fa-solid fa-trash-can"></i>
-            </button>
+                    <button type="button" class="btn-icon text-red btn-delete" title="Hapus">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
 
-            <label class="switch">
-                <input type="checkbox" checked>
-                <span class="slider round"></span>
-            </label>
+                    <label class="switch">
+                        <input type="checkbox" class="status-reference" ${isActive ? "checked" : ""}>
+                        <span class="slider round"></span>
+                    </label>
 
-        </div>
-    </td>
-`;
-
+                </div>
+            </td>
+        `;
 
         tbody.appendChild(row);
-
       });
 
       attachReferenceEvents();
-
     }
 
-    // EVENT TOMBOL REFERENSI
+
+
+    // EVENT TOMBOL AKSI DATA REFERENSI
     function attachReferenceEvents() {
 
-      document.querySelectorAll("#tableBody .btn-delete").forEach(button => {
+      const tbody = document.getElementById("tableBody");
+
+      // TOMBOL HAPUS
+      tbody.querySelectorAll(".btn-delete").forEach(button => {
 
         button.onclick = function () {
 
           const row = this.closest("tr");
-          const name = row.querySelector(".fw-semibold").textContent;
+          const index = Number(row.dataset.index);
+          const item = masterData[activeCategory][index];
 
-          if (confirm("Hapus data " + name + "?")) {
-            row.remove();
+          if (confirm(`Apakah Anda yakin ingin menghapus data "${item.name}"?`)) {
+
+            masterData[activeCategory].splice(index, 1);
+
+            renderMasterTable(activeCategory);
+
+            alert("Data berhasil dihapus!");
           }
-
         };
-
       });
 
-      document.querySelectorAll("#tableBody .btn-edit").forEach(button => {
+      // TOMBOL EDIT
+      tbody.querySelectorAll(".btn-edit").forEach(button => {
 
         button.onclick = function () {
 
-          const name = this.closest("tr").querySelector(".fw-semibold").textContent;
+          const row = this.closest("tr");
+          const index = Number(row.dataset.index);
+          const item = masterData[activeCategory][index];
 
-          alert("Fitur edit data: " + name);
+          // Buka modal dalam mode edit
+          document.getElementById("modalTitle").textContent = "Edit Data Referensi";
+          document.getElementById("labelNamaData").textContent =
+            categoryConfig[activeCategory].heading;
 
+          inputNamaData.value = item.name;
+          inputDeskripsiData.value = item.desc;
+
+          modalTambahData.style.display = "flex";
+
+          // Tandai data yang sedang diedit
+          formTambahData.dataset.editIndex = index;
         };
-
       });
 
+      // TOGGLE STATUS
+      tbody.querySelectorAll(".status-reference").forEach(toggle => {
+
+        toggle.onchange = function () {
+
+          const row = this.closest("tr");
+          const index = Number(row.dataset.index);
+          const item = masterData[activeCategory][index];
+
+          item.status = this.checked ? "Aktif" : "Tidak Aktif";
+
+          const badge = row.querySelector(".badge");
+
+          badge.textContent = item.status;
+          badge.className = this.checked
+            ? "badge badge-status-aktif"
+            : "badge badge-status-nonaktif";
+        };
+      });
     }
+
 
     // PENCARIAN REFERENSI
     document.getElementById("searchInput").addEventListener("input", function () {
@@ -779,51 +913,316 @@
 
     });
 
-    // EVENT TOMBOL DATASET
-    document.querySelectorAll(".btn-delete-dataset").forEach(button => {
+    // MODAL TAMBAH DATA REFERENSI
+    const modalTambahData = document.getElementById("modalTambahData");
+    const formTambahData = document.getElementById("formTambahData");
+    const inputNamaData = document.getElementById("inputNamaData");
+    const inputDeskripsiData = document.getElementById("inputDeskripsiData");
 
-      button.addEventListener("click", function () {
-
-        const row = this.closest("tr");
-        const name = row.querySelector(".fw-semibold").textContent;
-
-        if (confirm("Hapus dataset " + name + "?")) {
-          row.remove();
-        }
-
-      });
-
-    });
-
-    document.querySelectorAll(".btn-edit-dataset").forEach(button => {
-
-      button.addEventListener("click", function () {
-
-        const name = this.closest("tr").querySelector(".fw-semibold").textContent;
-
-        alert("Fitur edit dataset: " + name);
-
-      });
-
-    });
-
-    // TOMBOL TAMBAH
+    // Membuka modal
     document.getElementById("btnAddData").addEventListener("click", function () {
 
-      alert("Form tambah data referensi akan dibuat pada tahap berikutnya.");
+      const config = categoryConfig[activeCategory];
 
+      document.getElementById("modalTitle").textContent = config.button;
+      document.getElementById("labelNamaData").textContent = config.heading;
+
+      inputNamaData.value = "";
+      inputDeskripsiData.value = "";
+
+      modalTambahData.style.display = "flex";
     });
 
+    // Menutup modal
+    function tutupModalTambahData() {
+      modalTambahData.style.display = "none";
+      formTambahData.reset();
+      delete formTambahData.dataset.editIndex;
+
+      document.getElementById("modalTitle").textContent =
+        categoryConfig[activeCategory].button;
+    }
+
+
+    document.getElementById("btnCloseModal").addEventListener("click", tutupModalTambahData);
+
+    document.getElementById("btnBatalModal").addEventListener("click", tutupModalTambahData);
+
+
+    // MENYIMPAN DAN MEMPERBARUI DATA REFERENSI
+    formTambahData.addEventListener("submit", function (event) {
+
+      event.preventDefault();
+
+      const nama = inputNamaData.value.trim();
+      const deskripsi = inputDeskripsiData.value.trim();
+
+      if (!nama || !deskripsi) {
+        alert("Nama dan deskripsi harus diisi!");
+        return;
+      }
+
+      const editIndex = formTambahData.dataset.editIndex;
+
+      // MODE EDIT
+      if (editIndex !== undefined) {
+
+        const index = Number(editIndex);
+
+        const duplikat = masterData[activeCategory].some((item, i) =>
+          i !== index && item.name.toLowerCase() === nama.toLowerCase()
+        );
+
+        if (duplikat) {
+          alert("Nama data tersebut sudah tersedia!");
+          return;
+        }
+
+        masterData[activeCategory][index].name = nama;
+        masterData[activeCategory][index].desc = deskripsi;
+
+        delete formTambahData.dataset.editIndex;
+
+        renderMasterTable(activeCategory);
+
+        alert("Data berhasil diperbarui!");
+
+        tutupModalTambahData();
+
+        return;
+      }
+
+      // MODE TAMBAH
+      const duplikat = masterData[activeCategory].some(item =>
+        item.name.toLowerCase() === nama.toLowerCase()
+      );
+
+      if (duplikat) {
+        alert("Data tersebut sudah tersedia!");
+        return;
+      }
+
+      const dataBaru = {
+        no: masterData[activeCategory].length + 1,
+        name: nama,
+        desc: deskripsi,
+        date: new Date().toLocaleDateString("id-ID", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric"
+        }),
+        status: "Aktif"
+      };
+
+      masterData[activeCategory].push(dataBaru);
+
+      renderMasterTable(activeCategory);
+
+      alert("Data referensi berhasil ditambahkan!");
+
+      tutupModalTambahData();
+    });
+
+    // =====================================
+    // KELOLA DATASET
+    // =====================================
+
+    const datasetTableBody = document.getElementById("datasetTableBody");
+    const inputFileDataset = document.getElementById("inputFileDataset");
+
+    const modalEditDataset = document.getElementById("modalEditDataset");
+    const formEditDataset = document.getElementById("formEditDataset");
+    const editNamaDataset = document.getElementById("editNamaDataset");
+    const editJumlahDataset = document.getElementById("editJumlahDataset");
+
+    let selectedDatasetRow = null;
+
+
+    // MEMBUKA FILE EXPLORER
     document.getElementById("btnTambahDataset").addEventListener("click", function () {
+      inputFileDataset.click();
+    });
 
-      alert("Form tambah dataset akan dibuat pada tahap berikutnya.");
 
+    // MEMBACA FILE CSV
+    inputFileDataset.addEventListener("change", function () {
+
+      const file = this.files[0];
+
+      if (!file) return;
+
+      if (!file.name.toLowerCase().endsWith(".csv")) {
+        alert("Format file harus CSV!");
+        this.value = "";
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+
+        const content = event.target.result;
+
+        const rows = content
+          .split(/\r?\n/)
+          .filter(row => row.trim() !== "");
+
+        if (rows.length < 2) {
+          alert("File CSV kosong atau tidak memiliki data!");
+          inputFileDataset.value = "";
+          return;
+        }
+
+        const jumlahData = rows.length - 1;
+
+        const tanggalUpload = new Date().toLocaleDateString("id-ID", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric"
+        });
+
+        const newRow = document.createElement("tr");
+
+        newRow.innerHTML = `
+            <td></td>
+            <td class="fw-semibold"></td>
+            <td>${jumlahData}</td>
+            <td>${tanggalUpload}</td>
+            <td>
+                <span class="badge badge-status-aktif">Aktif</span>
+            </td>
+            <td>
+                <div class="action-buttons">
+                    <button type="button" class="btn-icon text-blue btn-edit-dataset" title="Edit">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+
+                    <button type="button" class="btn-icon text-red btn-delete-dataset" title="Hapus">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            </td>
+        `;
+
+        newRow.querySelector(".fw-semibold").textContent = file.name;
+
+        datasetTableBody.appendChild(newRow);
+
+        updateDatasetNumber();
+
+        alert(
+          "Dataset berhasil ditambahkan!\n" +
+          "Nama file: " + file.name +
+          "\nJumlah data: " + jumlahData
+        );
+
+        inputFileDataset.value = "";
+      };
+
+      reader.onerror = function () {
+        alert("Gagal membaca file CSV!");
+        inputFileDataset.value = "";
+      };
+
+      reader.readAsText(file);
+    });
+
+
+    // MEMPERBARUI NOMOR DATASET
+    function updateDatasetNumber() {
+
+      Array.from(datasetTableBody.rows).forEach((row, index) => {
+        row.cells[0].textContent = index + 1;
+      });
+    }
+
+
+    // EVENT EDIT DAN HAPUS DATASET
+    datasetTableBody.addEventListener("click", function (event) {
+
+      const editButton = event.target.closest(".btn-edit-dataset");
+      const deleteButton = event.target.closest(".btn-delete-dataset");
+
+      const row = event.target.closest("tr");
+
+      if (!row) return;
+
+
+      // EDIT DATASET
+      if (editButton) {
+
+        selectedDatasetRow = row;
+
+        editNamaDataset.value = row.cells[1].textContent.trim();
+        editJumlahDataset.value = row.cells[2].textContent.trim();
+
+        modalEditDataset.style.display = "flex";
+      }
+
+
+      // HAPUS DATASET
+      if (deleteButton) {
+
+        const nama = row.cells[1].textContent.trim();
+
+        if (confirm(`Apakah Anda yakin ingin menghapus dataset "${nama}"?`)) {
+
+          row.remove();
+
+          updateDatasetNumber();
+
+          alert("Dataset berhasil dihapus!");
+        }
+      }
+    });
+
+
+    // MENUTUP MODAL EDIT DATASET
+    function tutupModalEditDataset() {
+
+      modalEditDataset.style.display = "none";
+
+      formEditDataset.reset();
+
+      selectedDatasetRow = null;
+    }
+
+    document.getElementById("btnCloseEditDataset")
+      .addEventListener("click", tutupModalEditDataset);
+
+    document.getElementById("btnBatalEditDataset")
+      .addEventListener("click", tutupModalEditDataset);
+
+
+    // MENYIMPAN PERUBAHAN DATASET
+    formEditDataset.addEventListener("submit", function (event) {
+
+      event.preventDefault();
+
+      if (!selectedDatasetRow) return;
+
+      const namaBaru = editNamaDataset.value.trim();
+      const jumlahBaru = Number(editJumlahDataset.value);
+
+      if (!namaBaru || !Number.isInteger(jumlahBaru) || jumlahBaru < 1) {
+        alert("Periksa kembali nama dan jumlah data!");
+        return;
+      }
+
+      selectedDatasetRow.cells[1].textContent = namaBaru;
+      selectedDatasetRow.cells[2].textContent = jumlahBaru;
+
+      alert("Dataset berhasil diperbarui!");
+
+      tutupModalEditDataset();
     });
 
     // INISIALISASI AWAL
     switchCategory("ikan");
 
   </script>
+  <script src="../../js/global.js"></script>
+  <script src="../../js/admin.js"></script>
 
 </body>
 

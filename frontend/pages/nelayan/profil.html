@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -130,15 +129,21 @@
                     <!-- AVATAR DAN IDENTITAS PENGGUNA -->
                     <div class="profile-avatar-section">
 
+
                         <div class="profile-avatar">
 
                             <!-- Foto profil pengguna -->
-                            <img src="../../assets/icons/profile_avatar.svg" alt="Foto profil Salmin">
+                            <img src="../../assets/icons/profile_avatar.svg" alt="Foto profil pengguna"
+                                id="profileImage">
 
                             <!-- Tombol untuk mengubah foto profil -->
-                            <button type="button" class="profile-camera-button" aria-label="Ubah foto profil">
+                            <button type="button" class="profile-camera-button" id="profileCameraButton"
+                                aria-label="Ubah foto profil">
                                 <img src="../../assets/icons/profile_camera.svg" alt="">
                             </button>
+
+                            <!-- Input untuk memilih foto profil dari perangkat -->
+                            <input type="file" id="profileImageInput" accept="image/*" hidden>
 
                         </div>
 
