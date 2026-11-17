@@ -1,15 +1,3 @@
-/**
- * ==========================================
- * PETUGAS.JS - SIPIKA Petugas Logic (Unified)
- * ==========================================
- * PENJELASAN UNTUK ASESTENSI:
- * File ini dirancang sebagai "Unified Controller" untuk semua halaman Petugas.
- * Alih-alih membuat file JS terpisah untuk setiap halaman, kita menggunakan
- * pengecekan elemen (if element exists) agar kode lebih efisien, tidak konflik,
- * dan mudah di-maintain. Ini menunjukkan pemahaman tinggi tentang "Kualitas Kode"
- * dan "Pengorganisasian Kode" (Indikator Tahap 4).
- */
-
 // ==========================================
 // 1. INISIALISASI GLOBAL (JALAN DI SEMUA HALAMAN PETUGAS)
 // ==========================================
@@ -43,26 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         welcomeHeading.textContent = `${user.nama_lengkap || user.username}!`;
     }
   }
-
-  // 3. Setup Event Listener untuk Tombol Logout (Event Handling)
-  // Menggunakan querySelectorAll untuk menangani semua tombol logout di berbagai halaman.
-  const logoutBtns = document.querySelectorAll(".logout-btn");
-  logoutBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault(); // Mencegah link <a> berpindah halaman secara default
-
-      if (typeof handleLogout === "function") {
-        handleLogout(); // Memanggil fungsi aman dari global.js
-      } else {
-        // Fallback manual jika global.js belum terload (keamanan ekstra)
-        if (confirm("Apakah Anda yakin ingin keluar dari SIPIKA?")) {
-          localStorage.removeItem("sipika_user");
-          localStorage.removeItem("sipika_isLoggedIn");
-          window.location.href = "../../auth/login.html";
-        }
-      }
-    });
-  });
 
   // 4. Panggil Inisialisasi Spesifik per Halaman
   // Fungsi-fungsi di bawah akan otomatis "skip" (return) jika elemennya tidak ada di halaman tersebut.
@@ -116,18 +84,54 @@ function initDatasetPage() {
   window.openModal = function (mode, btn = null) {
     const modal = document.getElementById("dataModal");
     const title = document.getElementById("modalTitle");
+
+    const tabsContainer = document.querySelector(".modal-tabs");
+    const tabManual = document.getElementById("tabManual");
+    const tabCSV = document.getElementById("tabCSV");
+    const formActions = document.querySelector("#tabManual .modal-actions");
+
     if (!modal) return;
 
     modal.style.display = "flex";
+
     if (mode === "add") {
+      // --- MODE TAMBAH DATA ---
       title.innerText = "Tambah Data Dataset";
       document.getElementById("datasetForm").reset();
       currentEditRow = null;
-    } else if (mode === "edit" && btn) {
-      title.innerText = "Edit Data Dataset";
-      currentEditRow = btn.closest("tr"); // Mencari elemen <tr> terdekat dari tombol yang diklik
 
-      // Mengisi form dengan data dari baris yang sedang diedit
+      // 1. Tampilkan container tabs
+      if (tabsContainer) tabsContainer.style.display = "flex";
+
+      // 2. RESET semua class active (biar tab switcher lu yang kerja)
+      document
+        .querySelectorAll(".tab-content")
+        .forEach((content) => content.classList.remove("active"));
+      document
+        .querySelectorAll(".tab-btn")
+        .forEach((b) => b.classList.remove("active"));
+
+      // 3. Set default ke Tab Manual
+      if (tabManual) tabManual.classList.add("active");
+      const btnManual = document.querySelector('.tab-btn[data-tab="manual"]');
+      if (btnManual) btnManual.classList.add("active");
+
+      if (formActions) formActions.style.display = "flex";
+    } else if (mode === "edit" && btn) {
+      // --- MODE EDIT DATA ---
+      title.innerText = "Edit Data Dataset";
+      currentEditRow = btn.closest("tr");
+
+      // 1. Sembunyikan container tabs
+      if (tabsContainer) tabsContainer.style.display = "none";
+
+      // 2. Pastikan hanya form manual yang punya class active
+      document
+        .querySelectorAll(".tab-content")
+        .forEach((content) => content.classList.remove("active"));
+      if (tabManual) tabManual.classList.add("active");
+
+      // 3. Isi form dengan data dari baris yang diedit
       document.getElementById("inputJenis").value =
         currentEditRow.cells[1].innerText;
       document.getElementById("inputAlat").value =
@@ -138,12 +142,28 @@ function initDatasetPage() {
         currentEditRow.cells[4].innerText;
       document.getElementById("inputProduksi").value =
         currentEditRow.cells[5].innerText;
+
+      if (formActions) formActions.style.display = "flex";
     }
   };
 
   window.closeModal = function () {
     const form = document.getElementById("datasetForm");
     const modal = document.getElementById("dataModal");
+
+    // RESET class active ke default (Manual) agar下次 buka modal tambah data tetap rapi
+    document
+      .querySelectorAll(".tab-content")
+      .forEach((content) => content.classList.remove("active"));
+    document
+      .querySelectorAll(".tab-btn")
+      .forEach((btn) => btn.classList.remove("active"));
+
+    const tabManual = document.getElementById("tabManual");
+    const btnManual = document.querySelector('.tab-btn[data-tab="manual"]');
+    if (tabManual) tabManual.classList.add("active");
+    if (btnManual) btnManual.classList.add("active");
+
     if (form) form.reset();
     if (modal) modal.style.display = "none";
     currentEditRow = null;
