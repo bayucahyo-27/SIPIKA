@@ -10,7 +10,6 @@ USE sipika_db;
 -- 1. Tabel Users
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) UNIQUE NOT NULL,
     nama_lengkap VARCHAR(100),
     email VARCHAR(100) UNIQUE NOT NULL,
     nomor_telepon VARCHAR(20),

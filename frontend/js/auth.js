@@ -52,7 +52,7 @@ function clearError(inputId) {
 });
 
 // ==========================================
-// 1. LOGIKA LOGIN
+// 1. LOGIKA LOGIN (TERHUBUNG KE BACKEND)
 // ==========================================
 const loginForm = document.getElementById("loginForm");
 
@@ -72,7 +72,7 @@ if (loginForm) {
 
     let hasError = false;
 
-    // 2. Validasi frontend (tetap dipertahankan — biar hemat request ke server)
+    // 2. Validasi frontend
     if (email === "") {
       showError("email", "Email wajib diisi.");
       hasError = true;
@@ -92,12 +92,12 @@ if (loginForm) {
       hasError = true;
     }
 
-    // 3. Jika ada error, STOP proses di sini (jangan lanjut ke redirect)
+    // 3. Jika ada error, STOP proses di sini
     if (hasError) {
       return;
     }
 
-    // 4. BARU: KIRIM KE BACKEND (routing index.php: /auth/login)
+    // 4. KIRIM KE BACKEND
     try {
       const response = await fetch(
         "http://localhost/SIPIKA/backend/auth/login",
@@ -113,7 +113,7 @@ if (loginForm) {
       if (result.status === "success") {
         const userData = result.data;
 
-        // Nama = nama_lengkap (kata pertama) ATAU email sebelum @ (fallback)
+        // Ambil nama dari nama_lengkap atau potong email
         const namaUser = userData.nama_lengkap
           ? userData.nama_lengkap.split(" ")[0]
           : userData.email.split("@")[0];
@@ -129,6 +129,7 @@ if (loginForm) {
         }
         console.log("✅ Sesi disimpan:", userData.role, "| User:", namaUser);
 
+        // Redirect sesuai role
         if (role === "nelayan") {
           window.location.href = "../nelayan/dashboard.html";
         } else if (role === "petugas") {
@@ -137,7 +138,7 @@ if (loginForm) {
           window.location.href = "../admin/dashboard.html";
         }
       } else {
-        // 5. Tampilkan error DARI DATABASE di kolom yang tepat
+        // Tampilkan error DARI DATABASE di kolom yang tepat
         if (result.message.toLowerCase().includes("email")) {
           showError("email", result.message);
         } else if (result.message.toLowerCase().includes("password")) {
@@ -206,7 +207,7 @@ setupTogglePassword(
 );
 
 // ==========================================
-// 3. LOGIKA REGISTER
+// 3. LOGIKA REGISTER (TERHUBUNG KE BACKEND)
 // ==========================================
 console.log("=== Menambahkan Logika Register ===");
 
@@ -245,12 +246,12 @@ if (registerForm) {
       hasError = true;
     }
 
-    // 3. Jika ada yang kosong, STOP di sini (jangan cek panjang password dulu)
+    // 3. Jika ada yang kosong, STOP di sini
     if (hasError) {
       return;
     }
 
-    // 4. Validasi panjang password (hanya jalan jika password sudah diisi)
+    // 4. Validasi panjang password
     if (password.length < 8) {
       showError("password", "Kata sandi minimal terdiri dari 8 karakter.");
       hasError = true;
@@ -262,12 +263,12 @@ if (registerForm) {
       hasError = true;
     }
 
-    // 6. Jika masih ada error dari langkah 4 atau 5, STOP
+    // 6. Jika masih ada error, STOP
     if (hasError) {
       return;
     }
 
-    // 7. BARU: KIRIM KE BACKEND (routing index.php: /auth/register)
+    // 7. KIRIM KE BACKEND
     try {
       const response = await fetch(
         "http://localhost/SIPIKA/backend/auth/register",
@@ -292,7 +293,7 @@ if (registerForm) {
           window.location.href = "login.html";
         }, 1500);
       } else {
-        // 8. Tampilkan error DARI DATABASE (misal: email sudah terdaftar)
+        // Tampilkan error DARI DATABASE (misal: email sudah terdaftar)
         showError("email", result.message);
       }
     } catch (error) {
