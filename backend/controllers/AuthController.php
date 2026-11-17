@@ -1,7 +1,6 @@
 <?php
 // backend/controllers/AuthController.php
 
-// Panggil model User dan config database
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../config/database.php';
 
@@ -15,15 +14,14 @@ class AuthController {
 
     // Fungsi untuk Register
     public function register() {
-        // Ambil data JSON dari frontend
         $data = json_decode(file_get_contents("php://input"));
 
-        // Validasi data kosong
-        if (empty($data->username) || empty($data->email) || empty($data->password)) {
+        // VALIDASI: Cek email dan password (username kita hapus)
+        if (empty($data->email) || empty($data->password)) {
             http_response_code(400);
             echo json_encode([
                 "status" => "error",
-                "message" => "Semua field harus diisi!"
+                "message" => "Email dan password wajib diisi!"
             ]);
             return;
         }
@@ -31,11 +29,11 @@ class AuthController {
         $user = new User($this->db);
 
         // Masukkan data ke properti User
-        $user->username = $data->username;
-        $user->nama_lengkap = isset($data->nama_lengkap) ? $data->nama_lengkap : $data->username;
         $user->email = $data->email;
         $user->password = $data->password;
-        $user->role = isset($data->role) ? $data->role : 'nelayan'; // Default nelayan
+        // Nama lengkap opsional, kalau tidak ada biarkan null
+        $user->nama_lengkap = isset($data->nama_lengkap) ? $data->nama_lengkap : null; 
+        $user->role = 'nelayan'; // Default role saat register
 
         // Jalankan fungsi register di model
         if ($user->register()) {
@@ -48,7 +46,7 @@ class AuthController {
             http_response_code(400);
             echo json_encode([
                 "status" => "error",
-                "message" => "Username atau email sudah terdaftar."
+                "message" => "Email sudah terdaftar."
             ]);
         }
     }
@@ -57,29 +55,39 @@ class AuthController {
     public function login() {
         $data = json_decode(file_get_contents("php://input"));
 
-        if (empty($data->username) || empty($data->password)) {
+        // VALIDASI: Cek email, password, dan role dari frontend
+        if (empty($data->email) || empty($data->password) || empty($data->role)) {
             http_response_code(400);
             echo json_encode([
                 "status" => "error",
-                "message" => "Username dan password harus diisi!"
+                "message" => "Email, password, dan role harus diisi!"
             ]);
             return;
         }
 
         $user = new User($this->db);
-        $user->username = $data->username; // Bisa username atau email
+        $user->email = $data->email;
         $user->password = $data->password;
 
         $result = $user->login();
 
         if ($result === true) {
+            // Cek apakah role yang dipilih user sesuai dengan role di database
+            if ($user->role !== $data->role) {
+                http_response_code(403);
+                echo json_encode([
+                    "status" => "error",
+                    "message" => "Akun ini tidak memiliki akses sebagai " . ucfirst($data->role) . "!"
+                ]);
+                return;
+            }
+
             http_response_code(200);
             echo json_encode([
                 "status" => "success",
                 "message" => "Login berhasil!",
                 "data" => [
                     "id" => $user->id,
-                    "username" => $user->username,
                     "nama_lengkap" => $user->nama_lengkap,
                     "email" => $user->email,
                     "role" => $user->role
@@ -95,7 +103,7 @@ class AuthController {
             http_response_code(401);
             echo json_encode([
                 "status" => "error",
-                "message" => "Username atau password salah!"
+                "message" => "Email atau password salah!"
             ]);
         }
     }

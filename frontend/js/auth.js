@@ -59,7 +59,7 @@ const loginForm = document.getElementById("loginForm");
 if (loginForm) {
   console.log("✅ loginForm DITEMUKAN");
 
-  loginForm.addEventListener("submit", function (event) {
+  loginForm.addEventListener("submit", async function (event) {
     event.preventDefault();
     console.log("🔥 Form Login disubmit!");
 
@@ -72,12 +72,11 @@ if (loginForm) {
 
     let hasError = false;
 
-    // 2. Cek satu per satu, tampilkan error spesifik di bawah kolom
+    // 2. Validasi frontend (tetap dipertahankan — biar hemat request ke server)
     if (email === "") {
       showError("email", "Email wajib diisi.");
       hasError = true;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      // BARU: Validasi format email (harus ada @ dan titik)
       showError("email", "Format email tidak valid.");
       hasError = true;
     }
@@ -98,25 +97,62 @@ if (loginForm) {
       return;
     }
 
-    // BARU: Potong nama sebelum tanda @ (contoh: "salminmuhaimindgkilla@gmail.com" → "salminmuhaimindgkilla")
-    const namaUser = email.split("@")[0];
+    // 4. BARU: KIRIM KE BACKEND (routing index.php: /auth/login)
+    try {
+      const response = await fetch(
+        "http://localhost/SIPIKA/backend/auth/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password, role }),
+        },
+      );
 
-    if (typeof saveSession === "function") {
-      saveSession({
-        username: namaUser, // BARU: pakai nama hasil potongan
-        nama_lengkap: namaUser, // BARU: pakai nama hasil potongan
-        email: email, // BARU: simpan email asli juga (buat data lengkap)
-        role: role,
-      });
-      console.log("✅ Sesi disimpan untuk role:", role, "| User:", namaUser);
-    }
+      const result = await response.json();
 
-    if (role === "nelayan") {
-      window.location.href = "../nelayan/dashboard.html";
-    } else if (role === "petugas") {
-      window.location.href = "../petugas/dashboard.html";
-    } else if (role === "admin") {
-      window.location.href = "../admin/dashboard.html";
+      if (result.status === "success") {
+        const userData = result.data;
+
+        // Nama = nama_lengkap (kata pertama) ATAU email sebelum @ (fallback)
+        const namaUser = userData.nama_lengkap
+          ? userData.nama_lengkap.split(" ")[0]
+          : userData.email.split("@")[0];
+
+        if (typeof saveSession === "function") {
+          saveSession({
+            id: userData.id,
+            username: namaUser,
+            nama_lengkap: userData.nama_lengkap || namaUser,
+            email: userData.email,
+            role: userData.role,
+          });
+        }
+        console.log("✅ Sesi disimpan:", userData.role, "| User:", namaUser);
+
+        if (role === "nelayan") {
+          window.location.href = "../nelayan/dashboard.html";
+        } else if (role === "petugas") {
+          window.location.href = "../petugas/dashboard.html";
+        } else if (role === "admin") {
+          window.location.href = "../admin/dashboard.html";
+        }
+      } else {
+        // 5. Tampilkan error DARI DATABASE di kolom yang tepat
+        if (result.message.toLowerCase().includes("email")) {
+          showError("email", result.message);
+        } else if (result.message.toLowerCase().includes("password")) {
+          showError("password", result.message);
+        } else if (result.message.toLowerCase().includes("akses")) {
+          showError("role", result.message);
+        } else {
+          alert(result.message);
+        }
+      }
+    } catch (error) {
+      console.error("❌ Error koneksi backend:", error);
+      alert(
+        "Gagal terhubung ke server. Pastikan XAMPP (Apache & MySQL) menyala.",
+      );
     }
   });
 } else {
@@ -179,15 +215,13 @@ const registerForm = document.getElementById("registerForm");
 if (registerForm) {
   console.log("✅ registerForm DITEMUKAN");
 
-  registerForm.addEventListener("submit", function (event) {
+  registerForm.addEventListener("submit", async function (event) {
     event.preventDefault();
     console.log("🔥 Form Register disubmit!");
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
-
-    console.log("Data Register:", email, password, confirmPassword);
 
     // 1. Reset semua error register dulu sebelum validasi baru
     ["email", "password", "confirmPassword"].forEach(clearError);
@@ -197,6 +231,9 @@ if (registerForm) {
     // 2. Cek field kosong satu per satu
     if (email === "") {
       showError("email", "Email tidak boleh kosong.");
+      hasError = true;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError("email", "Format email tidak valid.");
       hasError = true;
     }
     if (password === "") {
@@ -230,17 +267,40 @@ if (registerForm) {
       return;
     }
 
-    // Jika semua validasi lolos
-    console.log("✅ Registrasi berhasil!");
-    if (typeof showNotification === "function") {
-      showNotification("Registrasi berhasil! Silakan login.", "success");
-    } else {
-      alert("Registrasi berhasil! Silakan login.");
-    }
+    // 7. BARU: KIRIM KE BACKEND (routing index.php: /auth/register)
+    try {
+      const response = await fetch(
+        "http://localhost/SIPIKA/backend/auth/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        },
+      );
 
-    setTimeout(() => {
-      window.location.href = "login.html";
-    }, 1500);
+      const result = await response.json();
+
+      if (result.status === "success") {
+        console.log("✅ Registrasi berhasil!");
+        if (typeof showNotification === "function") {
+          showNotification(result.message, "success");
+        } else {
+          alert(result.message);
+        }
+
+        setTimeout(() => {
+          window.location.href = "login.html";
+        }, 1500);
+      } else {
+        // 8. Tampilkan error DARI DATABASE (misal: email sudah terdaftar)
+        showError("email", result.message);
+      }
+    } catch (error) {
+      console.error("❌ Error koneksi backend:", error);
+      alert(
+        "Gagal terhubung ke server. Pastikan XAMPP (Apache & MySQL) menyala.",
+      );
+    }
   });
 
   console.log("✅ Logika Register berhasil ditambahkan");
