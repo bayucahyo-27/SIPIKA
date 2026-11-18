@@ -99,14 +99,11 @@ if (loginForm) {
 
     // 4. KIRIM KE BACKEND
     try {
-      const response = await fetch(
-        "http://localhost/SIPIKA/backend/auth/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password, role }),
-        },
-      );
+      const response = await fetch("/SIPIKA/backend/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password, role }),
+      });
 
       const result = await response.json();
 
@@ -270,14 +267,11 @@ if (registerForm) {
 
     // 7. KIRIM KE BACKEND
     try {
-      const response = await fetch(
-        "http://localhost/SIPIKA/backend/auth/register",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        },
-      );
+      const response = await fetch("/SIPIKA/backend/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
       const result = await response.json();
 
@@ -335,14 +329,11 @@ if (forgotForm) {
     if (hasError) return;
 
     try {
-      const response = await fetch(
-        "http://localhost/SIPIKA/backend/auth/forgot",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
-        },
-      );
+      const response = await fetch("/SIPIKA/backend/auth/forgot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
 
       const result = await response.json();
 
@@ -428,14 +419,11 @@ if (resetForm) {
     }
 
     try {
-      const response = await fetch(
-        "http://localhost/SIPIKA/backend/auth/reset",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ token, password: newPassword }),
-        },
-      );
+      const response = await fetch("/SIPIKA/backend/auth/reset", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, password: newPassword }),
+      });
 
       const result = await response.json();
 
