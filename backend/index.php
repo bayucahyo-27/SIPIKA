@@ -60,6 +60,22 @@ if ($request_method == 'POST' && $request_uri == '/auth/login') {
     exit();
 }
 
+// Route: POST /auth/forgot
+if ($request_method == 'POST' && $request_uri == '/auth/forgot') {
+    require_once 'controllers/AuthController.php';
+    $controller = new AuthController();
+    $controller->forgot();
+    exit();
+}
+
+// Route: POST /auth/reset
+if ($request_method == 'POST' && $request_uri == '/auth/reset') {
+    require_once 'controllers/AuthController.php';
+    $controller = new AuthController();
+    $controller->reset();
+    exit();
+}
+
 // Kalau endpoint gak ditemukan
 http_response_code(404);
 echo json_encode([

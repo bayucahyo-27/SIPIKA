@@ -1,195 +1,467 @@
 /**
- * ==========================================
- * AUTH.JS - SIPIKA Authentication (Final Version)
- * ==========================================
- * Menggabungkan validasi UI yang rapi dengan simulasi Session Management.
+ * AUTH.JS - Versi Lengkap (Login + Toggle + Register)
  */
 
-// --- FUNGSI CADANGAN (BIAR GAK ERROR "saveSession is not defined" LAGI) ---
-function saveSession(userData) {
-  localStorage.setItem("sipika_user", JSON.stringify(userData));
-  localStorage.setItem("sipika_isLoggedIn", "true");
-}
-// --------------------------------------------------------------------------
+console.log("=== auth.js MULAI DIBACA ===");
 
-/* =========================================
-   1. FITUR TAMPILKAN / SEMBUNYIKAN PASSWORD (Kode Asli Teman Lu)
-========================================= */
-function setupPasswordToggle(inputId, buttonId, iconId) {
-  const passwordInput = document.getElementById(inputId);
-  const togglePassword = document.getElementById(buttonId);
-  const passwordToggleIcon = document.getElementById(iconId);
+// ==========================================
+// FUNGSI HELPER INLINE ERROR
+// ==========================================
+function showError(inputId, message) {
+  const errorEl = document.getElementById(`error-${inputId}`);
+  const inputEl = document.getElementById(inputId);
+  const wrapper = inputEl ? inputEl.closest(".input-wrapper") : null;
 
-  if (passwordInput && togglePassword && passwordToggleIcon) {
-    togglePassword.addEventListener("click", function () {
-      const isPasswordHidden = passwordInput.type === "password";
-
-      if (isPasswordHidden) {
-        passwordInput.type = "text";
-        passwordToggleIcon.innerHTML = `<path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c6.4 0 10 7 10 7a14 14 0 0 1-3.1 3.8M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7c1.4 0 2.7-.3 3.8-.8"/>`;
-        togglePassword.setAttribute("aria-label", "Sembunyikan kata sandi");
-        togglePassword.setAttribute("aria-pressed", "true");
-      } else {
-        passwordInput.type = "password";
-        passwordToggleIcon.innerHTML = `<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>`;
-        togglePassword.setAttribute("aria-label", "Tampilkan kata sandi");
-        togglePassword.setAttribute("aria-pressed", "false");
-      }
-    });
+  if (errorEl) {
+    errorEl.textContent = message;
+    errorEl.style.display = "block";
+  }
+  if (wrapper) {
+    wrapper.classList.add("has-error");
   }
 }
 
-setupPasswordToggle("password", "togglePassword", "passwordToggleIcon");
-setupPasswordToggle(
-  "confirmPassword",
-  "toggleConfirmPassword",
-  "confirmPasswordToggleIcon",
-);
+function clearError(inputId) {
+  const errorEl = document.getElementById(`error-${inputId}`);
+  const inputEl = document.getElementById(inputId);
+  const wrapper = inputEl ? inputEl.closest(".input-wrapper") : null;
 
-/* =========================================
-   2. LOGIKA LOGIN (DITAMBAHKAN SAVE SESSION)
-========================================= */
+  if (errorEl) {
+    errorEl.textContent = "";
+    errorEl.style.display = "none";
+  }
+  if (wrapper) {
+    wrapper.classList.remove("has-error");
+  }
+}
+
+// Hapus error otomatis saat user mulai mengetik/memilih
+[
+  "password",
+  "role",
+  "email",
+  "confirmPassword",
+  "newPassword",
+  "resetConfirmPassword",
+].forEach((id) => {
+  const el = document.getElementById(id);
+  if (el) {
+    const eventType = id === "role" ? "change" : "input";
+    el.addEventListener(eventType, () => clearError(id));
+  }
+});
+
+// ==========================================
+// 1. LOGIKA LOGIN (TERHUBUNG KE BACKEND)
+// ==========================================
 const loginForm = document.getElementById("loginForm");
 
 if (loginForm) {
-  loginForm.addEventListener("submit", function (event) {
-    event.preventDefault();
+  console.log("✅ loginForm DITEMUKAN");
 
-    const username = document.getElementById("username").value.trim();
+  loginForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+    console.log("🔥 Form Login disubmit!");
+
+    const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
     const role = document.getElementById("role").value;
-    const btnMasuk = loginForm.querySelector("button[type='submit']");
 
-    if (username === "" || password === "" || role === "") {
-      alert("Mohon lengkapi seluruh data login.");
+    // 1. Reset semua error dulu sebelum validasi baru
+    ["email", "password", "role"].forEach(clearError);
+
+    let hasError = false;
+
+    // 2. Validasi frontend
+    if (email === "") {
+      showError("email", "Email wajib diisi.");
+      hasError = true;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError("email", "Format email tidak valid.");
+      hasError = true;
+    }
+    if (password === "") {
+      showError("password", "Kata sandi wajib diisi.");
+      hasError = true;
+    } else if (password.length < 8) {
+      showError("password", "Kata sandi minimal 8 karakter.");
+      hasError = true;
+    }
+    if (role === "") {
+      showError("role", "Silakan pilih jenis pengguna.");
+      hasError = true;
+    }
+
+    // 3. Jika ada error, STOP proses di sini
+    if (hasError) {
       return;
     }
 
-    // Simulasi Loading
-    const originalText = btnMasuk.innerText;
-    btnMasuk.innerText = "Memproses...";
-    btnMasuk.disabled = true;
+    // 4. KIRIM KE BACKEND
+    try {
+      const response = await fetch(
+        "http://localhost/SIPIKA/backend/auth/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password, role }),
+        },
+      );
 
-    setTimeout(() => {
-      //  KITA SIMPAN SESSION AGAR GLOBAL.JS TIDAK MENENDANG USER ---
-      const userData = {
-        username: username,
-        nama_lengkap: username, // Bisa disesuaikan nanti
-        role: role,
-      };
+      const result = await response.json();
 
-      // Panggil fungsi saveSession 
-      saveSession(userData);
+      if (result.status === "success") {
+        const userData = result.data;
 
-      // Redirect sesuai role
-      if (role === "nelayan") {
-        window.location.href = "../nelayan/dashboard.html";
-      } else if (role === "petugas") {
-        window.location.href = "../petugas/dashboard.html";
-      } else if (role === "admin") {
-        window.location.href = "../admin/dashboard.html";
+        // Ambil nama dari nama_lengkap atau potong email
+        const namaUser = userData.nama_lengkap
+          ? userData.nama_lengkap.split(" ")[0]
+          : userData.email.split("@")[0];
+
+        if (typeof saveSession === "function") {
+          saveSession({
+            id: userData.id,
+            username: namaUser,
+            nama_lengkap: userData.nama_lengkap || namaUser,
+            email: userData.email,
+            role: userData.role,
+          });
+        }
+        console.log("✅ Sesi disimpan:", userData.role, "| User:", namaUser);
+
+        // Redirect sesuai role
+        if (role === "nelayan") {
+          window.location.href = "../nelayan/dashboard.html";
+        } else if (role === "petugas") {
+          window.location.href = "../petugas/dashboard.html";
+        } else if (role === "admin") {
+          window.location.href = "../admin/dashboard.html";
+        }
+      } else {
+        // Tampilkan error DARI DATABASE di kolom yang tepat
+        if (result.message.toLowerCase().includes("email")) {
+          showError("email", result.message);
+        } else if (result.message.toLowerCase().includes("password")) {
+          showError("password", result.message);
+        } else if (result.message.toLowerCase().includes("akses")) {
+          showError("role", result.message);
+        } else {
+          alert(result.message);
+        }
       }
-    }, 800); // Delay 0.8 detik agar terasa seperti memproses
+    } catch (error) {
+      console.error("❌ Error koneksi backend:", error);
+      alert(
+        "Gagal terhubung ke server. Pastikan XAMPP (Apache & MySQL) menyala.",
+      );
+    }
   });
+} else {
+  console.log("ℹ️ loginForm tidak ditemukan (halaman ini bukan login)");
 }
 
-/* =========================================
-   3. LOGIKA REGISTER (SIMULASI PENYIMPANAN)
-========================================= */
+// ==========================================
+// 2. TOGGLE PASSWORD (Untuk Login & Register)
+// ==========================================
+console.log("=== Menambahkan Toggle Password ===");
+
+function setupTogglePassword(toggleId, inputId, iconId) {
+  const toggleBtn = document.getElementById(toggleId);
+  const input = document.getElementById(inputId);
+  const icon = document.getElementById(iconId);
+
+  if (toggleBtn && input) {
+    toggleBtn.addEventListener("click", function () {
+      if (input.type === "password") {
+        input.type = "text";
+        if (icon) {
+          icon.innerHTML = `
+            <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/>
+            <circle cx="12" cy="12" r="3"/>
+          `;
+        }
+        console.log("👁️ Password terlihat");
+      } else {
+        input.type = "password";
+        if (icon) {
+          icon.innerHTML = `
+            <path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8"/>
+            <path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c6.4 0 10 7 10 7a14 14 0 0 1-3.1 3.8M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7c1.4 0 2.7-.3 3.8-.8"/>
+          `;
+        }
+        console.log("🙈 Password tersembunyi");
+      }
+    });
+    console.log("✅ Toggle untuk", inputId, "berhasil ditambahkan");
+  }
+}
+
+// Setup toggle untuk password pertama (login & register)
+setupTogglePassword("togglePassword", "password", "passwordToggleIcon");
+
+// Setup toggle untuk konfirmasi password (hanya di register)
+setupTogglePassword(
+  "toggleConfirmPassword",
+  "confirmPassword",
+  "confirmPasswordToggleIcon",
+);
+
+// ==========================================
+// 3. LOGIKA REGISTER (TERHUBUNG KE BACKEND)
+// ==========================================
+console.log("=== Menambahkan Logika Register ===");
+
 const registerForm = document.getElementById("registerForm");
 
 if (registerForm) {
-  registerForm.addEventListener("submit", function (event) {
+  console.log("✅ registerForm DITEMUKAN");
+
+  registerForm.addEventListener("submit", async function (event) {
     event.preventDefault();
+    console.log("🔥 Form Register disubmit!");
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
-    const btnDaftar = registerForm.querySelector("button[type='submit']");
 
-    if (email === "" || password === "" || confirmPassword === "") {
-      alert("Mohon lengkapi seluruh data pendaftaran.");
+    // 1. Reset semua error register dulu sebelum validasi baru
+    ["email", "password", "confirmPassword"].forEach(clearError);
+
+    let hasError = false;
+
+    // 2. Cek field kosong satu per satu
+    if (email === "") {
+      showError("email", "Email tidak boleh kosong.");
+      hasError = true;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError("email", "Format email tidak valid.");
+      hasError = true;
+    }
+    if (password === "") {
+      showError("password", "Kata sandi tidak boleh kosong.");
+      hasError = true;
+    }
+    if (confirmPassword === "") {
+      showError("confirmPassword", "Konfirmasi kata sandi tidak boleh kosong.");
+      hasError = true;
+    }
+
+    // 3. Jika ada yang kosong, STOP di sini
+    if (hasError) {
       return;
     }
 
-    if (password !== confirmPassword) {
-      alert("Konfirmasi kata sandi tidak sesuai.");
-      return;
-    }
-
+    // 4. Validasi panjang password
     if (password.length < 8) {
-      alert("Kata sandi minimal terdiri dari 8 karakter.");
+      showError("password", "Kata sandi minimal terdiri dari 8 karakter.");
+      hasError = true;
+    }
+
+    // 5. Validasi kesamaan password
+    if (password !== confirmPassword) {
+      showError("confirmPassword", "Konfirmasi kata sandi tidak sesuai.");
+      hasError = true;
+    }
+
+    // 6. Jika masih ada error, STOP
+    if (hasError) {
       return;
     }
 
-    const originalText = btnDaftar.innerText;
-    btnDaftar.innerText = "Mendaftarkan...";
-    btnDaftar.disabled = true;
+    // 7. KIRIM KE BACKEND
+    try {
+      const response = await fetch(
+        "http://localhost/SIPIKA/backend/auth/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        },
+      );
 
-    setTimeout(() => {
-      // Simpan ke mock database di localStorage
-      let users = JSON.parse(localStorage.getItem("sipika_mock_users")) || [];
+      const result = await response.json();
 
-      // Cek duplikat
-      if (users.some((u) => u.email === email)) {
-        alert("Email sudah terdaftar!");
-        btnDaftar.innerText = originalText;
-        btnDaftar.disabled = false;
-        return;
+      if (result.status === "success") {
+        console.log("✅ Registrasi berhasil!");
+        if (typeof showNotification === "function") {
+          showNotification(result.message, "success");
+        } else {
+          alert(result.message);
+        }
+
+        setTimeout(() => {
+          window.location.href = "login.html";
+        }, 1500);
+      } else {
+        // Tampilkan error DARI DATABASE (misal: email sudah terdaftar)
+        showError("email", result.message);
       }
-
-      // Buat user baru (Default role petugas untuk kemudahan testing lu)
-      const newUser = {
-        id: Date.now(),
-        username: email.split("@")[0],
-        nama_lengkap: email.split("@")[0],
-        email: email,
-        password: password,
-        role: "petugas", // <--- Default petugas biar lu gampang test login petugas
-      };
-
-      users.push(newUser);
-      localStorage.setItem("sipika_mock_users", JSON.stringify(users));
-
-      alert("Registrasi berhasil! Silakan login.");
-      window.location.href = "login.html";
-    }, 800);
+    } catch (error) {
+      console.error("❌ Error koneksi backend:", error);
+      alert(
+        "Gagal terhubung ke server. Pastikan XAMPP (Apache & MySQL) menyala.",
+      );
+    }
   });
+
+  console.log("✅ Logika Register berhasil ditambahkan");
+} else {
+  console.log("ℹ️ registerForm tidak ditemukan (halaman ini bukan register)");
 }
 
-/* =========================================
-   4 & 5. LUPA & RESET PASSWORD (SIMULASI)
-========================================= */
+// ==========================================
+// 4. LOGIKA LUPA PASSWORD (TERHUBUNG KE BACKEND)
+// ==========================================
 const forgotForm = document.getElementById("forgotForm");
+
 if (forgotForm) {
-  forgotForm.addEventListener("submit", function (event) {
+  console.log("✅ forgotForm DITEMUKAN");
+
+  forgotForm.addEventListener("submit", async function (event) {
     event.preventDefault();
+
     const email = document.getElementById("email").value.trim();
-    if (!email) {
-      alert("Mohon masukkan email terdaftar.");
-      return;
+    clearError("email");
+
+    let hasError = false;
+    if (email === "") {
+      showError("email", "Email tidak boleh kosong.");
+      hasError = true;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError("email", "Format email tidak valid.");
+      hasError = true;
     }
-    alert("Link pemulihan password telah dikirim ke email Anda. (Simulasi)");
+
+    if (hasError) return;
+
+    try {
+      const response = await fetch(
+        "http://localhost/SIPIKA/backend/auth/forgot",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        },
+      );
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        // Tampilkan pesan sukses
+        if (typeof showNotification === "function") {
+          showNotification(result.message, "success");
+        } else {
+          alert(result.message);
+        }
+
+        // Email sudah terkirim, tampilkan pesan sukses saja
+        alert(result.message);
+      } else {
+        // Pesan error umum (biar aman dari email enumeration)
+        alert(
+          result.message || "Jika email terdaftar, link reset telah dikirim.",
+        );
+      }
+    } catch (error) {
+      console.error("❌ Error koneksi backend:", error);
+      alert("Gagal terhubung ke server.");
+    }
   });
+
+  const emailInput = document.getElementById("email");
+  if (emailInput)
+    emailInput.addEventListener("input", () => clearError("email"));
 }
 
+// ==========================================
+// 5. LOGIKA RESET PASSWORD (TERHUBUNG KE BACKEND)
+// ==========================================
 const resetForm = document.getElementById("resetForm");
-if (resetForm) {
-  resetForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const newPassword = document.getElementById("newPassword").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
 
-    if (
-      !newPassword ||
-      !confirmPassword ||
-      newPassword.length < 8 ||
-      newPassword !== confirmPassword
-    ) {
-      alert("Password tidak valid atau tidak sesuai.");
+if (resetForm) {
+  console.log("✅ resetForm DITEMUKAN");
+
+  resetForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const newPassword = document.getElementById("newPassword").value;
+    const resetConfirmPassword = document.getElementById(
+      "resetConfirmPassword",
+    ).value;
+
+    ["newPassword", "resetConfirmPassword"].forEach(clearError);
+
+    let hasError = false;
+    if (newPassword === "") {
+      showError("newPassword", "Password baru tidak boleh kosong.");
+      hasError = true;
+    }
+    if (resetConfirmPassword === "") {
+      showError(
+        "resetConfirmPassword",
+        "Konfirmasi password baru tidak boleh kosong.",
+      );
+      hasError = true;
+    }
+
+    if (hasError) return;
+
+    if (newPassword.length < 8) {
+      showError("newPassword", "Kata sandi minimal terdiri dari 8 karakter.");
+      hasError = true;
+    }
+
+    if (newPassword !== resetConfirmPassword) {
+      showError("resetConfirmPassword", "Konfirmasi password tidak sesuai.");
+      hasError = true;
+    }
+
+    if (hasError) return;
+
+    // Ambil token dari URL (contoh: ?token=abc123...)
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
+
+    if (!token) {
+      alert("Token reset tidak valid atau tidak ditemukan.");
       return;
     }
-    alert("Password berhasil diubah! Silakan login. (Simulasi)");
-    window.location.href = "login.html";
+
+    try {
+      const response = await fetch(
+        "http://localhost/SIPIKA/backend/auth/reset",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token, password: newPassword }),
+        },
+      );
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        if (typeof showNotification === "function") {
+          showNotification(result.message, "success");
+        } else {
+          alert(result.message);
+        }
+
+        setTimeout(() => {
+          window.location.href = "login.html";
+        }, 1500);
+      } else {
+        showError("newPassword", result.message);
+      }
+    } catch (error) {
+      console.error("❌ Error koneksi backend:", error);
+      alert("Gagal terhubung ke server.");
+    }
+  });
+
+  ["newPassword", "resetConfirmPassword"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("input", () => clearError(id));
   });
 }
+
+console.log("=== auth.js SELESAI DIBACA ===");
