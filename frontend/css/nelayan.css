@@ -234,7 +234,7 @@
 }
 
 .welcome-text span {
-    color: #506681;
+    color: #405b7b;
     font-size: 13px;
     font-weight: 500;
 }
@@ -2352,6 +2352,19 @@
     object-fit: contain;
 }
 
+/* =========================================
+   FOTO PROFIL - FULL FRAME BULAT
+========================================= */
+
+.profile-avatar img#profileImage {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
 /* TOMBOL KAMERA AVATAR */
 .profile-camera-button {
     position: absolute;
@@ -2625,5 +2638,34 @@
     .profile-information-card,
     .profile-edit-card {
         min-height: 330px;
+    }
+}
+
+/* =========================================
+   ANIMASI HOVER CARD DASHBOARD NELAYAN
+========================================= */
+
+.factor-item,
+.about-section,
+.classification-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.factor-item:hover,
+.classification-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(25, 54, 85, 0.12);
+}
+
+.loading-icon {
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
     }
 }
