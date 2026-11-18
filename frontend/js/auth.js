@@ -462,6 +462,13 @@ if (resetForm) {
     const el = document.getElementById(id);
     if (el) el.addEventListener("input", () => clearError(id));
   });
+
+  setupTogglePassword("toggleNewPassword", "newPassword", "newPasswordIcon");
+  setupTogglePassword(
+    "toggleResetConfirmPassword",
+    "resetConfirmPassword",
+    "resetConfirmPasswordIcon",
+  );
 }
 
 console.log("=== auth.js SELESAI DIBACA ===");
