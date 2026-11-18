@@ -118,3 +118,14 @@ CREATE TABLE model_evaluations (
     evaluated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (dataset_id) REFERENCES datasets(id) ON DELETE SET NULL
 );
+
+-- 7. Tabel Password Resets (Untuk Fitur Lupa & Reset Password)
+CREATE TABLE IF NOT EXISTS password_resets (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(100) NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    expires_at DATETIME NOT NULL,
+    used TINYINT(1) NOT NULL DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (email) REFERENCES users(email) ON DELETE CASCADE
+);
