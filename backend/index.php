@@ -76,6 +76,14 @@ if ($request_method == 'POST' && $request_uri == '/auth/reset') {
     exit();
 }
 
+// Route: POST /auth/change-password
+if ($request_method == 'POST' && $request_uri == '/auth/change-password') {
+    require_once 'controllers/AuthController.php';
+    $controller = new AuthController();
+    $controller->changePassword();
+    exit();
+}
+
 // Kalau endpoint gak ditemukan
 http_response_code(404);
 echo json_encode([

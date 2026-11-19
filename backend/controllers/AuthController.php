@@ -203,5 +203,35 @@ class AuthController {
         }
     }
 
+        // ==========================================
+    // FUNGSI UBAH PASSWORD (KHUSUS PROFIL)
+    // ==========================================
+    public function changePassword() {
+        // 1. Ambil data JSON dari frontend
+        $data = json_decode(file_get_contents("php://input"));
+
+        // 2. Validasi input tidak boleh kosong
+        if (empty($data->userId) || empty($data->currentPassword) || empty($data->newPassword)) {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "Semua kolom password wajib diisi!"]);
+            return;
+        }
+
+        // 3. Panggil Model User
+        $user = new User($this->db);
+        
+        // 4. Eksekusi logika di User.php (yang baru saja kita tambahkan)
+        $result = $user->changePassword($data->userId, $data->currentPassword, $data->newPassword);
+
+        // 5. Kirim respon balik ke frontend
+        if ($result["status"] === "success") {
+            http_response_code(200);
+            echo json_encode($result);
+        } else {
+            http_response_code(401); // 401 Unauthorized karena password lama salah
+            echo json_encode($result);
+        }
+    }
+
 } // Penutup Class
 ?>

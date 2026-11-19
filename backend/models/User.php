@@ -174,5 +174,42 @@ class User {
         $stmt->bindParam(":token", $this->token);
         return $stmt->execute();
     }
+
+        // ==========================================
+    // Fungsi Ubah Password (Khusus user yang sudah login)
+    // ==========================================
+    public function changePassword($userId, $currentPassword, $newPassword) {
+        // 1. Ambil password lama (yang sudah di-hash) dari database berdasarkan ID
+        $query = "SELECT password FROM " . $this->table . " WHERE id = :id LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id", $userId);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // 2. Jika user tidak ditemukan
+        if (!$row) {
+            return ["status" => "error", "message" => "Data user tidak ditemukan."];
+        }
+
+        // 3. Verifikasi: Apakah password lama yang diinput user cocok dengan di database?
+        if (!password_verify($currentPassword, $row['password'])) {
+            return ["status" => "error", "message" => "Password saat ini salah!"];
+        }
+
+        // 4. Jika cocok, hash password baru
+        $hashed_new_password = password_hash($newPassword, PASSWORD_DEFAULT);
+
+        // 5. Update password di database
+        $updateQuery = "UPDATE " . $this->table . " SET password = :password WHERE id = :id";
+        $stmtUpdate = $this->conn->prepare($updateQuery);
+        $stmtUpdate->bindParam(":password", $hashed_new_password);
+        $stmtUpdate->bindParam(":id", $userId);
+
+        if ($stmtUpdate->execute()) {
+            return ["status" => "success", "message" => "Password berhasil diubah! Silakan login ulang."];
+        } else {
+            return ["status" => "error", "message" => "Gagal mengubah password. Silakan coba lagi."];
+        }
+    }
 }
 ?>
