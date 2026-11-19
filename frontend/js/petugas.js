@@ -48,8 +48,65 @@ function initDatasetPage() {
   if (!datasetTable) return;
 
   let currentEditRow = null;
+  let currentEditId = null; // <-- BARU: ID database yang lagi diedit
   let currentPage = 1;
-  const totalPages = 2;
+  let totalPages = 1; // <-- dari const jadi let, biar dinamis
+
+  // --- FUNGSI LOAD DATA DARI BACKEND (READ) ---
+  async function loadData() {
+    const apiUrl = window.location.origin + "/SIPIKA/backend/data-produksi";
+    try {
+      const res = await fetch(apiUrl);
+      const result = await res.json();
+      renderFromDB(result.data || []);
+    } catch (err) {
+      console.error("Gagal load data:", err);
+      alert("Gagal mengambil data dari server. Pastikan XAMPP nyala.");
+    }
+  }
+
+  // --- FUNGSI RENDER TABEL DARI DATA DB ---
+  function renderFromDB(rows) {
+    const tbody = datasetTable.querySelector("tbody");
+    tbody.innerHTML = ""; // <-- hapus 15 dummy + baris lama, bersih total
+
+    if (rows.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:20px;color:#888;">Belum ada data produksi.</td></tr>`;
+      totalPages = 1;
+      switchPage(1);
+      return;
+    }
+
+    rows.forEach((r, index) => {
+      const page = Math.floor(index / 10) + 1; // 10 baris per halaman
+      const kategoriBadge =
+        r.kategori === "Tinggi"
+          ? '<span class="badge badge-tinggi">Tinggi</span>'
+          : r.kategori === "Sedang"
+            ? '<span class="badge badge-sedang">Sedang</span>'
+            : '<span class="badge badge-rendah">Rendah</span>';
+
+      const tr = document.createElement("tr");
+      tr.setAttribute("data-id", r.id); // <-- ID buat edit/hapus
+      tr.setAttribute("data-page", page);
+      tr.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${r.jenis_ikan}</td>
+        <td>${r.alat_tangkap}</td>
+        <td>${r.wilayah}</td>
+        <td>${r.musim}</td>
+        <td>${r.produksi_kg}</td>
+        <td>${kategoriBadge}</td>
+        <td>
+          <button class="action-btn btn-edit" title="Edit"><i class="fa-solid fa-pen"></i></button>
+          <button class="action-btn btn-delete" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+        </td>`;
+      tbody.appendChild(tr);
+    });
+
+    totalPages = Math.max(1, Math.ceil(rows.length / 10));
+    switchPage(1);
+  }
 
   // --- FUNGSI PAGINATION ---
   function switchPage(page) {
@@ -121,6 +178,7 @@ function initDatasetPage() {
       // --- MODE EDIT DATA ---
       title.innerText = "Edit Data Dataset";
       currentEditRow = btn.closest("tr");
+      currentEditId = currentEditRow.getAttribute("data-id");
 
       // 1. Sembunyikan container tabs
       if (tabsContainer) tabsContainer.style.display = "none";
@@ -167,72 +225,82 @@ function initDatasetPage() {
     if (form) form.reset();
     if (modal) modal.style.display = "none";
     currentEditRow = null;
+    currentEditId = null;
   };
 
   // --- FUNGSI SIMPAN DATA (CREATE & UPDATE) ---
-  function saveData(event) {
-    event.preventDefault(); // Mencegah halaman reload saat form disubmit (PENTING untuk Validasi)
+  // --- FUNGSI SIMPAN DATA (CREATE & UPDATE) -> BACKEND ---
+  async function saveData(event) {
+    event.preventDefault();
 
-    // 1. Ambil dan bersihkan nilai input
     const jenis = document.getElementById("inputJenis").value.trim();
     const alat = document.getElementById("inputAlat").value.trim();
     const wilayah = document.getElementById("inputWilayah").value.trim();
     const musim = document.getElementById("inputMusim").value.trim();
-    const produksi = parseInt(document.getElementById("inputProduksi").value);
+    const produksi = document.getElementById("inputProduksi").value.trim();
 
-    // 2. Validasi Input (Memenuhi indikator "Penanganan input kosong/tidak valid")
-    if (!jenis || !alat || !wilayah || !musim || isNaN(produksi)) {
+    if (!jenis || !alat || !wilayah || !musim || !produksi || isNaN(produksi)) {
       alert("Mohon lengkapi semua field dengan benar!");
       return;
     }
 
-    // 3. Logika Bisnis: Menentukan kategori berdasarkan nilai produksi
-    let kategoriBadge = "";
-    if (produksi > 1000)
-      kategoriBadge = '<span class="badge badge-tinggi">Tinggi</span>';
-    else if (produksi >= 500)
-      kategoriBadge = '<span class="badge badge-sedang">Sedang</span>';
-    else kategoriBadge = '<span class="badge badge-rendah">Rendah</span>';
+    const apiUrl = window.location.origin + "/SIPIKA/backend/data-produksi";
+    const payload = {
+      jenis_ikan: jenis,
+      alat_tangkap: alat,
+      wilayah: wilayah,
+      musim: musim,
+      produksi_kg: produksi,
+    };
 
-    // 4. Eksekusi: Edit atau Tambah Baru?
-    if (currentEditRow) {
-      // MODE EDIT: Update sel-sel pada baris yang ada
-      currentEditRow.cells[1].innerText = jenis;
-      currentEditRow.cells[2].innerText = alat;
-      currentEditRow.cells[3].innerText = wilayah;
-      currentEditRow.cells[4].innerText = musim;
-      currentEditRow.cells[5].innerText = produksi;
-      currentEditRow.cells[6].innerHTML = kategoriBadge;
-      alert("Data berhasil diperbarui! (Simulasi)");
-    } else {
-      // MODE TAMBAH: Buat baris HTML baru secara dinamis
-      const tableBody = datasetTable.getElementsByTagName("tbody")[0];
-      const newRow = tableBody.insertRow();
-      newRow.setAttribute("data-page", currentPage);
-      newRow.innerHTML = `
-        <td>${tableBody.rows.length}</td><td>${jenis}</td><td>${alat}</td>
-        <td>${wilayah}</td><td>${musim}</td><td>${produksi}</td>
-        <td>${kategoriBadge}</td>
-        <td>
-          <button class="action-btn btn-edit" title="Edit"><i class="fa-solid fa-pen"></i></button>
-          <button class="action-btn btn-delete" title="Hapus"><i class="fa-solid fa-trash"></i></button>
-        </td>`;
-
-      // Sembunyikan jika ditambahkan di halaman yang sedang tidak aktif
-      if (newRow.getAttribute("data-page") != currentPage)
-        newRow.style.display = "none";
-      alert("Data baru berhasil ditambahkan! (Simulasi)");
+    // Tentukan POST (tambah) atau PUT (edit)
+    let url = apiUrl;
+    let method = "POST";
+    if (currentEditId) {
+      url = apiUrl + "/" + currentEditId;
+      method = "PUT";
     }
 
-    reorderRows(); // Rapikan nomor urut
-    closeModal(); // Tutup modal
+    try {
+      const res = await fetch(url, {
+        method: method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = await res.json();
+
+      if (result.status === "success") {
+        alert("✅ " + result.message);
+        closeModal();
+        loadData(); // refresh tabel dari DB
+      } else {
+        alert("❌ " + result.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Gagal menyimpan data ke server.");
+    }
   }
 
-  // --- FUNGSI HAPUS DATA (DELETE) ---
-  function deleteRow(btn) {
-    if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-      btn.closest("tr").remove(); // Hapus elemen <tr> dari DOM
-      reorderRows();
+  // --- FUNGSI HAPUS DATA (DELETE) -> BACKEND ---
+  async function deleteRow(btn) {
+    if (!confirm("Apakah Anda yakin ingin menghapus data ini?")) return;
+    const id = btn.closest("tr").getAttribute("data-id");
+    const apiUrl =
+      window.location.origin + "/SIPIKA/backend/data-produksi/" + id;
+
+    try {
+      const res = await fetch(apiUrl, { method: "DELETE" });
+      const result = await res.json();
+      if (result.status === "success") {
+        alert("✅ " + result.message);
+        loadData(); // Refresh tabel dari DB
+      } else {
+        alert("❌ " + result.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Gagal menghapus data.");
     }
   }
 
@@ -256,6 +324,7 @@ function initDatasetPage() {
     const musimVal = document.getElementById("filterMusim").value.toLowerCase();
 
     datasetTable.querySelectorAll("tbody tr").forEach((row) => {
+      if (!row.cells[1]) return; // <-- TAMBAHKAN INI (mencegah error kalau tabel kosong)
       const jenis = row.cells[1].innerText.toLowerCase();
       const alat = row.cells[2].innerText.toLowerCase();
       const wilayah = row.cells[3].innerText.toLowerCase();
@@ -335,8 +404,8 @@ function initDatasetPage() {
     btn.addEventListener("click", closeModal);
   });
 
-  // Inisialisasi awal: Tampilkan halaman 1
-  switchPage(1);
+  // Inisialisasi awal: Ambil data dari Database
+  loadData();
 
   // ==========================================
   // FITUR TAMBAHAN: TAB SWITCHER & CSV UPLOAD
@@ -390,75 +459,11 @@ function initDatasetPage() {
       }
     });
   }
-  // 3. Logika Proses Data CSV
+  // 3. Logika Proses Data CSV (PLACEHOLDER FASE 4)
   window.processCSV = function () {
-    const file = csvFileInput.files[0];
-    if (!file) {
-      alert("Pilih file CSV terlebih dahulu!");
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const text = e.target.result;
-      const rows = text.split("\n");
-      let successCount = 0;
-      let errorCount = 0;
-
-      // Loop data CSV (skip baris 0 karena itu header kolom)
-      for (let i = 1; i < rows.length; i++) {
-        const row = rows[i].trim();
-        if (!row) continue;
-
-        const columns = row.split(",");
-        if (columns.length >= 5) {
-          const jenis = columns[0].trim();
-          const alat = columns[1].trim();
-          const wilayah = columns[2].trim();
-          const musim = columns[3].trim();
-          const produksi = parseInt(columns[4].trim());
-
-          if (jenis && alat && wilayah && musim && !isNaN(produksi)) {
-            let kategoriBadge = "";
-            if (produksi > 1000)
-              kategoriBadge = '<span class="badge badge-tinggi">Tinggi</span>';
-            else if (produksi >= 500)
-              kategoriBadge = '<span class="badge badge-sedang">Sedang</span>';
-            else
-              kategoriBadge = '<span class="badge badge-rendah">Rendah</span>';
-
-            const tableBody = datasetTable.getElementsByTagName("tbody")[0];
-            const newRow = tableBody.insertRow();
-            newRow.setAttribute("data-page", currentPage);
-            newRow.innerHTML = `
-              <td>${tableBody.rows.length}</td>
-              <td>${jenis}</td>
-              <td>${alat}</td>
-              <td>${wilayah}</td>
-              <td>${musim}</td>
-              <td>${produksi}</td>
-              <td>${kategoriBadge}</td>
-              <td>
-                <button class="action-btn btn-edit" title="Edit"><i class="fa-solid fa-pen"></i></button>
-                <button class="action-btn btn-delete" title="Hapus"><i class="fa-solid fa-trash"></i></button>
-              </td>
-            `;
-            successCount++;
-          } else {
-            errorCount++;
-          }
-        } else {
-          errorCount++;
-        }
-      }
-
-      reorderRows(); // Rapikan nomor urut
-      alert(
-        `Berhasil menambahkan ${successCount} data dari CSV! ${errorCount > 0 ? errorCount + " data gagal diproses (format salah)." : ""}`,
-      );
-      closeModal(); // Tutup modal setelah selesai
-    };
-    reader.readAsText(file);
+    alert(
+      "🚧 Fitur Upload CSV ke database sedang dalam pengembangan (Fase 4). Untuk saat ini, silakan gunakan tab Input Manual ya, Bre!",
+    );
   };
 }
 
@@ -560,45 +565,43 @@ function initRiwayatPage() {
 // ==========================================
 // 4. LOGIKA HALAMAN PROFIL
 // ==========================================
+// ==========================================
+// 4. LOGIKA HALAMAN PROFIL (SUDAH NYAMBUNG KE BACKEND)
+// ==========================================
 function initProfilPage() {
   const uploadFotoInput = document.getElementById("uploadFotoInput");
-  if (!uploadFotoInput) return;
 
-  // 1. Preview Foto Profil (Tanpa Upload ke Server)
-  // Menggunakan FileReader API untuk membaca file gambar lokal dan menampilkannya langsung di browser
-  uploadFotoInput.addEventListener("change", function () {
-    const file = this.files[0];
-    if (!file) return;
+  // 1. Preview Foto Profil
+  if (uploadFotoInput) {
+    uploadFotoInput.addEventListener("change", function () {
+      const file = this.files[0];
+      if (!file) return;
+      if (!file.type.startsWith("image/")) {
+        alert("Silakan pilih file gambar.");
+        this.value = "";
+        return;
+      }
+      const uploadedImg = document.getElementById("uploadedAvatarImg");
+      const defaultIcon = document.getElementById("defaultAvatarIcon");
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        uploadedImg.src = event.target.result;
+        uploadedImg.style.display = "block";
+        defaultIcon.style.display = "none";
+      };
+      reader.readAsDataURL(file);
+    });
+  }
 
-    // Validasi tipe file
-    if (!file.type.startsWith("image/")) {
-      alert("Silakan pilih file gambar.");
-      this.value = "";
-      return;
-    }
-
-    const uploadedImg = document.getElementById("uploadedAvatarImg");
-    const defaultIcon = document.getElementById("defaultAvatarIcon");
-    const reader = new FileReader();
-
-    reader.onload = function (event) {
-      uploadedImg.src = event.target.result;
-      uploadedImg.style.display = "block";
-      defaultIcon.style.display = "none";
-    };
-    reader.readAsDataURL(file);
-  });
-
-  // 2. Toggle Password Visibility (Show/Hide)
+  // 2. Toggle Password Visibility (Show/Hide) - Anti Bug
   document.querySelectorAll(".toggle-password").forEach((icon) => {
     icon.addEventListener("click", function () {
-      const input = this.previousElementSibling; // Mengambil elemen input yang berada tepat sebelum ikon
-
-      if (input.type === "password") {
+      const input = this.previousElementSibling;
+      if (input && input.type === "password") {
         input.type = "text";
         this.classList.remove("fa-eye-slash");
         this.classList.add("fa-eye");
-      } else {
+      } else if (input) {
         input.type = "password";
         this.classList.remove("fa-eye");
         this.classList.add("fa-eye-slash");
@@ -610,51 +613,89 @@ function initProfilPage() {
   window.resetFormPassword = function () {
     const form = document.getElementById("formUbahPassword");
     if (form) form.reset();
-
-    // Kembalikan semua ikon mata ke kondisi tertutup dan input ke tipe password
     document.querySelectorAll(".toggle-password").forEach((icon) => {
       icon.classList.remove("fa-eye");
       icon.classList.add("fa-eye-slash");
+      const input = icon.previousElementSibling;
+      if (input) input.type = "password";
     });
-    document
-      .querySelectorAll(".input-password-wrapper input")
-      .forEach((input) => {
-        input.type = "password";
-      });
   };
 
-  // 4. Validasi & Simpan Password Baru
-  window.simpanPassword = function (event) {
+  // 4. Validasi & Simpan Password Baru (REAL BACKEND CONNECTION)
+  window.simpanPassword = async function (event) {
     if (event) event.preventDefault();
 
-    const currentPassword = document.getElementById(
-      "inputCurrentPassword",
-    ).value;
-    const newPassword = document.getElementById("inputNewPassword").value;
-    const confirmPassword = document.getElementById(
-      "inputConfirmPassword",
-    ).value;
+    const currentPassword = document
+      .getElementById("inputCurrentPassword")
+      .value.trim();
+    const newPassword = document
+      .getElementById("inputNewPassword")
+      .value.trim();
+    const confirmPassword = document
+      .getElementById("inputConfirmPassword")
+      .value.trim();
 
-    // Validasi Input (Indikator: Penanganan input kosong/tidak valid)
     if (!currentPassword || !newPassword || !confirmPassword) {
-      alert("Harap isi semua kolom password!");
+      alert("⚠️ Harap isi semua kolom password!");
       return;
     }
-
     if (newPassword.length < 8) {
-      alert("Password baru minimal terdiri dari 8 karakter!");
+      alert("⚠️ Password baru minimal 8 karakter!");
       return;
     }
-
     if (newPassword !== confirmPassword) {
-      alert("Konfirmasi password tidak cocok dengan password baru!");
+      alert("⚠️ Konfirmasi password tidak cocok dengan password baru!");
       return;
     }
 
-    alert("Password berhasil diperbarui! (Simulasi)");
-    resetFormPassword();
+    const userData = getSession();
+    console.log("Data User dari Sesi:", userData);
+
+    if (!userData || !userData.id) {
+      alert("⚠️ Sesi tidak ditemukan. Silakan login kembali.");
+      window.location.href = "/SIPIKA/frontend/pages/auth/login.html";
+      return;
+    }
+
+    const btnSimpan = document.querySelector(".btn-simpan");
+    const originalText = btnSimpan.innerText;
+    btnSimpan.innerText = "Memproses...";
+    btnSimpan.disabled = true;
+
+    try {
+      const apiUrl =
+        window.location.origin + "/SIPIKA/backend/auth/change-password";
+      console.log("Mengirim request ke:", apiUrl);
+
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: userData.id,
+          currentPassword: currentPassword,
+          newPassword: newPassword,
+        }),
+      });
+
+      const result = await response.json();
+      console.log("Response dari Backend:", result);
+
+      if (result.status === "success") {
+        alert("✅ " + result.message);
+        resetFormPassword();
+      } else {
+        alert("❌ " + result.message);
+      }
+    } catch (error) {
+      console.error("Error koneksi backend:", error);
+      alert("❌ Gagal terhubung ke server. Pastikan XAMPP menyala.");
+    } finally {
+      btnSimpan.innerText = originalText;
+      btnSimpan.disabled = false;
+    }
   };
 
+  // Pasang event listener ke form
   const formUbahPassword = document.getElementById("formUbahPassword");
   if (formUbahPassword) {
     formUbahPassword.addEventListener("submit", simpanPassword);

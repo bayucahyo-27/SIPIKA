@@ -93,6 +93,33 @@ if ($request_method == 'POST' && $request_uri == '/prediction') {
     exit();
 }
 
+// ==========================================
+// ROUTE: DATA PRODUKSI (CRUD)
+// ==========================================
+if (strpos($request_uri, '/data-produksi') === 0) {
+    require_once 'controllers/DatasetController.php';
+    $controller = new DatasetController();
+
+    if ($request_method == 'GET') {
+        $controller->getAll();
+    } 
+    elseif ($request_method == 'POST') {
+        $controller->create();
+    } 
+    elseif ($request_method == 'PUT' || $request_method == 'DELETE') {
+        // Ambil ID dari URL, contoh: /data-produksi/5 -> ID = 5
+        $parts = explode('/', trim($request_uri, '/'));
+        $id = isset($parts[1]) ? (int)$parts[1] : 0;
+
+        if ($request_method == 'PUT') {
+            $controller->update($id);
+        } else {
+            $controller->delete($id);
+        }
+    }
+    exit();
+}
+
 // Kalau endpoint gak ditemukan
 http_response_code(404);
 echo json_encode([
