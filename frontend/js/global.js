@@ -8,7 +8,7 @@
 
 // 1. KONFIGURASI DASAR
 // ==========================================
-const API_BASE_URL = "http://localhost/SIPIKA/backend";
+const API_BASE_URL = "/SIPIKA/backend";
 
 // 2. MANAJEMEN SESI (SESSION)
 // ==========================================
@@ -51,12 +51,12 @@ function requireAuth() {
 
   if (!isLoggedIn && !isAuthPage) {
     // Belum login dan bukan di halaman auth -> paksa ke login
-    window.location.href = "../auth/login.html";
+    window.location.href = "/SIPIKA/frontend/pages/auth/login.html";
   } else if (isLoggedIn && isAuthPage) {
     // Sudah login tapi masih di halaman auth -> redirect ke dashboard sesuai role
     const user = getSession();
     if (user) {
-      window.location.href = `../${user.role}/dashboard.html`;
+      window.location.href = `/SIPIKA/frontend/pages/${user.role}/dashboard.html`;
     }
   }
 }
@@ -67,7 +67,7 @@ function requireAuth() {
 function handleLogout() {
   if (confirm("Apakah Anda yakin ingin keluar dari SIPIKA?")) {
     clearSession();
-    window.location.href = "../auth/login.html";
+    window.location.href = "/SIPIKA/frontend/pages/auth/login.html";
   }
 }
 
