@@ -1,0 +1,59 @@
+{
+    "algorithm": "Decision Tree",
+    "criterion": "entropy",
+    "max_depth": 5,
+    "total_data": 500,
+    "training_data": 400,
+    "testing_data": 100,
+    "accuracy": 0.83,
+    "classification_report": {
+        "Rendah": {
+            "precision": 0.9166666666666666,
+            "recall": 0.7333333333333333,
+            "f1-score": 0.8148148148148148,
+            "support": 15.0
+        },
+        "Sedang": {
+            "precision": 0.8695652173913043,
+            "recall": 0.8823529411764706,
+            "f1-score": 0.8759124087591241,
+            "support": 68.0
+        },
+        "Tinggi": {
+            "precision": 0.631578947368421,
+            "recall": 0.7058823529411765,
+            "f1-score": 0.6666666666666666,
+            "support": 17.0
+        },
+        "accuracy": 0.83,
+        "macro avg": {
+            "precision": 0.8059369438087973,
+            "recall": 0.7738562091503268,
+            "f1-score": 0.7857979634135351,
+            "support": 100.0
+        },
+        "weighted avg": {
+            "precision": 0.8361727688787184,
+            "recall": 0.83,
+            "f1-score": 0.83117599351176,
+            "support": 100.0
+        }
+    },
+    "confusion_matrix": [
+        [
+            11,
+            4,
+            0
+        ],
+        [
+            1,
+            60,
+            7
+        ],
+        [
+            0,
+            5,
+            12
+        ]
+    ]
+}

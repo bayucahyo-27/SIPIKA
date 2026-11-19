@@ -15,6 +15,7 @@ venv/
 # Machine Learning generated files
 ml-service/models/*.pkl
 ml-service/models/*.joblib
+!ml-service/models/decision_tree_sipika.joblib
 
 # Uploaded datasets
 storage/datasets/*

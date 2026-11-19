@@ -84,6 +84,15 @@ if ($request_method == 'POST' && $request_uri == '/auth/change-password') {
     exit();
 }
 
+// Route: POST /prediction
+if ($request_method == 'POST' && $request_uri == '/prediction') {
+    require_once 'controllers/PredictionController.php';
+
+    $controller = new PredictionController();
+    $controller->predict();
+    exit();
+}
+
 // Kalau endpoint gak ditemukan
 http_response_code(404);
 echo json_encode([

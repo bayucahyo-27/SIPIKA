@@ -1,67 +1,70 @@
 
 /* =========================================
    FITUR KLASIFIKASI NELAYAN
-   MODE DEMO - BELUM MENGGUNAKAN DECISION TREE
+   MENGGUNAKAN ALGORITMA DECISION TREE
 ========================================= */
 
-// Mengambil elemen-elemen HTML yang digunakan pada halaman klasifikasi
+// Mengambil elemen-elemen pada halaman klasifikasi
 const classificationForm = document.getElementById("classificationForm");
-
 const resultPlaceholder = document.getElementById("resultPlaceholder");
 const resultContent = document.getElementById("resultContent");
 
-// Mengambil elemen untuk menampilkan hasil klasifikasi
 const productionLevel = document.getElementById("productionLevel");
 const conclusionText = document.getElementById("conclusionText");
 const suggestionText = document.getElementById("suggestionText");
 
-
-/* =========================================
-   1. FITUR KLASIFIKASI NELAYAN
-========================================= */
-
-// Memeriksa apakah form klasifikasi tersedia pada halaman
+// Menjalankan proses klasifikasi ketika form dikirim
 if (classificationForm) {
 
-    // Menjalankan proses ketika tombol klasifikasikan ditekan
-    classificationForm.addEventListener("submit", function (event) {
-
-        // Mencegah halaman dimuat ulang ketika form dikirim
+    classificationForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
-        // Mengambil tombol klasifikasi
         const classifyButton = classificationForm.querySelector(
             'button[type="submit"]'
         );
 
         const originalButtonText = classifyButton.innerHTML;
 
-        // Mengubah tombol menjadi loading klasifikasi
+        // Mengambil nilai dari empat atribut klasifikasi
+        const data = {
+            jenis_ikan: document.getElementById("jenisIkan").value,
+            alat_tangkap: document.getElementById("alatTangkap").value,
+            wilayah: document.getElementById("wilayah").value,
+            musim: document.getElementById("musim").value
+        };
+
+        // Mengubah tombol menjadi kondisi loading
         classifyButton.disabled = true;
         classifyButton.innerHTML = `
-    <i data-lucide="loader-circle" class="loading-icon"></i>
-    Memproses...
-`;
+            <i data-lucide="loader-circle" class="loading-icon"></i>
+            Memproses...
+        `;
 
         lucide.createIcons();
 
-        setTimeout(function () {
-            // Mengambil nilai dari setiap pilihan pada form klasfikasi
-            const jenisIkan = document.getElementById("jenisIkan").value;
-            const alatTangkap = document.getElementById("alatTangkap").value;
-            const wilayah = document.getElementById("wilayah").value;
-            const musim = document.getElementById("musim").value;
+        try {
+            // Mengirim data klasifikasi ke backend PHP
+            const response = await fetch("/SIPIKA/backend/prediction", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
 
+            const result = await response.json();
 
-            /* -----------------------------------------
-               HASIL SIMULASI SEMENTARA
-               BELUM MENGGUNAKAN ALGORITMA DECISION TREE
-            ----------------------------------------- */
+            // Memeriksa apakah proses prediksi berhasil
+            if (!response.ok || result.status !== "success") {
+                throw new Error(
+                    result.message || result.detail || "Prediksi gagal dilakukan."
+                );
+            }
 
-            // Menentukan hasil demo secara manual
-            const hasilDemo = "Tinggi";
+            const hasilKlasifikasi = result.hasil_klasifikasi;
+            const tingkatKepercayaan = result.tingkat_kepercayaan;
 
-            // Menyimpan hasil klasifikasi ke localStorage
+            // Menyimpan hasil klasifikasi ke riwayat browser
             const now = new Date();
 
             const tanggalLokal = [
@@ -78,80 +81,64 @@ if (classificationForm) {
             const riwayatBaru = {
                 date: tanggalLokal,
                 time: waktuLokal,
-                fish: jenisIkan,
-                gear: alatTangkap,
-                region: wilayah,
-                season: musim,
-                result: hasilDemo
+                fish: data.jenis_ikan,
+                gear: data.alat_tangkap,
+                region: data.wilayah,
+                season: data.musim,
+                result: hasilKlasifikasi,
+                confidence: tingkatKepercayaan
             };
 
-            // Mengambil riwayat yang sudah tersimpan
             const savedHistory = JSON.parse(
                 localStorage.getItem("sipikaHistory") || "[]"
             );
 
-            // Menambahkan riwayat terbaru di urutan pertama
             savedHistory.unshift(riwayatBaru);
 
-            // Menyimpan kembali ke browser
             localStorage.setItem(
                 "sipikaHistory",
                 JSON.stringify(savedHistory)
             );
 
-            // Menampilkan tingkat produksi pada halaman
-            productionLevel.textContent = hasilDemo;
+            // Menampilkan hasil prediksi Decision Tree
+            productionLevel.textContent = hasilKlasifikasi;
 
-            // Menampilkan kesimpulan berdasarkan data yang dimasukkan
             conclusionText.textContent =
-                `Berdasarkan data yang dimasukkan, ikan ${jenisIkan} ` +
-                `yang ditangkap menggunakan ${alatTangkap} di wilayah ` +
-                `${wilayah} pada musim ${musim} ditampilkan sebagai ` +
-                `contoh hasil klasifikasi ${hasilDemo.toLowerCase()}. ` +
-                `Hasil ini masih berupa simulasi tampilan.`;
+                `Berdasarkan data yang dimasukkan, ikan ${data.jenis_ikan} ` +
+                `yang ditangkap menggunakan ${data.alat_tangkap} di wilayah ` +
+                `${data.wilayah} pada musim ${data.musim} ` +
+                `diprediksi memiliki tingkat produksi ${hasilKlasifikasi.toLowerCase()} ` +
+                `dengan tingkat kepercayaan ${tingkatKepercayaan}%.`;
 
-            // Menampilkan saran kepada nelayan
             suggestionText.textContent =
-                "Nelayan disarankan untuk mempertahankan penggunaan " +
-                "alat tangkap yang sesuai, memeriksa prakiraan cuaca " +
-                "sebelum melaut, dan tetap mematuhi aturan penangkapan ikan.";
+                "Nelayan disarankan untuk mempertahankan penggunaan alat " +
+                "tangkap yang sesuai, memeriksa prakiraan cuaca sebelum melaut, " +
+                "dan tetap mematuhi aturan penangkapan ikan.";
 
-            // Menyembunyikan tampilan awal sebelum klasifikasi
+            // Memperlihatkan hasil klasifikasi
             resultPlaceholder.hidden = true;
-
-            // Menampilkan bagian hasil klasifikasi
             resultContent.hidden = false;
 
-            // Memperbarui ikon Lucide setelah hasil ditampilkan
             lucide.createIcons();
 
-            // Mengembalikan tombol ke tampilan awal
+        } catch (error) {
+            alert("Terjadi kesalahan: " + error.message);
+
+        } finally {
+            // Mengembalikan tombol ke kondisi awal
             classifyButton.disabled = false;
             classifyButton.innerHTML = originalButtonText;
 
             lucide.createIcons();
-
-        }, 3000);
+        }
     });
 
-
-    /* =========================================
-       2. FITUR RESET FORM KLASIFIKASI
-    ========================================= */
-
-    // Menjalankan fungsi ketika tombol reset ditekan
+    // Mengatur ulang tampilan ketika tombol reset ditekan
     classificationForm.addEventListener("reset", function () {
-
-        // Menyembunyikan hasil klasifikasi
         resultContent.hidden = true;
-
-        // Menampilkan kembali tampilan awal
         resultPlaceholder.hidden = false;
-
     });
-
 }
-
 
 /* =========================================
    FITUR RIWAYAT KLASIFIKASI NELAYAN
@@ -679,4 +666,3 @@ if (cancelProfileButton) {
         }
     });
 }
-
