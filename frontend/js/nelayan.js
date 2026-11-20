@@ -768,14 +768,24 @@ if (detailFish) {
 
             detailResult.textContent = classification;
 
-            // Mengubah warna container sesuai kategori klasifikasi
+            // Mengubah warna seluruh container sesuai kategori klasifikasi
+            const classificationCard = detailResult.closest(
+                ".detail-classification-card"
+            );
+
+            // Menghapus warna kategori sebelumnya
+            classificationCard.classList.remove("low", "medium", "high");
             detailResult.classList.remove("low", "medium", "high");
 
+            // Memberikan warna sesuai hasil klasifikasi
             if (classification === "Rendah") {
+                classificationCard.classList.add("low");
                 detailResult.classList.add("low");
             } else if (classification === "Sedang") {
+                classificationCard.classList.add("medium");
                 detailResult.classList.add("medium");
             } else if (classification === "Tinggi") {
+                classificationCard.classList.add("high");
                 detailResult.classList.add("high");
             }
 
