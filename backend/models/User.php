@@ -272,5 +272,168 @@ class User {
 
         return $stmt->execute();
     }
+
+    // ==========================================
+    // CRUD PENGELOLAAN PENGGUNA KHUSUS ADMIN
+    // ==========================================
+
+    // 1. Mengambil seluruh pengguna dengan pencarian,
+    //    filter role, filter status, dan pagination.
+    public function getAllUsers($search = "", $role = "", $status = "", $page = 1, $limit = 10) {
+        $conditions = ["role IN ('nelayan', 'petugas')"];
+        $params = [];
+
+        if ($search !== "") {
+            $conditions[] = "(nama_lengkap LIKE :search OR username LIKE :search OR email LIKE :search)";
+            $params[":search"] = "%" . $search . "%";
+        }
+
+        if ($role !== "" && $role !== "semua") {
+            $conditions[] = "role = :role";
+            $params[":role"] = $role;
+        }
+
+        if ($status !== "" && $status !== "semua") {
+            $conditions[] = "status = :status";
+            $params[":status"] = $status;
+        }
+
+        $where = count($conditions) > 0
+            ? "WHERE " . implode(" AND ", $conditions)
+            : "";
+
+        $page = max(1, (int) $page);
+        $limit = max(1, min(100, (int) $limit));
+        $offset = ($page - 1) * $limit;
+
+        // Menghitung total data sesuai filter
+        $countQuery = "SELECT COUNT(*) AS total FROM " . $this->table . " " . $where;
+        $countStmt = $this->conn->prepare($countQuery);
+
+        foreach ($params as $key => $value) {
+            $countStmt->bindValue($key, $value);
+        }
+
+        $countStmt->execute();
+        $total = (int) $countStmt->fetch(PDO::FETCH_ASSOC)["total"];
+
+        // Mengambil data pengguna tanpa password
+        $query = "SELECT
+                    id,
+                    username,
+                    nama_lengkap,
+                    email,
+                    nomor_telepon,
+                    foto_profil,
+                    role,
+                    status,
+                    created_at
+                  FROM " . $this->table . "
+                  " . $where . "
+                  ORDER BY created_at DESC
+                  LIMIT :limit OFFSET :offset";
+
+        $stmt = $this->conn->prepare($query);
+
+        foreach ($params as $key => $value) {
+            $stmt->bindValue($key, $value);
+        }
+
+        $stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return [
+            "data" => $stmt->fetchAll(PDO::FETCH_ASSOC),
+            "pagination" => [
+                "total" => $total,
+                "page" => $page,
+                "limit" => $limit,
+                "total_pages" => (int) ceil($total / $limit)
+            ]
+        ];
+    }
+
+    // 2. Menambahkan pengguna baru oleh Admin
+    public function createUser() {
+        $query = "INSERT INTO " . $this->table . "
+                  (username, nama_lengkap, email, nomor_telepon, password, role, status)
+                  VALUES
+                  (:username, :nama_lengkap, :email, :nomor_telepon, :password, :role, 'Aktif')";
+
+        $stmt = $this->conn->prepare($query);
+
+        $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
+
+        $stmt->bindValue(":username", $this->username);
+        $stmt->bindValue(":nama_lengkap", $this->nama_lengkap);
+        $stmt->bindValue(":email", $this->email);
+        $stmt->bindValue(":nomor_telepon", $this->nomor_telepon);
+        $stmt->bindValue(":password", $hashedPassword);
+        $stmt->bindValue(":role", $this->role);
+
+        return $stmt->execute();
+    }
+
+    // 3. Memperbarui informasi pengguna
+    public function updateUser($userId, $updatePassword = false) {
+        $query = "UPDATE " . $this->table . "
+                SET username = :username,
+                    nama_lengkap = :nama_lengkap,
+                    email = :email,
+                    nomor_telepon = :nomor_telepon,
+                    role = :role";
+
+        if ($updatePassword) {
+            $query .= ", password = :password";
+        }
+
+        // Hanya akun Nelayan dan Petugas yang boleh diperbarui
+        $query .= " WHERE id = :id
+                    AND role IN ('nelayan', 'petugas')";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindValue(":username", $this->username);
+        $stmt->bindValue(":nama_lengkap", $this->nama_lengkap);
+        $stmt->bindValue(":email", $this->email);
+        $stmt->bindValue(":nomor_telepon", $this->nomor_telepon);
+        $stmt->bindValue(":role", $this->role);
+        $stmt->bindValue(":id", $userId, PDO::PARAM_INT);
+
+        if ($updatePassword) {
+            $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
+            $stmt->bindValue(":password", $hashedPassword);
+        }
+
+        return $stmt->execute() && $stmt->rowCount() > 0;
+    }
+
+    // 4. Menghapus pengguna
+    public function deleteUser($userId) {
+        $query = "DELETE FROM " . $this->table . "
+                WHERE id = :id
+                AND role IN ('nelayan', 'petugas')";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindValue(":id", $userId, PDO::PARAM_INT);
+
+        return $stmt->execute() && $stmt->rowCount() > 0;
+    }
+
+    // 5. Mengubah status pengguna
+    public function updateUserStatus($userId, $status) {
+        $query = "UPDATE " . $this->table . "
+                SET status = :status
+                WHERE id = :id
+                AND role IN ('nelayan', 'petugas')";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindValue(":status", $status);
+        $stmt->bindValue(":id", $userId, PDO::PARAM_INT);
+
+        return $stmt->execute() && $stmt->rowCount() > 0;
+    }
+
 }
 ?>

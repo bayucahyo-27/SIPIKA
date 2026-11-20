@@ -4,7 +4,7 @@
 // 1. Izinkan Frontend akses Backend (CORS)
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 // Handle preflight request
@@ -168,6 +168,232 @@ if ($request_method == 'POST' && $request_uri == '/profile/photo') {
     require_once 'controllers/ProfileController.php';
     $controller = new ProfileController();
     $controller->uploadPhoto();
+    exit();
+}
+
+// ==========================================
+// ROUTING KELOLA PENGGUNA ADMIN
+// ==========================================
+
+// GET: Mengambil daftar pengguna
+if ($request_method == 'GET' && $request_uri == '/admin/users') {
+    require_once 'controllers/UserController.php';
+    $controller = new UserController();
+    $controller->index();
+    exit();
+}
+
+// POST: Menambahkan pengguna
+if ($request_method == 'POST' && $request_uri == '/admin/users') {
+    require_once 'controllers/UserController.php';
+    $controller = new UserController();
+    $controller->store();
+    exit();
+}
+
+// PUT: Memperbarui pengguna
+if (
+    $request_method == 'PUT' &&
+    preg_match('#^/admin/users/([0-9]+)$#', $request_uri, $matches)
+) {
+    require_once 'controllers/UserController.php';
+    $controller = new UserController();
+    $controller->update((int) $matches[1]);
+    exit();
+}
+
+// DELETE: Menghapus pengguna
+if (
+    $request_method == 'DELETE' &&
+    preg_match('#^/admin/users/([0-9]+)$#', $request_uri, $matches)
+) {
+    require_once 'controllers/UserController.php';
+    $controller = new UserController();
+    $controller->destroy((int) $matches[1]);
+    exit();
+}
+
+// PATCH: Mengubah status pengguna
+if (
+    $request_method == 'PATCH' &&
+    preg_match('#^/admin/users/([0-9]+)/status$#', $request_uri, $matches)
+) {
+    require_once 'controllers/UserController.php';
+    $controller = new UserController();
+    $controller->updateStatus((int) $matches[1]);
+    exit();
+}
+
+// ROUTING STATISTIK PENGGUNA ADMIN
+if ($request_method == 'GET' && $request_uri == '/admin/users/statistics') {
+    require_once 'controllers/UserController.php';
+    $controller = new UserController();
+    $controller->getStatistics();
+    exit();
+}
+
+// ==========================================
+// ROUTING PENGELOLAAN DATASET ADMIN
+// ==========================================
+
+// GET: Mengambil daftar dataset
+if (
+    $request_method == 'GET' &&
+    $request_uri == '/admin/datasets'
+) {
+    require_once 'controllers/DatasetController.php';
+
+    $controller = new DatasetController();
+    $controller->listDataset();
+    exit();
+}
+
+// POST: Mengunggah dataset CSV
+if (
+    $request_method == 'POST' &&
+    $request_uri == '/admin/datasets'
+) {
+    require_once 'controllers/DatasetController.php';
+
+    $controller = new DatasetController();
+    $controller->uploadDataset();
+    exit();
+}
+
+// PUT: Mengubah nama dataset
+if (
+    $request_method == 'PUT' &&
+    preg_match(
+        '#^/admin/datasets/([0-9]+)$#',
+        $request_uri,
+        $matches
+    )
+) {
+    require_once 'controllers/DatasetController.php';
+
+    $controller = new DatasetController();
+    $controller->updateDataset((int) $matches[1]);
+    exit();
+}
+
+// DELETE: Menghapus dataset
+if (
+    $request_method == 'DELETE' &&
+    preg_match(
+        '#^/admin/datasets/([0-9]+)$#',
+        $request_uri,
+        $matches
+    )
+) {
+    require_once 'controllers/DatasetController.php';
+
+    $controller = new DatasetController();
+    $controller->deleteDataset((int) $matches[1]);
+    exit();
+}
+
+// ==========================================
+// ROUTING DATA MASTER ADMIN
+// ==========================================
+
+// Pemetaan kategori frontend ke nama tabel pada model
+$masterDataTypes = [
+    "ikan" => "jenis_ikan",
+    "alat" => "alat_tangkap",
+    "wilayah" => "wilayah",
+    "musim" => "musim"
+];
+
+// Pola URL Data Master:
+// /admin/master-data/ikan
+// /admin/master-data/ikan/1
+// /admin/master-data/ikan/1/status
+
+if (
+    preg_match(
+        '#^/admin/master-data/([a-z_]+)(?:/([0-9]+))?(?:/status)?$#',
+        $request_uri,
+        $matches
+    )
+) {
+
+    $category = $matches[1];
+    $id = (isset($matches[2]) && $matches[2] !== '')
+    ? (int) $matches[2]
+    : null;
+
+    // Pastikan kategori valid
+    if (!isset($masterDataTypes[$category])) {
+        http_response_code(404);
+        echo json_encode([
+            "status" => "error",
+            "message" => "Kategori Data Master tidak ditemukan."
+        ]);
+        exit();
+    }
+
+    // Konversi kategori frontend ke kategori model
+    $type = $masterDataTypes[$category];
+
+    require_once 'config/database.php';
+    require_once 'controllers/MasterDataController.php';
+
+    $database = new Database();
+    $db = $database->getConnection();
+
+    $controller = new MasterDataController($db);
+
+    // GET: Mengambil seluruh data kategori
+    if ($request_method == 'GET' && $id === null) {
+        $controller->index($type);
+        exit();
+    }
+
+    // GET: Mengambil detail data
+    if ($request_method == 'GET' && $id !== null) {
+        $controller->show($type, $id);
+        exit();
+    }
+
+    // POST: Menambahkan data
+    if ($request_method == 'POST' && $id === null) {
+        $controller->store($type);
+        exit();
+    }
+
+    // PUT: Memperbarui data
+    if ($request_method == 'PUT' && $id !== null) {
+        $controller->update($type, $id);
+        exit();
+    }
+
+    // PATCH: Mengubah status data
+    if (
+        $request_method == 'PATCH' &&
+        $id !== null &&
+        preg_match('#/status$#', $request_uri)
+    ) {
+        $controller->updateStatus($type, $id);
+        exit();
+    }
+
+    // DELETE: Menghapus data
+    if ($request_method == 'DELETE' && $id !== null) {
+        $controller->destroy($type, $id);
+        exit();
+    }
+}
+
+// ==========================================
+// ROUTING DASHBOARD ADMIN
+// ==========================================
+
+// Route: GET /admin/dashboard
+if ($request_method == 'GET' && $request_uri == '/admin/dashboard') {
+    require_once 'controllers/AdminController.php';
+
+    $controller = new AdminController();
+    $controller->getDashboardStats();
     exit();
 }
 

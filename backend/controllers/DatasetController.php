@@ -1,100 +1,528 @@
+
 <?php
 // backend/controllers/DatasetController.php
 
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../models/DataProduksi.php';
+require_once __DIR__ . '/../models/DatasetFile.php';
+require_once __DIR__ . '/../middleware/AuthMiddleware.php';
 
 class DatasetController {
     private $db;
+    private $datasetFile;
 
     public function __construct() {
         $database = new Database();
         $this->db = $database->getConnection();
+
+        $this->datasetFile = new DatasetFile($this->db);
     }
 
-    // 1. GET: Ambil semua data
+    // ==========================================
+    // BAGIAN A: CRUD DATA PRODUKSI
+    // ==========================================
+
+    // GET: Ambil semua data produksi
     public function getAll() {
         $dataProduksi = new DataProduksi($this->db);
         $stmt = $dataProduksi->read();
-        $num = $stmt->rowCount();
+        $data_arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($num > 0) {
-            $data_arr = array();
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                array_push($data_arr, $row);
-            }
-            http_response_code(200);
-            echo json_encode(["status" => "success", "data" => $data_arr]);
-        } else {
-            http_response_code(200);
-            echo json_encode(["status" => "success", "data" => [], "message" => "Belum ada data produksi."]);
-        }
+        http_response_code(200);
+        echo json_encode([
+            "status" => "success",
+            "data" => $data_arr,
+            "message" => count($data_arr) > 0
+                ? "Data produksi berhasil diambil."
+                : "Belum ada data produksi."
+        ]);
     }
 
-    // 2. POST: Tambah data baru
+    // POST: Tambah data produksi
     public function create() {
         $data = json_decode(file_get_contents("php://input"));
 
-        if (empty($data->jenis_ikan) || empty($data->produksi_kg)) {
+        if (
+            !$data ||
+            empty($data->jenis_ikan) ||
+            !isset($data->produksi_kg) ||
+            $data->produksi_kg === ""
+        ) {
             http_response_code(400);
-            echo json_encode(["status" => "error", "message" => "Data tidak lengkap!"]);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Data tidak lengkap!"
+            ]);
             return;
         }
 
         $item = new DataProduksi($this->db);
         $item->jenis_ikan = $data->jenis_ikan;
-        $item->alat_tangkap = $data->alat_tangkap;
-        $item->wilayah = $data->wilayah;
-        $item->musim = $data->musim;
+        $item->alat_tangkap = $data->alat_tangkap ?? "";
+        $item->wilayah = $data->wilayah ?? "";
+        $item->musim = $data->musim ?? "";
         $item->produksi_kg = $data->produksi_kg;
 
         if ($item->create()) {
             http_response_code(201);
-            echo json_encode(["status" => "success", "message" => "Data berhasil ditambahkan!"]);
+            echo json_encode([
+                "status" => "success",
+                "message" => "Data berhasil ditambahkan!"
+            ]);
         } else {
             http_response_code(500);
-            echo json_encode(["status" => "error", "message" => "Gagal menambahkan data."]);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Gagal menambahkan data."
+            ]);
         }
     }
 
-    // 3. PUT: Update data (ID dikirim via URL)
+    // PUT: Update data produksi
     public function update($id) {
         $data = json_decode(file_get_contents("php://input"));
 
-        if (empty($data->jenis_ikan) || empty($data->produksi_kg)) {
+        if (
+            !$data ||
+            empty($data->jenis_ikan) ||
+            !isset($data->produksi_kg) ||
+            $data->produksi_kg === ""
+        ) {
             http_response_code(400);
-            echo json_encode(["status" => "error", "message" => "Data tidak lengkap!"]);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Data tidak lengkap!"
+            ]);
             return;
         }
 
         $item = new DataProduksi($this->db);
         $item->id = $id;
         $item->jenis_ikan = $data->jenis_ikan;
-        $item->alat_tangkap = $data->alat_tangkap;
-        $item->wilayah = $data->wilayah;
-        $item->musim = $data->musim;
+        $item->alat_tangkap = $data->alat_tangkap ?? "";
+        $item->wilayah = $data->wilayah ?? "";
+        $item->musim = $data->musim ?? "";
         $item->produksi_kg = $data->produksi_kg;
 
         if ($item->update()) {
             http_response_code(200);
-            echo json_encode(["status" => "success", "message" => "Data berhasil diperbarui!"]);
+            echo json_encode([
+                "status" => "success",
+                "message" => "Data berhasil diperbarui!"
+            ]);
         } else {
             http_response_code(500);
-            echo json_encode(["status" => "error", "message" => "Gagal memperbarui data."]);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Gagal memperbarui data."
+            ]);
         }
     }
 
-    // 4. DELETE: Hapus data (ID dikirim via URL)
+    // DELETE: Hapus data produksi
     public function delete($id) {
         $item = new DataProduksi($this->db);
         $item->id = $id;
 
         if ($item->delete()) {
             http_response_code(200);
-            echo json_encode(["status" => "success", "message" => "Data berhasil dihapus!"]);
+            echo json_encode([
+                "status" => "success",
+                "message" => "Data berhasil dihapus!"
+            ]);
         } else {
             http_response_code(500);
-            echo json_encode(["status" => "error", "message" => "Gagal menghapus data."]);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Gagal menghapus data."
+            ]);
+        }
+    }
+
+
+    // ==========================================
+    // BAGIAN B: PENGELOLAAN FILE DATASET
+    // ==========================================
+
+    // Memastikan hanya Admin yang dapat mengakses
+    private function authorizeAdmin() {
+        AuthMiddleware::authorize(["admin"]);
+    }
+
+    // GET: Menampilkan daftar dataset
+    public function listDataset() {
+        $this->authorizeAdmin();
+
+        try {
+            $data = $this->datasetFile->getAll();
+
+            http_response_code(200);
+            echo json_encode([
+                "status" => "success",
+                "message" => "Data dataset berhasil diambil.",
+                "data" => $data
+            ]);
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Gagal mengambil data dataset."
+            ]);
+        }
+    }
+
+    // POST: Upload file CSV
+    public function uploadDataset() {
+        $this->authorizeAdmin();
+
+        if (
+            !isset($_FILES["dataset"]) ||
+            $_FILES["dataset"]["error"] !== UPLOAD_ERR_OK
+        ) {
+            http_response_code(400);
+            echo json_encode([
+                "status" => "error",
+                "message" => "File dataset belum dipilih atau gagal diunggah."
+            ]);
+            return;
+        }
+
+        $file = $_FILES["dataset"];
+
+        if (
+            strtolower(pathinfo($file["name"], PATHINFO_EXTENSION)) !== "csv"
+        ) {
+            http_response_code(400);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Format file harus CSV."
+            ]);
+            return;
+        }
+
+        if ($file["size"] <= 0 || $file["size"] > 10 * 1024 * 1024) {
+            http_response_code(400);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Ukuran file harus lebih dari 0 dan maksimal 10 MB."
+            ]);
+            return;
+        }
+
+        $handle = fopen($file["tmp_name"], "r");
+
+        if (!$handle) {
+            http_response_code(400);
+            echo json_encode([
+                "status" => "error",
+                "message" => "File CSV tidak dapat dibaca."
+            ]);
+            return;
+        }
+
+        $header = fgetcsv($handle);
+
+        if (!$header) {
+            fclose($handle);
+            http_response_code(400);
+            echo json_encode([
+                "status" => "error",
+                "message" => "File CSV kosong atau tidak memiliki header."
+            ]);
+            return;
+        }
+
+        // Membersihkan BOM dan spasi pada header
+        $header[0] = preg_replace('/^\xEF\xBB\xBF/', '', $header[0]);
+
+        $header = array_map(
+            function ($value) {
+                return strtolower(trim($value));
+            },
+            $header
+        );
+
+        $requiredHeaders = [
+            "jenis_ikan",
+            "alat_tangkap",
+            "wilayah",
+            "musim",
+            "produksi_kg",
+            "kategori"
+        ];
+
+        if ($header !== $requiredHeaders) {
+            fclose($handle);
+            http_response_code(400);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Header CSV tidak sesuai. Gunakan: " .
+                    implode(", ", $requiredHeaders)
+            ]);
+            return;
+        }
+
+        $rows = [];
+        $lineNumber = 1;
+
+        while (($values = fgetcsv($handle)) !== false) {
+            $lineNumber++;
+
+            if ($values === [null] || $values === []) {
+                continue;
+            }
+
+            if (count($values) !== count($requiredHeaders)) {
+                fclose($handle);
+                http_response_code(400);
+                echo json_encode([
+                    "status" => "error",
+                    "message" => "Jumlah kolom tidak sesuai pada baris " .
+                        $lineNumber . "."
+                ]);
+                return;
+            }
+
+            $row = array_combine($requiredHeaders, $values);
+
+            foreach ($row as $key => $value) {
+                $row[$key] = trim($value);
+            }
+
+            foreach ($requiredHeaders as $column) {
+                if ($row[$column] === "") {
+                    fclose($handle);
+                    http_response_code(400);
+                    echo json_encode([
+                        "status" => "error",
+                        "message" => "Terdapat kolom kosong pada baris " .
+                            $lineNumber . "."
+                    ]);
+                    return;
+                }
+            }
+
+            if (
+                !is_numeric($row["produksi_kg"]) ||
+                (float)$row["produksi_kg"] < 0
+            ) {
+                fclose($handle);
+                http_response_code(400);
+                echo json_encode([
+                    "status" => "error",
+                    "message" => "Nilai produksi tidak valid pada baris " .
+                        $lineNumber . "."
+                ]);
+                return;
+            }
+
+            if (!in_array(
+                $row["kategori"],
+                ["Rendah", "Sedang", "Tinggi"],
+                true
+            )) {
+                fclose($handle);
+                http_response_code(400);
+                echo json_encode([
+                    "status" => "error",
+                    "message" => "Kategori tidak valid pada baris " .
+                        $lineNumber . "."
+                ]);
+                return;
+            }
+
+            $row["produksi_kg"] = (float)$row["produksi_kg"];
+            $rows[] = $row;
+        }
+
+        fclose($handle);
+
+        if (count($rows) === 0) {
+            http_response_code(400);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Dataset tidak memiliki baris data."
+            ]);
+            return;
+        }
+
+        $uploadDirectory = __DIR__ . "/../uploads/datasets/";
+
+        if (
+            !is_dir($uploadDirectory) &&
+            !mkdir($uploadDirectory, 0775, true)
+        ) {
+            http_response_code(500);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Folder penyimpanan dataset gagal dibuat."
+            ]);
+            return;
+        }
+
+        $originalName = basename($file["name"]);
+
+        $safeName = preg_replace(
+            '/[^a-zA-Z0-9._-]/',
+            '_',
+            $originalName
+        );
+
+        $newFileName = date("YmdHis") . "_" .
+            bin2hex(random_bytes(4)) . "_" . $safeName;
+
+        $destination = $uploadDirectory . $newFileName;
+        $relativePath = "uploads/datasets/" . $newFileName;
+
+        if (!move_uploaded_file($file["tmp_name"], $destination)) {
+            http_response_code(500);
+            echo json_encode([
+                "status" => "error",
+                "message" => "File gagal disimpan."
+            ]);
+            return;
+        }
+
+        try {
+            $user = AuthMiddleware::user();
+
+            $result = $this->datasetFile->create(
+                $originalName,
+                $relativePath,
+                $user["id"],
+                $rows
+            );
+
+            if (!$result) {
+                if (file_exists($destination)) {
+                    unlink($destination);
+                }
+
+                http_response_code(500);
+                echo json_encode([
+                    "status" => "error",
+                    "message" => "Gagal menyimpan dataset ke database."
+                ]);
+                return;
+            }
+
+            http_response_code(201);
+            echo json_encode([
+                "status" => "success",
+                "message" => "Dataset berhasil diunggah.",
+                "data" => [
+                    "nama_file" => $originalName,
+                    "jumlah_data" => count($rows)
+                ]
+            ]);
+        } catch (Exception $e) {
+            if (file_exists($destination)) {
+                unlink($destination);
+            }
+
+            http_response_code(500);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Terjadi kesalahan saat menyimpan dataset."
+            ]);
+        }
+    }
+
+    // PUT: Mengubah nama dataset
+    public function updateDataset($id) {
+        $this->authorizeAdmin();
+
+        $data = json_decode(file_get_contents("php://input"));
+
+        if (
+            !$data ||
+            !isset($data->nama_file) ||
+            !is_string($data->nama_file) ||
+            trim($data->nama_file) === ""
+        ) {
+            http_response_code(400);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Nama dataset wajib diisi."
+            ]);
+            return;
+        }
+
+        try {
+            $result = $this->datasetFile->update(
+                (int)$id,
+                trim($data->nama_file)
+            );
+
+            if (!$result) {
+                http_response_code(404);
+                echo json_encode([
+                    "status" => "error",
+                    "message" => "Dataset tidak ditemukan atau gagal diperbarui."
+                ]);
+                return;
+            }
+
+            http_response_code(200);
+            echo json_encode([
+                "status" => "success",
+                "message" => "Nama dataset berhasil diperbarui."
+            ]);
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Gagal memperbarui dataset."
+            ]);
+        }
+    }
+
+    // DELETE: Menghapus dataset
+    public function deleteDataset($id) {
+        $this->authorizeAdmin();
+
+        try {
+            $dataset = $this->datasetFile->getById((int)$id);
+
+            if (!$dataset) {
+                http_response_code(404);
+                echo json_encode([
+                    "status" => "error",
+                    "message" => "Dataset tidak ditemukan."
+                ]);
+                return;
+            }
+
+            $result = $this->datasetFile->delete((int)$id);
+
+            if (!$result) {
+                http_response_code(500);
+                echo json_encode([
+                    "status" => "error",
+                    "message" => "Gagal menghapus dataset dari database."
+                ]);
+                return;
+            }
+            
+            $filePath = __DIR__ . "/../" . $dataset["path_file"];
+
+            if (is_file($filePath) && !unlink($filePath)) {
+                error_log(
+                    "Gagal menghapus file dataset: " . $filePath
+                );
+            }
+
+            http_response_code(200);
+            echo json_encode([
+                "status" => "success",
+                "message" => "Dataset berhasil dihapus."
+            ]);
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Terjadi kesalahan saat menghapus dataset."
+            ]);
         }
     }
 }

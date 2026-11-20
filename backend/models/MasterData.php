@@ -73,10 +73,10 @@ class MasterData {
         $table = $this->getTable($type);
 
         $query = "UPDATE $table
-                  SET nama = :nama,
-                      deskripsi = :deskripsi,
-                      status = :status
-                  WHERE id = :id";
+                SET nama = :nama,
+                    deskripsi = :deskripsi,
+                    status = :status
+                WHERE id = :id";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bindValue(":nama", $nama);
@@ -84,23 +84,32 @@ class MasterData {
         $stmt->bindValue(":status", $status);
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
 
-        return $stmt->execute();
+        $stmt->execute();
+
+        return $this->getById($type, $id) !== false;
     }
 
     // Mengubah status aktif/nonaktif
+    
     public function updateStatus($type, $id, $status) {
         $table = $this->getTable($type);
 
         $query = "UPDATE $table
-                  SET status = :status
-                  WHERE id = :id";
+                SET status = :status
+                WHERE id = :id";
 
         $stmt = $this->conn->prepare($query);
+
         $stmt->bindValue(":status", $status);
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
 
-        return $stmt->execute();
+        $stmt->execute();
+
+        // Pastikan data dengan ID tersebut memang tersedia.
+        // Tetap berhasil meskipun statusnya tidak berubah.
+        return $this->getById($type, $id) !== false;
     }
+
 
     // Menghapus data
     public function delete($type, $id) {
@@ -110,7 +119,10 @@ class MasterData {
         $stmt = $this->conn->prepare($query);
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
 
-        return $stmt->execute();
+        $stmt->execute();
+
+        return $stmt->rowCount() > 0;
     }
+
 }
 ?>
