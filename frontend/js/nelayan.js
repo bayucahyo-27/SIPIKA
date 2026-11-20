@@ -14,132 +14,132 @@ const suggestionText = document.getElementById("suggestionText");
 
 // Menjalankan proses klasifikasi ketika form dikirim
 if (classificationForm) {
-    classificationForm.addEventListener("submit", async function (event) {
-        event.preventDefault();
+  classificationForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-        const classifyButton = classificationForm.querySelector(
-            'button[type="submit"]',
-        );
+    const classifyButton = classificationForm.querySelector(
+      'button[type="submit"]',
+    );
 
-        const originalButtonText = classifyButton.innerHTML;
+    const originalButtonText = classifyButton.innerHTML;
 
-        // Mengambil nilai dari empat atribut klasifikasi
-        const data = {
-            jenis_ikan: document.getElementById("jenisIkan").value,
-            alat_tangkap: document.getElementById("alatTangkap").value,
-            wilayah: document.getElementById("wilayah").value,
-            musim: document.getElementById("musim").value,
-        };
+    // Mengambil nilai dari empat atribut klasifikasi
+    const data = {
+      jenis_ikan: document.getElementById("jenisIkan").value,
+      alat_tangkap: document.getElementById("alatTangkap").value,
+      wilayah: document.getElementById("wilayah").value,
+      musim: document.getElementById("musim").value,
+    };
 
-        // Mengubah tombol menjadi kondisi loading
-        classifyButton.disabled = true;
-        classifyButton.innerHTML = `
+    // Mengubah tombol menjadi kondisi loading
+    classifyButton.disabled = true;
+    classifyButton.innerHTML = `
             <i data-lucide="loader-circle" class="loading-icon"></i>
             Memproses...
         `;
 
-        lucide.createIcons();
+    lucide.createIcons();
 
-        try {
-            // Mengirim data klasifikasi ke backend PHP
-            const response = await fetch("/SIPIKA/backend/prediction", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
+    try {
+      // Mengirim data klasifikasi ke backend PHP
+      const response = await fetch("/SIPIKA/backend/prediction", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-            const result = await response.json();
+      const result = await response.json();
 
-            // Memeriksa apakah proses prediksi berhasil
-            if (!response.ok || result.status !== "success") {
-                throw new Error(
-                    result.message || result.detail || "Prediksi gagal dilakukan.",
-                );
-            }
+      // Memeriksa apakah proses prediksi berhasil
+      if (!response.ok || result.status !== "success") {
+        throw new Error(
+          result.message || result.detail || "Prediksi gagal dilakukan.",
+        );
+      }
 
-            const hasilKlasifikasi = result.hasil_klasifikasi;
-            const tingkatKepercayaan = result.tingkat_kepercayaan;
+      const hasilKlasifikasi = result.hasil_klasifikasi;
+      const tingkatKepercayaan = result.tingkat_kepercayaan;
 
-            // Mengubah warna tampilan berdasarkan hasil klasifikasi
-            const productionResult = document.querySelector(".production-result");
+      // Mengubah warna tampilan berdasarkan hasil klasifikasi
+      const productionResult = document.querySelector(".production-result");
 
-            productionResult.classList.remove("high", "medium", "low");
+      productionResult.classList.remove("high", "medium", "low");
 
-            if (hasilKlasifikasi === "Tinggi") {
-                productionResult.classList.add("high");
-            } else if (hasilKlasifikasi === "Sedang") {
-                productionResult.classList.add("medium");
-            } else if (hasilKlasifikasi === "Rendah") {
-                productionResult.classList.add("low");
-            }
+      if (hasilKlasifikasi === "Tinggi") {
+        productionResult.classList.add("high");
+      } else if (hasilKlasifikasi === "Sedang") {
+        productionResult.classList.add("medium");
+      } else if (hasilKlasifikasi === "Rendah") {
+        productionResult.classList.add("low");
+      }
 
-            // Riwayat prediksi sudah otomatis disimpan ke database MySQL
-            // melalui PredictionController.php
+      // Riwayat prediksi sudah otomatis disimpan ke database MySQL
+      // melalui PredictionController.php
 
-            const savedHistory = JSON.parse(
-                localStorage.getItem("sipikaHistory") || "[]",
-            );
+      const savedHistory = JSON.parse(
+        localStorage.getItem("sipikaHistory") || "[]",
+      );
 
-            const kesimpulan = {
-                Tinggi: `Berdasarkan data yang dimasukkan, ikan ${data.jenis_ikan}
+      const kesimpulan = {
+        Tinggi: `Berdasarkan data yang dimasukkan, ikan ${data.jenis_ikan}
                 yang ditangkap menggunakan ${data.alat_tangkap} di wilayah ${data.wilayah}
                 pada musim ${data.musim} diprediksi memiliki tingkat produksi TINGGI.
                 Hasil ini menunjukkan potensi produksi tangkapan yang relatif besar
                 dengan tingkat kepercayaan ${tingkatKepercayaan}%.`,
 
-                Sedang: `Berdasarkan data yang dimasukkan, ikan ${data.jenis_ikan}
+        Sedang: `Berdasarkan data yang dimasukkan, ikan ${data.jenis_ikan}
                 yang ditangkap menggunakan ${data.alat_tangkap} di wilayah ${data.wilayah}
                 pada musim ${data.musim} diprediksi memiliki tingkat produksi SEDANG.
                 Hasil ini menunjukkan potensi produksi tangkapan yang berada pada
                 tingkat menengah dengan tingkat kepercayaan ${tingkatKepercayaan}%.`,
 
-                Rendah: `Berdasarkan data yang dimasukkan, ikan ${data.jenis_ikan}
+        Rendah: `Berdasarkan data yang dimasukkan, ikan ${data.jenis_ikan}
                 yang ditangkap menggunakan ${data.alat_tangkap} di wilayah ${data.wilayah}
                 pada musim ${data.musim} diprediksi memiliki tingkat produksi RENDAH.
                 Hasil ini menunjukkan potensi produksi tangkapan yang relatif kecil
                 dengan tingkat kepercayaan ${tingkatKepercayaan}%.`,
-            };
+      };
 
-            const saran = {
-                Tinggi:
-                    "Pertahankan strategi penangkapan yang digunakan. Tetap perhatikan kondisi cuaca, keselamatan saat melaut, serta ketentuan pengelolaan sumber daya perikanan.",
+      const saran = {
+        Tinggi:
+          "Pertahankan strategi penangkapan yang digunakan. Tetap perhatikan kondisi cuaca, keselamatan saat melaut, serta ketentuan pengelolaan sumber daya perikanan.",
 
-                Sedang:
-                    "Evaluasi waktu dan lokasi penangkapan serta perhatikan kondisi cuaca dan ketersediaan ikan. Nelayan juga dapat mempertimbangkan penggunaan alat tangkap yang sesuai.",
+        Sedang:
+          "Evaluasi waktu dan lokasi penangkapan serta perhatikan kondisi cuaca dan ketersediaan ikan. Nelayan juga dapat mempertimbangkan penggunaan alat tangkap yang sesuai.",
 
-                Rendah:
-                    "Pertimbangkan untuk mengevaluasi lokasi dan waktu penangkapan. Perhatikan informasi cuaca dan kondisi perairan sebelum melaut serta hindari penangkapan secara berlebihan.",
-            };
+        Rendah:
+          "Pertimbangkan untuk mengevaluasi lokasi dan waktu penangkapan. Perhatikan informasi cuaca dan kondisi perairan sebelum melaut serta hindari penangkapan secara berlebihan.",
+      };
 
-            conclusionText.textContent = kesimpulan[hasilKlasifikasi];
-            suggestionText.textContent = saran[hasilKlasifikasi];
+      conclusionText.textContent = kesimpulan[hasilKlasifikasi];
+      suggestionText.textContent = saran[hasilKlasifikasi];
 
-            // Menampilkan hasil prediksi Decision Tree
-            productionLevel.textContent = hasilKlasifikasi;
+      // Menampilkan hasil prediksi Decision Tree
+      productionLevel.textContent = hasilKlasifikasi;
 
-            // TAMPILKAN PANEL HASIL (TUTUP PLACEHOLDER)
-            resultContent.hidden = false;
-            resultPlaceholder.hidden = true;
-        } catch (error) {
-            console.error("Kesalahan prediksi:", error);
-            alert("Terjadi kesalahan: " + error.message);
-        } finally {
-            classifyButton.disabled = false;
-            classifyButton.innerHTML = originalButtonText;
-        }
-    });
+      // TAMPILKAN PANEL HASIL (TUTUP PLACEHOLDER)
+      resultContent.hidden = false;
+      resultPlaceholder.hidden = true;
+    } catch (error) {
+      console.error("Kesalahan prediksi:", error);
+      alert("Terjadi kesalahan: " + error.message);
+    } finally {
+      classifyButton.disabled = false;
+      classifyButton.innerHTML = originalButtonText;
+    }
+  });
 
-    // Mengatur ulang tampilan ketika tombol reset ditekan
-    classificationForm.addEventListener("reset", function () {
-        resultContent.hidden = true;
-        resultPlaceholder.hidden = false;
+  // Mengatur ulang tampilan ketika tombol reset ditekan
+  classificationForm.addEventListener("reset", function () {
+    resultContent.hidden = true;
+    resultPlaceholder.hidden = false;
 
-        // Menghapus warna hasil klasifikasi sebelumnya
-        const productionResult = document.querySelector(".production-result");
-        productionResult.classList.remove("high", "medium", "low");
-    });
+    // Menghapus warna hasil klasifikasi sebelumnya
+    const productionResult = document.querySelector(".production-result");
+    productionResult.classList.remove("high", "medium", "low");
+  });
 }
 
 /* =========================================
@@ -157,107 +157,107 @@ const nextPage = document.getElementById("nextPage");
 
 // Menjalankan fitur hanya pada halaman Riwayat
 if (historyTableBody && historySearch && dateFilter) {
-    // Mengambil riwayat klasifikasi dari localStorage
-    const savedHistory = JSON.parse(
-        localStorage.getItem("sipikaHistory") || "[]",
-    );
-    // Menyimpan data dummy riwayat klasifikasi
+  // Mengambil riwayat klasifikasi dari localStorage
+  const savedHistory = JSON.parse(
+    localStorage.getItem("sipikaHistory") || "[]",
+  );
+  // Menyimpan data dummy riwayat klasifikasi
 
-    // Menyimpan data riwayat dari database
-    let historyData = [];
+  // Menyimpan data riwayat dari database
+  let historyData = [];
 
-    // Pengaturan pagination
-    const rowsPerPage = 10;
-    let currentPage = 1;
+  // Pengaturan pagination
+  const rowsPerPage = 10;
+  let currentPage = 1;
 
-    // Mengubah tanggal database menjadi format YYYY-MM-DD
-    function getHistoryDate(dateTime) {
-        return dateTime ? dateTime.split(" ")[0] : "";
-    }
+  // Mengubah tanggal database menjadi format YYYY-MM-DD
+  function getHistoryDate(dateTime) {
+    return dateTime ? dateTime.split(" ")[0] : "";
+  }
 
-    // Mengubah format tanggal menjadi format Indonesia
-    function formatDate(date) {
-        if (!date) return "-";
+  // Mengubah format tanggal menjadi format Indonesia
+  function formatDate(date) {
+    if (!date) return "-";
 
-        const [year, month, day] = date.split("-");
+    const [year, month, day] = date.split("-");
 
-        const months = [
-            "Januari",
-            "Februari",
-            "Maret",
-            "April",
-            "Mei",
-            "Juni",
-            "Juli",
-            "Agustus",
-            "September",
-            "Oktober",
-            "November",
-            "Desember",
-        ];
+    const months = [
+      "Januari",
+      "Februari",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Agustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember",
+    ];
 
-        return `${Number(day)} ${months[Number(month) - 1]} ${year}`;
-    }
+    return `${Number(day)} ${months[Number(month) - 1]} ${year}`;
+  }
 
-    // Mengambil waktu dari created_at
-    function formatTime(dateTime) {
-        if (!dateTime) return "-";
+  // Mengambil waktu dari created_at
+  function formatTime(dateTime) {
+    if (!dateTime) return "-";
 
-        const parts = dateTime.split(" ");
-        return parts[1] ? parts[1].substring(0, 5) : "-";
-    }
+    const parts = dateTime.split(" ");
+    return parts[1] ? parts[1].substring(0, 5) : "-";
+  }
 
-    // Membuat pilihan filter bulan berdasarkan data database
-    function populateDateFilter() {
-        const months = [
-            "Januari",
-            "Februari",
-            "Maret",
-            "April",
-            "Mei",
-            "Juni",
-            "Juli",
-            "Agustus",
-            "September",
-            "Oktober",
-            "November",
-            "Desember",
-        ];
+  // Membuat pilihan filter bulan berdasarkan data database
+  function populateDateFilter() {
+    const months = [
+      "Januari",
+      "Februari",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Agustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember",
+    ];
 
-        const uniqueMonths = [
-            ...new Set(
-                historyData
-                    .map((item) => getHistoryDate(item.created_at).slice(0, 7))
-                    .filter(Boolean),
-            ),
-        ].sort((a, b) => b.localeCompare(a));
+    const uniqueMonths = [
+      ...new Set(
+        historyData
+          .map((item) => getHistoryDate(item.created_at).slice(0, 7))
+          .filter(Boolean),
+      ),
+    ].sort((a, b) => b.localeCompare(a));
 
-        dateFilter.innerHTML = '<option value="all">Semua Tanggal</option>';
+    dateFilter.innerHTML = '<option value="all">Semua Tanggal</option>';
 
-        uniqueMonths.forEach((month) => {
-            const [year, monthNumber] = month.split("-");
+    uniqueMonths.forEach((month) => {
+      const [year, monthNumber] = month.split("-");
 
-            const option = document.createElement("option");
-            option.value = month;
-            option.textContent = `${months[Number(monthNumber) - 1]} ${year}`;
+      const option = document.createElement("option");
+      option.value = month;
+      option.textContent = `${months[Number(monthNumber) - 1]} ${year}`;
 
-            dateFilter.appendChild(option);
-        });
-    }
+      dateFilter.appendChild(option);
+    });
+  }
 
-    // Menampilkan data riwayat ke tabel
+  // Menampilkan data riwayat ke tabel
 
-    // Menjalankan pengaturan filter bulan
-    populateDateFilter();
+  // Menjalankan pengaturan filter bulan
+  populateDateFilter();
 
-    // Menampilkan data riwayat ke tabel
-    function renderHistory() {
-        const keyword = historySearch.value.toLowerCase().trim();
-        const selectedDate = dateFilter.value;
+  // Menampilkan data riwayat ke tabel
+  function renderHistory() {
+    const keyword = historySearch.value.toLowerCase().trim();
+    const selectedDate = dateFilter.value;
 
-        // Filter pencarian dan tanggal
-        const filteredData = historyData.filter((item) => {
-            const searchable = `
+    // Filter pencarian dan tanggal
+    const filteredData = historyData.filter((item) => {
+      const searchable = `
                 ${item.jenis_ikan}
                 ${item.alat_tangkap}
                 ${item.wilayah}
@@ -265,48 +265,48 @@ if (historyTableBody && historySearch && dateFilter) {
                 ${item.hasil_klasifikasi}
             `.toLowerCase();
 
-            const itemDate = getHistoryDate(item.created_at);
+      const itemDate = getHistoryDate(item.created_at);
 
-            const matchesSearch = searchable.includes(keyword);
+      const matchesSearch = searchable.includes(keyword);
 
-            const matchesDate =
-                selectedDate === "all" || itemDate.startsWith(selectedDate);
+      const matchesDate =
+        selectedDate === "all" || itemDate.startsWith(selectedDate);
 
-            return matchesSearch && matchesDate;
-        });
+      return matchesSearch && matchesDate;
+    });
 
-        // Menghitung jumlah halaman
-        const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+    // Menghitung jumlah halaman
+    const totalPages = Math.ceil(filteredData.length / rowsPerPage);
 
-        currentPage = Math.min(currentPage, Math.max(totalPages, 1));
+    currentPage = Math.min(currentPage, Math.max(totalPages, 1));
 
-        const start = (currentPage - 1) * rowsPerPage;
+    const start = (currentPage - 1) * rowsPerPage;
 
-        const pageData = filteredData.slice(start, start + rowsPerPage);
+    const pageData = filteredData.slice(start, start + rowsPerPage);
 
-        historyTableBody.innerHTML = "";
+    historyTableBody.innerHTML = "";
 
-        // Jika data tidak ditemukan
-        if (pageData.length === 0) {
-            historyTableBody.innerHTML = `
+    // Jika data tidak ditemukan
+    if (pageData.length === 0) {
+      historyTableBody.innerHTML = `
                 <tr>
                     <td colspan="8" style="padding:30px; text-align:center;">
                         Tidak ada data riwayat ditemukan.
                     </td>
                 </tr>
             `;
-        } else {
-            pageData.forEach((item, index) => {
-                const badgeClass =
-                    item.hasil_klasifikasi === "Tinggi"
-                        ? "high"
-                        : item.hasil_klasifikasi === "Sedang"
-                            ? "medium"
-                            : "low";
+    } else {
+      pageData.forEach((item, index) => {
+        const badgeClass =
+          item.hasil_klasifikasi === "Tinggi"
+            ? "high"
+            : item.hasil_klasifikasi === "Sedang"
+              ? "medium"
+              : "low";
 
-                const row = document.createElement("tr");
+        const row = document.createElement("tr");
 
-                row.innerHTML = `
+        row.innerHTML = `
             <td>${start + index + 1}</td>
             <td>
               ${formatDate(getHistoryDate(item.created_at))},
@@ -326,74 +326,74 @@ if (historyTableBody && historySearch && dateFilter) {
             </td>
           `;
 
-                historyTableBody.appendChild(row);
-            });
-        }
-
-        renderPagination(totalPages);
+        historyTableBody.appendChild(row);
+      });
     }
 
-    // Mengatur tombol pagination
-    function renderPagination(totalPages) {
-        pageNumbers.innerHTML = "";
+    renderPagination(totalPages);
+  }
 
-        for (let page = 1; page <= totalPages; page++) {
-            const button = document.createElement("button");
-            // Memberikan penanda pada halaman yang sedang aktif
-            if (page === currentPage) {
-                button.classList.add("active");
-                button.setAttribute("aria-current", "page");
-            }
+  // Mengatur tombol pagination
+  function renderPagination(totalPages) {
+    pageNumbers.innerHTML = "";
 
-            button.type = "button";
-            button.className = "page-button";
-            button.textContent = page;
+    for (let page = 1; page <= totalPages; page++) {
+      const button = document.createElement("button");
+      // Memberikan penanda pada halaman yang sedang aktif
+      if (page === currentPage) {
+        button.classList.add("active");
+        button.setAttribute("aria-current", "page");
+      }
 
-            if (page === currentPage) {
-                button.classList.add("active");
-                button.setAttribute("aria-current", "page");
-            }
+      button.type = "button";
+      button.className = "page-button";
+      button.textContent = page;
 
-            button.addEventListener("click", function () {
-                currentPage = page;
-                renderHistory();
-            });
+      if (page === currentPage) {
+        button.classList.add("active");
+        button.setAttribute("aria-current", "page");
+      }
 
-            pageNumbers.appendChild(button);
-        }
+      button.addEventListener("click", function () {
+        currentPage = page;
+        renderHistory();
+      });
 
-        prevPage.disabled = currentPage === 1;
-        nextPage.disabled = currentPage === totalPages || totalPages === 0;
+      pageNumbers.appendChild(button);
     }
 
-    // Navigasi halaman sebelumnya
-    prevPage.addEventListener("click", function () {
-        currentPage--;
-        renderHistory();
-    });
+    prevPage.disabled = currentPage === 1;
+    nextPage.disabled = currentPage === totalPages || totalPages === 0;
+  }
 
-    // Navigasi halaman berikutnya
-    nextPage.addEventListener("click", function () {
-        currentPage++;
-        renderHistory();
-    });
+  // Navigasi halaman sebelumnya
+  prevPage.addEventListener("click", function () {
+    currentPage--;
+    renderHistory();
+  });
 
-    // Pencarian riwayat
-    // Pencarian riwayat
-    historySearch.addEventListener("input", function () {
-        currentPage = 1;
-        renderHistory();
-    });
+  // Navigasi halaman berikutnya
+  nextPage.addEventListener("click", function () {
+    currentPage++;
+    renderHistory();
+  });
 
-    // Filter berdasarkan bulan
-    dateFilter.addEventListener("change", function () {
-        currentPage = 1;
-        renderHistory();
-    });
+  // Pencarian riwayat
+  // Pencarian riwayat
+  historySearch.addEventListener("input", function () {
+    currentPage = 1;
+    renderHistory();
+  });
 
-    // Mengambil riwayat dari database MySQL
-    async function loadHistory() {
-        historyTableBody.innerHTML = `
+  // Filter berdasarkan bulan
+  dateFilter.addEventListener("change", function () {
+    currentPage = 1;
+    renderHistory();
+  });
+
+  // Mengambil riwayat dari database MySQL
+  async function loadHistory() {
+    historyTableBody.innerHTML = `
             <tr>
                 <td colspan="8" style="padding:30px; text-align:center;">
                     Memuat data riwayat...
@@ -401,39 +401,39 @@ if (historyTableBody && historySearch && dateFilter) {
             </tr>
         `;
 
-        try {
-            const response = await fetch("/SIPIKA/backend/predictions", {
-                method: "GET",
-                credentials: "same-origin",
-            });
+    try {
+      const response = await fetch("/SIPIKA/backend/predictions", {
+        method: "GET",
+        credentials: "same-origin",
+      });
 
-            const result = await response.json();
+      const result = await response.json();
 
-            if (!response.ok || result.status !== "success") {
-                throw new Error(result.message || "Gagal mengambil riwayat prediksi.");
-            }
+      if (!response.ok || result.status !== "success") {
+        throw new Error(result.message || "Gagal mengambil riwayat prediksi.");
+      }
 
-            historyData = Array.isArray(result.data) ? result.data : [];
+      historyData = Array.isArray(result.data) ? result.data : [];
 
-            populateDateFilter();
+      populateDateFilter();
 
-            currentPage = 1;
-            renderHistory();
-        } catch (error) {
-            console.error("Kesalahan mengambil riwayat:", error);
+      currentPage = 1;
+      renderHistory();
+    } catch (error) {
+      console.error("Kesalahan mengambil riwayat:", error);
 
-            historyTableBody.innerHTML = `
+      historyTableBody.innerHTML = `
                 <tr>
                     <td colspan="8" style="padding:30px; text-align:center;">
                         Gagal memuat riwayat prediksi.
                     </td>
                 </tr>
             `;
-        }
     }
+  }
 
-    // Memuat riwayat ketika halaman dibuka
-    loadHistory();
+  // Memuat riwayat ketika halaman dibuka
+  loadHistory();
 }
 
 /* =========================================
@@ -446,7 +446,7 @@ const profileForm = document.getElementById("profileForm");
 const fullNameInput = document.getElementById("fullName");
 const profileDisplayName = document.getElementById("profileDisplayName");
 const profileDisplayFullName = document.getElementById(
-    "profileDisplayFullName",
+  "profileDisplayFullName",
 );
 const profileDisplayEmail = document.getElementById("profileDisplayEmail");
 const profileEmailInput = document.getElementById("profileEmail");
@@ -467,87 +467,87 @@ let currentProfile = null;
 // MEMPERBARUI TAMPILAN NAMA
 // ==========================================
 function updateProfileName(name) {
-    // Memperbarui kotak pengguna kanan atas
-    accountNames.forEach((element) => {
-        element.textContent = `Nelayan: ${name}`;
-    });
+  // Memperbarui kotak pengguna kanan atas
+  accountNames.forEach((element) => {
+    element.textContent = `Nelayan: ${name}`;
+  });
 
-    accountNames.forEach((element) => {
-        element.textContent = `Nelayan: ${name}`;
-    });
+  accountNames.forEach((element) => {
+    element.textContent = `Nelayan: ${name}`;
+  });
 
-    if (welcomeUserName) {
-        welcomeUserName.textContent = `${name}!`;
-    }
+  if (welcomeUserName) {
+    welcomeUserName.textContent = `${name}!`;
+  }
 
-    if (profileDisplayName) {
-        profileDisplayName.textContent = name;
-    }
+  if (profileDisplayName) {
+    profileDisplayName.textContent = name;
+  }
 
-    if (profileDisplayFullName) {
-        profileDisplayFullName.textContent = name;
-    }
+  if (profileDisplayFullName) {
+    profileDisplayFullName.textContent = name;
+  }
 
-    if (fullNameInput) {
-        fullNameInput.value = name;
-    }
+  if (fullNameInput) {
+    fullNameInput.value = name;
+  }
 }
 
 // ==========================================
 // MEMPERBARUI TAMPILAN EMAIL
 // ==========================================
 function updateProfileEmail(email) {
-    if (profileDisplayEmail) {
-        profileDisplayEmail.textContent = email || "-";
-    }
+  if (profileDisplayEmail) {
+    profileDisplayEmail.textContent = email || "-";
+  }
 
-    if (profileEmailInput) {
-        profileEmailInput.value = email || "";
-    }
+  if (profileEmailInput) {
+    profileEmailInput.value = email || "";
+  }
 }
 
 // ==========================================
 // MENGAMBIL PROFIL DARI DATABASE
 // ==========================================
 async function loadProfile() {
-    try {
-        const response = await fetch("/SIPIKA/backend/profile", {
-            method: "GET",
-            credentials: "same-origin",
-        });
+  try {
+    const response = await fetch("/SIPIKA/backend/profile", {
+      method: "GET",
+      credentials: "same-origin",
+    });
 
-        const result = await response.json();
+    const result = await response.json();
 
-        if (!response.ok || result.status !== "success") {
-            console.error("Gagal mengambil profil:", result.message);
-            return;
-        }
-
-        currentProfile = result.data;
-
-        // Memperbarui nama dan email
-        updateProfileName(currentProfile.nama_lengkap || "");
-        updateProfileEmail(currentProfile.email || "");
-
-        // Menampilkan foto profil dari server
-        if (currentProfile.foto_profil) {
-            const photoUrl =
-                "/SIPIKA/backend/" + currentProfile.foto_profil + "?t=" + Date.now();
-
-            // Foto pada halaman Profil
-            if (profileImage) {
-                profileImage.src = photoUrl;
-            }
-
-            // Foto pada header seluruh halaman Nelayan
-            document.querySelectorAll(".account-icon").forEach((image) => {
-                image.src = photoUrl;
-                image.alt = "Foto profil Nelayan";
-            });
-        }
-    } catch (error) {
-        console.error("Kesalahan mengambil profil:", error);
+    if (!response.ok || result.status !== "success") {
+      console.error("Gagal mengambil profil:", result.message);
+      return;
     }
+
+    currentProfile = result.data;
+
+    // Memperbarui nama dan email
+    updateProfileName(currentProfile.nama_lengkap || "");
+    updateProfileEmail(currentProfile.email || "");
+
+    // Menampilkan foto profil dari server
+    if (currentProfile.foto_profil) {
+      const photoUrl =
+        "/SIPIKA/backend/" + currentProfile.foto_profil + "?t=" + Date.now();
+
+      // Foto pada halaman Profil
+      if (profileImage) {
+        profileImage.src = photoUrl;
+      }
+
+      // Foto pada header seluruh halaman Nelayan
+      document.querySelectorAll(".account-icon").forEach((image) => {
+        image.src = photoUrl;
+        image.alt = "Foto profil Nelayan";
+      });
+    }
+  } catch (error) {
+    console.error("Kesalahan mengambil profil:", error);
+  }
 }
 
 // Mengambil profil ketika halaman dibuka
@@ -557,143 +557,143 @@ loadProfile();
 // MENYIMPAN PERUBAHAN NAMA PROFIL
 // ==========================================
 if (profileForm) {
-    profileForm.addEventListener("submit", async function (event) {
-        event.preventDefault();
+  profileForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-        const newName = fullNameInput.value.trim();
+    const newName = fullNameInput.value.trim();
 
-        if (!newName) {
-            alert("Nama lengkap tidak boleh kosong!");
-            return;
-        }
-
-        const saveButton = profileForm.querySelector('button[type="submit"]');
-        const originalButtonText = saveButton.innerHTML;
-
-        saveButton.disabled = true;
-        saveButton.textContent = "Menyimpan...";
-
-        try {
-            const response = await fetch("/SIPIKA/backend/profile", {
-                method: "PUT",
-                credentials: "same-origin",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ nama_lengkap: newName }),
-            });
-
-            const result = await response.json();
-
-            if (!response.ok || result.status !== "success") {
-                throw new Error(result.message || "Gagal memperbarui profil.");
-            }
-
-            currentProfile.nama_lengkap = newName;
-            updateProfileName(newName);
-            alert("Profil berhasil diperbarui!");
-        } catch (error) {
-            alert("Terjadi kesalahan: " + error.message);
-        } finally {
-            saveButton.disabled = false;
-            saveButton.innerHTML = originalButtonText;
-        }
-    });
-
-    // Membatalkan perubahan nama
-    if (cancelProfileButton) {
-        cancelProfileButton.addEventListener("click", function () {
-            if (currentProfile) {
-                updateProfileName(currentProfile.nama_lengkap || "");
-            }
-        });
+    if (!newName) {
+      alert("Nama lengkap tidak boleh kosong!");
+      return;
     }
+
+    const saveButton = profileForm.querySelector('button[type="submit"]');
+    const originalButtonText = saveButton.innerHTML;
+
+    saveButton.disabled = true;
+    saveButton.textContent = "Menyimpan...";
+
+    try {
+      const response = await fetch("/SIPIKA/backend/profile", {
+        method: "PUT",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nama_lengkap: newName }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || result.status !== "success") {
+        throw new Error(result.message || "Gagal memperbarui profil.");
+      }
+
+      currentProfile.nama_lengkap = newName;
+      updateProfileName(newName);
+      alert("Profil berhasil diperbarui!");
+    } catch (error) {
+      alert("Terjadi kesalahan: " + error.message);
+    } finally {
+      saveButton.disabled = false;
+      saveButton.innerHTML = originalButtonText;
+    }
+  });
+
+  // Membatalkan perubahan nama
+  if (cancelProfileButton) {
+    cancelProfileButton.addEventListener("click", function () {
+      if (currentProfile) {
+        updateProfileName(currentProfile.nama_lengkap || "");
+      }
+    });
+  }
 }
 
 // ==========================================
 // MEMBUKA PILIHAN FOTO PROFIL
 // ==========================================
 if (profileCameraButton && profileImageInput) {
-    profileCameraButton.addEventListener("click", function () {
-        profileImageInput.click();
-    });
+  profileCameraButton.addEventListener("click", function () {
+    profileImageInput.click();
+  });
 }
 
 // ==========================================
 // MENGUNGGAH FOTO KE SERVER
 // ==========================================
 if (profileImageInput) {
-    profileImageInput.addEventListener("change", async function () {
-        const file = this.files[0]; // <-- TAMBAHKAN 1 BARIS INI SAJA
+  profileImageInput.addEventListener("change", async function () {
+    const file = this.files[0]; // <-- TAMBAHKAN 1 BARIS INI SAJA
 
-        if (!file) return;
+    if (!file) return;
 
-        // Memastikan file merupakan gambar
-        if (!file.type.startsWith("image/")) {
-            alert("Silakan pilih file gambar!");
-            this.value = "";
-            return;
-        }
+    // Memastikan file merupakan gambar
+    if (!file.type.startsWith("image/")) {
+      alert("Silakan pilih file gambar!");
+      this.value = "";
+      return;
+    }
 
-        // Memeriksa ukuran foto
-        if (file.size > 5 * 1024 * 1024) {
-            alert("Ukuran foto maksimal 5 MB!");
-            this.value = "";
-            return;
-        }
+    // Memeriksa ukuran foto
+    if (file.size > 5 * 1024 * 1024) {
+      alert("Ukuran foto maksimal 5 MB!");
+      this.value = "";
+      return;
+    }
 
-        // Memeriksa format foto
-        const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+    // Memeriksa format foto
+    const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
 
-        if (!allowedTypes.includes(file.type)) {
-            alert("Format foto harus JPG, PNG, atau WEBP!");
-            this.value = "";
-            return;
-        }
+    if (!allowedTypes.includes(file.type)) {
+      alert("Format foto harus JPG, PNG, atau WEBP!");
+      this.value = "";
+      return;
+    }
 
-        const formData = new FormData();
-        formData.append("foto", file);
+    const formData = new FormData();
+    formData.append("foto", file);
 
-        try {
-            const response = await fetch("/SIPIKA/backend/profile/photo", {
-                method: "POST",
-                credentials: "same-origin",
-                body: formData,
-            });
+    try {
+      const response = await fetch("/SIPIKA/backend/profile/photo", {
+        method: "POST",
+        credentials: "same-origin",
+        body: formData,
+      });
 
-            const result = await response.json();
+      const result = await response.json();
 
-            if (!response.ok || result.status !== "success") {
-                throw new Error(result.message || "Gagal mengunggah foto.");
-            }
+      if (!response.ok || result.status !== "success") {
+        throw new Error(result.message || "Gagal mengunggah foto.");
+      }
 
-            // Memperbarui foto profil dari server
-            const photoUrl = result.data.foto_profil + "?t=" + Date.now();
+      // Memperbarui foto profil dari server
+      const photoUrl = result.data.foto_profil + "?t=" + Date.now();
 
-            // Memperbarui foto pada halaman Profil
-            if (profileImage) {
-                profileImage.src = photoUrl;
-            }
+      // Memperbarui foto pada halaman Profil
+      if (profileImage) {
+        profileImage.src = photoUrl;
+      }
 
-            // Memperbarui seluruh ikon akun pada header
-            document.querySelectorAll(".account-icon").forEach((image) => {
-                image.src = photoUrl;
-                image.alt = "Foto profil Nelayan";
-            });
+      // Memperbarui seluruh ikon akun pada header
+      document.querySelectorAll(".account-icon").forEach((image) => {
+        image.src = photoUrl;
+        image.alt = "Foto profil Nelayan";
+      });
 
-            // Memperbarui data profil aktif
-            if (currentProfile) {
-                currentProfile.foto_profil = result.data.foto_profil.replace(
-                    "/SIPIKA/backend/",
-                    "",
-                );
-            }
+      // Memperbarui data profil aktif
+      if (currentProfile) {
+        currentProfile.foto_profil = result.data.foto_profil.replace(
+          "/SIPIKA/backend/",
+          "",
+        );
+      }
 
-            alert("Foto profil berhasil diperbarui!");
-        } catch (error) {
-            alert("Terjadi kesalahan: " + error.message);
-        } finally {
-            this.value = "";
-        }
-    });
+      alert("Foto profil berhasil diperbarui!");
+    } catch (error) {
+      alert("Terjadi kesalahan: " + error.message);
+    } finally {
+      this.value = "";
+    }
+  });
 }
 
 /* =========================================
@@ -710,152 +710,152 @@ const detailSeason = document.getElementById("detailSeason");
 
 const detailResult = document.getElementById("detailResult");
 const detailResultDescription = document.getElementById(
-    "detailResultDescription",
+  "detailResultDescription",
 );
 const detailConclusion = document.getElementById("detailConclusion");
 const detailSuggestion = document.getElementById("detailSuggestion");
 
 // Menjalankan fitur hanya pada halaman Detail Prediksi
 if (detailFish) {
-    // Mengambil ID prediksi dari URL
-    const params = new URLSearchParams(window.location.search);
-    const predictionId = params.get("id");
+  // Mengambil ID prediksi dari URL
+  const params = new URLSearchParams(window.location.search);
+  const predictionId = params.get("id");
 
-    // Menampilkan data detail dari database
-    async function loadPredictionDetail() {
-        try {
-            // Memeriksa ID prediksi
-            if (!predictionId || !/^[0-9]+$/.test(predictionId)) {
-                throw new Error("ID prediksi tidak valid.");
-            }
+  // Menampilkan data detail dari database
+  async function loadPredictionDetail() {
+    try {
+      // Memeriksa ID prediksi
+      if (!predictionId || !/^[0-9]+$/.test(predictionId)) {
+        throw new Error("ID prediksi tidak valid.");
+      }
 
-            const response = await fetch(
-                `/SIPIKA/backend/predictions/${predictionId}`,
-                {
-                    method: "GET",
-                    credentials: "same-origin",
-                },
-            );
+      const response = await fetch(
+        `/SIPIKA/backend/predictions/${predictionId}`,
+        {
+          method: "GET",
+          credentials: "same-origin",
+        },
+      );
 
-            const result = await response.json();
+      const result = await response.json();
 
-            if (!response.ok || result.status !== "success") {
-                throw new Error(result.message || "Gagal mengambil detail prediksi.");
-            }
+      if (!response.ok || result.status !== "success") {
+        throw new Error(result.message || "Gagal mengambil detail prediksi.");
+      }
 
-            const item = result.data;
+      const item = result.data;
 
-            // Mengambil tanggal dan waktu prediksi
-            const dateOnly = item.created_at ? item.created_at.split(" ")[0] : "";
+      // Mengambil tanggal dan waktu prediksi
+      const dateOnly = item.created_at ? item.created_at.split(" ")[0] : "";
 
-            const timeOnly = item.created_at
-                ? item.created_at.split(" ")[1]?.substring(0, 5) || ""
-                : "";
+      const timeOnly = item.created_at
+        ? item.created_at.split(" ")[1]?.substring(0, 5) || ""
+        : "";
 
-            // Menampilkan informasi prediksi
-            detailFish.textContent = item.jenis_ikan || "-";
+      // Menampilkan informasi prediksi
+      detailFish.textContent = item.jenis_ikan || "-";
 
-            detailDate.textContent = dateOnly
-                ? `${formatDetailDate(dateOnly)}, ${timeOnly}`
-                : "-";
+      detailDate.textContent = dateOnly
+        ? `${formatDetailDate(dateOnly)}, ${timeOnly}`
+        : "-";
 
-            detailRegion.textContent = item.wilayah || "-";
-            detailGear.textContent = item.alat_tangkap || "-";
-            detailSeason.textContent = item.musim || "-";
+      detailRegion.textContent = item.wilayah || "-";
+      detailGear.textContent = item.alat_tangkap || "-";
+      detailSeason.textContent = item.musim || "-";
 
-            // Menampilkan hasil klasifikasi
-            const classification = item.hasil_klasifikasi || "-";
+      // Menampilkan hasil klasifikasi
+      const classification = item.hasil_klasifikasi || "-";
 
-            detailResult.textContent = classification;
+      detailResult.textContent = classification;
 
-            // Mengubah warna container sesuai kategori klasifikasi
-            detailResult.classList.remove("low", "medium", "high");
+      // Mengubah warna container sesuai kategori klasifikasi
+      detailResult.classList.remove("low", "medium", "high");
 
-            if (classification === "Rendah") {
-                detailResult.classList.add("low");
-            } else if (classification === "Sedang") {
-                detailResult.classList.add("medium");
-            } else if (classification === "Tinggi") {
-                detailResult.classList.add("high");
-            }
+      if (classification === "Rendah") {
+        detailResult.classList.add("low");
+      } else if (classification === "Sedang") {
+        detailResult.classList.add("medium");
+      } else if (classification === "Tinggi") {
+        detailResult.classList.add("high");
+      }
 
-            detailResultDescription.textContent = `Tingkat produksi ikan tangkapan diprediksi dalam kategori ${classification.toLowerCase()}.`;
+      detailResultDescription.textContent = `Tingkat produksi ikan tangkapan diprediksi dalam kategori ${classification.toLowerCase()}.`;
 
-            // Menyiapkan kesimpulan jika belum tersimpan di database
-            const conclusionTemplates = {
-                Tinggi: `Berdasarkan data yang dimasukkan, ikan ${item.jenis_ikan} yang ditangkap menggunakan ${item.alat_tangkap} di wilayah ${item.wilayah} pada musim ${item.musim} diprediksi memiliki tingkat produksi TINGGI. Hasil ini menunjukkan potensi produksi tangkapan yang relatif besar.`,
+      // Menyiapkan kesimpulan jika belum tersimpan di database
+      const conclusionTemplates = {
+        Tinggi: `Berdasarkan data yang dimasukkan, ikan ${item.jenis_ikan} yang ditangkap menggunakan ${item.alat_tangkap} di wilayah ${item.wilayah} pada musim ${item.musim} diprediksi memiliki tingkat produksi TINGGI. Hasil ini menunjukkan potensi produksi tangkapan yang relatif besar.`,
 
-                Sedang: `Berdasarkan data yang dimasukkan, ikan ${item.jenis_ikan} yang ditangkap menggunakan ${item.alat_tangkap} di wilayah ${item.wilayah} pada musim ${item.musim} diprediksi memiliki tingkat produksi SEDANG. Hasil ini menunjukkan potensi produksi tangkapan yang berada pada tingkat menengah.`,
+        Sedang: `Berdasarkan data yang dimasukkan, ikan ${item.jenis_ikan} yang ditangkap menggunakan ${item.alat_tangkap} di wilayah ${item.wilayah} pada musim ${item.musim} diprediksi memiliki tingkat produksi SEDANG. Hasil ini menunjukkan potensi produksi tangkapan yang berada pada tingkat menengah.`,
 
-                Rendah: `Berdasarkan data yang dimasukkan, ikan ${item.jenis_ikan} yang ditangkap menggunakan ${item.alat_tangkap} di wilayah ${item.wilayah} pada musim ${item.musim} diprediksi memiliki tingkat produksi RENDAH. Hasil ini menunjukkan potensi produksi tangkapan yang relatif kecil.`,
-            };
+        Rendah: `Berdasarkan data yang dimasukkan, ikan ${item.jenis_ikan} yang ditangkap menggunakan ${item.alat_tangkap} di wilayah ${item.wilayah} pada musim ${item.musim} diprediksi memiliki tingkat produksi RENDAH. Hasil ini menunjukkan potensi produksi tangkapan yang relatif kecil.`,
+      };
 
-            // Menyiapkan saran berdasarkan hasil klasifikasi
-            const suggestionTemplates = {
-                Tinggi:
-                    "Pertahankan strategi penangkapan yang digunakan. Tetap perhatikan kondisi cuaca, keselamatan saat melaut, serta ketentuan pengelolaan sumber daya perikanan.",
+      // Menyiapkan saran berdasarkan hasil klasifikasi
+      const suggestionTemplates = {
+        Tinggi:
+          "Pertahankan strategi penangkapan yang digunakan. Tetap perhatikan kondisi cuaca, keselamatan saat melaut, serta ketentuan pengelolaan sumber daya perikanan.",
 
-                Sedang:
-                    "Evaluasi waktu dan lokasi penangkapan serta perhatikan kondisi cuaca dan ketersediaan ikan. Nelayan juga dapat mempertimbangkan penggunaan alat tangkap yang sesuai.",
+        Sedang:
+          "Evaluasi waktu dan lokasi penangkapan serta perhatikan kondisi cuaca dan ketersediaan ikan. Nelayan juga dapat mempertimbangkan penggunaan alat tangkap yang sesuai.",
 
-                Rendah:
-                    "Pertimbangkan untuk mengevaluasi lokasi dan waktu penangkapan. Perhatikan informasi cuaca dan kondisi perairan sebelum melaut serta hindari penangkapan secara berlebihan.",
-            };
+        Rendah:
+          "Pertimbangkan untuk mengevaluasi lokasi dan waktu penangkapan. Perhatikan informasi cuaca dan kondisi perairan sebelum melaut serta hindari penangkapan secara berlebihan.",
+      };
 
-            // Mengutamakan kesimpulan dan saran dari database
-            detailConclusion.textContent =
-                item.kesimpulan ||
-                conclusionTemplates[classification] ||
-                "Informasi kesimpulan tidak tersedia.";
+      // Mengutamakan kesimpulan dan saran dari database
+      detailConclusion.textContent =
+        item.kesimpulan ||
+        conclusionTemplates[classification] ||
+        "Informasi kesimpulan tidak tersedia.";
 
-            detailSuggestion.textContent =
-                item.saran ||
-                suggestionTemplates[classification] ||
-                "Informasi saran tidak tersedia.";
-        } catch (error) {
-            console.error("Kesalahan mengambil detail prediksi:", error);
+      detailSuggestion.textContent =
+        item.saran ||
+        suggestionTemplates[classification] ||
+        "Informasi saran tidak tersedia.";
+    } catch (error) {
+      console.error("Kesalahan mengambil detail prediksi:", error);
 
-            detailFish.textContent = "Data tidak ditemukan";
-            detailDate.textContent = "-";
-            detailRegion.textContent = "-";
-            detailGear.textContent = "-";
-            detailSeason.textContent = "-";
-            detailResult.textContent = "-";
+      detailFish.textContent = "Data tidak ditemukan";
+      detailDate.textContent = "-";
+      detailRegion.textContent = "-";
+      detailGear.textContent = "-";
+      detailSeason.textContent = "-";
+      detailResult.textContent = "-";
 
-            detailResultDescription.textContent =
-                "Data prediksi tidak ditemukan. Silakan kembali ke halaman riwayat.";
+      detailResultDescription.textContent =
+        "Data prediksi tidak ditemukan. Silakan kembali ke halaman riwayat.";
 
-            detailConclusion.textContent = error.message;
+      detailConclusion.textContent = error.message;
 
-            detailSuggestion.textContent =
-                "Silakan kembali ke halaman riwayat prediksi.";
-        }
+      detailSuggestion.textContent =
+        "Silakan kembali ke halaman riwayat prediksi.";
     }
+  }
 
-    // Memuat detail ketika halaman dibuka
-    loadPredictionDetail();
+  // Memuat detail ketika halaman dibuka
+  loadPredictionDetail();
 }
 
 // Mengubah format tanggal untuk halaman detail
 function formatDetailDate(date) {
-    const [year, month, day] = date.split("-");
+  const [year, month, day] = date.split("-");
 
-    const months = [
-        "Januari",
-        "Februari",
-        "Maret",
-        "April",
-        "Mei",
-        "Juni",
-        "Juli",
-        "Agustus",
-        "September",
-        "Oktober",
-        "November",
-        "Desember",
-    ];
+  const months = [
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember",
+  ];
 
-    return `${Number(day)} ${months[Number(month) - 1]} ${year}`;
+  return `${Number(day)} ${months[Number(month) - 1]} ${year}`;
 }
 
 /* =========================================
@@ -866,37 +866,37 @@ function formatDetailDate(date) {
 const logoutButton = document.getElementById("logoutButton");
 
 if (logoutButton) {
-    logoutButton.addEventListener("click", async function (event) {
-        event.preventDefault();
+  logoutButton.addEventListener("click", async function (event) {
+    event.preventDefault();
 
-        const confirmation = confirm(
-            "Apakah Anda yakin ingin keluar dari akun SIPIKA?",
-        );
+    const confirmation = confirm(
+      "Apakah Anda yakin ingin keluar dari akun SIPIKA?",
+    );
 
-        if (!confirmation) return;
+    if (!confirmation) return;
 
-        logoutButton.style.pointerEvents = "none";
-        logoutButton.style.opacity = "0.6";
+    logoutButton.style.pointerEvents = "none";
+    logoutButton.style.opacity = "0.6";
 
-        try {
-            const response = await fetch("/SIPIKA/backend/auth/logout", {
-                method: "POST",
-                credentials: "same-origin",
-            });
+    try {
+      const response = await fetch("/SIPIKA/backend/auth/logout", {
+        method: "POST",
+        credentials: "same-origin",
+      });
 
-            const result = await response.json();
+      const result = await response.json();
 
-            if (!response.ok || result.status !== "success") {
-                throw new Error(result.message || "Logout gagal dilakukan.");
-            }
+      if (!response.ok || result.status !== "success") {
+        throw new Error(result.message || "Logout gagal dilakukan.");
+      }
 
-            // Mengarahkan pengguna ke halaman login
-            window.location.href = "/SIPIKA/frontend/pages/auth/login.html";
-        } catch (error) {
-            alert("Terjadi kesalahan: " + error.message);
+      // Mengarahkan pengguna ke halaman login
+      window.location.href = "/SIPIKA/frontend/pages/auth/login.html";
+    } catch (error) {
+      alert("Terjadi kesalahan: " + error.message);
 
-            logoutButton.style.pointerEvents = "auto";
-            logoutButton.style.opacity = "1";
-        }
-    });
+      logoutButton.style.pointerEvents = "auto";
+      logoutButton.style.opacity = "1";
+    }
+  });
 }
