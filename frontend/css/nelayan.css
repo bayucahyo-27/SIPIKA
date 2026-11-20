@@ -191,14 +191,12 @@
 
   /* Gambar kapal menyatu dengan gradasi putih */
   background-image:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       rgba(255, 255, 255, 0.98) 5%,
       rgba(255, 255, 255, 0.9) 15%,
       rgba(255, 255, 255, 0.55) 52%,
       rgba(255, 255, 255, 0.1) 75%,
-      rgba(255, 255, 255, 0) 100%
-    ),
+      rgba(255, 255, 255, 0) 100%),
     url("../assets/images/banner_nelayan.png");
 
   /* Gradasi memenuhi banner, gambar menggunakan seluruh area */
@@ -705,14 +703,12 @@
 
   /* Gambar kapal menyatu dengan gradasi putih */
   background-image:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       rgba(255, 255, 255, 0.98) 5%,
       rgba(255, 255, 255, 0.9) 15%,
       rgba(255, 255, 255, 0.55) 52%,
       rgba(255, 255, 255, 0.1) 75%,
-      rgba(255, 255, 255, 0) 100%
-    ),
+      rgba(255, 255, 255, 0) 100%),
     url("../assets/images/banner_nelayan.png");
 
   /* Gradasi memenuhi banner, gambar menggunakan seluruh area */
@@ -994,7 +990,7 @@
 }
 
 /* Memperbesar tulisan Tingkat Produksi */
-#resultContent .production-result > span {
+#resultContent .production-result>span {
   font-size: 14px !important;
   font-weight: 700;
 }
@@ -1044,35 +1040,35 @@
 
 /* PRODUKSI TINGGI - HIJAU */
 .production-result.high {
-    background-color: #d1f4e2;
-    border-color: #b8ebd0;
+  background-color: #d1f4e2;
+  border-color: #b8ebd0;
 }
 
 .production-result.high span,
 .production-result.high h3 {
-    color: #159b68;
+  color: #159b68;
 }
 
 /* PRODUKSI SEDANG - KUNING */
 .production-result.medium {
-    background-color: #fff0bd;
-    border-color: #f5dfa0;
+  background-color: #fff0bd;
+  border-color: #f5dfa0;
 }
 
 .production-result.medium span,
 .production-result.medium h3 {
-    color: #b77900;
+  color: #b77900;
 }
 
 /* PRODUKSI RENDAH - MERAH */
 .production-result.low {
-    background-color: #ffe0e0;
-    border-color: #ffcaca;
+  background-color: #ffe0e0;
+  border-color: #ffcaca;
 }
 
 .production-result.low span,
 .production-result.low h3 {
-    color: #dc4242;
+  color: #dc4242;
 }
 
 /* =========================================
@@ -1339,7 +1335,7 @@
   font-weight: 700;
 }
 
-.result-placeholder > p {
+.result-placeholder>p {
   max-width: 420px;
   color: #71849b;
   font-size: 13px;
@@ -1420,14 +1416,12 @@
   overflow: hidden;
 
   background-image:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       rgba(255, 255, 255, 0.98) 5%,
       rgba(255, 255, 255, 0.9) 15%,
       rgba(255, 255, 255, 0.55) 52%,
       rgba(255, 255, 255, 0.1) 75%,
-      rgba(255, 255, 255, 0) 100%
-    ),
+      rgba(255, 255, 255, 0) 100%),
     url("../assets/images/banner_riwayat.png");
 
   /* Gradasi memenuhi banner, gambar menggunakan seluruh area */
@@ -1857,14 +1851,12 @@
   overflow: hidden;
 
   background-image:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       rgba(255, 255, 255, 0.98) 5%,
       rgba(255, 255, 255, 0.9) 15%,
       rgba(255, 255, 255, 0.55) 52%,
       rgba(255, 255, 255, 0.1) 75%,
-      rgba(255, 255, 255, 0) 100%
-    ),
+      rgba(255, 255, 255, 0) 100%),
     url("../assets/images/banner_riwayat.png");
 
   /* Gradasi memenuhi banner, gambar menggunakan seluruh area */
@@ -2175,6 +2167,22 @@
   font-weight: 700;
 }
 
+/* Warna hasil klasifikasi berdasarkan kategori */
+.detail-result-badge.low {
+  background-color: #DCFCE7;
+  color: #15803D;
+}
+
+.detail-result-badge.medium {
+  background-color: #FEF3C7;
+  color: #B45309;
+}
+
+.detail-result-badge.high {
+  background-color: #FEE2E2;
+  color: #B91C1C;
+}
+
 /* Deskripsi hasil klasifikasi */
 .detail-classification-card p {
   color: #315c4b;
@@ -2215,6 +2223,7 @@
 ========================================= */
 
 @media (max-width: 1000px) {
+
   /* Menyesuaikan proporsi kolom */
   .detail-content-grid {
     grid-template-columns: 1fr 1.2fr;
@@ -2231,6 +2240,7 @@
 ========================================= */
 
 @media (max-width: 700px) {
+
   /* Menyesuaikan banner */
   .detail-banner {
     min-height: 110px;
@@ -2275,14 +2285,12 @@
   margin-bottom: 14px;
 
   background-image:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       rgba(255, 255, 255, 0.98) 5%,
       rgba(255, 255, 255, 0.9) 15%,
       rgba(255, 255, 255, 0.55) 52%,
       rgba(255, 255, 255, 0.1) 75%,
-      rgba(255, 255, 255, 0) 100%
-    ),
+      rgba(255, 255, 255, 0) 100%),
     url("../assets/images/banner_riwayat.png");
 
   /* Gradasi memenuhi banner, gambar menggunakan seluruh area */
