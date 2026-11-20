@@ -768,16 +768,26 @@ if (detailFish) {
 
       detailResult.textContent = classification;
 
-      // Mengubah warna container sesuai kategori klasifikasi
-      detailResult.classList.remove("low", "medium", "high");
+            // Mengubah warna seluruh container sesuai kategori klasifikasi
+            const classificationCard = detailResult.closest(
+                ".detail-classification-card"
+            );
 
-      if (classification === "Rendah") {
-        detailResult.classList.add("low");
-      } else if (classification === "Sedang") {
-        detailResult.classList.add("medium");
-      } else if (classification === "Tinggi") {
-        detailResult.classList.add("high");
-      }
+            // Menghapus warna kategori sebelumnya
+            classificationCard.classList.remove("low", "medium", "high");
+            detailResult.classList.remove("low", "medium", "high");
+
+            // Memberikan warna sesuai hasil klasifikasi
+            if (classification === "Rendah") {
+                classificationCard.classList.add("low");
+                detailResult.classList.add("low");
+            } else if (classification === "Sedang") {
+                classificationCard.classList.add("medium");
+                detailResult.classList.add("medium");
+            } else if (classification === "Tinggi") {
+                classificationCard.classList.add("high");
+                detailResult.classList.add("high");
+            }
 
       detailResultDescription.textContent = `Tingkat produksi ikan tangkapan diprediksi dalam kategori ${classification.toLowerCase()}.`;
 
