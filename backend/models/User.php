@@ -6,14 +6,17 @@ class User {
     private $table = "users";
 
     // Properti user (TANPA username, sesuai database)
+        // Properti user (LENGKAP sesuai database)
     public $id;
+    public $username;
     public $nama_lengkap;
     public $email;
+    public $nomor_telepon;
     public $password;
+    public $foto_profil;
     public $role;
     public $status;
     public $token;
-
     public function __construct($db) {
         $this->conn = $db;
     }
@@ -93,6 +96,34 @@ class User {
         }
         
         // Jika email tidak ditemukan atau password salah
+        return false;
+    }
+
+        // ==========================================
+    // Fungsi Ambil Profil Lengkap (untuk halaman Profil)
+    // ==========================================
+    public function getProfile() {
+        $query = "SELECT id, username, nama_lengkap, email, nomor_telepon, foto_profil, role, status 
+                  FROM " . $this->table . " 
+                  WHERE id = :id 
+                  LIMIT 1";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row) {
+            $this->username = $row['username'];
+            $this->nama_lengkap = $row['nama_lengkap'];
+            $this->email = $row['email'];
+            $this->nomor_telepon = $row['nomor_telepon'];
+            $this->foto_profil = $row['foto_profil'];
+            $this->role = $row['role'];
+            $this->status = $row['status'];
+            return true;
+        }
         return false;
     }
 

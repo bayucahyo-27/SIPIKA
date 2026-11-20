@@ -84,6 +84,19 @@ if ($request_method == 'POST' && $request_uri == '/auth/change-password') {
     exit();
 }
 
+// Route: GET /auth/profile/{id}
+if ($request_method == 'GET' && strpos($request_uri, '/auth/profile') === 0) {
+    require_once 'controllers/AuthController.php';
+    $controller = new AuthController();
+
+    // Ambil ID dari URL: /auth/profile/1 -> id = 1
+    $parts = explode('/', trim($request_uri, '/'));
+    $id = isset($parts[2]) ? (int)$parts[2] : 0;
+
+    $controller->getProfile($id);
+    exit();
+}
+
 // Route: POST /prediction
 if ($request_method == 'POST' && $request_uri == '/prediction') {
     require_once 'controllers/PredictionController.php';

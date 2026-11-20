@@ -549,12 +549,12 @@
               </div>
               <div class="form-group">
                 <label for="inputAlat">Alat Tangkap</label>
-                <input
-                  type="text"
-                  id="inputAlat"
-                  required
-                  placeholder="Contoh: Pancing"
-                />
+                <select id="inputAlat" required>
+                  <option value="" disabled selected>Pilih Alat Tangkap</option>
+                  <option value="Pancing">Pancing</option>
+                  <option value="Jaring">Jaring</option>
+                  <option value="Bagan">Bagan</option>
+                </select>
               </div>
               <div class="form-group">
                 <label for="inputWilayah">Wilayah</label>
@@ -567,12 +567,12 @@
               </div>
               <div class="form-group">
                 <label for="inputMusim">Musim</label>
-                <input
-                  type="text"
-                  id="inputMusim"
-                  required
-                  placeholder="Contoh: Kemarau"
-                />
+                <select id="inputMusim" required>
+                  <option value="" disabled selected>Pilih Musim</option>
+                  <option value="Kemarau">Kemarau</option>
+                  <option value="Hujan">Hujan</option>
+                  <option value="Pancaroba">Pancaroba</option>
+                </select>
               </div>
               <div class="form-group">
                 <label for="inputProduksi">Produksi (kg)</label>

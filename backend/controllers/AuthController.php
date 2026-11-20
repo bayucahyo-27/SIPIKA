@@ -233,5 +233,38 @@ class AuthController {
         }
     }
 
+        // ==========================================
+    // FUNGSI AMBIL PROFIL (KHUSUS HALAMAN PROFIL)
+    // ==========================================
+    public function getProfile($id) {
+        if (empty($id)) {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "ID user tidak valid!"]);
+            return;
+        }
+
+        $user = new User($this->db);
+        $user->id = $id;
+
+        if ($user->getProfile()) {
+            http_response_code(200);
+            echo json_encode([
+                "status" => "success",
+                "data" => [
+                    "id" => $user->id,
+                    "username" => $user->username,
+                    "nama_lengkap" => $user->nama_lengkap,
+                    "email" => $user->email,
+                    "nomor_telepon" => $user->nomor_telepon,
+                    "foto_profil" => $user->foto_profil,
+                    "role" => $user->role
+                ]
+            ]);
+        } else {
+            http_response_code(404);
+            echo json_encode(["status" => "error", "message" => "User tidak ditemukan."]);
+        }
+    }
+
 } // Penutup Class
 ?>

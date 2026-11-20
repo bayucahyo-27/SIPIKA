@@ -700,4 +700,62 @@ function initProfilPage() {
   if (formUbahPassword) {
     formUbahPassword.addEventListener("submit", simpanPassword);
   }
+
+  // ==========================================
+  // 6. LOAD & RENDER PROFIL LENGKAP DARI DATABASE
+  // ==========================================
+  async function loadProfilData() {
+    const user = getSession();
+    if (!user || !user.id) return; // belum login? skip (requireAuth udah redirect)
+
+    const apiUrl =
+      window.location.origin + "/SIPIKA/backend/auth/profile/" + user.id;
+
+    try {
+      const res = await fetch(apiUrl);
+      const result = await res.json();
+
+      if (result.status === "success" && result.data) {
+        const d = result.data;
+
+        // Username: prioritas DB, fallback nama_lengkap, fallback "-"
+        const elUsername = document.getElementById("displayUsername");
+        if (elUsername)
+          elUsername.textContent = d.username || d.nama_lengkap || "-";
+
+        // Nama Lengkap
+        const elNama = document.getElementById("displayNamaLengkap");
+        if (elNama) elNama.textContent = d.nama_lengkap || "-";
+
+        // Nomor Telepon: kalau null di DB, tampil "-" (bukan tulisan "null")
+        const elTelp = document.getElementById("displayNomorTelepon");
+        if (elTelp) elTelp.textContent = d.nomor_telepon || "-";
+
+        // Role: kapitalisasi huruf pertama (petugas -> Petugas)
+        const roleNice = d.role
+          ? d.role.charAt(0).toUpperCase() + d.role.slice(1)
+          : "-";
+
+        const elRole = document.getElementById("displayRole");
+        if (elRole) elRole.textContent = roleNice;
+
+        const elRoleBadge = document.getElementById("displayRoleBadge");
+        if (elRoleBadge) elRoleBadge.textContent = roleNice;
+
+        // Foto Profil (future-proof: baru muncul kalau upload foto udah nyambung DB)
+        const elFoto = document.getElementById("uploadedAvatarImg");
+        const elIcon = document.getElementById("defaultAvatarIcon");
+        if (d.foto_profil && elFoto) {
+          elFoto.src = "../../assets/images/" + d.foto_profil;
+          elFoto.style.display = "block";
+          if (elIcon) elIcon.style.display = "none";
+        }
+      }
+    } catch (err) {
+      // auto-load, jadi jangan spam alert — cukup catet di console
+      console.error("Gagal load profil:", err);
+    }
+  }
+
+  loadProfilData();
 }
