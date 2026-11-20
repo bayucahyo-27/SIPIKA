@@ -119,8 +119,9 @@ if (classificationForm) {
       // Menampilkan hasil prediksi Decision Tree
       productionLevel.textContent = hasilKlasifikasi;
 
-      // Menampilkan hasil prediksi Decision Tree
-      productionLevel.textContent = hasilKlasifikasi;
+      // TAMPILKAN PANEL HASIL (TUTUP PLACEHOLDER)
+      resultContent.hidden = false;
+      resultPlaceholder.hidden = true;
     } catch (error) {
       console.error("Kesalahan prediksi:", error);
       alert("Terjadi kesalahan: " + error.message);
@@ -337,6 +338,7 @@ if (historyTableBody && historySearch && dateFilter) {
     pageNumbers.innerHTML = "";
 
     for (let page = 1; page <= totalPages; page++) {
+      const button = document.createElement("button");
       // Memberikan penanda pada halaman yang sedang aktif
       if (page === currentPage) {
         button.classList.add("active");

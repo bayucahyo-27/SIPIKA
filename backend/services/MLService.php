@@ -4,7 +4,7 @@
 class MLService
 {
     // Alamat Machine Learning API pada laptop yang menjalankan FastAPI
-    private $apiUrl = "http://10.219.251.32:8000";
+    private $apiUrl = "http://127.0.0.1:8000";
 
     // Mengirim empat atribut ke API untuk mendapatkan hasil prediksi
     public function predict($data)
