@@ -18,7 +18,6 @@ body {
   color: var(--text-color);
 }
 
-
 /* =========================================
    2. SIDEBAR ADMIN
 ========================================= */
@@ -51,8 +50,7 @@ body {
   padding: 30px 16px 20px;
 
   background-image:
-    linear-gradient(rgba(5, 31, 65, 0.88),
-      rgba(5, 31, 65, 0.88)),
+    linear-gradient(rgba(5, 31, 65, 0.88), rgba(5, 31, 65, 0.88)),
     url("../assets/images/sidebar_nelayan.png");
 
   background-size: cover;
@@ -160,7 +158,6 @@ body {
   filter: none;
 }
 
-
 /* =========================================
    4. KONTEN UTAMA ADMIN
 ========================================= */
@@ -184,8 +181,6 @@ body {
 
   background-color: #eaf3fb;
 }
-
-
 
 /* =========================================
    3. HEADER AKUN ADMIN
@@ -253,8 +248,6 @@ body {
   background-color: #12bd83;
 }
 
-
-
 /* =========================================
    5. KONTEN DASHBOARD
 ========================================= */
@@ -266,7 +259,6 @@ body {
   gap: 12px;
   width: 100%;
 }
-
 
 /* =========================================
    6. WELCOME BANNER
@@ -286,16 +278,22 @@ body {
   overflow: hidden;
 
   background-image:
-    linear-gradient(90deg,
+    linear-gradient(
+      90deg,
       rgba(255, 255, 255, 0.98) 5%,
-      rgba(255, 255, 255, 0.90) 15%,
+      rgba(255, 255, 255, 0.9) 15%,
       rgba(255, 255, 255, 0.55) 52%,
-      rgba(255, 255, 255, 0.10) 75%,
-      rgba(255, 255, 255, 0) 100%),
+      rgba(255, 255, 255, 0.1) 75%,
+      rgba(255, 255, 255, 0) 100%
+    ),
     url("../assets/images/banner_nelayan.png");
 
-  background-size: 100% 100%, cover;
-  background-position: center, right 70%;
+  background-size:
+    100% 100%,
+    cover;
+  background-position:
+    center,
+    right 70%;
   background-repeat: no-repeat, no-repeat;
 
   border: 1px solid #d6e8f8;
@@ -310,7 +308,7 @@ body {
 .welcome-text h1 {
   color: #0c1d37;
   font-size: 30px;
-  line-height: 1.80;
+  line-height: 1.8;
   margin-bottom: 2px;
 }
 
@@ -321,7 +319,6 @@ body {
   line-height: 1.3;
   margin-top: 0;
 }
-
 
 /* =========================================
    7. JUDUL SETIAP BAGIAN
@@ -352,7 +349,6 @@ body {
   border-radius: 5px;
   background-color: var(--primary-color);
 }
-
 
 /* =========================================
    8. KARTU STATISTIK
@@ -386,7 +382,8 @@ body {
 
   box-shadow: 0 4px 12px rgba(30, 65, 100, 0.04);
 
-  transition: transform 0.2s ease,
+  transition:
+    transform 0.2s ease,
     box-shadow 0.2s ease;
 }
 
@@ -433,15 +430,18 @@ body {
 
 /* Warna ikon statistik */
 .stat-total .stat-icon img {
-  filter: brightness(0) saturate(100%) invert(35%) sepia(91%) saturate(1900%) hue-rotate(202deg);
+  filter: brightness(0) saturate(100%) invert(35%) sepia(91%) saturate(1900%)
+    hue-rotate(202deg);
 }
 
 .stat-officer .stat-icon img {
-  filter: brightness(0) saturate(100%) invert(48%) sepia(85%) saturate(500%) hue-rotate(95deg);
+  filter: brightness(0) saturate(100%) invert(48%) sepia(85%) saturate(500%)
+    hue-rotate(95deg);
 }
 
 .stat-fisherman .stat-icon img {
-  filter: brightness(0) saturate(100%) invert(48%) sepia(95%) saturate(1700%) hue-rotate(350deg);
+  filter: brightness(0) saturate(100%) invert(48%) sepia(95%) saturate(1700%)
+    hue-rotate(350deg);
 }
 
 /* Informasi statistik */
@@ -489,8 +489,6 @@ body {
 .stat-fisherman .stat-info h3 {
   color: #142238;
 }
-
-
 
 /* =========================================
    9. AKSES CEPAT
@@ -541,7 +539,8 @@ body {
   border: none;
   border-radius: 12px;
 
-  transition: background-color 0.2s ease,
+  transition:
+    background-color 0.2s ease,
     transform 0.2s ease;
 }
 
@@ -640,7 +639,6 @@ body {
   box-shadow: 0 3px 10px rgba(30, 65, 100, 0.04);
 }
 
-
 /* Bagian teks */
 .about-text {
   width: 58%;
@@ -655,7 +653,6 @@ body {
 
   padding: 24px 25px;
 }
-
 
 /* Judul dan ikon informasi */
 .about-heading {
@@ -750,11 +747,13 @@ body {
 
   z-index: 1;
 
-  background: linear-gradient(90deg,
-      #ffffff 0%,
-      rgba(255, 255, 255, 0.75) 12%,
-      rgba(255, 255, 255, 0.15) 40%,
-      transparent 65%);
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.75) 12%,
+    rgba(255, 255, 255, 0.15) 40%,
+    transparent 65%
+  );
 }
 
 /* =========================================
@@ -949,7 +948,6 @@ body {
   font-size: 16px;
 }
 
-
 /* -----------------------------------------
    11.3 TABEL PENGGUNA
 ----------------------------------------- */
@@ -1035,14 +1033,13 @@ body {
   background-color: #ffe1e1;
 }
 
-
 /* Warna header tabel */
 .user-table thead {
-  background-color: #C8E4FC;
+  background-color: #c8e4fc;
 }
 
 .user-table thead th {
-  background-color: #C8E4FC;
+  background-color: #c8e4fc;
   color: #263c58;
   font-weight: 700;
   border-bottom: 1px solid #b5d9f5;
@@ -1132,7 +1129,6 @@ body {
   display: block;
 }
 
-
 /* Toggle status */
 .status-toggle {
   width: 30px;
@@ -1180,7 +1176,6 @@ body {
   line-height: 1;
 }
 
-
 /* -----------------------------------------
    11.4 PAGINATION
 ----------------------------------------- */
@@ -1197,7 +1192,7 @@ body {
   border-top: 1px solid #edf1f6;
 }
 
-.user-pagination>span {
+.user-pagination > span {
   color: #8494a9;
   font-size: 9px;
 }
@@ -1254,8 +1249,6 @@ body {
   font-size: 17px;
   border-radius: 7px;
 }
-
-
 
 /* =========================================
    12. DATA MASTER
@@ -1435,8 +1428,6 @@ body {
   font-size: 11px;
 }
 
-
-
 /* -----------------------------------------
    12.3 CONTAINER TABEL DATA MASTER
 ----------------------------------------- */
@@ -1451,7 +1442,6 @@ body {
 
   box-shadow: 0 3px 10px rgba(30, 65, 100, 0.04);
 }
-
 
 /* -----------------------------------------
    12.4 HEADER TABEL
@@ -1492,7 +1482,7 @@ body {
 }
 
 /* Teks judul dan deskripsi */
-.subcard-title>div:last-child {
+.subcard-title > div:last-child {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -1510,7 +1500,6 @@ body {
   color: #718198;
   font-size: 11px;
 }
-
 
 /* -----------------------------------------
    12.5 TOMBOL TAMBAH DATA
@@ -1545,7 +1534,6 @@ body {
 #btnTambahDataset:hover {
   background-color: #075fd0;
 }
-
 
 /* -----------------------------------------
    12.6 PENCARIAN DATA
@@ -1587,7 +1575,6 @@ body {
 .search-box.width-100 input::placeholder {
   color: #9aa9ba;
 }
-
 
 /* -----------------------------------------
    12.7 TABEL REFERENSI DAN DATASET
@@ -1696,7 +1683,6 @@ body {
   height: 19px;
 }
 
-
 /* STATUS DATA MASTER */
 .data-table .badge-status-aktif {
   display: inline-flex;
@@ -1776,15 +1762,13 @@ body {
   transition: 0.2s;
 }
 
-.data-table .switch input:checked+.slider {
+.data-table .switch input:checked + .slider {
   background-color: #0876f9;
 }
 
-.data-table .switch input:checked+.slider::before {
+.data-table .switch input:checked + .slider::before {
   transform: translateX(17px);
 }
-
-
 
 /* -----------------------------------------
    12.9 PAGINATION DATA MASTER
@@ -1859,8 +1843,6 @@ body {
   background-color: #ffffff;
 }
 
-
-
 /* -----------------------------------------
    12.10 RESPONSIVE DATA MASTER
 ----------------------------------------- */
@@ -1895,9 +1877,6 @@ body {
   }
 }
 
-
-
-
 /* =========================================
    13. PROFIL ADMIN
 ========================================= */
@@ -1913,7 +1892,6 @@ body {
   width: 100%;
   align-items: stretch;
 }
-
 
 /* -----------------------------------------
    13.2 CONTAINER KARTU PROFIL
@@ -1945,7 +1923,6 @@ body {
 .profile-divider {
   display: none;
 }
-
 
 /* -----------------------------------------
    13.3 AVATAR ADMIN
@@ -2024,7 +2001,6 @@ body {
   font-weight: 600;
 }
 
-
 /* -----------------------------------------
    13.4 FORM INFORMASI AKUN
 ----------------------------------------- */
@@ -2059,7 +2035,7 @@ body {
   border-radius: 7px;
 }
 
-.input-with-icon>i:first-child {
+.input-with-icon > i:first-child {
   flex-shrink: 0;
   color: #8da0ba;
   font-size: 12px;
@@ -2085,7 +2061,6 @@ body {
   font-size: 10px;
   color: #8fa2bd;
 }
-
 
 /* -----------------------------------------
    13.5 TOMBOL PROFIL
@@ -2121,7 +2096,6 @@ body {
   background-color: #075fd0;
 }
 
-
 /* -----------------------------------------
    13.6 IKON LIHAT PASSWORD
 ----------------------------------------- */
@@ -2133,7 +2107,6 @@ body {
   cursor: pointer;
 }
 
-
 /* -----------------------------------------
    13.7 RESPONSIVE PROFIL
 ----------------------------------------- */
@@ -2143,9 +2116,6 @@ body {
     grid-template-columns: 1fr;
   }
 }
-
-
-
 
 /* =========================================
    14. FOOTER DASHBOARD
@@ -2168,13 +2138,11 @@ body {
   font-size: 9px;
 }
 
-
 /* =========================================
    15. RESPONSIVE TABLET
 ========================================= */
 
 @media screen and (max-width: 1000px) {
-
   /* Memperkecil sidebar */
   .sidebar {
     width: 200px;
@@ -2210,16 +2178,13 @@ body {
   .user-statistics-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
 }
-
 
 /* =========================================
    16. RESPONSIVE MOBILE
 ========================================= */
 
 @media screen and (max-width: 700px) {
-
   /* Mengubah layout menjadi vertikal */
   .dashboard-container {
     flex-direction: column;
@@ -2359,16 +2324,13 @@ body {
   .btn-add-user {
     width: 100%;
   }
-
 }
-
 
 /* =========================================
    17. RESPONSIVE MOBILE KECIL
 ========================================= */
 
 @media screen and (max-width: 380px) {
-
   .main-content {
     padding: 10px;
   }
@@ -2392,7 +2354,6 @@ body {
   .about-text p {
     font-size: 8px;
   }
-
 }
 
 /* =========================================
@@ -2400,7 +2361,9 @@ body {
 ========================================= */
 
 .about-section {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .about-section:hover {
@@ -2736,7 +2699,6 @@ body {
   object-position: center;
   border-radius: 50%;
 }
-
 
 /* =====================================================
    DASHBOARD ADMIN SIPIKA
