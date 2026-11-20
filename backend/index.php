@@ -107,29 +107,67 @@ if ($request_method == 'POST' && $request_uri == '/prediction') {
 }
 
 // ==========================================
-// ROUTE: DATA PRODUKSI (CRUD)
+// ROUTING RIWAYAT PREDIKSI NELAYAN
 // ==========================================
-if (strpos($request_uri, '/data-produksi') === 0) {
-    require_once 'controllers/DatasetController.php';
-    $controller = new DatasetController();
 
-    if ($request_method == 'GET') {
-        $controller->getAll();
-    } 
-    elseif ($request_method == 'POST') {
-        $controller->create();
-    } 
-    elseif ($request_method == 'PUT' || $request_method == 'DELETE') {
-        // Ambil ID dari URL, contoh: /data-produksi/5 -> ID = 5
-        $parts = explode('/', trim($request_uri, '/'));
-        $id = isset($parts[1]) ? (int)$parts[1] : 0;
+// Route: GET /predictions
+if ($request_method == 'GET' && $request_uri == '/predictions') {
+    require_once 'controllers/PredictionController.php';
 
-        if ($request_method == 'PUT') {
-            $controller->update($id);
-        } else {
-            $controller->delete($id);
-        }
-    }
+    $controller = new PredictionController();
+    $controller->getHistory();
+    exit();
+}
+
+// Route: GET /predictions/{id}
+if (
+    $request_method == 'GET' &&
+    preg_match('#^/predictions/([0-9]+)$#', $request_uri, $matches)
+) {
+    require_once 'controllers/PredictionController.php';
+
+    $controller = new PredictionController();
+    $controller->getDetail((int) $matches[1]);
+    exit();
+}
+
+
+// Route: POST /auth/logout
+if ($request_method == 'POST' && $request_uri == '/auth/logout') {
+    require_once 'controllers/AuthController.php';
+
+    $controller = new AuthController();
+    $controller->logout();
+    exit();
+}
+
+// ==========================================
+// ROUTING PROFIL NELAYAN
+// ==========================================
+
+// Route: GET /profile
+if ($request_method == 'GET' && $request_uri == '/profile') {
+    require_once 'controllers/ProfileController.php';
+
+    $controller = new ProfileController();
+    $controller->getProfile();
+    exit();
+}
+
+// Route: PUT /profile
+if ($request_method == 'PUT' && $request_uri == '/profile') {
+    require_once 'controllers/ProfileController.php';
+
+    $controller = new ProfileController();
+    $controller->updateProfile();
+    exit();
+}
+
+// Route: POST /profile/photo
+if ($request_method == 'POST' && $request_uri == '/profile/photo') {
+    require_once 'controllers/ProfileController.php';
+    $controller = new ProfileController();
+    $controller->uploadPhoto();
     exit();
 }
 

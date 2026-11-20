@@ -1038,6 +1038,44 @@
 }
 
 /* =========================================
+   WARNA DINAMIS HASIL KLASIFIKASI
+   Mengikuti warna badge halaman Riwayat
+========================================= */
+
+/* PRODUKSI TINGGI - HIJAU */
+.production-result.high {
+    background-color: #d1f4e2;
+    border-color: #b8ebd0;
+}
+
+.production-result.high span,
+.production-result.high h3 {
+    color: #159b68;
+}
+
+/* PRODUKSI SEDANG - KUNING */
+.production-result.medium {
+    background-color: #fff0bd;
+    border-color: #f5dfa0;
+}
+
+.production-result.medium span,
+.production-result.medium h3 {
+    color: #b77900;
+}
+
+/* PRODUKSI RENDAH - MERAH */
+.production-result.low {
+    background-color: #ffe0e0;
+    border-color: #ffcaca;
+}
+
+.production-result.low span,
+.production-result.low h3 {
+    color: #dc4242;
+}
+
+/* =========================================
    20. KESIMPULAN DAN SARAN
 ========================================= */
 

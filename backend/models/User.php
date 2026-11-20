@@ -5,7 +5,7 @@ class User {
     private $conn;
     private $table = "users";
 
-    // Properti user (TANPA username, sesuai database)
+    
         // Properti user (LENGKAP sesuai database)
     public $id;
     public $username;
@@ -96,34 +96,6 @@ class User {
         }
         
         // Jika email tidak ditemukan atau password salah
-        return false;
-    }
-
-        // ==========================================
-    // Fungsi Ambil Profil Lengkap (untuk halaman Profil)
-    // ==========================================
-    public function getProfile() {
-        $query = "SELECT id, username, nama_lengkap, email, nomor_telepon, foto_profil, role, status 
-                  FROM " . $this->table . " 
-                  WHERE id = :id 
-                  LIMIT 1";
-
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(":id", $this->id);
-        $stmt->execute();
-
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($row) {
-            $this->username = $row['username'];
-            $this->nama_lengkap = $row['nama_lengkap'];
-            $this->email = $row['email'];
-            $this->nomor_telepon = $row['nomor_telepon'];
-            $this->foto_profil = $row['foto_profil'];
-            $this->role = $row['role'];
-            $this->status = $row['status'];
-            return true;
-        }
         return false;
     }
 
@@ -241,6 +213,64 @@ class User {
         } else {
             return ["status" => "error", "message" => "Gagal mengubah password. Silakan coba lagi."];
         }
+    }
+
+        // ==========================================
+    // FUNGSI MENGAMBIL PROFIL PENGGUNA
+    // ==========================================
+    public function getProfile($userId) {
+
+                $query = "SELECT
+                    id,
+                    username,
+                    nama_lengkap,
+                    email,
+                    nomor_telepon,
+                    foto_profil,
+                    role
+                  FROM " . $this->table . "
+                  WHERE id = :id
+                  LIMIT 1";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id", $userId);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // ==========================================
+    // FUNGSI MEMPERBARUI NAMA LENGKAP
+    // ==========================================
+    public function updateProfile($userId, $namaLengkap) {
+
+        $query = "UPDATE " . $this->table . "
+                  SET nama_lengkap = :nama_lengkap
+                  WHERE id = :id";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(":nama_lengkap", $namaLengkap);
+        $stmt->bindParam(":id", $userId);
+
+        return $stmt->execute();
+    }
+
+    // ==========================================
+    // FUNGSI MEMPERBARUI FOTO PROFIL
+    // ==========================================
+    public function updateProfilePhoto($userId, $fotoProfil) {
+
+        $query = "UPDATE " . $this->table . "
+                  SET foto_profil = :foto_profil
+                  WHERE id = :id";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(":foto_profil", $fotoProfil);
+        $stmt->bindParam(":id", $userId);
+
+        return $stmt->execute();
     }
 }
 ?>
