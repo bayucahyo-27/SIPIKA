@@ -727,9 +727,9 @@ function initProfilPage() {
         const elNama = document.getElementById("displayNamaLengkap");
         if (elNama) elNama.textContent = d.nama_lengkap || "-";
 
-        // Nomor Telepon: kalau null di DB, tampil "-" (bukan tulisan "null")
-        const elTelp = document.getElementById("displayNomorTelepon");
-        if (elTelp) elTelp.textContent = d.nomor_telepon || "-";
+        // Email
+        const elEmail = document.getElementById("displayEmail");
+        if (elEmail) elEmail.textContent = d.email || "-";
 
         // Role: kapitalisasi huruf pertama (petugas -> Petugas)
         const roleNice = d.role
