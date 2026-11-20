@@ -93,6 +93,71 @@ if ($request_method == 'POST' && $request_uri == '/prediction') {
     exit();
 }
 
+// ==========================================
+// ROUTING RIWAYAT PREDIKSI NELAYAN
+// ==========================================
+
+// Route: GET /predictions
+if ($request_method == 'GET' && $request_uri == '/predictions') {
+    require_once 'controllers/PredictionController.php';
+
+    $controller = new PredictionController();
+    $controller->getHistory();
+    exit();
+}
+
+// Route: GET /predictions/{id}
+if (
+    $request_method == 'GET' &&
+    preg_match('#^/predictions/([0-9]+)$#', $request_uri, $matches)
+) {
+    require_once 'controllers/PredictionController.php';
+
+    $controller = new PredictionController();
+    $controller->getDetail((int) $matches[1]);
+    exit();
+}
+
+
+// Route: POST /auth/logout
+if ($request_method == 'POST' && $request_uri == '/auth/logout') {
+    require_once 'controllers/AuthController.php';
+
+    $controller = new AuthController();
+    $controller->logout();
+    exit();
+}
+
+// ==========================================
+// ROUTING PROFIL NELAYAN
+// ==========================================
+
+// Route: GET /profile
+if ($request_method == 'GET' && $request_uri == '/profile') {
+    require_once 'controllers/ProfileController.php';
+
+    $controller = new ProfileController();
+    $controller->getProfile();
+    exit();
+}
+
+// Route: PUT /profile
+if ($request_method == 'PUT' && $request_uri == '/profile') {
+    require_once 'controllers/ProfileController.php';
+
+    $controller = new ProfileController();
+    $controller->updateProfile();
+    exit();
+}
+
+// Route: POST /profile/photo
+if ($request_method == 'POST' && $request_uri == '/profile/photo') {
+    require_once 'controllers/ProfileController.php';
+    $controller = new ProfileController();
+    $controller->uploadPhoto();
+    exit();
+}
+
 // Kalau endpoint gak ditemukan
 http_response_code(404);
 echo json_encode([

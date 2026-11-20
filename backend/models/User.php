@@ -211,5 +211,62 @@ class User {
             return ["status" => "error", "message" => "Gagal mengubah password. Silakan coba lagi."];
         }
     }
+
+        // ==========================================
+    // FUNGSI MENGAMBIL PROFIL PENGGUNA
+    // ==========================================
+    public function getProfile($userId) {
+
+        $query = "SELECT
+                    id,
+                    nama_lengkap,
+                    email,
+                    nomor_telepon,
+                    foto_profil,
+                    role
+                  FROM " . $this->table . "
+                  WHERE id = :id
+                  LIMIT 1";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id", $userId);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // ==========================================
+    // FUNGSI MEMPERBARUI NAMA LENGKAP
+    // ==========================================
+    public function updateProfile($userId, $namaLengkap) {
+
+        $query = "UPDATE " . $this->table . "
+                  SET nama_lengkap = :nama_lengkap
+                  WHERE id = :id";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(":nama_lengkap", $namaLengkap);
+        $stmt->bindParam(":id", $userId);
+
+        return $stmt->execute();
+    }
+
+    // ==========================================
+    // FUNGSI MEMPERBARUI FOTO PROFIL
+    // ==========================================
+    public function updateProfilePhoto($userId, $fotoProfil) {
+
+        $query = "UPDATE " . $this->table . "
+                  SET foto_profil = :foto_profil
+                  WHERE id = :id";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(":foto_profil", $fotoProfil);
+        $stmt->bindParam(":id", $userId);
+
+        return $stmt->execute();
+    }
 }
 ?>

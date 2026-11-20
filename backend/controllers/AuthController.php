@@ -64,6 +64,20 @@ class AuthController {
                 return;
             }
 
+
+            // Buat sesi server setelah login berhasil
+            if (session_status() !== PHP_SESSION_ACTIVE) {
+                session_start();
+            }
+
+            session_regenerate_id(true);
+
+            $_SESSION["user_id"] = $user->id;
+            $_SESSION["role"] = $user->role;
+            $_SESSION["nama_lengkap"] = $user->nama_lengkap;
+            $_SESSION["email"] = $user->email;
+
+
             http_response_code(200);
             echo json_encode([
                 "status" => "success",
@@ -120,8 +134,8 @@ class AuthController {
                     $mail->isSMTP();
                     $mail->Host       = 'smtp.gmail.com';
                     $mail->SMTPAuth   = true;
-                    $mail->Username   = 'salmiinnano@gmail.com'; 
-                    $mail->Password   = 'cbumbciayiqhrkzt'; // <-- GANTI DENGAN 16 HURUF TANPA SPASI
+                    $mail->Username = getenv('SIPIKA_MAIL_USERNAME');
+                    $mail->Password = getenv('SIPIKA_MAIL_PASSWORD');
                     $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
                     $mail->Port       = 587;
                     $mail->CharSet    = 'UTF-8';
@@ -231,6 +245,45 @@ class AuthController {
             http_response_code(401); // 401 Unauthorized karena password lama salah
             echo json_encode($result);
         }
+    }
+
+
+    // ==========================================
+    // FUNGSI LOGOUT
+    // ==========================================
+    public function logout() {
+
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+
+        // Menghapus seluruh data sesi pengguna
+        $_SESSION = [];
+
+        // Menghapus cookie sesi jika digunakan
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+
+            setcookie(
+                session_name(),
+                "",
+                time() - 42000,
+                $params["path"],
+                $params["domain"],
+                $params["secure"],
+                $params["httponly"]
+            );
+        }
+
+        // Menghancurkan sesi pada server
+        session_destroy();
+
+        http_response_code(200);
+
+        echo json_encode([
+            "status" => "success",
+            "message" => "Logout berhasil."
+        ]);
     }
 
 } // Penutup Class

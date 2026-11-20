@@ -60,7 +60,7 @@
 
             <!-- Tombol logout -->
             <div class="sidebar-bottom">
-                <a href="../../pages/auth/login.html" class="menu-item logout-item">
+                <a href="#" class="menu-item logout-item" id="logoutButton">
                     <img src="../../assets/icons/logout.svg" alt="">
                     <span>Logout</span>
                 </a>
@@ -147,7 +147,7 @@
 
                                 <span class="detail-data-label">Jenis Ikan</span>
                                 <span class="detail-data-separator">:</span>
-                                <strong>Cakalang</strong>
+                                <strong id="detailFish">-</strong>
                             </div>
 
                             <!-- BARIS 2: TANGGAL PREDIKSI -->
@@ -158,7 +158,7 @@
 
                                 <span class="detail-data-label">Tanggal Prediksi</span>
                                 <span class="detail-data-separator">:</span>
-                                <strong>12 Mei 2025,<br>10:23</strong>
+                                <strong id="detailDate">-</strong>
                             </div>
 
                             <!-- BARIS 3: WILAYAH -->
@@ -169,7 +169,7 @@
 
                                 <span class="detail-data-label">Wilayah</span>
                                 <span class="detail-data-separator">:</span>
-                                <strong>Kota Ternate</strong>
+                                <strong id="detailRegion">-</strong>
                             </div>
 
                             <!-- BARIS 4: ALAT TANGKAP -->
@@ -180,7 +180,7 @@
 
                                 <span class="detail-data-label">Alat Tangkap</span>
                                 <span class="detail-data-separator">:</span>
-                                <strong>Jaring</strong>
+                                <strong id="detailGear">-</strong>
                             </div>
 
                             <!-- BARIS 5: MUSIM -->
@@ -191,7 +191,7 @@
 
                                 <span class="detail-data-label">Musim</span>
                                 <span class="detail-data-separator">:</span>
-                                <strong>Kemarau</strong>
+                                <strong id="detailSeason">-</strong>
                             </div>
 
                         </div>
@@ -219,13 +219,12 @@
                             <h2>Hasil Klasifikasi</h2>
                         </div>
 
-                        <div class="detail-result-badge">
-                            Tinggi
+                        <div class="detail-result-badge" id="detailResult">
+                            -
                         </div>
 
-                        <p>
-                            Tingkat produksi ikan tangkapan diprediksi
-                            dalam kategori tinggi.
+                        <p id="detailResultDescription">
+                            Hasil klasifikasi akan ditampilkan di sini.
                         </p>
 
                     </div>
@@ -239,11 +238,8 @@
                             <h2>Kesimpulan</h2>
                         </div>
 
-                        <p>
-                            Berdasarkan data yang dimasukkan, hasil klasifikasi
-                            menunjukkan bahwa tingkat produksi ikan cakalang
-                            di wilayah Kota Ternate pada musim kemarau berada
-                            dalam kategori tinggi.
+                        <p id="detailConclusion">
+                            Kesimpulan hasil klasifikasi akan ditampilkan di sini.
                         </p>
 
                     </div>
@@ -257,10 +253,8 @@
                             <h2>Saran untuk Nelayan</h2>
                         </div>
 
-                        <p>
-                            Pada kondisi ini, disarankan untuk tetap melanjutkan
-                            aktivitas penangkapan dengan mempertahankan kondisi
-                            cuaca dan keselamatan di laut agar hasil tetap optimal.
+                        <p id="detailSuggestion">
+                            Saran untuk nelayan akan ditampilkan di sini.
                         </p>
 
                     </div>
