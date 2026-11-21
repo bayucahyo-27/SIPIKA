@@ -293,6 +293,36 @@ if (
 }
 
 // ==========================================
+// ROUTING REFERENSI AKTIF UNTUK NELAYAN
+// ==========================================
+
+if (
+    $request_method == 'GET' &&
+    preg_match('#^/master-data/(ikan|alat|wilayah|musim)$#', $request_uri, $matches)
+) {
+
+    $referenceTypes = [
+        "ikan" => "jenis_ikan",
+        "alat" => "alat_tangkap",
+        "wilayah" => "wilayah",
+        "musim" => "musim"
+    ];
+
+    $type = $referenceTypes[$matches[1]];
+
+    require_once 'config/database.php';
+    require_once 'controllers/MasterDataController.php';
+
+    $database = new Database();
+    $db = $database->getConnection();
+
+    $controller = new MasterDataController($db);
+    $controller->active($type);
+
+    exit();
+}
+
+// ==========================================
 // ROUTING DATA MASTER ADMIN
 // ==========================================
 

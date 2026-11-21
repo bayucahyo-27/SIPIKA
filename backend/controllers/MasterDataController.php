@@ -74,6 +74,32 @@ class MasterDataController {
         }
     }
 
+    // GET: Mengambil referensi aktif untuk Admin dan Nelayan
+    public function active($type) {
+
+        AuthMiddleware::authorize(["admin", "nelayan"]);
+
+        try {
+
+            $data = $this->masterData->getActive($type);
+
+            $this->response(
+                true,
+                "Data referensi berhasil diambil.",
+                $data
+            );
+
+        } catch (Exception $e) {
+
+            $this->response(
+                false,
+                $e->getMessage(),
+                null,
+                400
+            );
+        }
+    }
+
     // GET: Mengambil data berdasarkan ID
     public function show($type, $id) {
 

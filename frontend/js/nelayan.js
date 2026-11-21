@@ -3,6 +3,74 @@
    MENGGUNAKAN ALGORITMA DECISION TREE
 ========================================= */
 
+/* =========================================
+   MEMUAT DATA REFERENSI DROPDOWN NELAYAN
+========================================= */
+
+async function loadReferenceDropdown(endpoint, elementId, placeholder) {
+  const select = document.getElementById(elementId);
+
+  if (!select) return;
+
+  try {
+    const response = await fetch(
+      `/SIPIKA/backend/master-data/${endpoint}`,
+      {
+        method: "GET",
+        credentials: "same-origin",
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok || result.status !== "success") {
+      throw new Error(result.message || "Gagal mengambil data referensi.");
+    }
+
+    // Mengosongkan pilihan lama
+    select.innerHTML = "";
+
+    // Membuat pilihan default
+    const defaultOption = document.createElement("option");
+    defaultOption.value = "";
+    defaultOption.textContent = placeholder;
+    defaultOption.disabled = true;
+    defaultOption.selected = true;
+    defaultOption.hidden = true;
+
+    select.appendChild(defaultOption);
+
+    // Memasukkan data referensi dari database
+    result.data.forEach((item) => {
+      const option = document.createElement("option");
+
+      option.value = item.nama;
+      option.textContent = item.nama;
+
+      select.appendChild(option);
+    });
+
+  } catch (error) {
+    console.error(`Gagal memuat ${elementId}:`, error);
+    alert(`Gagal memuat data ${placeholder}. Silakan muat ulang halaman.`);
+  }
+}
+
+// Memuat seluruh dropdown ketika halaman klasifikasi dibuka
+async function loadAllReferenceDropdowns() {
+  await Promise.all([
+    loadReferenceDropdown("ikan", "jenisIkan", "-- Pilih Jenis Ikan --"),
+    loadReferenceDropdown("alat", "alatTangkap", "-- Pilih Alat Tangkap --"),
+    loadReferenceDropdown("wilayah", "wilayah", "-- Pilih Wilayah --"),
+    loadReferenceDropdown("musim", "musim", "-- Pilih Musim --"),
+  ]);
+}
+
+// Menjalankan hanya jika halaman klasifikasi tersedia
+if (document.getElementById("classificationForm")) {
+  loadAllReferenceDropdowns();
+}
+
 // Mengambil elemen-elemen pada halaman klasifikasi
 const classificationForm = document.getElementById("classificationForm");
 const resultPlaceholder = document.getElementById("resultPlaceholder");
