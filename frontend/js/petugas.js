@@ -949,6 +949,20 @@ function initDetailPage() {
         card.style.border = "1px solid " + border;
       }
 
+      // 4.6. Warna judul & icon "Hasil Klasifikasi" ikut kategori
+      const title = document.getElementById("resultTitle");
+      if (title) {
+        title.classList.remove("green-title", "blue-title", "warning-title");
+        let color = "#2e7d32"; // default Tinggi (hijau tua)
+        if (d.kategori === "Sedang")
+          color = "#b8860b"; // kuning/oranye tua
+        else if (d.kategori === "Rendah") color = "#c62828"; // merah tua
+        title.style.color = color;
+        // Icon di dalam judul ikut warna juga
+        const icon = title.querySelector("i");
+        if (icon) icon.style.color = color;
+      }
+
       document.getElementById("detailKesimpulan").textContent =
         result.kesimpulan || "-";
       document.getElementById("detailSaran").textContent = result.saran || "-";
