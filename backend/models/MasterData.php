@@ -42,6 +42,21 @@ class MasterData {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Mengambil data referensi yang berstatus Aktif
+    public function getActive($type) {
+        $table = $this->getTable($type);
+
+        $query = "SELECT id, nama
+                FROM $table
+                WHERE status = 'Aktif'
+                ORDER BY nama ASC";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     // Mengambil data berdasarkan ID
     public function getById($type, $id) {
         $table = $this->getTable($type);

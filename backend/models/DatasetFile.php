@@ -99,6 +99,9 @@ class DatasetFile {
                 ]);
             }
 
+            // Sinkronisasi otomatis ke tabel referensi
+            $this->syncReferenceData($rows);
+
             $this->conn->commit();
 
             return true;
@@ -109,6 +112,68 @@ class DatasetFile {
             }
 
             throw $e;
+        }
+    }
+
+    // ==========================================
+    // SINKRONISASI DATA REFERENSI OTOMATIS
+    // ==========================================
+    
+    private function syncReferenceData($rows) {
+
+        $referenceTables = [
+            "jenis_ikan" => "ref_jenis_ikan",
+            "alat_tangkap" => "ref_alat_tangkap",
+            "wilayah" => "ref_wilayah",
+            "musim" => "ref_musim"
+        ];
+
+        foreach ($referenceTables as $column => $table) {
+
+            $checkQuery = "
+                SELECT id
+                FROM {$table}
+                WHERE LOWER(TRIM(nama)) = LOWER(TRIM(:nama))
+                LIMIT 1
+            ";
+
+            $insertQuery = "
+                INSERT INTO {$table} (nama, status)
+                VALUES (:nama, 'Aktif')
+            ";
+
+            $checkStmt = $this->conn->prepare($checkQuery);
+            $insertStmt = $this->conn->prepare($insertQuery);
+
+            $uniqueValues = [];
+
+            foreach ($rows as $row) {
+
+                $value = trim($row[$column] ?? "");
+
+                if ($value === "") {
+                    continue;
+                }
+
+                $normalized = mb_strtolower($value, "UTF-8");
+
+                if (!isset($uniqueValues[$normalized])) {
+                    $uniqueValues[$normalized] = $value;
+                }
+            }
+
+            foreach ($uniqueValues as $value) {
+
+                $checkStmt->execute([
+                    ":nama" => $value
+                ]);
+
+                if (!$checkStmt->fetch(PDO::FETCH_ASSOC)) {
+                    $insertStmt->execute([
+                        ":nama" => $value
+                    ]);
+                }
+            }
         }
     }
 
