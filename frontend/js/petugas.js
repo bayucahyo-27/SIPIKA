@@ -37,6 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initDatasetPage();
   initRiwayatPage();
   initProfilPage();
+  initDetailPage();
+  initEvaluasiPage();
 });
 
 // ==========================================
@@ -87,6 +89,7 @@ function initDatasetPage() {
             : '<span class="badge badge-rendah">Rendah</span>';
 
       const tr = document.createElement("tr");
+      tr.setAttribute("data-date", (r.created_at || "").slice(0, 7)); // <-- UBAH JADI 'r'
       tr.setAttribute("data-id", r.id); // <-- ID buat edit/hapus
       tr.setAttribute("data-page", page);
       tr.innerHTML = `
@@ -459,115 +462,219 @@ function initDatasetPage() {
       }
     });
   }
-  // 3. Logika Proses Data CSV (PLACEHOLDER FASE 4)
-  window.processCSV = function () {
-    alert(
-      "🚧 Fitur Upload CSV ke database sedang dalam pengembangan (Fase 4). Untuk saat ini, silakan gunakan tab Input Manual ya, Bre!",
-    );
+  // 3. Logika Proses Data CSV (REAL IMPLEMENTATION)
+  window.processCSV = async function () {
+    if (!csvFileInput.files || !csvFileInput.files[0]) {
+      alert("Pilih file CSV terlebih dahulu!");
+      return;
+    }
+
+    const formData = new FormData();
+    // Nama 'csv_file' harus SAMA PERSIS dengan yang dibaca di DatasetController.php
+    formData.append("csv_file", csvFileInput.files[0]);
+
+    const btn = document.querySelector(".btn-process-csv");
+    const originalText = btn.innerHTML;
+
+    // Ubah tombol jadi loading
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses...';
+    btn.disabled = true;
+
+    try {
+      const response = await fetch("/SIPIKA/backend/datasets/upload-csv.php", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        alert(`✅ ${result.message}`);
+
+        // Reset input file dan sembunyikan preview
+        csvFileInput.value = "";
+        document.getElementById("csvPreview").style.display = "none";
+
+        // Tutup modal
+        if (typeof closeModal === "function") {
+          closeModal();
+        }
+
+        // Refresh halaman agar tabel ter-update dengan data baru dari DB
+        location.reload();
+      } else {
+        alert(`❌ Gagal: ${result.message}`);
+      }
+    } catch (error) {
+      console.error("Error upload CSV:", error);
+      alert("Terjadi kesalahan jaringan saat mengunggah CSV.");
+    } finally {
+      // Kembalikan tombol ke kondisi semula
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    }
   };
 }
 
 // ==========================================
-// 3. LOGIKA HALAMAN RIWAYAT PREDIKSI
+// 3. LOGIKA HALAMAN RIWAYAT DATASET PETUGAS
 // ==========================================
 function initRiwayatPage() {
   const historyTable = document.getElementById("historyTable");
   if (!historyTable) return;
 
-  let historyCurrentPage = 1;
-  const historyTotalPages = 3;
+  const tbody = historyTable.querySelector("tbody");
+  let allData = [];
+  let currentPage = 1;
+  const rowsPerPage = 10;
 
-  function switchHistoryPage(page) {
-    if (page < 1 || page > historyTotalPages) return;
-    historyCurrentPage = page;
+  async function loadRiwayat() {
+    tbody.innerHTML =
+      '<tr><td colspan="9" style="text-align:center;padding:20px;"><i class="fa-solid fa-spinner fa-spin"></i> Memuat data...</td></tr>';
+    try {
+      const apiUrl = window.location.origin + "/SIPIKA/backend/data-produksi";
+      const res = await fetch(apiUrl);
+      const result = await res.json();
+      if (result.status === "success") {
+        allData = result.data || [];
+        renderTable();
+      } else {
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;color:red;">${result.message}</td></tr>`;
+      }
+    } catch (err) {
+      console.error(err);
+      tbody.innerHTML =
+        '<tr><td colspan="9" style="text-align:center;color:red;">Gagal koneksi server.</td></tr>';
+    }
+  }
 
-    historyTable.querySelectorAll("tbody tr").forEach((row) => {
-      row.style.display =
-        row.getAttribute("data-page") == historyCurrentPage ? "" : "none";
+  function renderTable() {
+    tbody.innerHTML = "";
+    if (allData.length === 0) {
+      tbody.innerHTML =
+        '<tr><td colspan="9" style="text-align:center;padding:20px;color:#888;">Belum ada data dataset.</td></tr>';
+      updatePagination(0);
+      return;
+    }
+    const totalPages = Math.ceil(allData.length / rowsPerPage);
+    const start = (currentPage - 1) * rowsPerPage;
+    const pageData = allData.slice(start, start + rowsPerPage);
+
+    pageData.forEach((item, i) => {
+      const no = start + i + 1;
+      const d = new Date(item.created_at);
+      const tgl = d.toLocaleString("id-ID", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+      let badge = "badge-rendah";
+      if (item.kategori === "Tinggi") badge = "badge-tinggi";
+      else if (item.kategori === "Sedang") badge = "badge-sedang";
+
+      const tr = document.createElement("tr");
+      tr.setAttribute("data-date", (item.created_at || "").slice(0, 7));
+      tr.innerHTML = `
+        <td>${no}</td>
+        <td>${tgl}</td>
+        <td>${item.jenis_ikan || "-"}</td>
+        <td>${item.alat_tangkap || "-"}</td>
+        <td>${item.wilayah || "-"}</td>
+        <td>${item.musim || "-"}</td>
+        <td>${item.produksi_kg || "-"}</td>
+        <td><span class="badge ${badge}">${item.kategori || "-"}</span></td>
+        <td style="text-align:center">
+          <a href="detail-prediksi.html?id=${item.id}" class="btn-detail">Detail</a>
+        </td>`;
+      tbody.appendChild(tr);
     });
+    updatePagination(totalPages);
+  }
 
-    document.querySelectorAll(".page-num").forEach((btn, index) => {
-      btn.classList.toggle("active", index + 1 === historyCurrentPage);
+  function updatePagination(totalPages) {
+    const wrap = document.querySelector(".pagination-container");
+    if (!wrap) return;
+
+    let html = `<button class="page-btn page-nav" id="prevBtn" ${currentPage === 1 ? "disabled" : ""}><i class="fa-solid fa-chevron-left"></i></button>`;
+
+    // Window: cuma tampilin max 5 nomor di sekitar halaman aktif
+    let startPage = Math.max(1, currentPage - 2);
+    let endPage = Math.min(totalPages, startPage + 4);
+    if (endPage - startPage < 4) startPage = Math.max(1, endPage - 4);
+
+    // Tampilin halaman 1 + ellipsis kalau perlu
+    if (startPage > 1) {
+      html += `<button class="page-btn page-num" data-page="1">1</button>`;
+      if (startPage > 2) html += `<span class="page-ellipsis">…</span>`;
+    }
+
+    // Nomor halaman aktif (window)
+    for (let i = startPage; i <= endPage; i++) {
+      html += `<button class="page-btn page-num ${i === currentPage ? "active" : ""}" data-page="${i}">${i}</button>`;
+    }
+
+    // Tampilin halaman terakhir + ellipsis kalau perlu
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1)
+        html += `<span class="page-ellipsis">…</span>`;
+      html += `<button class="page-btn page-num" data-page="${totalPages}">${totalPages}</button>`;
+    }
+
+    html += `<button class="page-btn page-nav" id="nextBtn" ${currentPage === totalPages ? "disabled" : ""}><i class="fa-solid fa-chevron-right"></i></button>`;
+
+    wrap.innerHTML = html;
+
+    document.getElementById("prevBtn")?.addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderTable();
+      }
+    });
+    document.getElementById("nextBtn")?.addEventListener("click", () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderTable();
+      }
+    });
+    wrap.querySelectorAll(".page-num").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        currentPage = parseInt(btn.dataset.page);
+        renderTable();
+      });
     });
   }
 
-  window.changeHistoryPage = function (page) {
-    switchHistoryPage(page);
-  };
-
-  // Filter gabungan: Pencarian Teks + Filter Dropdown Tanggal
+  // Filter gabungan: search + tanggal (client-side)
   window.filterHistoryTable = function () {
-    const searchValue = document
-      .getElementById("searchInput")
-      .value.toLowerCase();
-    const dateValue = document.getElementById("dateFilter").value; // Format: "YYYY-MM"
-    const rows = historyTable.querySelectorAll("tbody tr");
-
-    rows.forEach((row) => {
+    const kw = document.getElementById("searchInput").value.toLowerCase();
+    const dv = document.getElementById("dateFilter").value;
+    tbody.querySelectorAll("tr").forEach((row) => {
       const text = row.textContent.toLowerCase();
-      const dateText = row.cells[1].innerText; // Contoh: "10 Okt 2026, 14:23"
-
-      const matchSearch = text.includes(searchValue);
-
-      // Logika pencocokan tanggal sederhana untuk simulasi
-      let matchDate = true;
-      if (dateValue) {
-        const [year, month] = dateValue.split("-");
-        const months = [
-          "",
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "Mei",
-          "Jun",
-          "Jul",
-          "Agu",
-          "Sep",
-          "Okt",
-          "Nov",
-          "Des",
-        ];
-        const monthName = months[parseInt(month)];
-        matchDate = dateText.includes(year) && dateText.includes(monthName);
+      let ok = text.includes(kw);
+      if (ok && dv) {
+        ok = row.getAttribute("data-date") === dv;
       }
-
-      row.style.display = matchSearch && matchDate ? "" : "none";
+      row.style.display = ok ? "" : "none";
     });
   };
 
-  // Event Listeners Riwayat
-  const searchInputRiwayat = document.getElementById("searchInput");
-  const dateFilter = document.getElementById("dateFilter");
-
-  if (searchInputRiwayat)
-    searchInputRiwayat.addEventListener("input", filterHistoryTable);
-  if (dateFilter) dateFilter.addEventListener("change", filterHistoryTable);
-
-  document.querySelectorAll(".page-num").forEach((btn, index) => {
-    btn.addEventListener("click", () => switchHistoryPage(index + 1));
-  });
-
   document
-    .getElementById("prevBtn")
-    ?.addEventListener("click", () =>
-      switchHistoryPage(historyCurrentPage - 1),
-    );
+    .getElementById("searchInput")
+    ?.addEventListener("input", window.filterHistoryTable);
   document
-    .getElementById("nextBtn")
-    ?.addEventListener("click", () =>
-      switchHistoryPage(historyCurrentPage + 1),
-    );
+    .getElementById("dateFilter")
+    ?.addEventListener("change", window.filterHistoryTable);
 
-  switchHistoryPage(1);
+  loadRiwayat();
 }
 
 // ==========================================
 // 4. LOGIKA HALAMAN PROFIL
 // ==========================================
-// ==========================================
-// 4. LOGIKA HALAMAN PROFIL (SUDAH NYAMBUNG KE BACKEND)
-// ==========================================
+
 function initProfilPage() {
   const uploadFotoInput = document.getElementById("uploadFotoInput");
 
@@ -758,4 +865,232 @@ function initProfilPage() {
   }
 
   loadProfilData();
+}
+
+// ==========================================
+// 5. LOGIKA HALAMAN DETAIL DATASET PETUGAS
+// ==========================================
+function initDetailPage() {
+  const elJenis = document.getElementById("detailJenis");
+  if (!elJenis) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  if (!id) {
+    document.querySelector(".detail-grid").innerHTML =
+      '<div style="text-align:center;padding:40px;color:#888;">ID data tidak ditemukan. Silakan buka dari halaman Riwayat.</div>';
+    return;
+  }
+
+  async function loadDetail() {
+    try {
+      const apiUrl =
+        window.location.origin + "/SIPIKA/backend/data-produksi/" + id;
+      const res = await fetch(apiUrl);
+      const result = await res.json();
+
+      if (result.status !== "success") {
+        document.querySelector(".detail-grid").innerHTML =
+          '<div style="text-align:center;padding:40px;color:red;">' +
+          (result.message || "Data tidak ditemukan.") +
+          "</div>";
+        return;
+      }
+
+      const d = result.data;
+
+      document.getElementById("detailJenis").textContent = d.jenis_ikan || "-";
+      document.getElementById("detailWilayah").textContent = d.wilayah || "-";
+      document.getElementById("detailAlat").textContent = d.alat_tangkap || "-";
+      document.getElementById("detailMusim").textContent = d.musim || "-";
+      document.getElementById("detailProduksi").textContent =
+        d.produksi_kg || "-";
+
+      const dt = new Date(d.created_at);
+      document.getElementById("detailTanggal").textContent = dt.toLocaleString(
+        "id-ID",
+        {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        },
+      );
+
+      const badge = document.getElementById("detailBadge");
+      badge.textContent = d.kategori || "-";
+      badge.classList.remove("badge-tinggi", "badge-sedang", "badge-rendah");
+      if (d.kategori === "Tinggi") badge.classList.add("badge-tinggi");
+      else if (d.kategori === "Sedang") badge.classList.add("badge-sedang");
+      else badge.classList.add("badge-rendah");
+
+      document.getElementById("detailDesc").textContent =
+        "Tingkat produksi ikan tangkapan termasuk dalam kategori " +
+        (d.kategori || "-").toLowerCase() +
+        ".";
+
+      // 4.5. Warna background card ikut kategori
+      const card = document.getElementById("resultCard");
+      if (card) {
+        let bg = "#e8f5e9",
+          border = "#a5d6a7"; // default Tinggi (hijau)
+        if (d.kategori === "Sedang") {
+          bg = "#fff4d6";
+          border = "#f5d98a";
+        } else if (d.kategori === "Rendah") {
+          bg = "#fdecea";
+          border = "#f5b5b5";
+        } else if (d.kategori === "Tinggi") {
+          bg = "#e8f5e9";
+          border = "#a5d6a7";
+        }
+        card.style.background = bg;
+        card.style.border = "1px solid " + border;
+      }
+
+      // 4.6. Warna judul & icon "Hasil Klasifikasi" ikut kategori
+      const title = document.getElementById("resultTitle");
+      if (title) {
+        title.classList.remove("green-title", "blue-title", "warning-title");
+        let color = "#2e7d32"; // default Tinggi (hijau tua)
+        if (d.kategori === "Sedang")
+          color = "#b8860b"; // kuning/oranye tua
+        else if (d.kategori === "Rendah") color = "#c62828"; // merah tua
+        title.style.color = color;
+        // Icon di dalam judul ikut warna juga
+        const icon = title.querySelector("i");
+        if (icon) icon.style.color = color;
+      }
+
+      document.getElementById("detailKesimpulan").textContent =
+        result.kesimpulan || "-";
+      document.getElementById("detailSaran").textContent = result.saran || "-";
+    } catch (err) {
+      console.error("Gagal load detail:", err);
+      document.querySelector(".detail-grid").innerHTML =
+        '<div style="text-align:center;padding:40px;color:red;">Gagal terhubung ke server.</div>';
+    }
+  }
+
+  loadDetail();
+}
+
+// ==========================================
+// 7. LOGIKA HALAMAN EVALUASI MODEL
+// ==========================================
+function initEvaluasiPage() {
+  const evalBody = document.getElementById("evalTableBody");
+  if (!evalBody) return;
+
+  // Helper: warna heatmap berdasarkan nilai vs max
+  function cellColor(v, max) {
+    const r = v / max;
+    if (r >= 0.9) return ["#124b8b", "#ffffff"];
+    if (r >= 0.7) return ["#2874bd", "#ffffff"];
+    if (r >= 0.45) return ["#4b9be5", "#ffffff"];
+    return ["#eff6ff", "#1e293b"];
+  }
+
+  async function loadEvaluasi() {
+    try {
+      const apiUrl =
+        window.location.origin + "/SIPIKA/backend/model-evaluations";
+      const res = await fetch(apiUrl);
+      const result = await res.json();
+
+      if (result.status !== "success") {
+        evalBody.innerHTML =
+          '<tr><td colspan="5" style="text-align:center;color:#888;">' +
+          (result.message || "Belum ada data evaluasi.") +
+          "</td></tr>";
+        return;
+      }
+
+      const d = result.data;
+
+      // 1. AKURASI
+      const acc = document.getElementById("accuracyValue");
+      if (acc) acc.textContent = (Number(d.accuracy) * 100).toFixed(1) + "%";
+
+      // 2. TABEL METRIK (Rendah, Sedang, Tinggi)
+      const rows = [
+        {
+          label: "Rendah",
+          cls: "badge-rendah",
+          p: d.precision_rendah,
+          r: d.recall_rendah,
+          f: d.f1_rendah,
+          s: d.support_rendah,
+        },
+        {
+          label: "Sedang",
+          cls: "badge-sedang",
+          p: d.precision_sedang,
+          r: d.recall_sedang,
+          f: d.f1_sedang,
+          s: d.support_sedang,
+        },
+        {
+          label: "Tinggi",
+          cls: "badge-tinggi",
+          p: d.precision_tinggi,
+          r: d.recall_tinggi,
+          f: d.f1_tinggi,
+          s: d.support_tinggi,
+        },
+      ];
+      evalBody.innerHTML = rows
+        .map(
+          (x) => `
+        <tr>
+          <td><span class="badge ${x.cls}">${x.label}</span></td>
+          <td>${Number(x.p).toFixed(2)}</td>
+          <td>${Number(x.r).toFixed(2)}</td>
+          <td>${Number(x.f).toFixed(2)}</td>
+          <td>${x.s}</td>
+        </tr>`,
+        )
+        .join("");
+
+      // 3. CONFUSION MATRIX (heatmap otomatis ngikutin nilai)
+      const matrixBody = document.getElementById("matrixBody");
+      if (matrixBody) {
+        let cm = d.confusion_matrix;
+        if (typeof cm === "string") {
+          try {
+            cm = JSON.parse(cm);
+          } catch (e) {
+            cm = null;
+          }
+        }
+
+        if (!cm || !Array.isArray(cm)) {
+          matrixBody.innerHTML =
+            '<tr><td colspan="4" style="text-align:center;color:#888;">Data matrix tidak valid.</td></tr>';
+        } else {
+          const maxVal = Math.max(...cm.flat());
+          const labels = ["Rendah", "Sedang", "Tinggi"];
+          matrixBody.innerHTML = cm
+            .map((row, i) => {
+              const cells = row
+                .map((v) => {
+                  const [bg, fg] = cellColor(v, maxVal);
+                  return `<td style="background:${bg};color:${fg};font-weight:700;">${v}</td>`;
+                })
+                .join("");
+              return `<tr><th>${labels[i]}</th>${cells}</tr>`;
+            })
+            .join("");
+        }
+      }
+    } catch (err) {
+      console.error("Gagal load evaluasi:", err);
+      evalBody.innerHTML =
+        '<tr><td colspan="5" style="text-align:center;color:red;">Gagal terhubung ke server.</td></tr>';
+    }
+  }
+
+  loadEvaluasi();
 }
