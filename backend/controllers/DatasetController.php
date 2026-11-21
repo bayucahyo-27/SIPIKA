@@ -462,12 +462,16 @@ class DatasetController {
                     "jumlah_data" => count($rows)
                 ]
             ]);
-        } catch (Exception $e) {
+        
+        } catch (Throwable $e) {
+            error_log("UPLOAD DATASET ERROR: " . $e->getMessage());
+
             if (file_exists($destination)) {
                 unlink($destination);
             }
 
             http_response_code(500);
+
             echo json_encode([
                 "status" => "error",
                 "message" => "Terjadi kesalahan saat menyimpan dataset."

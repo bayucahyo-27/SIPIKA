@@ -143,7 +143,7 @@ class AuthController {
                     $mail->setFrom('salmiinnano@gmail.com', 'Sistem SIPIKA');
                     $mail->addAddress($data->email);
 
-                    $resetLink = "http://localhost/SIPIKA/frontend/pages/auth/reset-password.html?token=" . $token;
+                   $resetLink = "http://10.145.111.150/SIPIKA/frontend/pages/auth/reset-password.html?token=" . $token;
                     $mail->isHTML(true);
                     $mail->Subject = 'Reset Password Akun SIPIKA Anda';
                     $mail->Body    = "
