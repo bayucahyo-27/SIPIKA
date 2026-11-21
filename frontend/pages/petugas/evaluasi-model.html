@@ -23,9 +23,6 @@
     <!-- CSS Utama -->
     <link rel="stylesheet" href="../../css/global.css" />
     <link rel="stylesheet" href="../../css/petugas.css" />
-
-    <!-- CSS Khusus Evaluasi Model -->
-    <link rel="stylesheet" href="../../css/evaluasi-model.css" />
   </head>
 
   <body class="evaluation-page">
@@ -158,7 +155,7 @@
                     </tr>
                   </thead>
 
-                  <tbody>
+                  <tbody id="evalTableBody">
                     <tr>
                       <td>
                         <span class="badge badge-rendah">Rendah</span>
@@ -203,7 +200,7 @@
                 <div class="accuracy-content">
                   <div class="accuracy-title">Akurasi Model</div>
 
-                  <div class="accuracy-value">92.4%</div>
+                  <div class="accuracy-value" id="accuracyValue">92.4%</div>
 
                   <div class="accuracy-desc">
                     Persentase prediksi yang sesuai dengan data aktual.
@@ -245,7 +242,7 @@
                     </tr>
                   </thead>
 
-                  <tbody>
+                  <tbody id="matrixBody">
                     <tr>
                       <th>Rendah</th>
                       <td class="matrix-cell-high">150</td>

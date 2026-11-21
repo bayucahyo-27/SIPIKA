@@ -420,6 +420,17 @@ if (
     exit();
 }
 
+// GET: /model-evaluations → hasil evaluasi model terbaru
+if (
+    $request_method == 'GET' &&
+    $request_uri == '/model-evaluations'
+) {
+    require_once 'controllers/EvaluationController.php';
+    $controller = new EvaluationController();
+    $controller->getEvaluation();
+    exit();
+}
+
 // POST: /data-produksi → tambah data manual
 if ($request_method == 'POST' && $request_uri == '/data-produksi') {
     require_once 'controllers/DatasetController.php';

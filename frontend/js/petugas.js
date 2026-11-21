@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initRiwayatPage();
   initProfilPage();
   initDetailPage();
+  initEvaluasiPage();
 });
 
 // ==========================================
@@ -974,4 +975,122 @@ function initDetailPage() {
   }
 
   loadDetail();
+}
+
+// ==========================================
+// 7. LOGIKA HALAMAN EVALUASI MODEL
+// ==========================================
+function initEvaluasiPage() {
+  const evalBody = document.getElementById("evalTableBody");
+  if (!evalBody) return;
+
+  // Helper: warna heatmap berdasarkan nilai vs max
+  function cellColor(v, max) {
+    const r = v / max;
+    if (r >= 0.9) return ["#124b8b", "#ffffff"];
+    if (r >= 0.7) return ["#2874bd", "#ffffff"];
+    if (r >= 0.45) return ["#4b9be5", "#ffffff"];
+    return ["#eff6ff", "#1e293b"];
+  }
+
+  async function loadEvaluasi() {
+    try {
+      const apiUrl =
+        window.location.origin + "/SIPIKA/backend/model-evaluations";
+      const res = await fetch(apiUrl);
+      const result = await res.json();
+
+      if (result.status !== "success") {
+        evalBody.innerHTML =
+          '<tr><td colspan="5" style="text-align:center;color:#888;">' +
+          (result.message || "Belum ada data evaluasi.") +
+          "</td></tr>";
+        return;
+      }
+
+      const d = result.data;
+
+      // 1. AKURASI
+      const acc = document.getElementById("accuracyValue");
+      if (acc) acc.textContent = (Number(d.accuracy) * 100).toFixed(1) + "%";
+
+      // 2. TABEL METRIK (Rendah, Sedang, Tinggi)
+      const rows = [
+        {
+          label: "Rendah",
+          cls: "badge-rendah",
+          p: d.precision_rendah,
+          r: d.recall_rendah,
+          f: d.f1_rendah,
+          s: d.support_rendah,
+        },
+        {
+          label: "Sedang",
+          cls: "badge-sedang",
+          p: d.precision_sedang,
+          r: d.recall_sedang,
+          f: d.f1_sedang,
+          s: d.support_sedang,
+        },
+        {
+          label: "Tinggi",
+          cls: "badge-tinggi",
+          p: d.precision_tinggi,
+          r: d.recall_tinggi,
+          f: d.f1_tinggi,
+          s: d.support_tinggi,
+        },
+      ];
+      evalBody.innerHTML = rows
+        .map(
+          (x) => `
+        <tr>
+          <td><span class="badge ${x.cls}">${x.label}</span></td>
+          <td>${Number(x.p).toFixed(2)}</td>
+          <td>${Number(x.r).toFixed(2)}</td>
+          <td>${Number(x.f).toFixed(2)}</td>
+          <td>${x.s}</td>
+        </tr>`,
+        )
+        .join("");
+
+      // 3. CONFUSION MATRIX (heatmap otomatis ngikutin nilai)
+      const matrixBody = document.getElementById("matrixBody");
+      if (matrixBody) {
+        let cm = d.confusion_matrix;
+        if (typeof cm === "string") {
+          try {
+            cm = JSON.parse(cm);
+          } catch (e) {
+            cm = null;
+          }
+        }
+
+        if (!cm || !Array.isArray(cm)) {
+          matrixBody.innerHTML =
+            '<tr><td colspan="4" style="text-align:center;color:#888;">Data matrix tidak valid.</td></tr>';
+        } else {
+          const maxVal = Math.max(...cm.flat());
+          const labels = ["Rendah", "Sedang", "Tinggi"];
+          matrixBody.innerHTML = cm
+            .map((row, i) => {
+              const cells = row
+                .map((v) => {
+                  const [bg, fg] = cellColor(v, maxVal);
+                  return `<td style="background:${bg};color:${fg};font-weight:700;">${v}</td>`;
+                })
+                .join("");
+              return `<tr><th>${labels[i]}</th>${cells}</tr>`;
+            })
+            .join("");
+        }
+      }
+    } catch (err) {
+      console.error("Gagal load evaluasi:", err);
+      evalBody.innerHTML =
+        '<tr><td colspan="5" style="text-align:center;color:red;">Gagal terhubung ke server.</td></tr>';
+    }
+  }
+
+  loadEvaluasi();
 }
