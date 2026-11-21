@@ -525,5 +525,74 @@ class DatasetController {
             ]);
         }
     }
+
+        // 5. POST: Upload CSV Massal
+    public function uploadCsv() {
+        // Cek apakah file ada
+        if (!isset($_FILES['csv_file']) || $_FILES['csv_file']['error'] !== UPLOAD_ERR_OK) {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "File CSV tidak ditemukan atau rusak."]);
+            return;
+        }
+
+        $file = $_FILES['csv_file']['tmp_name'];
+        $handle = fopen($file, "r");
+
+        if ($handle === false) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "Gagal membuka file CSV."]);
+            return;
+        }
+
+        // Lewati baris pertama (header CSV)
+        fgetcsv($handle);
+
+        $successCount = 0;
+        $errorCount = 0;
+        $dataProduksi = new DataProduksi($this->db);
+
+        // Baca setiap baris
+        while (($row = fgetcsv($handle)) !== false) {
+            // Pastikan baris memiliki minimal 5 kolom
+            if (count($row) < 5) {
+                $errorCount++;
+                continue; 
+            }
+
+            // Map data (Index 0-4, Index 5 'tingkat_produksi' diabaikan karena dihitung otomatis oleh Model)
+            $dataProduksi->jenis_ikan = trim($row[0]);
+            $dataProduksi->alat_tangkap = trim($row[1]);
+            $dataProduksi->wilayah = trim($row[2]);
+            $dataProduksi->musim = trim($row[3]);
+            $dataProduksi->produksi_kg = (int) trim($row[4]);
+
+            // Validasi dasar
+            if (empty($dataProduksi->jenis_ikan) || empty($dataProduksi->produksi_kg)) {
+                $errorCount++;
+                continue;
+            }
+
+            // Simpan ke database
+            if ($dataProduksi->create()) {
+                $successCount++;
+            } else {
+                $errorCount++;
+            }
+        }
+        fclose($handle);
+
+        if ($successCount > 0) {
+            http_response_code(200);
+            echo json_encode([
+                "status" => "success",
+                "message" => "Berhasil mengunggah {$successCount} data. ({$errorCount} data dilewati/gagal).",
+                "success_count" => $successCount
+            ]);
+        } else {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "Gagal memproses data. Pastikan format CSV sesuai."]);
+        }
+    }
 }
 ?>
+

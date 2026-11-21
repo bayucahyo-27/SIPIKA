@@ -459,11 +459,57 @@ function initDatasetPage() {
       }
     });
   }
-  // 3. Logika Proses Data CSV (PLACEHOLDER FASE 4)
-  window.processCSV = function () {
-    alert(
-      "🚧 Fitur Upload CSV ke database sedang dalam pengembangan (Fase 4). Untuk saat ini, silakan gunakan tab Input Manual ya, Bre!",
-    );
+  // 3. Logika Proses Data CSV (REAL IMPLEMENTATION)
+  window.processCSV = async function () {
+    if (!csvFileInput.files || !csvFileInput.files[0]) {
+      alert("Pilih file CSV terlebih dahulu!");
+      return;
+    }
+
+    const formData = new FormData();
+    // Nama 'csv_file' harus SAMA PERSIS dengan yang dibaca di DatasetController.php
+    formData.append("csv_file", csvFileInput.files[0]);
+
+    const btn = document.querySelector(".btn-process-csv");
+    const originalText = btn.innerHTML;
+
+    // Ubah tombol jadi loading
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses...';
+    btn.disabled = true;
+
+    try {
+      const response = await fetch("/SIPIKA/backend/datasets/upload-csv.php", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        alert(`✅ ${result.message}`);
+
+        // Reset input file dan sembunyikan preview
+        csvFileInput.value = "";
+        document.getElementById("csvPreview").style.display = "none";
+
+        // Tutup modal
+        if (typeof closeModal === "function") {
+          closeModal();
+        }
+
+        // Refresh halaman agar tabel ter-update dengan data baru dari DB
+        location.reload();
+      } else {
+        alert(`❌ Gagal: ${result.message}`);
+      }
+    } catch (error) {
+      console.error("Error upload CSV:", error);
+      alert("Terjadi kesalahan jaringan saat mengunggah CSV.");
+    } finally {
+      // Kembalikan tombol ke kondisi semula
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    }
   };
 }
 

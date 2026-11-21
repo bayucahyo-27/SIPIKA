@@ -397,6 +397,48 @@ if ($request_method == 'GET' && $request_uri == '/admin/dashboard') {
     exit();
 }
 
+// ==========================================
+// ROUTING DATA PRODUKSI (PETUGAS)
+// ==========================================
+
+// GET: /data-produksi → ambil semua data (buat render tabel)
+if ($request_method == 'GET' && $request_uri == '/data-produksi') {
+    require_once 'controllers/DatasetController.php';
+    $controller = new DatasetController();
+    $controller->getAll();
+    exit();
+}
+
+// POST: /data-produksi → tambah data manual
+if ($request_method == 'POST' && $request_uri == '/data-produksi') {
+    require_once 'controllers/DatasetController.php';
+    $controller = new DatasetController();
+    $controller->create();
+    exit();
+}
+
+// PUT: /data-produksi/{id} → edit data
+if (
+    $request_method == 'PUT' &&
+    preg_match('#^/data-produksi/([0-9]+)$#', $request_uri, $matches)
+) {
+    require_once 'controllers/DatasetController.php';
+    $controller = new DatasetController();
+    $controller->update((int) $matches[1]);
+    exit();
+}
+
+// DELETE: /data-produksi/{id} → hapus data
+if (
+    $request_method == 'DELETE' &&
+    preg_match('#^/data-produksi/([0-9]+)$#', $request_uri, $matches)
+) {
+    require_once 'controllers/DatasetController.php';
+    $controller = new DatasetController();
+    $controller->delete((int) $matches[1]);
+    exit();
+}
+
 // Kalau endpoint gak ditemukan
 http_response_code(404);
 echo json_encode([
