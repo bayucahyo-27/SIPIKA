@@ -71,7 +71,7 @@ class DatasetFile {
                     wilayah,
                     musim,
                     produksi_kg,
-                    kategori
+                    tingkat_produksi
                 )
                 VALUES
                 (
@@ -81,7 +81,7 @@ class DatasetFile {
                     :wilayah,
                     :musim,
                     :produksi_kg,
-                    :kategori
+                    :tingkat_produksi
                 )
             ";
 
@@ -95,7 +95,7 @@ class DatasetFile {
                     ":wilayah" => $row["wilayah"],
                     ":musim" => $row["musim"],
                     ":produksi_kg" => $row["produksi_kg"],
-                    ":kategori" => $row["kategori"]
+                    ":tingkat_produksi" => $row["tingkat_produksi"]
                 ]);
             }
 

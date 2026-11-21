@@ -290,12 +290,12 @@ class DatasetController {
         );
 
         $requiredHeaders = [
-            "jenis_ikan",
-            "alat_tangkap",
-            "wilayah",
-            "musim",
-            "produksi_kg",
-            "kategori"
+        "jenis_ikan",
+        "alat_tangkap",
+        "wilayah",
+        "musim",
+        "produksi_kg",
+        "tingkat_produksi"
         ];
 
         if ($header !== $requiredHeaders) {
@@ -364,15 +364,15 @@ class DatasetController {
             }
 
             if (!in_array(
-                $row["kategori"],
-                ["Rendah", "Sedang", "Tinggi"],
-                true
+            $row["tingkat_produksi"],
+            ["Rendah", "Sedang", "Tinggi"],
+            true
             )) {
                 fclose($handle);
                 http_response_code(400);
                 echo json_encode([
                     "status" => "error",
-                    "message" => "Kategori tidak valid pada baris " .
+                    "message" => "Tingkat produksi tidak valid pada baris " .
                         $lineNumber . "."
                 ]);
                 return;
