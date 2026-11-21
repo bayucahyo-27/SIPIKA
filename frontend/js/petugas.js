@@ -87,6 +87,7 @@ function initDatasetPage() {
             : '<span class="badge badge-rendah">Rendah</span>';
 
       const tr = document.createElement("tr");
+      tr.setAttribute("data-date", (r.created_at || "").slice(0, 7)); // <-- UBAH JADI 'r'
       tr.setAttribute("data-id", r.id); // <-- ID buat edit/hapus
       tr.setAttribute("data-page", page);
       tr.innerHTML = `
@@ -514,106 +515,164 @@ function initDatasetPage() {
 }
 
 // ==========================================
-// 3. LOGIKA HALAMAN RIWAYAT PREDIKSI
+// 3. LOGIKA HALAMAN RIWAYAT DATASET PETUGAS
 // ==========================================
 function initRiwayatPage() {
   const historyTable = document.getElementById("historyTable");
   if (!historyTable) return;
 
-  let historyCurrentPage = 1;
-  const historyTotalPages = 3;
+  const tbody = historyTable.querySelector("tbody");
+  let allData = [];
+  let currentPage = 1;
+  const rowsPerPage = 10;
 
-  function switchHistoryPage(page) {
-    if (page < 1 || page > historyTotalPages) return;
-    historyCurrentPage = page;
+  async function loadRiwayat() {
+    tbody.innerHTML =
+      '<tr><td colspan="9" style="text-align:center;padding:20px;"><i class="fa-solid fa-spinner fa-spin"></i> Memuat data...</td></tr>';
+    try {
+      const apiUrl = window.location.origin + "/SIPIKA/backend/data-produksi";
+      const res = await fetch(apiUrl);
+      const result = await res.json();
+      if (result.status === "success") {
+        allData = result.data || [];
+        renderTable();
+      } else {
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;color:red;">${result.message}</td></tr>`;
+      }
+    } catch (err) {
+      console.error(err);
+      tbody.innerHTML =
+        '<tr><td colspan="9" style="text-align:center;color:red;">Gagal koneksi server.</td></tr>';
+    }
+  }
 
-    historyTable.querySelectorAll("tbody tr").forEach((row) => {
-      row.style.display =
-        row.getAttribute("data-page") == historyCurrentPage ? "" : "none";
+  function renderTable() {
+    tbody.innerHTML = "";
+    if (allData.length === 0) {
+      tbody.innerHTML =
+        '<tr><td colspan="9" style="text-align:center;padding:20px;color:#888;">Belum ada data dataset.</td></tr>';
+      updatePagination(0);
+      return;
+    }
+    const totalPages = Math.ceil(allData.length / rowsPerPage);
+    const start = (currentPage - 1) * rowsPerPage;
+    const pageData = allData.slice(start, start + rowsPerPage);
+
+    pageData.forEach((item, i) => {
+      const no = start + i + 1;
+      const d = new Date(item.created_at);
+      const tgl = d.toLocaleString("id-ID", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+      let badge = "badge-rendah";
+      if (item.kategori === "Tinggi") badge = "badge-tinggi";
+      else if (item.kategori === "Sedang") badge = "badge-sedang";
+
+      const tr = document.createElement("tr");
+      tr.setAttribute("data-date", (item.created_at || "").slice(0, 7));
+      tr.innerHTML = `
+        <td>${no}</td>
+        <td>${tgl}</td>
+        <td>${item.jenis_ikan || "-"}</td>
+        <td>${item.alat_tangkap || "-"}</td>
+        <td>${item.wilayah || "-"}</td>
+        <td>${item.musim || "-"}</td>
+        <td>${item.produksi_kg || "-"}</td>
+        <td><span class="badge ${badge}">${item.kategori || "-"}</span></td>
+        <td style="text-align:center">
+          <a href="detail-prediksi.html?id=${item.id}" class="btn-detail">Detail</a>
+        </td>`;
+      tbody.appendChild(tr);
     });
+    updatePagination(totalPages);
+  }
 
-    document.querySelectorAll(".page-num").forEach((btn, index) => {
-      btn.classList.toggle("active", index + 1 === historyCurrentPage);
+  function updatePagination(totalPages) {
+    const wrap = document.querySelector(".pagination-container");
+    if (!wrap) return;
+
+    let html = `<button class="page-btn page-nav" id="prevBtn" ${currentPage === 1 ? "disabled" : ""}><i class="fa-solid fa-chevron-left"></i></button>`;
+
+    // Window: cuma tampilin max 5 nomor di sekitar halaman aktif
+    let startPage = Math.max(1, currentPage - 2);
+    let endPage = Math.min(totalPages, startPage + 4);
+    if (endPage - startPage < 4) startPage = Math.max(1, endPage - 4);
+
+    // Tampilin halaman 1 + ellipsis kalau perlu
+    if (startPage > 1) {
+      html += `<button class="page-btn page-num" data-page="1">1</button>`;
+      if (startPage > 2) html += `<span class="page-ellipsis">…</span>`;
+    }
+
+    // Nomor halaman aktif (window)
+    for (let i = startPage; i <= endPage; i++) {
+      html += `<button class="page-btn page-num ${i === currentPage ? "active" : ""}" data-page="${i}">${i}</button>`;
+    }
+
+    // Tampilin halaman terakhir + ellipsis kalau perlu
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1)
+        html += `<span class="page-ellipsis">…</span>`;
+      html += `<button class="page-btn page-num" data-page="${totalPages}">${totalPages}</button>`;
+    }
+
+    html += `<button class="page-btn page-nav" id="nextBtn" ${currentPage === totalPages ? "disabled" : ""}><i class="fa-solid fa-chevron-right"></i></button>`;
+
+    wrap.innerHTML = html;
+
+    document.getElementById("prevBtn")?.addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderTable();
+      }
+    });
+    document.getElementById("nextBtn")?.addEventListener("click", () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderTable();
+      }
+    });
+    wrap.querySelectorAll(".page-num").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        currentPage = parseInt(btn.dataset.page);
+        renderTable();
+      });
     });
   }
 
-  window.changeHistoryPage = function (page) {
-    switchHistoryPage(page);
-  };
-
-  // Filter gabungan: Pencarian Teks + Filter Dropdown Tanggal
+  // Filter gabungan: search + tanggal (client-side)
   window.filterHistoryTable = function () {
-    const searchValue = document
-      .getElementById("searchInput")
-      .value.toLowerCase();
-    const dateValue = document.getElementById("dateFilter").value; // Format: "YYYY-MM"
-    const rows = historyTable.querySelectorAll("tbody tr");
-
-    rows.forEach((row) => {
+    const kw = document.getElementById("searchInput").value.toLowerCase();
+    const dv = document.getElementById("dateFilter").value;
+    tbody.querySelectorAll("tr").forEach((row) => {
       const text = row.textContent.toLowerCase();
-      const dateText = row.cells[1].innerText; // Contoh: "10 Okt 2026, 14:23"
-
-      const matchSearch = text.includes(searchValue);
-
-      // Logika pencocokan tanggal sederhana untuk simulasi
-      let matchDate = true;
-      if (dateValue) {
-        const [year, month] = dateValue.split("-");
-        const months = [
-          "",
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "Mei",
-          "Jun",
-          "Jul",
-          "Agu",
-          "Sep",
-          "Okt",
-          "Nov",
-          "Des",
-        ];
-        const monthName = months[parseInt(month)];
-        matchDate = dateText.includes(year) && dateText.includes(monthName);
+      let ok = text.includes(kw);
+      if (ok && dv) {
+        ok = row.getAttribute("data-date") === dv;
       }
-
-      row.style.display = matchSearch && matchDate ? "" : "none";
+      row.style.display = ok ? "" : "none";
     });
   };
 
-  // Event Listeners Riwayat
-  const searchInputRiwayat = document.getElementById("searchInput");
-  const dateFilter = document.getElementById("dateFilter");
-
-  if (searchInputRiwayat)
-    searchInputRiwayat.addEventListener("input", filterHistoryTable);
-  if (dateFilter) dateFilter.addEventListener("change", filterHistoryTable);
-
-  document.querySelectorAll(".page-num").forEach((btn, index) => {
-    btn.addEventListener("click", () => switchHistoryPage(index + 1));
-  });
-
   document
-    .getElementById("prevBtn")
-    ?.addEventListener("click", () =>
-      switchHistoryPage(historyCurrentPage - 1),
-    );
+    .getElementById("searchInput")
+    ?.addEventListener("input", window.filterHistoryTable);
   document
-    .getElementById("nextBtn")
-    ?.addEventListener("click", () =>
-      switchHistoryPage(historyCurrentPage + 1),
-    );
+    .getElementById("dateFilter")
+    ?.addEventListener("change", window.filterHistoryTable);
 
-  switchHistoryPage(1);
+  loadRiwayat();
 }
 
 // ==========================================
 // 4. LOGIKA HALAMAN PROFIL
 // ==========================================
-// ==========================================
-// 4. LOGIKA HALAMAN PROFIL (SUDAH NYAMBUNG KE BACKEND)
-// ==========================================
+
 function initProfilPage() {
   const uploadFotoInput = document.getElementById("uploadFotoInput");
 
