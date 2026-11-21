@@ -20,6 +20,7 @@ from sklearn.metrics import (
 # KONFIGURASI LOKASI FILE
 # ==========================================
 
+# Menentukan lokasi dataset, model, dan hasil evaluasi.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DATASET_PATH = BASE_DIR / "dataset" / "dataset_sipika_final_revisi.csv"
@@ -28,6 +29,7 @@ MODEL_DIR = BASE_DIR / "models"
 MODEL_PATH = MODEL_DIR / "decision_tree_sipika.joblib"
 EVALUATION_PATH = MODEL_DIR / "evaluation.json"
 
+# Empat atribut yang digunakan sebagai input klasifikasi.
 FEATURES = [
     "jenis_ikan",
     "alat_tangkap",
@@ -35,8 +37,10 @@ FEATURES = [
     "musim"
 ]
 
+# Kolom target yang akan diprediksi.
 TARGET = "tingkat_produksi"
 
+# Membuat folder models jika belum tersedia.
 MODEL_DIR.mkdir(parents=True, exist_ok=True)
 
 
@@ -47,9 +51,10 @@ MODEL_DIR.mkdir(parents=True, exist_ok=True)
 def load_dataset():
     """Membaca dataset dan memisahkan fitur dengan target."""
 
+    # Membaca dataset CSV.
     df = pd.read_csv(DATASET_PATH)
 
-    # Memastikan nama kolom bersih dan kolom yang dibutuhkan tersedia
+    # Membersihkan nama kolom dan memeriksa kelengkapannya.
     df.columns = df.columns.str.strip()
 
     required_columns = FEATURES + [TARGET]
@@ -64,9 +69,10 @@ def load_dataset():
             f"Kolom tidak ditemukan: {missing_columns}"
         )
 
-    # Menghapus data yang memiliki nilai kosong pada fitur atau target
+    # Menghapus data kosong agar tidak mengganggu proses training.
     df = df.dropna(subset=required_columns)
 
+    # X berisi atribut input, sedangkan y berisi kelas produksi.
     X = df[FEATURES]
     y = df[TARGET]
 
@@ -87,9 +93,9 @@ def split_dataset(X, y):
     return train_test_split(
         X,
         y,
-        test_size=0.2,
-        random_state=42,
-        stratify=y
+        test_size=0.2,       # 20% data digunakan untuk pengujian.
+        random_state=42,     # Menjaga hasil pembagian tetap konsisten.
+        stratify=y           # Menjaga proporsi setiap kelas.
     )
 
 
@@ -100,7 +106,7 @@ def split_dataset(X, y):
 def build_model():
     """Membuat pipeline preprocessing dan algoritma Decision Tree."""
 
-    # Mengubah data kategorikal menjadi format numerik
+    # Mengubah data kategorikal menjadi format numerik.
     preprocessor = ColumnTransformer(
         transformers=[
             (
@@ -111,15 +117,15 @@ def build_model():
         ]
     )
 
-    # Menggunakan entropy sebagai kriteria pemilihan cabang
+    # Menggabungkan preprocessing dengan algoritma Decision Tree.
     model = Pipeline(
         steps=[
             ("preprocessor", preprocessor),
             (
                 "classifier",
                 DecisionTreeClassifier(
-                    criterion="entropy",
-                    max_depth=5,
+                    criterion="entropy",  # Menggunakan Entropy untuk pemilihan cabang.
+                    max_depth=5,          # Membatasi kedalaman pohon maksimal 5.
                     random_state=42
                 )
             )
@@ -136,6 +142,7 @@ def build_model():
 def train_model(model, X_train, y_train):
     """Melatih model menggunakan data training."""
 
+    # fit() menjalankan proses pembelajaran berdasarkan data training.
     model.fit(X_train, y_train)
 
     print("\nTraining Decision Tree berhasil!")
@@ -150,10 +157,13 @@ def train_model(model, X_train, y_train):
 def evaluate_model(model, X_test, y_test):
     """Mengukur performa model menggunakan data testing."""
 
+    # Membuat prediksi berdasarkan data testing.
     y_pred = model.predict(X_test)
 
+    # Menghitung persentase prediksi yang benar.
     accuracy = accuracy_score(y_test, y_pred)
 
+    # Menghitung precision, recall, dan F1-score.
     report = classification_report(
         y_test,
         y_pred,
@@ -161,6 +171,7 @@ def evaluate_model(model, X_test, y_test):
         zero_division=0
     )
 
+    # Membandingkan kelas aktual dengan hasil prediksi.
     matrix = confusion_matrix(
         y_test,
         y_pred,
@@ -196,6 +207,7 @@ def evaluate_model(model, X_test, y_test):
 def save_results(model, evaluation, total_data, training_data, testing_data):
     """Menyimpan model terlatih dan hasil evaluasinya."""
 
+    # Menyimpan model agar dapat digunakan kembali untuk prediksi.
     joblib.dump(model, MODEL_PATH)
 
     evaluation_data = {
@@ -208,6 +220,7 @@ def save_results(model, evaluation, total_data, training_data, testing_data):
         **evaluation
     }
 
+    # Menyimpan informasi evaluasi dalam format JSON.
     with open(EVALUATION_PATH, "w", encoding="utf-8") as file:
         json.dump(
             evaluation_data,
@@ -226,20 +239,24 @@ def save_results(model, evaluation, total_data, training_data, testing_data):
 # ==========================================
 
 def main():
-    """Mengatur seluruh tahapan training Decision Tree SIPIKA."""
+    """Menjalankan seluruh tahapan training Decision Tree SIPIKA."""
 
     print("Memulai proses training SIPIKA...")
 
+    # Memuat dataset dan memisahkan fitur dengan target.
     X, y = load_dataset()
 
+    # Membagi data menjadi training dan testing.
     X_train, X_test, y_train, y_test = split_dataset(X, y)
 
+    # Membangun dan melatih model Decision Tree.
     model = build_model()
-
     model = train_model(model, X_train, y_train)
 
+    # Mengevaluasi hasil prediksi model.
     evaluation = evaluate_model(model, X_test, y_test)
 
+    # Menyimpan model dan hasil evaluasi.
     save_results(
         model,
         evaluation,

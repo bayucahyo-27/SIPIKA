@@ -59,6 +59,7 @@ def home():
 # 3. ENDPOINT STATUS MODEL
 # ==========================================
 
+
 @app.get("/health")
 def health_check():
     """Memeriksa kesiapan model untuk melakukan prediksi."""
