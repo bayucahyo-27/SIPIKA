@@ -98,7 +98,9 @@ function initDatasetPage() {
         <td>${r.alat_tangkap}</td>
         <td>${r.wilayah}</td>
         <td>${r.musim}</td>
-        <td>${r.produksi_kg}</td>
+       <td>${Number(r.produksi_kg).toLocaleString("id-ID", {
+         maximumFractionDigits: 0,
+       })}</td>
         <td>${kategoriBadge}</td>
         <td>
           <button class="action-btn btn-edit" title="Edit"><i class="fa-solid fa-pen"></i></button>
@@ -584,7 +586,9 @@ function initRiwayatPage() {
         <td>${item.alat_tangkap || "-"}</td>
         <td>${item.wilayah || "-"}</td>
         <td>${item.musim || "-"}</td>
-        <td>${item.produksi_kg || "-"}</td>
+        <td>${Number(item.produksi_kg).toLocaleString("id-ID", {
+          maximumFractionDigits: 0,
+        })}</td>
         <td><span class="badge ${badge}">${item.kategori || "-"}</span></td>
         <td style="text-align:center">
           <a href="detail-prediksi.html?id=${item.id}" class="btn-detail">Detail</a>

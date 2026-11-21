@@ -538,12 +538,6 @@ async function loadProfile() {
       if (profileImage) {
         profileImage.src = photoUrl;
       }
-
-      // Foto pada header seluruh halaman Nelayan
-      document.querySelectorAll(".account-icon").forEach((image) => {
-        image.src = photoUrl;
-        image.alt = "Foto profil Nelayan";
-      });
     }
   } catch (error) {
     console.error("Kesalahan mengambil profil:", error);
@@ -672,12 +666,6 @@ if (profileImageInput) {
       if (profileImage) {
         profileImage.src = photoUrl;
       }
-
-      // Memperbarui seluruh ikon akun pada header
-      document.querySelectorAll(".account-icon").forEach((image) => {
-        image.src = photoUrl;
-        image.alt = "Foto profil Nelayan";
-      });
 
       // Memperbarui data profil aktif
       if (currentProfile) {
