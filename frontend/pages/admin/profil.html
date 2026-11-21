@@ -1,321 +1,266 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIPIKA - Profil Admin</title>
 
-  <title>SIPIKA - Profil Admin</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../css/global.css" />
+    <link rel="stylesheet" href="../../css/admin.css" />
+  </head>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="../../css/global.css">
-  <link rel="stylesheet" href="../../css/admin.css">
-</head>
-
-<body>
-
-  <div class="dashboard-container">
-
-    <!-- SIDEBAR ADMIN -->
-    <aside class="sidebar">
-
-      <div class="sidebar-logo">
-        <img src="../../assets/images/logo_sipika.png" alt="Logo SIPIKA">
-      </div>
-
-      <nav class="sidebar-menu">
-
-        <a href="dashboard.html" class="menu-item">
-          <img src="../../assets/icons/dashboard.svg" alt="">
-          <span>Dashboard</span>
-        </a>
-
-        <a href="kelola-pengguna.html" class="menu-item">
-          <img src="../../assets/icons/users.svg" alt="">
-          <span>Kelola Pengguna</span>
-        </a>
-
-        <a href="data-master.html" class="menu-item">
-          <img src="../../assets/icons/detail_informasi.svg" alt="">
-          <span>Data Master</span>
-        </a>
-
-        <a href="profil.html" class="menu-item active">
-          <img src="../../assets/icons/profil.svg" alt="">
-          <span>Profil</span>
-        </a>
-
-      </nav>
-
-      <div class="sidebar-bottom">
-        <a href="../auth/login.html" class="menu-item logout-item">
-          <img src="../../assets/icons/logout.svg" alt="">
-          <span>Logout</span>
-        </a>
-      </div>
-
-    </aside>
-
-
-
-
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
-
-      <!-- HEADER AKUN ADMIN -->
-      <header class="top-header">
-
-        <div class="account-info profile-account-info">
-
-          <img src="../../assets/icons/circle_user_round.svg" alt="Ikon pengguna" class="account-icon">
-
-          <div class="account-detail">
-
-            <span class="account-name" id="adminProfileHeaderName">
-              Admin: Anindya
-            </span>
-
-            <span class="account-status">
-              <span class="status-indicator" aria-hidden="true"></span>
-              Online
-            </span>
-
-          </div>
-
+  <body>
+    <div class="dashboard-container">
+      <!-- SIDEBAR ADMIN -->
+      <aside class="sidebar">
+        <div class="sidebar-logo">
+          <img src="../../assets/images/logo_sipika.png" alt="Logo SIPIKA" />
         </div>
 
-      </header>
+        <nav class="sidebar-menu">
+          <a href="dashboard.html" class="menu-item">
+            <img src="../../assets/icons/dashboard.svg" alt="" />
+            <span>Dashboard</span>
+          </a>
 
+          <a href="kelola-pengguna.html" class="menu-item">
+            <img src="../../assets/icons/users.svg" alt="" />
+            <span>Kelola Pengguna</span>
+          </a>
 
+          <a href="data-master.html" class="menu-item">
+            <img src="../../assets/icons/detail_informasi.svg" alt="" />
+            <span>Data Master</span>
+          </a>
 
-      <!-- KONTEN ADMIN -->
-      <div class="admin-content">
+          <a href="profil.html" class="menu-item active">
+            <img src="../../assets/icons/profil.svg" alt="" />
+            <span>Profil</span>
+          </a>
+        </nav>
 
-        <!-- BANNER PROFIL -->
-        <section class="welcome-banner">
+        <div class="sidebar-bottom">
+          <a href="#" class="menu-item logout-item" id="btnLogout">
+            <img src="../../assets/icons/logout.svg" alt="" />
+            <span>Logout</span>
+          </a>
+        </div>
+      </aside>
 
-          <div class="welcome-text">
-            <h1>Profil Admin</h1>
+      <!-- MAIN CONTENT -->
+      <main class="main-content">
+        <!-- HEADER AKUN ADMIN -->
+        <header class="top-header">
+          <div class="account-info profile-account-info">
+            <img
+              src="../../assets/icons/circle_user_round.svg"
+              alt="Ikon pengguna"
+              class="account-icon"
+            />
 
-            <span>
-              Kelola informasi akun dan keamanan akun Admin SIPIKA.
-            </span>
-          </div>
-
-        </section>
-
-
-        <!-- GRID PROFIL -->
-        <div class="profile-grid">
-
-
-          <!-- INFORMASI AKUN -->
-          <section class="profile-card">
-
-            <h3 class="profile-section-title">
-              Informasi Akun
-            </h3>
-
-            <div class="profile-divider"></div>
-
-
-            <!-- AVATAR ADMIN -->
-            <div class="profile-avatar-container">
-
-              <div class="avatar-wrapper">
-
-                <div class="avatar-circle" id="avatarCircle">
-                  <i class="fa-solid fa-user"></i>
-                </div>
-
-                <label for="uploadAvatar" class="camera-badge" title="Ubah Foto Profil">
-
-                  <i class="fa-solid fa-camera"></i>
-
-                </label>
-
-                <input type="file" id="uploadAvatar" accept="image/*" hidden>
-
-              </div>
-
-              <span class="profile-role-badge">
-                Admin
+            <div class="account-detail">
+              <span class="account-name" id="adminProfileHeaderName">
+                Admin: Anindya
               </span>
 
+              <span class="account-status">
+                <span class="status-indicator" aria-hidden="true"></span>
+                Online
+              </span>
             </div>
+          </div>
+        </header>
 
+        <!-- KONTEN ADMIN -->
+        <div class="admin-content">
+          <!-- BANNER PROFIL -->
+          <section class="welcome-banner">
+            <div class="welcome-text">
+              <h1>Profil Admin</h1>
 
-            <!-- FORM INFORMASI AKUN -->
-            <form class="profile-form">
-
-              <div class="form-group-profile">
-
-                <label for="username">
-                  Username
-                </label>
-
-                <div class="input-with-icon">
-
-                  <i class="fa-regular fa-user"></i>
-
-                  <input type="text" id="username" name="username" value="adminsipika01" required>
-
-                </div>
-
-              </div>
-
-
-              <div class="form-group-profile">
-
-                <label for="email">
-                  Email
-                </label>
-
-                <div class="input-with-icon">
-
-                  <i class="fa-regular fa-at"></i>
-
-                  <input type="email" id="email" name="email" value="adminsipika01@gmail.com" required>
-
-                </div>
-
-              </div>
-
-
-              <button type="submit" class="btn-profile-submit">
-
-                <i class="fa-regular fa-floppy-disk"></i>
-
-                Simpan Perubahan
-
-              </button>
-
-            </form>
-
+              <span>
+                Kelola informasi akun dan keamanan akun Admin SIPIKA.
+              </span>
+            </div>
           </section>
 
+          <!-- GRID PROFIL -->
+          <div class="profile-grid">
+            <!-- INFORMASI AKUN -->
+            <section class="profile-card">
+              <h3 class="profile-section-title">Informasi Akun</h3>
 
+              <div class="profile-divider"></div>
 
-          <!-- UBAH PASSWORD -->
-          <section class="profile-card">
+              <!-- AVATAR ADMIN -->
+              <div class="profile-avatar-container">
+                <div class="avatar-wrapper">
+                  <div class="avatar-circle" id="avatarCircle">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
 
-            <h3 class="profile-section-title">
-              Ubah Password
-            </h3>
+                  <label
+                    for="uploadAvatar"
+                    class="camera-badge"
+                    title="Ubah Foto Profil"
+                  >
+                    <i class="fa-solid fa-camera"></i>
+                  </label>
 
-            <div class="profile-divider"></div>
-
-
-            <form class="profile-form password-form">
-
-
-              <!-- PASSWORD LAMA -->
-              <div class="form-group-profile">
-
-                <label for="oldPassword">
-                  Password Lama
-                </label>
-
-                <div class="input-with-icon">
-
-                  <i class="fa-solid fa-lock"></i>
-
-                  <input type="password" id="oldPassword" name="oldPassword" placeholder="Masukkan password lama"
-                    required>
-
-                  <i class="fa-regular fa-eye-slash toggle-password"></i>
-
+                  <input
+                    type="file"
+                    id="uploadAvatar"
+                    accept="image/*"
+                    hidden
+                  />
                 </div>
 
+                <span class="profile-role-badge"> Admin </span>
               </div>
 
+              <!-- FORM INFORMASI AKUN -->
+              <form class="profile-form">
+                <div class="form-group-profile">
+                  <label for="username"> Username </label>
 
+                  <div class="input-with-icon">
+                    <i class="fa-regular fa-user"></i>
 
-              <!-- PASSWORD BARU -->
-              <div class="form-group-profile">
-
-                <label for="newPassword">
-                  Password Baru
-                </label>
-
-                <div class="input-with-icon">
-
-                  <i class="fa-solid fa-lock"></i>
-
-                  <input type="password" id="newPassword" name="newPassword" placeholder="Masukkan password baru"
-                    required>
-
-                  <i class="fa-regular fa-eye-slash toggle-password"></i>
-
+                    <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      value="adminsipika01"
+                      required
+                    />
+                  </div>
                 </div>
 
-              </div>
+                <div class="form-group-profile">
+                  <label for="email"> Email </label>
 
+                  <div class="input-with-icon">
+                    <i class="fa-regular fa-at"></i>
 
-
-              <!-- KONFIRMASI PASSWORD -->
-              <div class="form-group-profile">
-
-                <label for="confirmPassword">
-                  Konfirmasi Password Baru
-                </label>
-
-                <div class="input-with-icon">
-
-                  <i class="fa-solid fa-lock"></i>
-
-                  <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Ulangi password baru"
-                    required>
-
-                  <i class="fa-regular fa-eye-slash toggle-password"></i>
-
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value="adminsipika01@gmail.com"
+                      required
+                    />
+                  </div>
                 </div>
 
-              </div>
+                <button type="submit" class="btn-profile-submit">
+                  <i class="fa-regular fa-floppy-disk"></i>
 
+                  Simpan Perubahan
+                </button>
+              </form>
+            </section>
 
-              <button type="submit" class="btn-profile-submit">
+            <!-- UBAH PASSWORD -->
+            <section class="profile-card">
+              <h3 class="profile-section-title">Ubah Password</h3>
 
-                <i class="fa-solid fa-wrench"></i>
+              <div class="profile-divider"></div>
 
-                Ubah Password
+              <form class="profile-form password-form">
+                <!-- PASSWORD LAMA -->
+                <div class="form-group-profile">
+                  <label for="oldPassword"> Password Lama </label>
 
-              </button>
+                  <div class="input-with-icon">
+                    <i class="fa-solid fa-lock"></i>
 
-            </form>
+                    <input
+                      type="password"
+                      id="oldPassword"
+                      name="oldPassword"
+                      placeholder="Masukkan password lama"
+                      required
+                    />
 
-          </section>
+                    <i class="fa-regular fa-eye-slash toggle-password"></i>
+                  </div>
+                </div>
 
+                <!-- PASSWORD BARU -->
+                <div class="form-group-profile">
+                  <label for="newPassword"> Password Baru </label>
+
+                  <div class="input-with-icon">
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                      type="password"
+                      id="newPassword"
+                      name="newPassword"
+                      placeholder="Masukkan password baru"
+                      required
+                    />
+
+                    <i class="fa-regular fa-eye-slash toggle-password"></i>
+                  </div>
+                </div>
+
+                <!-- KONFIRMASI PASSWORD -->
+                <div class="form-group-profile">
+                  <label for="confirmPassword">
+                    Konfirmasi Password Baru
+                  </label>
+
+                  <div class="input-with-icon">
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                      type="password"
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      placeholder="Ulangi password baru"
+                      required
+                    />
+
+                    <i class="fa-regular fa-eye-slash toggle-password"></i>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn-profile-submit">
+                  <i class="fa-solid fa-wrench"></i>
+
+                  Ubah Password
+                </button>
+              </form>
+            </section>
+          </div>
         </div>
 
-      </div>
+        <!-- FOOTER -->
+        <footer class="dashboard-footer">
+          <p>&copy; 2026 SIPIKA - Kelompok 13 Web</p>
+        </footer>
+      </main>
+    </div>
 
-
-      <!-- FOOTER -->
-      <footer class="dashboard-footer">
-
-        <p>
-          &copy; 2026 SIPIKA - Kelompok 13 Web
-        </p>
-
-      </footer>
-
-    </main>
-
-  </div>
-
-  <!-- SCRIPT GLOBAL -->
-  <script src="../../js/global.js"></script>
-  <script src="../../js/admin.js"></script>
-
-</body>
-
+    <!-- SCRIPT GLOBAL -->
+    <script src="../../js/global.js"></script>
+    <script src="../../js/admin.js"></script>
+  </body>
 </html>

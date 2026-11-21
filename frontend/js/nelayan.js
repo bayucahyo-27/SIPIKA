@@ -768,26 +768,26 @@ if (detailFish) {
 
       detailResult.textContent = classification;
 
-            // Mengubah warna seluruh container sesuai kategori klasifikasi
-            const classificationCard = detailResult.closest(
-                ".detail-classification-card"
-            );
+      // Mengubah warna seluruh container sesuai kategori klasifikasi
+      const classificationCard = detailResult.closest(
+        ".detail-classification-card",
+      );
 
-            // Menghapus warna kategori sebelumnya
-            classificationCard.classList.remove("low", "medium", "high");
-            detailResult.classList.remove("low", "medium", "high");
+      // Menghapus warna kategori sebelumnya
+      classificationCard.classList.remove("low", "medium", "high");
+      detailResult.classList.remove("low", "medium", "high");
 
-            // Memberikan warna sesuai hasil klasifikasi
-            if (classification === "Rendah") {
-                classificationCard.classList.add("low");
-                detailResult.classList.add("low");
-            } else if (classification === "Sedang") {
-                classificationCard.classList.add("medium");
-                detailResult.classList.add("medium");
-            } else if (classification === "Tinggi") {
-                classificationCard.classList.add("high");
-                detailResult.classList.add("high");
-            }
+      // Memberikan warna sesuai hasil klasifikasi
+      if (classification === "Rendah") {
+        classificationCard.classList.add("low");
+        detailResult.classList.add("low");
+      } else if (classification === "Sedang") {
+        classificationCard.classList.add("medium");
+        detailResult.classList.add("medium");
+      } else if (classification === "Tinggi") {
+        classificationCard.classList.add("high");
+        detailResult.classList.add("high");
+      }
 
       detailResultDescription.textContent = `Tingkat produksi ikan tangkapan diprediksi dalam kategori ${classification.toLowerCase()}.`;
 
@@ -866,47 +866,4 @@ function formatDetailDate(date) {
   ];
 
   return `${Number(day)} ${months[Number(month) - 1]} ${year}`;
-}
-
-/* =========================================
-   FITUR LOGOUT NELAYAN
-   MENGAKHIRI SESI PENGGUNA
-========================================= */
-
-const logoutButton = document.getElementById("logoutButton");
-
-if (logoutButton) {
-  logoutButton.addEventListener("click", async function (event) {
-    event.preventDefault();
-
-    const confirmation = confirm(
-      "Apakah Anda yakin ingin keluar dari akun SIPIKA?",
-    );
-
-    if (!confirmation) return;
-
-    logoutButton.style.pointerEvents = "none";
-    logoutButton.style.opacity = "0.6";
-
-    try {
-      const response = await fetch("/SIPIKA/backend/auth/logout", {
-        method: "POST",
-        credentials: "same-origin",
-      });
-
-      const result = await response.json();
-
-      if (!response.ok || result.status !== "success") {
-        throw new Error(result.message || "Logout gagal dilakukan.");
-      }
-
-      // Mengarahkan pengguna ke halaman login
-      window.location.href = "/SIPIKA/frontend/pages/auth/login.html";
-    } catch (error) {
-      alert("Terjadi kesalahan: " + error.message);
-
-      logoutButton.style.pointerEvents = "auto";
-      logoutButton.style.opacity = "1";
-    }
-  });
 }
