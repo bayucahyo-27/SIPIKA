@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initDatasetPage();
   initRiwayatPage();
   initProfilPage();
+  initDetailPage();
 });
 
 // ==========================================
@@ -863,4 +864,100 @@ function initProfilPage() {
   }
 
   loadProfilData();
+}
+
+// ==========================================
+// 5. LOGIKA HALAMAN DETAIL DATASET PETUGAS
+// ==========================================
+function initDetailPage() {
+  const elJenis = document.getElementById("detailJenis");
+  if (!elJenis) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  if (!id) {
+    document.querySelector(".detail-grid").innerHTML =
+      '<div style="text-align:center;padding:40px;color:#888;">ID data tidak ditemukan. Silakan buka dari halaman Riwayat.</div>';
+    return;
+  }
+
+  async function loadDetail() {
+    try {
+      const apiUrl =
+        window.location.origin + "/SIPIKA/backend/data-produksi/" + id;
+      const res = await fetch(apiUrl);
+      const result = await res.json();
+
+      if (result.status !== "success") {
+        document.querySelector(".detail-grid").innerHTML =
+          '<div style="text-align:center;padding:40px;color:red;">' +
+          (result.message || "Data tidak ditemukan.") +
+          "</div>";
+        return;
+      }
+
+      const d = result.data;
+
+      document.getElementById("detailJenis").textContent = d.jenis_ikan || "-";
+      document.getElementById("detailWilayah").textContent = d.wilayah || "-";
+      document.getElementById("detailAlat").textContent = d.alat_tangkap || "-";
+      document.getElementById("detailMusim").textContent = d.musim || "-";
+      document.getElementById("detailProduksi").textContent =
+        d.produksi_kg || "-";
+
+      const dt = new Date(d.created_at);
+      document.getElementById("detailTanggal").textContent = dt.toLocaleString(
+        "id-ID",
+        {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        },
+      );
+
+      const badge = document.getElementById("detailBadge");
+      badge.textContent = d.kategori || "-";
+      badge.classList.remove("badge-tinggi", "badge-sedang", "badge-rendah");
+      if (d.kategori === "Tinggi") badge.classList.add("badge-tinggi");
+      else if (d.kategori === "Sedang") badge.classList.add("badge-sedang");
+      else badge.classList.add("badge-rendah");
+
+      document.getElementById("detailDesc").textContent =
+        "Tingkat produksi ikan tangkapan termasuk dalam kategori " +
+        (d.kategori || "-").toLowerCase() +
+        ".";
+
+      // 4.5. Warna background card ikut kategori
+      const card = document.getElementById("resultCard");
+      if (card) {
+        let bg = "#e8f5e9",
+          border = "#a5d6a7"; // default Tinggi (hijau)
+        if (d.kategori === "Sedang") {
+          bg = "#fff4d6";
+          border = "#f5d98a";
+        } else if (d.kategori === "Rendah") {
+          bg = "#fdecea";
+          border = "#f5b5b5";
+        } else if (d.kategori === "Tinggi") {
+          bg = "#e8f5e9";
+          border = "#a5d6a7";
+        }
+        card.style.background = bg;
+        card.style.border = "1px solid " + border;
+      }
+
+      document.getElementById("detailKesimpulan").textContent =
+        result.kesimpulan || "-";
+      document.getElementById("detailSaran").textContent = result.saran || "-";
+    } catch (err) {
+      console.error("Gagal load detail:", err);
+      document.querySelector(".detail-grid").innerHTML =
+        '<div style="text-align:center;padding:40px;color:red;">Gagal terhubung ke server.</div>';
+    }
+  }
+
+  loadDetail();
 }

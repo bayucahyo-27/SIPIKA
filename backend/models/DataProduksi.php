@@ -33,6 +33,15 @@ class DataProduksi {
         return $stmt;
     }
 
+        // 1b. READ SATU DATA BERDASARKAN ID
+    public function getById($id) {
+        $query = "SELECT * FROM " . $this->table . " WHERE id = :id LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     // 2. CREATE (Tambah data baru)
     public function create() {
         $this->kategori = $this->hitungKategori($this->produksi_kg);

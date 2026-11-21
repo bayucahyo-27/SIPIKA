@@ -409,6 +409,17 @@ if ($request_method == 'GET' && $request_uri == '/data-produksi') {
     exit();
 }
 
+// GET: /data-produksi/{id} → detail satu data
+if (
+    $request_method == 'GET' &&
+    preg_match('#^/data-produksi/([0-9]+)$#', $request_uri, $matches)
+) {
+    require_once 'controllers/DatasetController.php';
+    $controller = new DatasetController();
+    $controller->getDetail((int) $matches[1]);
+    exit();
+}
+
 // POST: /data-produksi → tambah data manual
 if ($request_method == 'POST' && $request_uri == '/data-produksi') {
     require_once 'controllers/DatasetController.php';

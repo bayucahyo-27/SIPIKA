@@ -139,6 +139,53 @@ class DatasetController {
         }
     }
 
+        // GET: Detail satu data produksi + kesimpulan & saran otomatis (Opsi B)
+    public function getDetail($id) {
+        $dataProduksi = new DataProduksi($this->db);
+        $item = $dataProduksi->getById($id);
+
+        if (!$item) {
+            http_response_code(404);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Data tidak ditemukan."
+            ]);
+            return;
+        }
+
+        // Generate kesimpulan & saran otomatis berdasarkan kategori
+        $jenis = $item["jenis_ikan"];
+        $wilayah = $item["wilayah"];
+        $musim = $item["musim"];
+        $produksi = $item["produksi_kg"];
+        $kategori = $item["kategori"];
+
+        switch ($kategori) {
+            case "Tinggi":
+                $kesimpulan = "Produksi ikan {$jenis} di wilayah {$wilayah} pada musim {$musim} tercatat {$produksi} kg, yang termasuk kategori TINGGI. Ini menandakan kondisi tangkapan yang sangat optimal di wilayah tersebut.";
+                $saran = "Manfaatkan momentum produksi tinggi ini untuk mengoptimalkan distribusi hasil tangkapan. Namun tetap perhatikan keberlanjutan sumber daya ikan dan patuhi kuota tangkap agar populasi tidak menurun.";
+                break;
+
+            case "Sedang":
+                $kesimpulan = "Produksi ikan {$jenis} di wilayah {$wilayah} pada musim {$musim} tercatat {$produksi} kg, yang termasuk kategori SEDANG. Kondisi tangkapan dalam batas stabil dan sesuai ekspektasi.";
+                $saran = "Pertahankan metode penangkapan yang sedang digunakan. Pantau perubahan musim dan kondisi perairan secara berkala agar produksi tetap stabil atau berpotensi meningkat.";
+                break;
+
+            default: // Rendah
+                $kesimpulan = "Produksi ikan {$jenis} di wilayah {$wilayah} pada musim {$musim} tercatat {$produksi} kg, yang termasuk kategori RENDAH. Ini mengindikasikan penurunan hasil tangkapan di wilayah tersebut.";
+                $saran = "Lakukan evaluasi terhadap alat tangkap yang digunakan dan kondisi wilayah penangkapan. Koordinasikan dengan dinas perikanan setempat untuk mengidentifikasi penyebab penurunan dan mencari solusi bersama.";
+                break;
+        }
+
+        http_response_code(200);
+        echo json_encode([
+            "status" => "success",
+            "data" => $item,
+            "kesimpulan" => $kesimpulan,
+            "saran" => $saran
+        ]);
+    }
+
 
     // ==========================================
     // BAGIAN B: PENGELOLAAN FILE DATASET
