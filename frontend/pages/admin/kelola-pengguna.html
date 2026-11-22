@@ -1,658 +1,353 @@
 <!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Kelola Pengguna | SIPIKA</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- FONT POPPINS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+  <title>Kelola Pengguna | SIPIKA</title>
 
-    <!-- CSS UTAMA -->
-    <link rel="stylesheet" href="../../css/global.css" />
-    <link rel="stylesheet" href="../../css/admin.css" />
-  </head>
+  <!-- FONT POPPINS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <body>
-    <!-- KONTENER UTAMA -->
-    <div class="dashboard-container">
-      <!-- =====================================
+  <!-- CSS UTAMA -->
+  <link rel="stylesheet" href="../../css/global.css" />
+  <link rel="stylesheet" href="../../css/admin.css" />
+</head>
+
+<body>
+  <!-- KONTENER UTAMA -->
+  <div class="dashboard-container">
+    <!-- =====================================
              SIDEBAR ADMIN
         ====================================== -->
 
-      <aside class="sidebar">
-        <div class="sidebar-logo">
-          <img src="../../assets/images/logo_sipika.png" alt="Logo SIPIKA" />
-        </div>
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="../../assets/images/logo_sipika.png" alt="Logo SIPIKA" />
+      </div>
 
-        <nav class="sidebar-menu">
-          <a href="dashboard.html" class="menu-item">
-            <img src="../../assets/icons/dashboard.svg" alt="" />
-            <span>Dashboard</span>
-          </a>
+      <nav class="sidebar-menu">
+        <a href="dashboard.html" class="menu-item">
+          <img src="../../assets/icons/dashboard.svg" alt="" />
+          <span>Dashboard</span>
+        </a>
 
-          <a href="kelola-pengguna.html" class="menu-item active">
-            <img src="../../assets/icons/users.svg" alt="" />
-            <span>Kelola Pengguna</span>
-          </a>
+        <a href="kelola-pengguna.html" class="menu-item active">
+          <img src="../../assets/icons/users.svg" alt="" />
+          <span>Kelola Pengguna</span>
+        </a>
 
-          <a href="data-master.html" class="menu-item">
-            <img src="../../assets/icons/detail_informasi.svg" alt="" />
-            <span>Data Master</span>
-          </a>
+        <a href="data-master.html" class="menu-item">
+          <img src="../../assets/icons/detail_informasi.svg" alt="" />
+          <span>Data Master</span>
+        </a>
 
-          <a href="profil.html" class="menu-item">
-            <img src="../../assets/icons/profil.svg" alt="" />
-            <span>Profil</span>
-          </a>
-        </nav>
+        <a href="profil.html" class="menu-item">
+          <img src="../../assets/icons/profil.svg" alt="" />
+          <span>Profil</span>
+        </a>
+      </nav>
 
-        <div class="sidebar-bottom">
-          <a href="#" class="menu-item logout-item" id="btnLogout">
-            <img src="../../assets/icons/logout.svg" alt="" />
-            <span>Logout</span>
-          </a>
-        </div>
-      </aside>
+      <div class="sidebar-bottom">
+        <a href="#" class="menu-item logout-item" id="btnLogout">
+          <img src="../../assets/icons/logout.svg" alt="" />
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
 
-      <!-- =====================================
+    <!-- =====================================
              KONTEN UTAMA
         ====================================== -->
 
-      <main class="main-content">
-        <!-- HEADER AKUN ADMIN -->
-        <header class="top-header">
-          <div class="account-info">
-            <img
-              src="../../assets/icons/circle_user_round.svg"
-              alt="Ikon pengguna"
-              class="account-icon"
-            />
+    <main class="main-content">
+      <!-- HEADER AKUN ADMIN -->
+      <header class="top-header">
+        <div class="account-info">
+          <img src="../../assets/icons/circle_user_round.svg" alt="Ikon pengguna" class="account-icon" />
 
-            <div class="account-detail">
-              <span class="account-name"> Admin: Anindya </span>
+          <div class="account-detail">
+            <span class="account-name"> Admin: Anindya </span>
 
-              <span class="account-status">
-                <span class="status-indicator"></span>
-                Online
-              </span>
-            </div>
+            <span class="account-status">
+              <span class="status-indicator"></span>
+              Online
+            </span>
           </div>
-        </header>
+        </div>
+      </header>
 
-        <!-- =====================================
+      <!-- =====================================
                  KONTEN KELOLA PENGGUNA
             ====================================== -->
 
-        <div class="admin-content">
-          <!-- BANNER HALAMAN -->
-          <section class="welcome-banner">
-            <div class="welcome-text">
-              <h1>Kelola Pengguna</h1>
+      <div class="admin-content">
+        <!-- BANNER HALAMAN -->
+        <section class="welcome-banner">
+          <div class="welcome-text">
+            <h1>Kelola Pengguna</h1>
 
-              <span>
-                Tambah, ubah, dan kelola akun Petugas maupun Nelayan pada sistem
-                SIPIKA.
-              </span>
-            </div>
-          </section>
+            <span>
+              Tambah, ubah, dan kelola akun Petugas maupun Nelayan pada sistem
+              SIPIKA.
+            </span>
+          </div>
+        </section>
 
-          <!-- =====================================
+        <!-- =====================================
                      STATISTIK PENGGUNA
                 ====================================== -->
 
-          <section class="user-statistics-section">
-            <div class="user-statistics-grid">
-              <!-- TOTAL PENGGUNA -->
-              <article class="stat-card stat-total">
-                <div class="stat-icon">
-                  <img src="../../assets/icons/users.svg" alt="" />
-                </div>
+        <section class="user-statistics-section">
+          <div class="user-statistics-grid">
+            <!-- TOTAL PENGGUNA -->
+            <article class="stat-card stat-total">
+              <div class="stat-icon">
+                <img src="../../assets/icons/users.svg" alt="" />
+              </div>
 
-                <div class="stat-info">
-                  <p>Total Pengguna</p>
-                  <h3>152</h3>
-                  <span>Akun terdaftar</span>
-                </div>
-              </article>
+              <div class="stat-info">
+                <p>Total Pengguna</p>
+                <h3>152</h3>
+                <span>Akun terdaftar</span>
+              </div>
+            </article>
 
-              <!-- TOTAL PETUGAS -->
-              <article class="stat-card stat-officer">
-                <div class="stat-icon">
-                  <img src="../../assets/icons/user.svg" alt="" />
-                </div>
+            <!-- TOTAL PETUGAS -->
+            <article class="stat-card stat-officer">
+              <div class="stat-icon">
+                <img src="../../assets/icons/user.svg" alt="" />
+              </div>
 
-                <div class="stat-info">
-                  <p>Total Petugas</p>
-                  <h3>12</h3>
-                  <span>Akun petugas</span>
-                </div>
-              </article>
+              <div class="stat-info">
+                <p>Total Petugas</p>
+                <h3>12</h3>
+                <span>Akun petugas</span>
+              </div>
+            </article>
 
-              <!-- TOTAL NELAYAN -->
-              <article class="stat-card stat-fisherman">
-                <div class="stat-icon">
-                  <img src="../../assets/icons/user.svg" alt="" />
-                </div>
+            <!-- TOTAL NELAYAN -->
+            <article class="stat-card stat-fisherman">
+              <div class="stat-icon">
+                <img src="../../assets/icons/user.svg" alt="" />
+              </div>
 
-                <div class="stat-info">
-                  <p>Total Nelayan</p>
-                  <h3>140</h3>
-                  <span>Akun nelayan</span>
-                </div>
-              </article>
+              <div class="stat-info">
+                <p>Total Nelayan</p>
+                <h3>140</h3>
+                <span>Akun nelayan</span>
+              </div>
+            </article>
 
-              <!-- PENGGUNA NONAKTIF -->
-              <article class="stat-card stat-inactive">
-                <div class="stat-icon">
-                  <img src="../../assets/icons/user.svg" alt="" />
-                </div>
+            <!-- PENGGUNA NONAKTIF -->
+            <article class="stat-card stat-inactive">
+              <div class="stat-icon">
+                <img src="../../assets/icons/user.svg" alt="" />
+              </div>
 
-                <div class="stat-info">
-                  <p>Tidak Aktif</p>
-                  <h3>8</h3>
-                  <span>Akun nonaktif</span>
-                </div>
-              </article>
-            </div>
-          </section>
+              <div class="stat-info">
+                <p>Tidak Aktif</p>
+                <h3>8</h3>
+                <span>Akun nonaktif</span>
+              </div>
+            </article>
+          </div>
+        </section>
 
-          <!-- =====================================
+        <!-- =====================================
                      FILTER DAN PENCARIAN
                 ====================================== -->
 
-          <section class="user-filter-section">
-            <div class="user-filter-left">
-              <div class="user-search-box">
-                <span class="search-icon">⌕</span>
-                <input
-                  type="text"
-                  id="search-user"
-                  placeholder="Cari nama, username, atau email..."
-                />
-              </div>
-
-              <div class="user-filter-group">
-                <label for="filter-role">Role</label>
-                <select id="filter-role">
-                  <option value="semua">Semua</option>
-                  <option value="petugas">Petugas</option>
-                  <option value="nelayan">Nelayan</option>
-                </select>
-              </div>
-
-              <div class="user-filter-group">
-                <label for="filter-status">Status</label>
-                <select id="filter-status">
-                  <option value="semua">Semua</option>
-                  <option value="aktif">Aktif</option>
-                  <option value="tidak aktif">Tidak Aktif</option>
-                </select>
-              </div>
+        <section class="user-filter-section">
+          <div class="user-filter-left">
+            <div class="user-search-box">
+              <span class="search-icon">⌕</span>
+              <input type="text" id="search-user" placeholder="Cari nama, username, atau email..." />
             </div>
 
-            <button type="button" class="btn-add-user">
-              <span>+</span>
-              Tambah Pengguna
-            </button>
-          </section>
+            <div class="user-filter-group">
+              <label for="filter-role">Role</label>
+              <select id="filter-role">
+                <option value="semua">Semua</option>
+                <option value="petugas">Petugas</option>
+                <option value="nelayan">Nelayan</option>
+              </select>
+            </div>
 
-          <!-- =====================================
+            <div class="user-filter-group">
+              <label for="filter-status">Status</label>
+              <select id="filter-status">
+                <option value="semua">Semua</option>
+                <option value="aktif">Aktif</option>
+                <option value="tidak aktif">Tidak Aktif</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="button" class="btn-add-user">
+            <span>+</span>
+            Tambah Pengguna
+          </button>
+        </section>
+
+        <!-- =====================================
                      TABEL DATA PENGGUNA
                 ====================================== -->
 
-          <section class="user-table-section">
-            <div class="user-table-wrapper">
-              <table class="user-table">
-                <thead>
-                  <tr>
-                    <th>No.</th>
-                    <th>Nama Lengkap</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                    <th>Tanggal Dibuat</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
+        <section class="user-table-section">
+          <div class="user-table-wrapper">
+            <table class="user-table">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Nama Lengkap</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Tanggal Dibuat</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
 
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Andi Saputra</td>
-                    <td>petugas1</td>
-                    <td>andi@example.com</td>
-                    <td>andisaputra123</td>
-                    <td>
-                      <span class="user-badge badge-petugas">Petugas</span>
-                    </td>
-                    <td><span class="user-badge badge-aktif">Aktif</span></td>
-                    <td>12 Jan 2025</td>
-                    <td>
-                      <div class="user-action-buttons">
-                        <button class="btn-edit" title="Edit">✎</button>
-                        <button class="btn-delete" title="Hapus">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                              d="M4 7h16M10 11v6m4-6v6M5 7l1 14h12l1-14M9 7V4h6v3"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </button>
-                        <span class="status-toggle active"></span>
-                      </div>
-                    </td>
-                  </tr>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
 
-                  <tr>
-                    <td>2</td>
-                    <td>Siti Rahmawati</td>
-                    <td>petugas2</td>
-                    <td>siti@example.com</td>
-                    <td>sitirahma2025</td>
-                    <td>
-                      <span class="user-badge badge-petugas">Petugas</span>
-                    </td>
-                    <td><span class="user-badge badge-aktif">Aktif</span></td>
-                    <td>15 Jan 2025</td>
-                    <td>
-                      <div class="user-action-buttons">
-                        <button class="btn-edit" title="Edit">✎</button>
-                        <button class="btn-delete" title="Hapus">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                              d="M4 7h16M10 11v6m4-6v6M5 7l1 14h12l1-14M9 7V4h6v3"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </button>
-                        <span class="status-toggle active"></span>
-                      </div>
-                    </td>
-                  </tr>
+          <div class="user-pagination">
+            <span>Menampilkan 1–10 dari 152 pengguna</span>
 
-                  <tr>
-                    <td>3</td>
-                    <td>Budi Santoso</td>
-                    <td>nelayan1</td>
-                    <td>budi@example.com</td>
-                    <td>budisantoso99</td>
-                    <td>
-                      <span class="user-badge badge-nelayan">Nelayan</span>
-                    </td>
-                    <td><span class="user-badge badge-aktif">Aktif</span></td>
-                    <td>20 Jan 2025</td>
-                    <td>
-                      <div class="user-action-buttons">
-                        <button class="btn-edit" title="Edit">✎</button>
-                        <button class="btn-delete" title="Hapus">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                              d="M4 7h16M10 11v6m4-6v6M5 7l1 14h12l1-14M9 7V4h6v3"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </button>
-                        <span class="status-toggle active"></span>
-                      </div>
-                    </td>
-                  </tr>
+            <div class="pagination-buttons"></div>
+          </div>
+        </section>
+      </div>
 
-                  <tr>
-                    <td>4</td>
-                    <td>Maya Lestari</td>
-                    <td>nelayan2</td>
-                    <td>maya@example.com</td>
-                    <td>mayalestari88</td>
-                    <td>
-                      <span class="user-badge badge-nelayan">Nelayan</span>
-                    </td>
-                    <td>
-                      <span class="user-badge badge-nonaktif">Tidak Aktif</span>
-                    </td>
-                    <td>22 Jan 2025</td>
-                    <td>
-                      <div class="user-action-buttons">
-                        <button class="btn-edit" title="Edit">✎</button>
-                        <button class="btn-delete" title="Hapus">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                              d="M4 7h16M10 11v6m4-6v6M5 7l1 14h12l1-14M9 7V4h6v3"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </button>
-                        <span class="status-toggle"></span>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>5</td>
-                    <td>Rizal Hidayat</td>
-                    <td>nelayan3</td>
-                    <td>rizal@example.com</td>
-                    <td>rizalhidayat77</td>
-                    <td>
-                      <span class="user-badge badge-nelayan">Nelayan</span>
-                    </td>
-                    <td><span class="user-badge badge-aktif">Aktif</span></td>
-                    <td>25 Jan 2025</td>
-                    <td>
-                      <div class="user-action-buttons">
-                        <button class="btn-edit" title="Edit">✎</button>
-                        <button class="btn-delete" title="Hapus">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                              d="M4 7h16M10 11v6m4-6v6M5 7l1 14h12l1-14M9 7V4h6v3"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </button>
-                        <span class="status-toggle active"></span>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>6</td>
-                    <td>Agus Salim</td>
-                    <td>petugas3</td>
-                    <td>agus@example.com</td>
-                    <td>agussalim321</td>
-                    <td>
-                      <span class="user-badge badge-petugas">Petugas</span>
-                    </td>
-                    <td><span class="user-badge badge-aktif">Aktif</span></td>
-                    <td>28 Jan 2025</td>
-                    <td>
-                      <div class="user-action-buttons">
-                        <button class="btn-edit" title="Edit">✎</button>
-                        <button class="btn-delete" title="Hapus">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                              d="M4 7h16M10 11v6m4-6v6M5 7l1 14h12l1-14M9 7V4h6v3"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </button>
-                        <span class="status-toggle active"></span>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>7</td>
-                    <td>Dewi Kartika</td>
-                    <td>nelayan4</td>
-                    <td>dewi@example.com</td>
-                    <td>dewikartika45</td>
-                    <td>
-                      <span class="user-badge badge-nelayan">Nelayan</span>
-                    </td>
-                    <td><span class="user-badge badge-aktif">Aktif</span></td>
-                    <td>30 Jan 2025</td>
-                    <td>
-                      <div class="user-action-buttons">
-                        <button class="btn-edit" title="Edit">✎</button>
-                        <button class="btn-delete" title="Hapus">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                              d="M4 7h16M10 11v6m4-6v6M5 7l1 14h12l1-14M9 7V4h6v3"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </button>
-                        <span class="status-toggle active"></span>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>8</td>
-                    <td>Fahri Maulana</td>
-                    <td>nelayan5</td>
-                    <td>fahri@example.com</td>
-                    <td>fahrim1234</td>
-                    <td>
-                      <span class="user-badge badge-nelayan">Nelayan</span>
-                    </td>
-                    <td>
-                      <span class="user-badge badge-nonaktif">Tidak Aktif</span>
-                    </td>
-                    <td>2 Feb 2025</td>
-                    <td>
-                      <div class="user-action-buttons">
-                        <button class="btn-edit" title="Edit">✎</button>
-                        <button class="btn-delete" title="Hapus">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                              d="M4 7h16M10 11v6m4-6v6M5 7l1 14h12l1-14M9 7V4h6v3"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </button>
-                        <span class="status-toggle"></span>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>9</td>
-                    <td>Lina Anggraini</td>
-                    <td>petugas4</td>
-                    <td>lina@example.com</td>
-                    <td>linaanggra21</td>
-                    <td>
-                      <span class="user-badge badge-petugas">Petugas</span>
-                    </td>
-                    <td><span class="user-badge badge-aktif">Aktif</span></td>
-                    <td>5 Feb 2025</td>
-                    <td>
-                      <div class="user-action-buttons">
-                        <button class="btn-edit" title="Edit">✎</button>
-                        <button class="btn-delete" title="Hapus">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                              d="M4 7h16M10 11v6m4-6v6M5 7l1 14h12l1-14M9 7V4h6v3"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </button>
-                        <span class="status-toggle active"></span>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>10</td>
-                    <td>Hasanuddin</td>
-                    <td>nelayan6</td>
-                    <td>hasan@example.com</td>
-                    <td>hasanuddin00</td>
-                    <td>
-                      <span class="user-badge badge-nelayan">Nelayan</span>
-                    </td>
-                    <td><span class="user-badge badge-aktif">Aktif</span></td>
-                    <td>8 Feb 2025</td>
-                    <td>
-                      <div class="user-action-buttons">
-                        <button class="btn-edit" title="Edit">✎</button>
-                        <button class="btn-delete" title="Hapus">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                              d="M4 7h16M10 11v6m4-6v6M5 7l1 14h12l1-14M9 7V4h6v3"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </button>
-                        <span class="status-toggle active"></span>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+      <!-- MODAL TAMBAH PENGGUNA -->
+      <div class="user-modal-overlay" id="addUserModal" hidden>
+        <div class="user-modal">
+          <div class="user-modal-header">
+            <div>
+              <h2>Tambah Pengguna</h2>
+              <p>Masukkan informasi akun pengguna baru.</p>
             </div>
 
-            <div class="user-pagination">
-              <span>Menampilkan 1–10 dari 152 pengguna</span>
+            <button type="button" class="modal-close" id="closeAddModal" aria-label="Tutup">
+              &times;
+            </button>
+          </div>
 
-              <div class="pagination-buttons">
-                <button type="button" disabled>‹</button>
-                <button type="button" class="active">1</button>
-                <button type="button">2</button>
-                <button type="button">3</button>
-                <button type="button">...</button>
-                <button type="button">16</button>
-                <button type="button">›</button>
-              </div>
+          <form id="addUserForm">
+            <div class="modal-form-group">
+              <label for="newUserName">Nama Lengkap</label>
+              <input type="text" id="newUserName" placeholder="Masukkan nama lengkap" required />
             </div>
-          </section>
+
+            <div class="modal-form-group">
+              <label for="newUsername">Username</label>
+              <input type="text" id="newUsername" placeholder="Masukkan username" required />
+            </div>
+
+            <div class="modal-form-group">
+              <label for="newUserEmail">Email</label>
+              <input type="email" id="newUserEmail" placeholder="Masukkan email" required />
+            </div>
+
+            <div class="modal-form-group">
+              <label for="newUserPassword">Password</label>
+              <input type="password" id="newUserPassword" placeholder="Masukkan password" required />
+            </div>
+
+            <div class="modal-form-group">
+              <label for="newUserRole">Role</label>
+              <select id="newUserRole" required>
+                <option value="">Pilih Role</option>
+                <option value="Nelayan">Nelayan</option>
+                <option value="Petugas">Petugas</option>
+              </select>
+            </div>
+
+            <div class="modal-form-actions">
+              <button type="button" class="btn-modal-cancel" id="cancelAddModal">
+                Batal
+              </button>
+
+              <button type="submit" class="btn-modal-save">
+                Simpan Pengguna
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
+      <!-- AKHIR MODAL TAMBAH PENGGUNA -->
 
-        <!-- MODAL TAMBAH PENGGUNA -->
-        <div class="user-modal-overlay" id="addUserModal" hidden>
-          <div class="user-modal">
-            <div class="user-modal-header">
-              <div>
-                <h2>Tambah Pengguna</h2>
-                <p>Masukkan informasi akun pengguna baru.</p>
-              </div>
+      <!-- MODAL EDIT PENGGUNA -->
+      <div class="user-modal-overlay" id="editUserModal" hidden>
+        <div class="user-modal">
 
-              <button
-                type="button"
-                class="modal-close"
-                id="closeAddModal"
-                aria-label="Tutup"
-              >
-                &times;
+          <div class="user-modal-header">
+            <div>
+              <h2>Edit Pengguna</h2>
+              <p>Perbarui informasi akun pengguna.</p>
+            </div>
+
+            <button type="button" class="modal-close" id="closeEditModal" aria-label="Tutup">
+              &times;
+            </button>
+          </div>
+
+          <form id="editUserForm">
+
+            <div class="modal-form-group">
+              <label for="editUserName">Nama Lengkap</label>
+              <input type="text" id="editUserName" placeholder="Masukkan nama lengkap" required />
+            </div>
+
+            <div class="modal-form-group">
+              <label for="editUsername">Username</label>
+              <input type="text" id="editUsername" placeholder="Masukkan username" required />
+            </div>
+
+            <div class="modal-form-group">
+              <label for="editUserEmail">Email</label>
+              <input type="email" id="editUserEmail" placeholder="Masukkan email" required />
+            </div>
+
+            <div class="modal-form-group">
+              <label for="editUserRole">Role</label>
+              <select id="editUserRole" required>
+                <option value="nelayan">Nelayan</option>
+                <option value="petugas">Petugas</option>
+              </select>
+            </div>
+
+            <div class="modal-form-actions">
+              <button type="button" class="btn-modal-cancel" id="cancelEditModal">
+                Batal
+              </button>
+
+              <button type="submit" class="btn-modal-save">
+                Simpan Perubahan
               </button>
             </div>
 
-            <form id="addUserForm">
-              <div class="modal-form-group">
-                <label for="newUserName">Nama Lengkap</label>
-                <input
-                  type="text"
-                  id="newUserName"
-                  placeholder="Masukkan nama lengkap"
-                  required
-                />
-              </div>
-
-              <div class="modal-form-group">
-                <label for="newUsername">Username</label>
-                <input
-                  type="text"
-                  id="newUsername"
-                  placeholder="Masukkan username"
-                  required
-                />
-              </div>
-
-              <div class="modal-form-group">
-                <label for="newUserEmail">Email</label>
-                <input
-                  type="email"
-                  id="newUserEmail"
-                  placeholder="Masukkan email"
-                  required
-                />
-              </div>
-
-              <div class="modal-form-group">
-                <label for="newUserPassword">Password</label>
-                <input
-                  type="password"
-                  id="newUserPassword"
-                  placeholder="Masukkan password"
-                  required
-                />
-              </div>
-
-              <div class="modal-form-group">
-                <label for="newUserRole">Role</label>
-                <select id="newUserRole" required>
-                  <option value="">Pilih Role</option>
-                  <option value="Nelayan">Nelayan</option>
-                  <option value="Petugas">Petugas</option>
-                </select>
-              </div>
-
-              <div class="modal-form-actions">
-                <button
-                  type="button"
-                  class="btn-modal-cancel"
-                  id="cancelAddModal"
-                >
-                  Batal
-                </button>
-
-                <button type="submit" class="btn-modal-save">
-                  Simpan Pengguna
-                </button>
-              </div>
-            </form>
-          </div>
+          </form>
         </div>
-        <!-- AKHIR MODAL TAMBAH PENGGUNA -->
+      </div>
+      <!-- AKHIR MODAL EDIT PENGGUNA -->
 
-        <!-- FOOTER -->
-        <footer class="dashboard-footer">
-          <p>&copy; 2026 SIPIKA — Kelompok 13 Web</p>
-        </footer>
-      </main>
-    </div>
+      <!-- FOOTER -->
+      <footer class="dashboard-footer">
+        <p>&copy; 2026 SIPIKA — Kelompok 13 Web</p>
+      </footer>
+    </main>
+  </div>
 
-    <script src="../../js/global.js"></script>
-    <script src="../../js/admin.js"></script>
-  </body>
+  <script src="../../js/global.js"></script>
+  <script src="../../js/admin.js"></script>
+</body>
+
 </html>

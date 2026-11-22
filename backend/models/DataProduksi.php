@@ -20,8 +20,8 @@ class DataProduksi {
 
     // Helper: Hitung kategori otomatis
     private function hitungKategori($produksi) {
-        if ($produksi > 1000) return 'Tinggi';
-        if ($produksi >= 500) return 'Sedang';
+        if ($produksi > 120000) return 'Tinggi';
+        if ($produksi >= 105000) return 'Sedang';
         return 'Rendah';
    }
 

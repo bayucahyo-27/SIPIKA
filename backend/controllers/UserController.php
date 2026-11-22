@@ -69,7 +69,6 @@ class UserController {
         $this->user->username = trim($data["username"] ?? "");
         $this->user->nama_lengkap = trim($data["nama_lengkap"] ?? "");
         $this->user->email = trim($data["email"] ?? "");
-        $this->user->nomor_telepon = trim($data["nomor_telepon"] ?? "");
         $this->user->password = $data["password"] ?? "";
         $this->user->role = strtolower(trim($data["role"] ?? ""));
 
@@ -123,9 +122,7 @@ class UserController {
         $this->user->username = trim($data["username"] ?? "");
         $this->user->nama_lengkap = trim($data["nama_lengkap"] ?? "");
         $this->user->email = trim($data["email"] ?? "");
-        $this->user->nomor_telepon = trim($data["nomor_telepon"] ?? "");
         $this->user->role = strtolower(trim($data["role"] ?? ""));
-        $this->user->password = $data["password"] ?? "";
 
         if (
             $this->user->username === "" ||
@@ -143,19 +140,12 @@ class UserController {
             $this->response(400, "Role pengguna tidak valid.");
         }
 
-        if ($this->user->password !== "" && strlen($this->user->password) < 8) {
-            $this->response(400, "Password baru minimal 8 karakter.");
-        }
-
         if ($this->isDuplicate($id)) {
             $this->response(409, "Username atau email sudah digunakan pengguna lain.");
         }
 
         try {
-            if ($this->user->updateUser(
-                $id,
-                $this->user->password !== ""
-            )) {
+            if ($this->user->updateUser($id)) {
                 $this->response(200, "Data pengguna berhasil diperbarui.");
             }
 

@@ -24,6 +24,8 @@ class DatasetController {
 
     // GET: Ambil semua data produksi
     public function getAll() {
+        AuthMiddleware::authorize(["admin", "petugas"]);
+
         $dataProduksi = new DataProduksi($this->db);
         $stmt = $dataProduksi->read();
         $data_arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -40,20 +42,31 @@ class DatasetController {
 
     // POST: Tambah data produksi
     public function create() {
+        AuthMiddleware::authorize(["admin", "petugas"]);
+
         $data = json_decode(file_get_contents("php://input"));
 
         if (
-            !$data ||
-            empty($data->jenis_ikan) ||
-            !isset($data->produksi_kg) ||
-            $data->produksi_kg === ""
+        !$data ||
+        empty($data->jenis_ikan) ||
+        empty($data->alat_tangkap) ||
+        empty($data->wilayah) ||
+        empty($data->musim) ||
+        !isset($data->produksi_kg) ||
+        $data->produksi_kg === "" ||
+        !is_numeric($data->produksi_kg) ||
+        (float)$data->produksi_kg < 0
         ) {
+
             http_response_code(400);
+
             echo json_encode([
                 "status" => "error",
-                "message" => "Data tidak lengkap!"
+                "message" => "Semua atribut wajib diisi dan jumlah produksi harus berupa angka minimal 0!"
             ]);
+
             return;
+
         }
 
         $item = new DataProduksi($this->db);
@@ -80,6 +93,8 @@ class DatasetController {
 
     // PUT: Update data produksi
     public function update($id) {
+        AuthMiddleware::authorize(["admin", "petugas"]);
+
         $data = json_decode(file_get_contents("php://input"));
 
         if (
@@ -121,6 +136,8 @@ class DatasetController {
 
     // DELETE: Hapus data produksi
     public function delete($id) {
+        AuthMiddleware::authorize(["admin", "petugas"]);
+
         $item = new DataProduksi($this->db);
         $item->id = $id;
 
@@ -141,6 +158,8 @@ class DatasetController {
 
         // GET: Detail satu data produksi + kesimpulan & saran otomatis (Opsi B)
     public function getDetail($id) {
+        AuthMiddleware::authorize(["admin", "petugas"]);
+
         $dataProduksi = new DataProduksi($this->db);
         $item = $dataProduksi->getById($id);
 
@@ -191,9 +210,9 @@ class DatasetController {
     // BAGIAN B: PENGELOLAAN FILE DATASET
     // ==========================================
 
-    // Memastikan hanya Admin yang dapat mengakses
+    // Memastikan hanya Admin dan Petugas yang dapat mengakses
     private function authorizeAdmin() {
-        AuthMiddleware::authorize(["admin"]);
+    AuthMiddleware::authorize(["admin", "petugas"]);
     }
 
     // GET: Menampilkan daftar dataset
@@ -579,6 +598,8 @@ class DatasetController {
 
         // 5. POST: Upload CSV Massal
     public function uploadCsv() {
+        AuthMiddleware::authorize(["admin", "petugas"]);
+
         // Cek apakah file ada
         if (!isset($_FILES['csv_file']) || $_FILES['csv_file']['error'] !== UPLOAD_ERR_OK) {
             http_response_code(400);

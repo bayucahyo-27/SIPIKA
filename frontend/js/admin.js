@@ -91,6 +91,88 @@ document.addEventListener("DOMContentLoaded", function () {
     const closeAddModal = document.getElementById("closeAddModal");
     const cancelAddModal = document.getElementById("cancelAddModal");
     const addUserForm = document.getElementById("addUserForm");
+    const editUserModal = document.getElementById("editUserModal");
+    const closeEditModal = document.getElementById("closeEditModal");
+    const cancelEditModal = document.getElementById("cancelEditModal");
+    const editUserForm = document.getElementById("editUserForm");
+
+    let selectedUserId = null;
+
+    if (editUserModal && closeEditModal && cancelEditModal && editUserForm) {
+
+        function closeEditUserModal() {
+            editUserModal.setAttribute("hidden", "");
+            editUserForm.reset();
+            selectedUserId = null;
+        }
+
+        closeEditModal.addEventListener("click", closeEditUserModal);
+
+        cancelEditModal.addEventListener("click", closeEditUserModal);
+
+        editUserModal.addEventListener("click", function (event) {
+            if (event.target === editUserModal) {
+                closeEditUserModal();
+            }
+        });
+
+        editUserForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            if (!selectedUserId) {
+                showMessage("Pengguna tidak ditemukan!");
+                return;
+            }
+
+            const name = document.getElementById("editUserName").value.trim();
+            const username = document.getElementById("editUsername").value.trim();
+            const email = document.getElementById("editUserEmail").value.trim();
+            const role = document.getElementById("editUserRole").value;
+
+            if (!name || !username || !email) {
+                showMessage("Nama, username, dan email wajib diisi!");
+                return;
+            }
+
+            try {
+                const response = await fetch(
+                    ADMIN_API_URL + "/" + selectedUserId,
+                    {
+                        method: "PUT",
+                        credentials: "same-origin",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            nama_lengkap: name,
+                            username: username,
+                            email: email,
+                            role: role
+                        })
+                    }
+                );
+
+                const result = await response.json();
+
+                if (!response.ok || result.status !== "success") {
+                    throw new Error(
+                        result.message || "Gagal memperbarui pengguna."
+                    );
+                }
+
+                showMessage(result.message);
+
+                closeEditUserModal();
+
+                await loadUsers(currentPage);
+                await loadUserStatistics();
+
+            } catch (error) {
+                showMessage(error.message);
+            }
+        });
+
+    }
 
     // Hanya berjalan pada halaman Kelola Pengguna
     if (
@@ -214,9 +296,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const row = document.createElement("tr");
 
-        // Simpan ID dan nomor telepon pengguna pada baris
+        // Simpan ID pengguna pada baris
         row.dataset.userId = user.id;
-        row.dataset.phone = user.nomor_telepon || "";
 
         // Nomor urut
         const numberCell = document.createElement("td");
@@ -237,11 +318,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const emailCell = document.createElement("td");
         emailCell.textContent = user.email || "-";
         row.appendChild(emailCell);
-
-        // Password tidak pernah diambil dari database
-        const passwordCell = document.createElement("td");
-        passwordCell.textContent = "••••••••";
-        row.appendChild(passwordCell);
 
         // Role
         const roleCell = document.createElement("td");
@@ -330,7 +406,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         tableBody.innerHTML = `
             <tr>
-                <td colspan="9" style="text-align:center; padding:30px;">
+                <td colspan="8" style="text-align:center; padding:30px;">
                     Memuat data pengguna...
                 </td>
             </tr>
@@ -373,7 +449,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 tableBody.innerHTML = `
                     <tr>
-                        <td colspan="9"
+                        <td colspan="8"
                             style="text-align:center; padding:30px;">
                             Tidak ada data pengguna ditemukan.
                         </td>
@@ -420,7 +496,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             tableBody.innerHTML = `
                 <tr>
-                    <td colspan="9"
+                    <td colspan="8"
                         style="text-align:center; padding:30px;">
                         Gagal memuat data pengguna.
                     </td>
@@ -637,7 +713,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         nama_lengkap: name,
                         username: username,
                         email: email,
-                        nomor_telepon: "",
                         password: password,
                         role: role
                     })
@@ -683,110 +758,24 @@ document.addEventListener("DOMContentLoaded", function () {
         // -------------------------------------
         // EDIT PENGGUNA
         // -------------------------------------
-
         if (event.target.closest(".btn-edit")) {
 
-            const name = prompt(
-                "Ubah nama lengkap:",
-                row.cells[1].textContent
-            );
+            selectedUserId = userId;
 
-            if (name === null) return;
+            document.getElementById("editUserName").value =
+                row.cells[1].textContent.trim();
 
-            const username = prompt(
-                "Ubah username:",
-                row.cells[2].textContent
-            );
+            document.getElementById("editUsername").value =
+                row.cells[2].textContent.trim();
 
-            if (username === null) return;
+            document.getElementById("editUserEmail").value =
+                row.cells[3].textContent.trim();
 
-            const email = prompt(
-                "Ubah email:",
-                row.cells[3].textContent
-            );
+            document.getElementById("editUserRole").value =
+                row.cells[4].textContent.trim().toLowerCase();
 
-            if (email === null) return;
-
-            const role = prompt(
-                "Masukkan role (Petugas/Nelayan):",
-                row.cells[5].textContent.trim()
-            );
-
-            if (role === null) return;
-
-            const phone = prompt(
-                "Masukkan nomor telepon:",
-                row.dataset.phone
-            );
-
-            if (phone === null) return;
-
-            const password = prompt(
-                "Password baru (kosongkan jika tidak ingin mengubah):",
-                ""
-            );
-
-            if (password === null) return;
-
-            const normalizedRole = role.trim().toLowerCase();
-
-            if (
-                !name.trim() ||
-                !username.trim() ||
-                !email.trim()
-            ) {
-                showMessage("Nama, username, dan email wajib diisi!");
-                return;
-            }
-
-            if (!["petugas", "nelayan"].includes(normalizedRole)) {
-                showMessage("Role harus Petugas atau Nelayan!");
-                return;
-            }
-
-            if (password !== "" && password.length < 8) {
-                showMessage("Password baru minimal 8 karakter!");
-                return;
-            }
-
-            try {
-
-                const response = await fetch(
-                    ADMIN_API_URL + "/" + userId,
-                    {
-                        method: "PUT",
-                        credentials: "same-origin",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            nama_lengkap: name.trim(),
-                            username: username.trim(),
-                            email: email.trim(),
-                            nomor_telepon: phone.trim(),
-                            role: normalizedRole,
-                            password: password
-                        })
-                    }
-                );
-
-                const result = await response.json();
-
-                if (!response.ok || result.status !== "success") {
-                    throw new Error(
-                        result.message || "Gagal memperbarui pengguna."
-                    );
-                }
-
-                showMessage(result.message);
-
-                await loadUsers(currentPage);
-                await loadUserStatistics();
-
-            } catch (error) {
-
-                showMessage(error.message);
-
+            if (editUserModal) {
+                editUserModal.removeAttribute("hidden");
             }
 
         }
@@ -963,6 +952,96 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ==========================================
+// FITUR UBAH PASSWORD ADMIN
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const passwordForm = document.querySelector(".password-form");
+
+    document.querySelectorAll(".toggle-password").forEach(toggle => {
+
+        toggle.addEventListener("click", function () {
+
+            const input = this.previousElementSibling;
+
+            if (!input) return;
+
+            const isPassword = input.type === "password";
+
+            input.type = isPassword ? "text" : "password";
+
+            this.classList.toggle("fa-eye", isPassword);
+            this.classList.toggle("fa-eye-slash", !isPassword);
+
+        });
+
+    });
+
+    if (!passwordForm) return;
+
+    passwordForm.addEventListener("submit", async function (event) {
+
+        event.preventDefault();
+
+        const currentPassword = document.getElementById("oldPassword").value;
+        const newPassword = document.getElementById("newPassword").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+
+        if (newPassword.length < 8) {
+            alert("Password baru minimal 8 karakter!");
+            return;
+        }
+
+        if (newPassword !== confirmPassword) {
+            alert("Konfirmasi password baru tidak cocok!");
+            return;
+        }
+
+        const submitButton = passwordForm.querySelector('button[type="submit"]');
+
+        submitButton.disabled = true;
+
+        try {
+
+            const response = await fetch("/SIPIKA/backend/auth/change-password", {
+                method: "POST",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    currentPassword: currentPassword,
+                    newPassword: newPassword,
+                    confirmPassword: confirmPassword
+                })
+            });
+
+            const result = await response.json();
+
+            if (!response.ok || result.status !== "success") {
+                throw new Error(result.message || "Gagal mengubah password.");
+            }
+
+            alert(result.message);
+
+            passwordForm.reset();
+
+        } catch (error) {
+
+            alert(error.message);
+
+        } finally {
+
+            submitButton.disabled = false;
+
+        }
+
+    });
+
+});
+
+// ==========================================
 // FITUR FOTO PROFIL ADMIN
 // ==========================================
 
@@ -1107,6 +1186,76 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showMasterMessage(message) {
         alert(message);
+    }
+
+    // ==========================================
+    // MEMUAT DROPDOWN DATA PELATIHAN
+    // ==========================================
+
+    async function loadTrainingReferences() {
+
+        const references = [
+            {
+                endpoint: "ikan",
+                elementId: "inputJenisIkan",
+                placeholder: "Pilih Jenis Ikan"
+            },
+            {
+                endpoint: "alat",
+                elementId: "inputAlatTangkap",
+                placeholder: "Pilih Alat Tangkap"
+            },
+            {
+                endpoint: "wilayah",
+                elementId: "inputWilayah",
+                placeholder: "Pilih Wilayah"
+            },
+            {
+                endpoint: "musim",
+                elementId: "inputMusim",
+                placeholder: "Pilih Musim"
+            }
+        ];
+
+        for (const reference of references) {
+
+            const select = document.getElementById(reference.elementId);
+
+            if (!select) continue;
+
+            try {
+
+                const result = await masterRequest(
+                    `/SIPIKA/backend/master-data/${reference.endpoint}`
+                );
+
+                select.innerHTML = `
+                <option value="">${reference.placeholder}</option>
+            `;
+
+                result.data.forEach(item => {
+
+                    const option = document.createElement("option");
+
+                    option.value = item.nama;
+                    option.textContent = item.nama;
+
+                    select.appendChild(option);
+
+                });
+
+            } catch (error) {
+
+                console.error(
+                    `Gagal memuat ${reference.endpoint}:`,
+                    error
+                );
+
+                select.innerHTML = `
+                <option value="">Gagal memuat data</option>
+            `;
+            }
+        }
     }
 
     // ==========================================
@@ -1392,7 +1541,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.getElementById("subCardTitle").textContent = config.title;
         document.getElementById("subCardDesc").textContent = config.description;
-        document.getElementById("btnAddText").textContent = config.addText;
         document.getElementById("labelNamaData").textContent = config.label;
         document.getElementById("searchInput").placeholder = config.placeholder;
 
@@ -1455,23 +1603,94 @@ document.addEventListener("DOMContentLoaded", function () {
         editingMasterId = null;
     }
 
-    document.getElementById("btnAddData").addEventListener("click", function () {
-
-        editingMasterId = null;
-
-        form.reset();
-
-        document.getElementById("modalTitle").textContent =
-            categoryConfig[activeCategory].addText;
-
-        modal.style.display = "flex";
-    });
-
     document.getElementById("btnCloseModal")
         .addEventListener("click", closeMasterModal);
 
     document.getElementById("btnBatalModal")
         .addEventListener("click", closeMasterModal);
+
+    const trainingModal = document.getElementById("modalTambahPelatihan");
+    const trainingForm = document.getElementById("formTambahPelatihan");
+
+    function closeTrainingModal() {
+
+        trainingModal.style.display = "none";
+        trainingForm.reset();
+    }
+
+    document.getElementById("btnAddData").addEventListener("click", async function () {
+
+        trainingForm.reset();
+
+        document.getElementById("modalTitlePelatihan").textContent =
+            "Tambah Data Pelatihan";
+
+        trainingModal.style.display = "flex";
+
+        await loadTrainingReferences();
+
+    });
+
+    document.getElementById("btnClosePelatihan")
+        .addEventListener("click", closeTrainingModal);
+
+    document.getElementById("btnBatalPelatihan")
+        .addEventListener("click", closeTrainingModal);
+
+    trainingForm.addEventListener("submit", async function (event) {
+
+        event.preventDefault();
+
+        const data = {
+            jenis_ikan: document.getElementById("inputJenisIkan").value,
+            alat_tangkap: document.getElementById("inputAlatTangkap").value,
+            wilayah: document.getElementById("inputWilayah").value,
+            musim: document.getElementById("inputMusim").value,
+            produksi_kg: document.getElementById("inputProduksi").value
+        };
+
+        const submitButton = trainingForm.querySelector(
+            'button[type="submit"]'
+        );
+
+        submitButton.disabled = true;
+
+        try {
+
+            const response = await fetch(
+                "/SIPIKA/backend/data-produksi",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    credentials: "same-origin",
+                    body: JSON.stringify(data)
+                }
+            );
+
+            const result = await response.json();
+
+            if (!response.ok || result.status !== "success") {
+                throw new Error(
+                    result.message || "Gagal menyimpan data pelatihan."
+                );
+            }
+
+            alert("Data pelatihan berhasil ditambahkan!");
+
+            closeTrainingModal();
+
+        } catch (error) {
+
+            alert(error.message);
+
+        } finally {
+
+            submitButton.disabled = false;
+
+        }
+    });
 
     // ==========================================
     // SIMPAN DATA REFERENSI

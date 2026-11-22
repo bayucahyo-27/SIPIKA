@@ -27,9 +27,9 @@ class MasterDataController {
         exit();
     }
 
-    // Memastikan hanya Admin yang dapat mengakses
+    // Memastikan hanya Admin dan petugas yang dapat mengakses
     private function authorizeAdmin() {
-        AuthMiddleware::authorize(["admin"]);
+    AuthMiddleware::authorize(["admin", "petugas"]);
     }
     
     // Membaca dan memvalidasi input JSON
@@ -77,7 +77,7 @@ class MasterDataController {
     // GET: Mengambil referensi aktif untuk Admin dan Nelayan
     public function active($type) {
 
-        AuthMiddleware::authorize(["admin", "nelayan"]);
+        AuthMiddleware::authorize(["admin", "petugas", "nelayan"]);
 
         try {
 

@@ -225,7 +225,6 @@ class User {
                     username,
                     nama_lengkap,
                     email,
-                    nomor_telepon,
                     foto_profil,
                     role
                   FROM " . $this->table . "
@@ -323,15 +322,14 @@ class User {
                     username,
                     nama_lengkap,
                     email,
-                    nomor_telepon,
                     foto_profil,
                     role,
                     status,
                     created_at
-                  FROM " . $this->table . "
-                  " . $where . "
-                  ORDER BY created_at DESC
-                  LIMIT :limit OFFSET :offset";
+                FROM " . $this->table . "
+                " . $where . "
+                ORDER BY created_at DESC
+                LIMIT :limit OFFSET :offset";
 
         $stmt = $this->conn->prepare($query);
 
@@ -357,9 +355,9 @@ class User {
     // 2. Menambahkan pengguna baru oleh Admin
     public function createUser() {
         $query = "INSERT INTO " . $this->table . "
-                  (username, nama_lengkap, email, nomor_telepon, password, role, status)
-                  VALUES
-                  (:username, :nama_lengkap, :email, :nomor_telepon, :password, :role, 'Aktif')";
+                (username, nama_lengkap, email, password, role, status)
+                VALUES
+                (:username, :nama_lengkap, :email, :password, :role, 'Aktif')";
 
         $stmt = $this->conn->prepare($query);
 
@@ -368,7 +366,6 @@ class User {
         $stmt->bindValue(":username", $this->username);
         $stmt->bindValue(":nama_lengkap", $this->nama_lengkap);
         $stmt->bindValue(":email", $this->email);
-        $stmt->bindValue(":nomor_telepon", $this->nomor_telepon);
         $stmt->bindValue(":password", $hashedPassword);
         $stmt->bindValue(":role", $this->role);
 
@@ -376,35 +373,22 @@ class User {
     }
 
     // 3. Memperbarui informasi pengguna
-    public function updateUser($userId, $updatePassword = false) {
+    public function updateUser($userId) {
         $query = "UPDATE " . $this->table . "
                 SET username = :username,
                     nama_lengkap = :nama_lengkap,
                     email = :email,
-                    nomor_telepon = :nomor_telepon,
-                    role = :role";
-
-        if ($updatePassword) {
-            $query .= ", password = :password";
-        }
-
-        // Hanya akun Nelayan dan Petugas yang boleh diperbarui
-        $query .= " WHERE id = :id
-                    AND role IN ('nelayan', 'petugas')";
+                    role = :role
+                WHERE id = :id
+                AND role IN ('nelayan', 'petugas')";
 
         $stmt = $this->conn->prepare($query);
 
         $stmt->bindValue(":username", $this->username);
         $stmt->bindValue(":nama_lengkap", $this->nama_lengkap);
         $stmt->bindValue(":email", $this->email);
-        $stmt->bindValue(":nomor_telepon", $this->nomor_telepon);
         $stmt->bindValue(":role", $this->role);
         $stmt->bindValue(":id", $userId, PDO::PARAM_INT);
-
-        if ($updatePassword) {
-            $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
-            $stmt->bindValue(":password", $hashedPassword);
-        }
 
         return $stmt->execute() && $stmt->rowCount() > 0;
     }
