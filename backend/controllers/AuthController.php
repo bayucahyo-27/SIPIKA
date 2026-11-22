@@ -221,28 +221,66 @@ class AuthController {
     // FUNGSI UBAH PASSWORD (KHUSUS PROFIL)
     // ==========================================
     public function changePassword() {
-        // 1. Ambil data JSON dari frontend
-        $data = json_decode(file_get_contents("php://input"));
 
-        // 2. Validasi input tidak boleh kosong
-        if (empty($data->userId) || empty($data->currentPassword) || empty($data->newPassword)) {
-            http_response_code(400);
-            echo json_encode(["status" => "error", "message" => "Semua kolom password wajib diisi!"]);
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+
+        if (empty($_SESSION["user_id"]) || ($_SESSION["role"] ?? "") !== "admin") {
+            http_response_code(403);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Akses hanya untuk Admin yang sudah login."
+            ]);
             return;
         }
 
-        // 3. Panggil Model User
-        $user = new User($this->db);
-        
-        // 4. Eksekusi logika di User.php (yang baru saja kita tambahkan)
-        $result = $user->changePassword($data->userId, $data->currentPassword, $data->newPassword);
+        $data = json_decode(file_get_contents("php://input"));
 
-        // 5. Kirim respon balik ke frontend
+        if (
+            empty($data->currentPassword) ||
+            empty($data->newPassword) ||
+            empty($data->confirmPassword)
+        ) {
+            http_response_code(400);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Semua kolom password wajib diisi!"
+            ]);
+            return;
+        }
+
+        if (strlen($data->newPassword) < 8) {
+            http_response_code(400);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Password baru minimal 8 karakter."
+            ]);
+            return;
+        }
+
+        if ($data->newPassword !== $data->confirmPassword) {
+            http_response_code(400);
+            echo json_encode([
+                "status" => "error",
+                "message" => "Konfirmasi password baru tidak cocok."
+            ]);
+            return;
+        }
+
+        $user = new User($this->db);
+
+        $result = $user->changePassword(
+            $_SESSION["user_id"],
+            $data->currentPassword,
+            $data->newPassword
+        );
+
         if ($result["status"] === "success") {
             http_response_code(200);
             echo json_encode($result);
         } else {
-            http_response_code(401); // 401 Unauthorized karena password lama salah
+            http_response_code(401);
             echo json_encode($result);
         }
     }
