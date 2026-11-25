@@ -69,6 +69,102 @@ class MasterData {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+
+    // Menambahkan seluruh kelompok atribut sekaligus
+    public function createBulk($dataByType) {
+
+        $allowedTypes = [
+            "jenis_ikan",
+            "alat_tangkap",
+            "wilayah",
+            "musim"
+        ];
+
+        try {
+
+            $this->conn->beginTransaction();
+
+            $summary = [];
+
+            foreach ($allowedTypes as $type) {
+
+                if (!isset($dataByType[$type]) || !is_array($dataByType[$type])) {
+                    throw new InvalidArgumentException(
+                        "Data kategori $type tidak valid."
+                    );
+                }
+
+                $table = $this->getTable($type);
+
+                $query = "INSERT INTO $table (nama, deskripsi)
+                          VALUES (:nama, :deskripsi)";
+
+                $stmt = $this->conn->prepare($query);
+
+                $count = 0;
+
+                foreach ($dataByType[$type] as $item) {
+
+                    // Memastikan setiap atribut berbentuk array
+                    if (!is_array($item)) {
+                        throw new InvalidArgumentException(
+                            "Format atribut pada kategori $type tidak valid."
+                        );
+                    }
+
+                    $nama = $item["nama"] ?? "";
+                    $deskripsi = $item["deskripsi"] ?? "";
+
+                    // Memastikan nama dan deskripsi berupa teks
+                    if (!is_string($nama) || !is_string($deskripsi)) {
+                        throw new InvalidArgumentException(
+                            "Nama dan deskripsi atribut harus berupa teks."
+                        );
+                    }
+
+                    $nama = trim($nama);
+                    $deskripsi = trim($deskripsi);
+
+                    // Memastikan nama tidak kosong
+                    if ($nama === "") {
+                        throw new InvalidArgumentException(
+                            "Nama atribut pada kategori $type wajib diisi."
+                        );
+                    }
+
+                    // Menyimpan atribut ke database
+                    $stmt->bindValue(":nama", $nama);
+                    $stmt->bindValue(
+                        ":deskripsi",
+                        $deskripsi !== "" ? $deskripsi : null
+                    );
+
+                    if (!$stmt->execute()) {
+                        throw new Exception(
+                            "Gagal menyimpan kategori $type."
+                        );
+                    }
+
+                    $count++;
+                }
+
+                $summary[$type] = $count;
+            }
+
+            $this->conn->commit();
+
+            return $summary;
+
+        } catch (Throwable $e) {
+
+            if ($this->conn->inTransaction()) {
+                $this->conn->rollBack();
+            }
+
+            throw $e;
+        }
+    }
+
     // Menambahkan data baru
     public function create($type, $nama, $deskripsi = null) {
         $table = $this->getTable($type);

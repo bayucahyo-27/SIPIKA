@@ -274,99 +274,7 @@
                   </tr>
                 </thead>
 
-                <tbody id="datasetTableBody">
-                  <tr>
-                    <td>1</td>
-                    <td class="fw-semibold">dataset_sipika_v1.csv</td>
-                    <td>500</td>
-                    <td>12 Jan 2025</td>
-                    <td>
-                      <span class="badge badge-status-aktif">Aktif</span>
-                    </td>
-                    <td>
-                      <div class="action-buttons">
-                        <!-- TOMBOL EDIT -->
-                        <button class="btn-icon text-blue btn-edit btn-edit-dataset" title="Edit">
-                          <i class="fa-solid fa-pen"></i>
-                        </button>
-
-                        <!-- TOMBOL HAPUS -->
-                        <button class="btn-icon text-red btn-delete btn-delete-dataset" title="Hapus">
-                          <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>2</td>
-                    <td class="fw-semibold">dataset_sipika_v0.csv</td>
-                    <td>450</td>
-                    <td>5 Jan 2025</td>
-                    <td>
-                      <span class="badge badge-status-aktif">Aktif</span>
-                    </td>
-                    <td>
-                      <div class="action-buttons">
-                        <!-- TOMBOL EDIT -->
-                        <button class="btn-icon text-blue btn-edit btn-edit-dataset" title="Edit">
-                          <i class="fa-solid fa-pen"></i>
-                        </button>
-
-                        <!-- TOMBOL HAPUS -->
-                        <button class="btn-icon text-red btn-delete btn-delete-dataset" title="Hapus">
-                          <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>3</td>
-                    <td class="fw-semibold">dataset_uji.csv</td>
-                    <td>320</td>
-                    <td>20 Des 2024</td>
-                    <td>
-                      <span class="badge badge-status-aktif">Aktif</span>
-                    </td>
-                    <td>
-                      <div class="action-buttons">
-                        <!-- TOMBOL EDIT -->
-                        <button class="btn-icon text-blue btn-edit btn-edit-dataset" title="Edit">
-                          <i class="fa-solid fa-pen"></i>
-                        </button>
-
-                        <!-- TOMBOL HAPUS -->
-                        <button class="btn-icon text-red btn-delete btn-delete-dataset" title="Hapus">
-                          <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>4</td>
-                    <td class="fw-semibold">dataset_lama.csv</td>
-                    <td>600</td>
-                    <td>10 Des 2024</td>
-                    <td>
-                      <span class="badge badge-status-aktif">Aktif</span>
-                    </td>
-                    <td>
-                      <div class="action-buttons">
-                        <!-- TOMBOL EDIT -->
-                        <button class="btn-icon text-blue btn-edit btn-edit-dataset" title="Edit">
-                          <i class="fa-solid fa-pen"></i>
-                        </button>
-
-                        <!-- TOMBOL HAPUS -->
-                        <button class="btn-icon text-red btn-delete btn-delete-dataset" title="Hapus">
-                          <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
+                <tbody id="datasetTableBody"></tbody>
               </table>
 
               <div class="table-pagination-footer justify-end">
@@ -401,30 +309,22 @@
 
             <div class="form-group">
               <label for="inputJenisIkan">Jenis Ikan</label>
-              <select id="inputJenisIkan" required>
-                <option value="">Pilih Jenis Ikan</option>
-              </select>
+              <input type="text" id="inputJenisIkan" placeholder="Masukkan jenis ikan" required>
             </div>
 
             <div class="form-group">
               <label for="inputAlatTangkap">Alat Tangkap</label>
-              <select id="inputAlatTangkap" required>
-                <option value="">Pilih Alat Tangkap</option>
-              </select>
+              <input type="text" id="inputAlatTangkap" placeholder="Masukkan alat tangkap" required>
             </div>
 
             <div class="form-group">
               <label for="inputWilayah">Wilayah</label>
-              <select id="inputWilayah" required>
-                <option value="">Pilih Wilayah</option>
-              </select>
+              <input type="text" id="inputWilayah" placeholder="Masukkan wilayah penangkapan" required>
             </div>
 
             <div class="form-group">
               <label for="inputMusim">Musim</label>
-              <select id="inputMusim" required>
-                <option value="">Pilih Musim</option>
-              </select>
+              <input type="text" id="inputMusim" placeholder="Masukkan musim penangkapan" required>
             </div>
 
             <div class="form-group">
@@ -447,14 +347,17 @@
         </div>
       </div>
 
+
       <!-- MODAL TAMBAH DAN EDIT DATA REFERENSI -->
       <div class="modal-overlay" id="modalTambahData" style="display: none;">
         <div class="modal-content">
 
           <div class="modal-header">
             <div>
-              <h2 id="modalTitle">Tambah Jenis Ikan</h2>
-              <p>Masukkan informasi data referensi baru.</p>
+              <h2 id="modalTitle">Tambah Seluruh Atribut</h2>
+              <p id="modalDescription">
+                Masukkan seluruh kelompok atribut data referensi.
+              </p>
             </div>
 
             <button type="button" class="modal-close" id="btnCloseModal">
@@ -464,31 +367,66 @@
 
           <form id="formTambahData">
 
-            <div class="form-group">
-              <label for="inputNamaData" id="labelNamaData">
-                Nama Jenis Ikan
-              </label>
-              <input type="text" id="inputNamaData" placeholder="Masukkan nama data" required>
+            <!-- FORM TAMBAH BULK -->
+            <div id="bulkAttributeFields">
+
+              <div class="form-group">
+                <label for="inputBulkJenisIkan">Jenis Ikan</label>
+                <input type="text" id="inputBulkJenisIkan" placeholder="Contoh: Ikan Tuna" required>
+              </div>
+
+              <div class="form-group">
+                <label for="inputBulkAlatTangkap">Alat Tangkap</label>
+                <input type="text" id="inputBulkAlatTangkap" placeholder="Contoh: Pancing" required>
+              </div>
+
+              <div class="form-group">
+                <label for="inputBulkWilayah">Wilayah</label>
+                <input type="text" id="inputBulkWilayah" placeholder="Contoh: Kota Ternate" required>
+              </div>
+
+              <div class="form-group">
+                <label for="inputBulkMusim">Musim</label>
+                <input type="text" id="inputBulkMusim" placeholder="Contoh: Kemarau" required>
+              </div>
+
             </div>
 
-            <div class="form-group">
-              <label for="inputDeskripsiData">Deskripsi</label>
-              <textarea id="inputDeskripsiData" rows="3" placeholder="Masukkan deskripsi data" required></textarea>
+            <!-- FORM EDIT SATU ATRIBUT -->
+            <div id="singleAttributeFields" style="display: none;">
+
+              <div class="form-group">
+                <label for="inputNamaData" id="labelNamaData">
+                  Nama Atribut
+                </label>
+
+                <input type="text" id="inputNamaData" placeholder="Masukkan nama data">
+              </div>
+
+              <div class="form-group">
+                <label for="inputDeskripsiData">Deskripsi</label>
+
+                <textarea id="inputDeskripsiData" rows="3" placeholder="Masukkan deskripsi data"></textarea>
+              </div>
+
             </div>
 
             <div class="modal-actions">
+
               <button type="button" class="btn-modal-cancel" id="btnBatalModal">
                 Batal
               </button>
 
-              <button type="submit" class="btn-modal-save">
-                Simpan Data
+              <button type="submit" class="btn-modal-save" id="btnSimpanMaster">
+                Simpan Seluruh Atribut
               </button>
+
             </div>
 
           </form>
         </div>
       </div>
+
 
       <!-- MODAL EDIT DATASET -->
       <div class="modal-overlay" id="modalEditDataset" style="display: none">

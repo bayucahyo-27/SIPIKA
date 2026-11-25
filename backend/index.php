@@ -322,6 +322,28 @@ if (
     exit();
 }
 
+
+// ==========================================
+// ROUTING PENAMBAHAN SELURUH ATRIBUT SEKALIGUS
+// ==========================================
+
+if (
+    $request_method == 'POST' &&
+    $request_uri == '/admin/master-data/bulk'
+) {
+
+    require_once 'config/database.php';
+    require_once 'controllers/MasterDataController.php';
+
+    $database = new Database();
+    $db = $database->getConnection();
+
+    $controller = new MasterDataController($db);
+    $controller->storeBulk();
+
+    exit();
+}
+
 // ==========================================
 // ROUTING DATA MASTER ADMIN
 // ==========================================
