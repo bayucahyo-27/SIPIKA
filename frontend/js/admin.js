@@ -1350,24 +1350,30 @@ document.addEventListener("DOMContentLoaded", function () {
             editButton.dataset.id = item.id;
             editButton.innerHTML = '<i class="fa-solid fa-pen"></i>';
 
-            // Tombol aktif/nonaktif
-            const statusButton = document.createElement("button");
-            statusButton.type = "button";
-            statusButton.className = item.status === "Aktif"
-                ? "btn-icon text-red"
-                : "btn-icon text-green";
-
-            statusButton.title = item.status === "Aktif"
+            // Tombol status aktif/nonaktif
+            const statusWrapper = document.createElement("label");
+            statusWrapper.className = "switch";
+            statusWrapper.title = item.status === "Aktif"
                 ? "Nonaktifkan"
                 : "Aktifkan";
 
+            const statusButton = document.createElement("input");
+            statusButton.type = "checkbox";
+            statusButton.checked = item.status === "Aktif";
             statusButton.dataset.action = "toggle-status";
             statusButton.dataset.id = item.id;
             statusButton.dataset.status = item.status;
+            statusButton.setAttribute("aria-label",
+                item.status === "Aktif"
+                    ? "Nonaktifkan data"
+                    : "Aktifkan data"
+            );
 
-            statusButton.innerHTML = item.status === "Aktif"
-                ? '<i class="fa-solid fa-toggle-on"></i>'
-                : '<i class="fa-solid fa-toggle-off"></i>';
+            const statusSlider = document.createElement("span");
+            statusSlider.className = "slider";
+
+            statusWrapper.appendChild(statusButton);
+            statusWrapper.appendChild(statusSlider);
 
             // Tombol hapus
             const deleteButton = document.createElement("button");
@@ -1823,7 +1829,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     tableBody.addEventListener("click", async function (event) {
 
-        const button = event.target.closest("button[data-action]");
+        const button = event.target.closest("[data-action]");
 
         if (!button) return;
 
