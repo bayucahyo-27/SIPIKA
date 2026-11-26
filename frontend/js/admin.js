@@ -1385,7 +1385,7 @@ document.addEventListener("DOMContentLoaded", function () {
             deleteButton.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
 
             actionWrapper.appendChild(editButton);
-            actionWrapper.appendChild(statusButton);
+            actionWrapper.appendChild(statusWrapper);
             actionWrapper.appendChild(deleteButton);
 
             actionCell.appendChild(actionWrapper);
