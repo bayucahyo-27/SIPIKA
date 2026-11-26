@@ -28,6 +28,7 @@ MODEL_DIR = BASE_DIR / "models"
 
 MODEL_PATH = MODEL_DIR / "decision_tree_sipika.joblib"
 EVALUATION_PATH = MODEL_DIR / "evaluation.json"
+FEATURE_IMPORTANCE_PATH = MODEL_DIR / "feature_importance.csv"
 
 # Empat atribut yang digunakan sebagai input klasifikasi.
 FEATURES = [
@@ -149,6 +150,70 @@ def train_model(model, X_train, y_train):
 
     return model
 
+# ==========================================
+# 5. MENGANALISIS FEATURE IMPORTANCE
+# ==========================================
+
+def analyze_feature_importance(model):
+    """Menghitung tingkat kepentingan masing-masing atribut."""
+
+    # Mengambil algoritma Decision Tree dari pipeline.
+    classifier = model.named_steps["classifier"]
+
+    # Mengambil nama fitur setelah proses One-Hot Encoding.
+    preprocessor = model.named_steps["preprocessor"]
+    feature_names = preprocessor.get_feature_names_out()
+
+    # Mengambil nilai feature importance setiap kategori.
+    importances = classifier.feature_importances_
+
+    # Menyiapkan hasil berdasarkan empat atribut utama.
+    importance_data = []
+
+    for feature in FEATURES:
+        # Mengambil kategori yang berasal dari atribut terkait.
+        prefix = f"categorical__{feature}_"
+
+        total_importance = sum(
+            importance
+            for name, importance in zip(feature_names, importances)
+            if name.startswith(prefix)
+        )
+
+        importance_data.append({
+            "atribut": feature,
+            "importance": total_importance,
+            "persentase": total_importance * 100
+        })
+
+    # Mengurutkan atribut dari yang paling berpengaruh.
+    importance_df = pd.DataFrame(importance_data)
+
+    importance_df = importance_df.sort_values(
+        by="importance",
+        ascending=False
+    )
+
+    # Menyimpan hasil ke CSV.
+    importance_df.to_csv(
+        FEATURE_IMPORTANCE_PATH,
+        index=False
+    )
+
+    print("\n========== FEATURE IMPORTANCE ==========")
+
+    for _, row in importance_df.iterrows():
+        print(
+            f"{row['atribut']}: "
+            f"{row['persentase']:.2f}%"
+        )
+
+    print(
+        f"\nHasil Feature Importance disimpan di: "
+        f"{FEATURE_IMPORTANCE_PATH}"
+    )
+
+    return importance_df
 
 # ==========================================
 # 5. MELAKUKAN EVALUASI MODEL
@@ -252,6 +317,9 @@ def main():
     # Membangun dan melatih model Decision Tree.
     model = build_model()
     model = train_model(model, X_train, y_train)
+
+    # Menganalisis pengaruh setiap atribut.
+    analyze_feature_importance(model)
 
     # Mengevaluasi hasil prediksi model.
     evaluation = evaluate_model(model, X_test, y_test)
