@@ -323,6 +323,59 @@ class MasterDataController {
         }
     }
 
+
+    // POST: Menambahkan seluruh kelompok atribut sekaligus
+    public function storeBulk() {
+
+        $this->authorizeAdmin();
+
+        $input = $this->getJsonInput();
+
+        $requiredTypes = [
+            "jenis_ikan",
+            "alat_tangkap",
+            "wilayah",
+            "musim"
+        ];
+
+        foreach ($requiredTypes as $type) {
+
+            if (
+                !isset($input[$type]) ||
+                !is_array($input[$type]) ||
+                count($input[$type]) === 0
+            ) {
+                $this->response(
+                    false,
+                    "Semua kelompok atribut wajib diisi.",
+                    ["kategori" => $type],
+                    422
+                );
+            }
+        }
+
+        try {
+
+            $result = $this->masterData->createBulk($input);
+
+            $this->response(
+                true,
+                "Seluruh atribut berhasil ditambahkan.",
+                $result,
+                201
+            );
+
+        } catch (Throwable $e) {
+
+            $this->response(
+                false,
+                $e->getMessage(),
+                null,
+                400
+            );
+        }
+    }
+
 }
 
 ?>

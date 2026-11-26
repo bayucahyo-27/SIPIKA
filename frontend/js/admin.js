@@ -1189,76 +1189,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ==========================================
-    // MEMUAT DROPDOWN DATA PELATIHAN
-    // ==========================================
-
-    async function loadTrainingReferences() {
-
-        const references = [
-            {
-                endpoint: "ikan",
-                elementId: "inputJenisIkan",
-                placeholder: "Pilih Jenis Ikan"
-            },
-            {
-                endpoint: "alat",
-                elementId: "inputAlatTangkap",
-                placeholder: "Pilih Alat Tangkap"
-            },
-            {
-                endpoint: "wilayah",
-                elementId: "inputWilayah",
-                placeholder: "Pilih Wilayah"
-            },
-            {
-                endpoint: "musim",
-                elementId: "inputMusim",
-                placeholder: "Pilih Musim"
-            }
-        ];
-
-        for (const reference of references) {
-
-            const select = document.getElementById(reference.elementId);
-
-            if (!select) continue;
-
-            try {
-
-                const result = await masterRequest(
-                    `/SIPIKA/backend/master-data/${reference.endpoint}`
-                );
-
-                select.innerHTML = `
-                <option value="">${reference.placeholder}</option>
-            `;
-
-                result.data.forEach(item => {
-
-                    const option = document.createElement("option");
-
-                    option.value = item.nama;
-                    option.textContent = item.nama;
-
-                    select.appendChild(option);
-
-                });
-
-            } catch (error) {
-
-                console.error(
-                    `Gagal memuat ${reference.endpoint}:`,
-                    error
-                );
-
-                select.innerHTML = `
-                <option value="">Gagal memuat data</option>
-            `;
-            }
-        }
-    }
-
-    // ==========================================
     // REQUEST API
     // ==========================================
 
@@ -1596,11 +1526,76 @@ document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("modalTambahData");
     const form = document.getElementById("formTambahData");
 
-    function closeMasterModal() {
+    const bulkFields = document.getElementById("bulkAttributeFields");
+    const singleFields = document.getElementById("singleAttributeFields");
 
+    const modalDescription = document.getElementById("modalDescription");
+    const submitMasterButton = document.getElementById("btnSimpanMaster");
+
+    function closeMasterModal() {
         modal.style.display = "none";
         form.reset();
         editingMasterId = null;
+    }
+
+    function openBulkModal() {
+        editingMasterId = null;
+        form.reset();
+
+        // Tampilkan form tambah seluruh atribut
+        bulkFields.style.display = "block";
+        singleFields.style.display = "none";
+
+        // Aktifkan validasi empat input bulk
+        bulkFields.querySelectorAll("input").forEach(input => {
+            input.required = true;
+        });
+
+        // Nonaktifkan validasi input edit
+        document.getElementById("inputNamaData").required = false;
+
+        document.getElementById("modalTitle").textContent =
+            "Tambah Seluruh Atribut";
+
+        modalDescription.textContent =
+            "Masukkan seluruh kelompok atribut data referensi.";
+
+        submitMasterButton.textContent = "Simpan Seluruh Atribut";
+
+        modal.style.display = "flex";
+    }
+
+    function openEditModal(item) {
+        editingMasterId = item.id;
+        form.reset();
+
+        // Sembunyikan form tambah bulk
+        bulkFields.style.display = "none";
+        singleFields.style.display = "block";
+
+        // Nonaktifkan validasi empat input bulk
+        bulkFields.querySelectorAll("input").forEach(input => {
+            input.required = false;
+        });
+
+        // Aktifkan validasi nama atribut yang diedit
+        document.getElementById("inputNamaData").required = true;
+
+        document.getElementById("modalTitle").textContent =
+            "Edit " + categoryConfig[activeCategory].label;
+
+        modalDescription.textContent =
+            "Perbarui informasi atribut yang dipilih.";
+
+        submitMasterButton.textContent = "Simpan Perubahan";
+
+        document.getElementById("inputNamaData").value =
+            item.nama || "";
+
+        document.getElementById("inputDeskripsiData").value =
+            item.deskripsi || "";
+
+        modal.style.display = "flex";
     }
 
     document.getElementById("btnCloseModal")
@@ -1609,27 +1604,20 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("btnBatalModal")
         .addEventListener("click", closeMasterModal);
 
+    document.getElementById("btnAddData")
+        .addEventListener("click", openBulkModal);
+
+    // ==========================================
+    // MODAL DAN FORM DATA PELATIHAN
+    // ==========================================
+
     const trainingModal = document.getElementById("modalTambahPelatihan");
     const trainingForm = document.getElementById("formTambahPelatihan");
 
     function closeTrainingModal() {
-
         trainingModal.style.display = "none";
         trainingForm.reset();
     }
-
-    document.getElementById("btnAddData").addEventListener("click", async function () {
-
-        trainingForm.reset();
-
-        document.getElementById("modalTitlePelatihan").textContent =
-            "Tambah Data Pelatihan";
-
-        trainingModal.style.display = "flex";
-
-        await loadTrainingReferences();
-
-    });
 
     document.getElementById("btnClosePelatihan")
         .addEventListener("click", closeTrainingModal);
@@ -1678,7 +1666,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             alert("Data pelatihan berhasil ditambahkan!");
-
             closeTrainingModal();
 
         } catch (error) {
@@ -1700,31 +1687,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
         event.preventDefault();
 
-        const nama = document.getElementById("inputNamaData")
-            .value.trim();
+        const submitButton = form.querySelector(
+            'button[type="submit"]'
+        );
 
-        const deskripsi = document.getElementById("inputDeskripsiData")
-            .value.trim();
-
-        if (!nama) {
-            showMasterMessage("Nama wajib diisi.");
-            return;
-        }
-
-        const payload = {
-            nama: nama,
-            deskripsi: deskripsi
-        };
+        submitButton.disabled = true;
 
         try {
 
+            // ==================================
+            // MODE EDIT SATU ATRIBUT
+            // ==================================
+
             if (editingMasterId !== null) {
+
+                const nama = document.getElementById("inputNamaData")
+                    .value.trim();
+
+                const deskripsi = document.getElementById("inputDeskripsiData")
+                    .value.trim();
+
+                if (!nama) {
+                    throw new Error("Nama atribut wajib diisi.");
+                }
 
                 const existingData = masterRows.find(
                     item => String(item.id) === String(editingMasterId)
                 );
 
-                payload.status = existingData?.status || "Aktif";
+                const payload = {
+                    nama: nama,
+                    deskripsi: deskripsi,
+                    status: existingData?.status || "Aktif"
+                };
 
                 await masterRequest(
                     `${MASTER_API_URL}/${activeCategory}/${editingMasterId}`,
@@ -1738,29 +1733,94 @@ document.addEventListener("DOMContentLoaded", function () {
 
             } else {
 
+                // ==================================
+                // MODE TAMBAH SELURUH ATRIBUT
+                // ==================================
+
+                const jenisIkan = document.getElementById(
+                    "inputBulkJenisIkan"
+                ).value.trim();
+
+                const alatTangkap = document.getElementById(
+                    "inputBulkAlatTangkap"
+                ).value.trim();
+
+                const wilayah = document.getElementById(
+                    "inputBulkWilayah"
+                ).value.trim();
+
+                const musim = document.getElementById(
+                    "inputBulkMusim"
+                ).value.trim();
+
+                if (!jenisIkan || !alatTangkap || !wilayah || !musim) {
+                    throw new Error(
+                        "Semua kelompok atribut wajib diisi."
+                    );
+                }
+
+                const payload = {
+                    jenis_ikan: [
+                        {
+                            nama: jenisIkan,
+                            deskripsi: ""
+                        }
+                    ],
+
+                    alat_tangkap: [
+                        {
+                            nama: alatTangkap,
+                            deskripsi: ""
+                        }
+                    ],
+
+                    wilayah: [
+                        {
+                            nama: wilayah,
+                            deskripsi: ""
+                        }
+                    ],
+
+                    musim: [
+                        {
+                            nama: musim,
+                            deskripsi: ""
+                        }
+                    ]
+                };
+
                 await masterRequest(
-                    `${MASTER_API_URL}/${activeCategory}`,
+                    `${MASTER_API_URL}/bulk`,
                     {
                         method: "POST",
                         body: JSON.stringify(payload)
                     }
                 );
 
-                showMasterMessage("Data berhasil ditambahkan.");
+                showMasterMessage(
+                    "Seluruh atribut berhasil ditambahkan."
+                );
             }
 
             closeMasterModal();
+
             await loadMasterData();
 
         } catch (error) {
 
             showMasterMessage(error.message);
+
+        } finally {
+
+            submitButton.disabled = false;
+
         }
     });
 
     // ==========================================
-    // AKSI EDIT DAN HAPUS
+    // AKSI EDIT, HAPUS, DAN UBAH STATUS
     // ==========================================
+
     tableBody.addEventListener("click", async function (event) {
 
         const button = event.target.closest("button[data-action]");
@@ -1770,7 +1830,22 @@ document.addEventListener("DOMContentLoaded", function () {
         const id = button.dataset.id;
         const action = button.dataset.action;
 
+        // EDIT
+        if (action === "edit") {
+
+            const item = masterRows.find(
+                data => String(data.id) === String(id)
+            );
+
+            if (!item) return;
+
+            openEditModal(item);
+            return;
+        }
+
+        // UBAH STATUS
         if (action === "toggle-status") {
+
             const item = masterRows.find(
                 data => String(data.id) === String(id)
             );
@@ -1788,6 +1863,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!confirmed) return;
 
             try {
+
                 await masterRequest(
                     `${MASTER_API_URL}/${activeCategory}/${id}/status`,
                     {
@@ -1805,34 +1881,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 await loadMasterData();
 
             } catch (error) {
+
                 showMasterMessage(error.message);
+
             }
 
             return;
         }
 
-        if (action === "edit") {
-
-            const item = masterRows.find(
-                data => String(data.id) === String(id)
-            );
-
-            if (!item) return;
-
-            editingMasterId = item.id;
-
-            document.getElementById("modalTitle").textContent =
-                "Edit " + categoryConfig[activeCategory].label;
-
-            document.getElementById("inputNamaData").value =
-                item.nama || "";
-
-            document.getElementById("inputDeskripsiData").value =
-                item.deskripsi || "";
-
-            modal.style.display = "flex";
-        }
-
+        // HAPUS
         if (action === "delete") {
 
             const confirmed = confirm(
@@ -1857,8 +1914,10 @@ document.addEventListener("DOMContentLoaded", function () {
             } catch (error) {
 
                 showMasterMessage(error.message);
+
             }
         }
+
     });
 
     // ==========================================
